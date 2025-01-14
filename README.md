@@ -26,7 +26,7 @@
 
 - 接口源：
 
-- https://raw.githubusercontent.com/cloudplains/jnsj/master/tv202303.txt
+- https://raw.githubusercontent.com/cloudplains/jnsj/master/result.txt
 
 - https://cloudplains.github.io/jnsj/result.txt
 

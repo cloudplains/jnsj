@@ -29,11 +29,10 @@
 
 - 接口源：
 
-```bash
 https://raw.githubusercontent.com/cloudplains/jnsj/gd/result.txt
-```bash
+
+
 https://cloudplains.github.io/iptv-api/result.txt
-```
 
 ## 免责声明
 

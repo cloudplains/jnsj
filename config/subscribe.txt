@@ -35,3 +35,4 @@ https://tv.youdu.fan:666/live/
 https://www.mytvsuper.xyz/m3u/Live.m3u
 https://www.cloudplains.cn/tv202303.txt
 https://aktv.top/live.txt
+https://www.cloudplains.cn/listtest/hnv6.txt

@@ -33,4 +33,5 @@ https://raw.githubusercontent.com/yuanzl77/IPTV/master/live.txt
 https://raw.githubusercontent.com/YueChan/Live/main/APTV.m3u
 https://tv.youdu.fan:666/live/
 https://www.mytvsuper.xyz/m3u/Live.m3u
-http://www.cloudplains.cn/tv202303.txt
+https://www.cloudplains.cn/tv202303.txt
+https://aktv.top/live.txt

@@ -5,8 +5,8 @@
 - ✅ 定时执行，北京时间每日 6:00 与 18:00 执行更新
 - ✅ 支持多种运行方式：工作流、命令行、GUI 软件、Docker(amd64/arm64/arm v7)
 
-- ✅ [接口源：] (https://www.cloudplains.cn/result.txt)
-- ✅ [源采集软件：] (https://github.com/cloudplains/jnsj/releases/download/1.5.9/IPTV-API.exe)
+- ✅ [接口源] (https://www.cloudplains.cn/result.txt)
+- ✅ [IPTV-API] (https://github.com/cloudplains/jnsj/releases/download/1.5.9/IPTV-API.exe)
 
 - ✅ [影视仓TV_5.0.44](https://www.cloudplains.cn/Releasess/%E5%BD%B1%E8%A7%86%E4%BB%93TV_5.0.44.apk)
 

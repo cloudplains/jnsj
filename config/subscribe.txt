@@ -3,7 +3,6 @@
 
 http://120.79.4.185/new/mdlive.txt
 http://175.178.251.183:6689/aktvlive.txt
-http://home.jundie.top:81/Cat/tv/live.txt
 http://ww.weidonglong.com/dsj.txt
 http://xhztv.top/zbc.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u

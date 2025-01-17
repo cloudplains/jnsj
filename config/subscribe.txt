@@ -41,6 +41,7 @@ http://106.53.99.30/vip.txt
 https://live.cloudplains.cn/live.txt
 http://home.jundie.top:81/Cat/tv/live.txt
 https://live.iptv365.org/live.txt
+https://live.zbds.top/tv/iptv6.txt
 
 
 

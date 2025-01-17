@@ -7,6 +7,7 @@
 
 - ✅ TV源1: [https://www.cloudplains.cn/result.txt](https://www.cloudplains.cn/result.txt)
 - ✅ TV源2: [https://www.cloudplains.cn/tv202303.txt](https://www.cloudplains.cn/tv202303.txt)
+- ✅ TV源3: [https://cloudplains.github.io/IPTV/live.txt](https://cloudplains.github.io/IPTV/live.txt)
 - ✅ TVBOX接口:[https://www.cloudplains.cn/jnsj.json](https://www.cloudplains.cn/jnsj.json)
 - ✅ [IPTV-API](https://github.com/cloudplains/jnsj/releases/download/1.5.9/IPTV-API.exe)
 

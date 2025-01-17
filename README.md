@@ -11,7 +11,7 @@
 - ✅ [IPTV-API](https://github.com/cloudplains/jnsj/releases/download/1.5.9/IPTV-API.exe)
 
 - ✅ [影视仓TV_5.0.44](https://www.cloudplains.cn/Releasess/%E5%BD%B1%E8%A7%86%E4%BB%93TV_5.0.44.apk)
-- ✅ [TVBoxOSC](https://github.com/o0HalfLife0o/TVBoxOSC/releases)
+- ✅ [TVBoxOSC](https://github.com/o0HalfLife0o/TVBoxOSC/releases);[TVBoxOSC](https://www.cloudplains.cn/Releasess/tvbox.osc.apk)
 
 - ✅ [my-tv-0](https://github.com/lizongying/my-tv-0/releases); [my-tv](https://github.com/lizongying/my-tv/releases)
 - ✅ [Cloudreve](https://github.com/cloudreve/Cloudreve/releases)

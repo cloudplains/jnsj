@@ -1,4 +1,4 @@
-移动IPV6百视通直播源
+移动IPV6百视通,#genre#
 
 CCTV1,http://[2409:8087:5e20:24::d]:6610/000000001000/0/index.m3u8?channel-id=bestzb&Contentid=5000000011000265001&livemode=1&stbId=ace
 

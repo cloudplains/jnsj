@@ -25,11 +25,8 @@
 動物星球,http://61.221.215.25:8800/hls/57/index.m3u8
 
 法时尚,http://lb.streaming.sk/fashiontv/stream/chunklist.m3u8
-俄·IGITV,http://hls-igi.cdnvideo.ru/igi/igi_hq/playlist.m3u8
-
 
 环球电视,http://zb.xzxwhcb.com:9999/hls/world.m3u8
-龙华电影,https://stream1.freetv.fun/1178a02eb676ee58293691fdc19fed767b2dc61d866c1fee41447a8503ec0253.m3u8
 
 AKTV,#genre#
 中天新聞台,http://aktv.top/AKTV/live/aktv/null-8/AKTV.m3u8

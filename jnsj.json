@@ -2,14 +2,11 @@
     "urls": [
         { "url": "http://www.饭太硬.com/tv", "name": "饭太硬线路" },                    
         { "url": "https://www.mpanso.com/小米/DEMO.json", "name": "小米线路" },                     
-        { "url": "https://jihulab.com/mengzhu2/ysc/-/raw/main/YSC.json", "name": "影视仓Box" },   
-        { "url": "http://175.178.251.183:6689/tv.txt", "name": "YUAN77" },        
-        { "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json", "name": "小苹果" },                                     
+        { "url": "https://jihulab.com/mengzhu2/ysc/-/raw/main/YSC.json", "name": "影视仓Box" },         
         {"url": "https://100km.top/0", "name": "Ray线路"},			
         { "url": "http://tvbox.王二小放牛娃.top", "name": "王二小线路" },
         {"url": "http://tv.laohu.cool/tvbox.json", "name": "老虎线路" },
         { "url": "https://tv.xn--yhqu5zs87a.top", "name": "📁莱斯📁" },
-        {"url": "http://home.jundie.top:81/top98.json","name": "📁俊佬📁" },
         {"url": "http://t.lkkk.love/02.json","name": "📁kkk📁" },
         { "url": "http://o.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌", "name": "欧歌线路" }
             ]

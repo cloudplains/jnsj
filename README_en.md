@@ -1,3 +1,111 @@
+<div align="center">
+  <img src="./static/images/logo.png" alt="logo"/>
+  <h1 align="center">IPTV-API</h1>
+</div>
+
+<div align="center">A highly customizable IPTV interface update project 📺, with customizable channel menus, automatic live stream acquisition, speed testing, and validation to generate usable results, achieving 『✨instant playback experience🚀』</div>
+<br>
+<p align="center">
+  <a href="https://github.com/Guovin/iptv-api/releases/latest">
+    <img src="https://img.shields.io/github/v/release/guovin/iptv-api" />
+  </a>
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/python-%20%3D%203.13-47c219" />
+  </a>
+  <a href="https://github.com/Guovin/iptv-api/releases/latest">
+    <img src="https://img.shields.io/github/downloads/guovin/iptv-api/total" />
+  </a>
+  <a href="https://hub.docker.com/repository/docker/guovern/iptv-api">
+    <img src="https://img.shields.io/docker/pulls/guovern/iptv-api" />
+  </a>
+  <a href="https://github.com/Guovin/iptv-api/fork">
+    <img src="https://img.shields.io/github/forks/guovin/iptv-api" />
+  </a>
+</p>
+
+[中文](./README.md) | English
+
+- [✅ Features](#features)
+- [🔗 Latest results](#latest-results)
+- [⚙️ Config parameter](#Config)
+- [🚀 Quick Start](#quick-start)
+    - [Workflow](#workflow)
+    - [Command Line](#command-line)
+    - [GUI Software](#gui-software)
+    - [Docker](#docker)
+- [📖 Detailed Tutorial](./docs/tutorial_en.md)
+- [🗓️ Changelog](./CHANGELOG.md)
+- [❤️ Appreciate](#appreciate)
+- [👀 Follow(Update Subscription + Q&A)](#follow)
+- [📣 Disclaimer](#disclaimer)
+- [⚖️ License](#license)
+
+📍Subscription sources are from:
+
+- [iptv-org/iptv](https://github.com/iptv-org/iptv)
+- [suxuang/myIPTV](https://github.com/suxuang/myIPTV)
+- [kimwang1978/collect-tv-txt](https://github.com/kimwang1978/collect-tv-txt)
+- [xzw832/cmys](https://github.com/xzw832/cmys)
+- [asdjkl6/tv](https://github.com/asdjkl6/tv)
+- [yuanzl77/IPTV](https://github.com/yuanzl77/IPTV)
+- [fanmingming/live](https://github.com/fanmingming/live)
+- [vbskycn/iptv](https://github.com/vbskycn/iptv)
+- [YueChan/Live](https://github.com/YueChan/Live)
+- [YanG-1989/m3u](https://github.com/YanG-1989/m3u)
+
+📍Channel icons are from:
+
+- [fanmingming/live](https://github.com/fanmingming/live)
+
+## Features
+
+- ✅ Customize the template to generate the channel you want
+- ✅ Supports multiple source acquisition methods: local source, multicast source, hotel source, subscription source,
+  keyword search
+- ✅ Interface speed verification, obtain delay, speed, resolution, filter invalid interface
+- ✅ Preferences: IPv4、IPv6, priority and quantity of interface source sorting, and interface whitelist
+- ✅ Scheduled execution at 6:00 AM and 18:00 PM Beijing time daily
+- ✅ Supports various execution methods: workflows, command line, GUI software, Docker(amd64/arm64/arm v7)
+- ✨ For more features, see [Config parameter](#Config)
+
+## Latest results
+
+- Interface source:
+
+```bash
+https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
+```
+
+```bash
+https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
+```
+
+🙏 Thanks to [ghproxy.cc](https://ghproxy.cc) for providing proxy acceleration services
+
+or
+
+```bash
+https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.m3u
+```
+
+```bash
+https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.txt
+```
+
+- Data source:
+
+```bash
+https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
+```
+
+or
+
+```bash
+https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/source.json
+```
+
+## Config
+
 | Configuration Item     | Description                                                                                                                                                                                                                                                                                                                                                                                                                      | Default Value     |
 |:-----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
 | open_driver            | Enable browser execution, If there are no updates, this mode can be enabled, which consumes more performance                                                                                                                                                                                                                                                                                                                     | False             |
@@ -53,3 +161,154 @@
 | time_zone              | Time zone, can be used to control the time zone displayed by the update time, optional values: Asia/Shanghai or other time zone codes                                                                                                                                                                                                                                                                                            | Asia/Shanghai     |
 | urls_limit             | Number of interfaces per channel                                                                                                                                                                                                                                                                                                                                                                                                 | 10                |
 | update_time_position   | Update time display position, need to enable open_update_time to take effect, optional values: top, bottom, top: display at the top of the result, bottom: display at the bottom of the result                                                                                                                                                                                                                                   | top               |
+
+## Quick Start
+
+### Workflow
+
+Fork this project and initiate workflow updates, detailed steps are available
+at [Detailed Tutorial](./docs/tutorial_en.md)
+
+### Command Line
+
+```shell
+pip install pipenv
+```
+
+```shell
+pipenv install --dev
+```
+
+Start update:
+
+```shell
+pipenv run dev
+```
+
+Start service:
+
+```shell
+pipenv run service
+```
+
+### GUI Software
+
+1. Download [IPTV-API update software](https://github.com/Guovin/iptv-api/releases), open the software, click update to
+   complete the update
+
+2. Or run the following command in the project directory to open the GUI software:
+
+```shell
+pipenv run ui
+```
+
+<img src="./docs/images/ui.png" alt="IPTV-API update software" title="IPTV-API update software" style="height:600px" />
+
+### Docker
+
+- iptv-api (Full version): Higher performance requirements, slower update speed, high stability and success rate. Set
+  open_driver = False to switch to the lite running mode (recommended for hotel sources, multicast sources, and online
+  searches)
+- iptv-api:lite (Condensed version): Lightweight, low performance requirements, fast update speed, stability uncertain (
+  recommend using this version for the subscription source)
+
+It's recommended to try each one and choose the version that suits you
+
+1. Pull the image:
+
+- iptv-api
+
+```bash
+docker pull guovern/iptv-api:latest
+```
+
+🚀 Proxy acceleration (recommended for users in China):
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:latest
+```
+
+- iptv-api:lite
+
+```bash
+docker pull guovern/iptv-api:lite
+```
+
+🚀 Proxy acceleration (recommended for users in China):
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:lite
+```
+
+2. Run the container:
+
+- iptv-api
+
+```bash
+docker run -d -p 8000:8000 guovern/iptv-api
+```
+
+- iptv-api:lite
+
+```bash
+docker run -d -p 8000:8000 guovern/iptv-api:lite
+```
+
+Volume Mount Parameter (Optional):
+This allows synchronization of files between the host machine and the container. Modifying templates, configurations,
+and retrieving updated result files can be directly operated in the host machine's folder.
+
+Taking the host path /etc/docker as an example:
+
+- iptv-api：
+
+```bash
+docker run -v /etc/docker/config:/iptv-api/config -v /etc/docker/output:/iptv-api/output -d -p 8000:8000 guovern/iptv-api
+```
+
+- iptv-api:lite：
+
+```bash
+docker run -v /etc/docker/config:/iptv-api-lite/config -v /etc/docker/output:/iptv-api-lite/output -d -p 8000:8000 guovern/iptv-api:lite
+```
+
+Port environment variables:
+
+```bash
+-e APP_PORT=8000
+```
+
+3. Update results:
+
+- API address: `ip:8000`
+- m3u api：`ip:8000/m3u`
+- txt api：`ip:8000/txt`
+- API content: `ip:8000/content`
+- Speed test log: `ip:8000/log`
+
+## Changelog
+
+[Changelog](./CHANGELOG.md)
+
+## Appreciate
+
+<div>Development and maintenance are not easy, please buy me a coffee ~</div>
+
+| Alipay                                | Wechat                                    |
+|---------------------------------------|-------------------------------------------|
+| ![Alipay](./static/images/alipay.jpg) | ![Wechat](./static/images/appreciate.jpg) |
+
+## Follow
+
+Wechat public account search for Govin, or scan the code to receive updates and learn more tips:
+
+![Wechat public account](./static/images/qrcode.jpg)
+
+## Disclaimer
+
+This project is for learning and communication purposes only. All interface data comes from the internet. If there is
+any infringement, please contact us for removal.
+
+## License
+
+[MIT](./LICENSE) License &copy; 2024-PRESENT [Govin](https://github.com/guovin)

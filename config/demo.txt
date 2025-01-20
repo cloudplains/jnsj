@@ -17,8 +17,6 @@ CCTV-14
 CCTV-15
 CCTV-16
 CCTV-17
-CETV1
-CETV2
 
 
 CCTV-1_综合
@@ -40,8 +38,7 @@ CCTV-15_音乐
 CCTV-16_奥林匹克
 CCTV-17_农业农村
 CCTV-16_奥林匹克_4K
-CGTN英语
-CGTN记录
+
 
 
 💰央视付费频道,#genre#
@@ -118,41 +115,20 @@ CGTN记录
 海口三套城乡经济
 上海纪实
 上海都市
-杭州生活
-杭州影视
-宁波4套影视
-嘉兴文化影视
-镇海先锋影院
+
 北京影院
 BTV纪实
 东方影视
 东方财经
-苏州电影娱乐
-湖南电影
-长沙影视
-滨海影院
-山西影视
-吉林影院
-黑龙江影视
+
 峨眉电影
 广东影视
-哈尔滨影视
+
 
 🌊AKTV,#genre#
-28 AI 智慧賽馬
-Channel 5 HD
-Channel 8 HD
-Channel U HD
-myTV SUPER 18台
-PopC
-ROCK Action
-TVB Plus
-TVBS
+
 TVBS-新聞台
-tvN
-中天亞洲台
-中天新聞台
-中視
+
 千禧經典台(HK)
 娛樂新聞台(HK)
 寰宇新聞台
@@ -163,7 +139,6 @@ tvN
 翡翠剧集台(北美)
 翡翠台
 翡翠综合台(北美)
-華視
 靖天電影台
 鳳凰中文
 鳳凰資訊
@@ -172,34 +147,10 @@ tvN
 龍華日韓台
 龍華經典台
 龍華電影台
-AXN
-i-Fun 動漫台
-Love Nature HD
-viutv 99
-viutv6 96
-无线新闻台(北美)
-東森新聞
-Animax(HK)
-Astro AEC
-Astro iQIYI
-Astro Xing He
-DW
-France 24
-KIX
-Love Nature HD
-NHK World-Japan
-NHK東京総合
-Nick Jr
-Nickelodeon
-Thrill
-ZooMoo
 亞洲新聞台
 東方衛視國際頻道
 無線衛星新聞台
 纬来体育台
-
-
-🌊港·澳·台,#genre#
 凤凰中文
 凤凰资讯
 凤凰香港
@@ -207,15 +158,7 @@ ZooMoo
 明珠台
 TVBS亚洲
 香港卫视
-纬来体育
-纬来育乐
-东森综合
-东森超视
-东森电影
-Now剧集
-Now华剧
-靖天资讯
-星卫娱乐
+
 东森电影
 卫视卡式
 靖天電影
@@ -226,13 +169,10 @@ Now华剧
 CHC家庭影院
 CHC动作电影
 CHC高清电影
-淘剧场
-淘娱乐
+
 淘电影
 黑莓电影
 纬来电影
-靖天映画
-靖天戏剧
 星卫娱乐
 艾尔达娱乐
 经典电影
@@ -248,18 +188,7 @@ AMC电影
 东森洋片
 东森超视
 
-🏀体育频道,#genre#
-广东体育
-纬来体育
-五星体育
-广州竞赛
-深圳体育
-福建体育
-辽宁体育
-山东体育
-成都体育
-天津体育
-江苏体育
+
 
 🎬纪录频道,#genre#
 求索动物

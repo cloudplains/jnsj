@@ -32,6 +32,7 @@ https://raw.githubusercontent.com/YueChan/Live/main/APTV.m3u
 https://tv.youdu.fan:666/live/
 https://www.mytvsuper.xyz/m3u/Live.m3u
 https://www.cloudplains.cn/tv202303.txt
+https://www.cloudplains.cn/listtest/央视.txt
 https://aktv.top/live.txt
 https://www.cloudplains.cn/listtest/hnv6.txt
 https://www.cloudplains.cn/listtest/AKTV live.txt
@@ -40,6 +41,7 @@ https://live.cloudplains.cn/live.txt
 http://home.jundie.top:81/Cat/tv/live.txt
 https://live.iptv365.org/live.txt
 https://live.zbds.top/tv/iptv6.txt
+https://codeberg.org/yifa/qingfengdj/raw/branch/main/yiyifafa.txt
 
 
 

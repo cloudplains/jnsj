@@ -1,3 +1,40 @@
+常用单仓接口：
+
+肥猫接口：http://肥猫.com
+饭太硬：	http://fty.xxooo.cf/tv
+摸鱼接口：http://我不是.摸鱼儿.com
+OK线路：	http://ok321.top/tv
+騷零接口：https://100km.top/0
+蜂蜜接口：https://mirror.ghproxy.com/https:/raw.githubusercontent.com/FongMi/CatVodspider/main/json/demo.json
+小米DEMO：https://3450.kstore.space/DEMO.json
+小米DEMO2：http://www.mpanso.com/小米/DEMO.json
+OK佬：http://ok321.top/ok
+王二小放牛娃：http://tvbox.王二小放牛娃.top
+欧歌免费：https://tv.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=tv
+小橙子：	https://git.acwing.com/xcz/xcz/-/raw/master/xcz.json
+魔盒接口：https://git.acwing.com/999/tvbox/-/raw/main/%E9%AD%94%E7%9B%92.json
+驸马影视：http://fmys.top/fmys.json
+ocean2025：https://git.acwing.com/ocean2025/ocean/-/raw/main/api.json
+挺好分享：https://ztha.top/TVBox/thdjk.json
+欧歌4K：	http://tv.nxog.top/m
+巧记Box：http://cdn.qiaoji8.com/tvbox.json
+传说blog：https://chuanshuo.77blog.cn/tv.ison
+宝盒VIP：	https://ghp.ci/raw.githubusercontent.com/quot55/GBH/main/vip2.json
+蓝天Luck：https://gitee.com/lukei7/lib/raw/Luck/%E8%87%AA%E5%BB%BAjson
+香雅情短剧：http://74.120.175.78/JK/XYQTVBox/dj.json
+小白龙：	http://124.71.189.194/ajson
+林中的小屋：https://git.acwing.com/shhentu/lzxw/-/raw/main/Monster.json
+恒星育华：http://yuhuahx.com/%E8%82%B2%E5%8D%8E%E5%AD%A6%E5%A0%82/%E6%96%A7%E5%A4%B4%E5%B8%AE.php
+影探：https:/ghp.ci/https:/raw.githubusercontent.com/vbskycn/tvbox/a244f6f5c08565a9a0e319d6a3cc2e919d05d893/MY%E6%8E%A2%E6%8E%A2.xt
+不是青龙：https://gitee.com/yiwu369/6758/raw/master/%E9%9D%92%E9%BE%99/1.json
+
+毒盒多仓：https://tv.youdu.fan:666/
+蓝色影视：https://raw.gitcode.com/yydg/ggdx/raw/main/Xboxb.json
+多多影音：https://bitbucket.org/xduo/cool/raw/main/room.json
+七星宝盒：https://qixing.myhkw.com/DC.txt
+奇奇多仓：https://gitee.com/sxxxxxw/qi/raw/master/qiqiall.json
+拾光多仓：http://xmbjm.fh4u.org/dc.txt
+
 🍎饭太硬永久维护接口：
 主：http://www.饭太硬.com/tv
 一：http://fty.888484.xyz/tv

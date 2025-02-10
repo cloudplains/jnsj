@@ -32,10 +32,8 @@ https://raw.githubusercontent.com/YueChan/Live/main/APTV.m3u
 https://tv.youdu.fan:666/live/
 https://www.mytvsuper.xyz/m3u/Live.m3u
 https://www.cloudplains.cn/tv202303.txt
-https://www.cloudplains.cn/listtest/央视.txt
+https://www.cloudplains.cn/listtest/all.txt
 https://aktv.top/live.txt
-https://www.cloudplains.cn/listtest/hnv6.txt
-https://www.cloudplains.cn/listtest/AKTV live.txt
 http://106.53.99.30/vip.txt
 https://cloudplains.github.io/IPTV/live.txt
 http://home.jundie.top:81/Cat/tv/live.txt

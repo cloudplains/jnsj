@@ -1,8 +1,8 @@
 🕘️更新时间,#genre#
-2025-02-24 06:33:56,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
+2025-02-24 18:37:52,https://cdn5.163189.xyz/live/cctv1/stream.m3u8
 
 📺央视频道,#genre#
-CCTV-1,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
+CCTV-1,https://cdn5.163189.xyz/live/cctv1/stream.m3u8
 CCTV-2,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000001000023315
 CCTV-2,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225588
 CCTV-3,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000001000011218
@@ -35,13 +35,10 @@ CCTV-14,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000001000008170
 CCTV-14,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225732
 CCTV-15,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000002000008163
 CCTV-15,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226476
-CCTV-16,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000006000233001
-CCTV-16,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226100
+CCTV-16,https://yunmei.tv/main/cctv-16.m3u8
 CCTV-17,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000005000056836
 CCTV-17,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225765
-CCTV1,http://php.jdshipin.com:8880/TVOD/iptv.php?id=rthk33
-CCTV1,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
-CCTV1,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226016
+CCTV1,https://cdn5.163189.xyz/live/cctv1/stream.m3u8
 CCTV2,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225588
 CCTV3,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226021
 CCTV4,http://php.jdshipin.com:8880/cqyx.php?id=CCTV4HD
@@ -59,19 +56,18 @@ CCTV12,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225731
 CCTV13,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226011
 CCTV14,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225732
 CCTV15,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226476
-CCTV16,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226100
+CCTV16,https://yunmei.tv/main/cctv-16.m3u8
 CCTV17,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225765
 CCTV风云足球,http://php.jdshipin.com:8880/cqyx.php?id=FYZQHD
 CCTV风云足球,http://120.238.94.10:9901/tsfile/live/1087_1.m3u8
 CCTV风云足球,http://61.160.112.102:35455/rptv/G_FENGSHANGZQ-CQ.m3u8?license=gitv
 CCTV风云足球,http://over.qiyuevod.com/tmsctv/ysptv.php?id=fyzq
 CCTV风云足球,http://over.qiyuevod.com/tmsctv/yhtv.php?id=fyzq
-CCTV风云足球,http://111.61.236.247:9081/hls/58/index.m3u8
 CCTV世界地理,http://61.160.112.102:35455/rptv/G_SHIJIEDL-CQ.m3u8?license=gitv
 CCTV世界地理,http://over.qiyuevod.com/tmsctv/ysptv.php?id=sjdl
 CCTV世界地理,http://over.qiyuevod.com/tmsctv/yhtv.php?id=sjdl
 CCTV世界地理,http://111.61.236.247:9081/hls/62/index.m3u8
-CCTV-1_综合,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
+CCTV-1_综合,https://cdn5.163189.xyz/live/cctv1/stream.m3u8
 CCTV-2_财经,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000001000023315
 CCTV-2_财经,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225588
 CCTV-3_综艺,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000001000011218
@@ -104,8 +100,7 @@ CCTV-14_少儿,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=100000000100000
 CCTV-14_少儿,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225732
 CCTV-15_音乐,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000002000008163
 CCTV-15_音乐,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226476
-CCTV-16_奥林匹克,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000006000233001
-CCTV-16_奥林匹克,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226100
+CCTV-16_奥林匹克,https://yunmei.tv/main/cctv-16.m3u8
 CCTV-17_农业农村,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000005000056836
 CCTV-17_农业农村,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225765
 CCTV-16_奥林匹克_4K,http://php.jdshipin.com:8880/itv6s.php?cid=bestzb&id=5000000008000023254
@@ -113,7 +108,9 @@ CCTV-16_奥林匹克_4K,http://php.jdshipin.com:8880/itv6s.php?cid=bestzb&id=500
 📡卫视频道,#genre#
 广东卫视,http://php.jdshipin.com:8880/chudian.php?id=gdws
 广东卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226248
-浙江卫视,http://zhfivel02.cztv.com/channel01/1080p.m3u8?auth_key=2524708799-0-0-adde67b1b344fdd5e512f30a4ae31915
+浙江卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226339
+浙江卫视,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000001000014260
+浙江卫视,http://php.jdshipin.com:8880/cqyx.php?id=ZHEJIANGHD
 湖南卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226307
 湖南卫视,http://php.jdshipin.com/itv6.php?cid=ystenlive&id=1000000001000032695
 湖南卫视,http://php.jdshipin.com:8880/cqyx.php?id=HUNANHD
@@ -164,7 +161,7 @@ CCTV-16_奥林匹克_4K,http://php.jdshipin.com:8880/itv6s.php?cid=bestzb&id=500
 山西卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225624
 山西卫视,http://php.jdshipin.com:8880/cqyx.php?id=SHANXISD
 陕西卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221225625
-陕西卫视,http://z.b.bkpcp.top/m.php?id=sxws
+陕西卫视,http://goo.bkpcp.top/mg/sxws
 四川卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226338
 四川卫视,http://php.jdshipin.com:8880/cqyx.php?id=SICHUANHD
 深圳卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226313
@@ -179,7 +176,7 @@ CCTV-16_奥林匹克_4K,http://php.jdshipin.com:8880/itv6s.php?cid=bestzb&id=500
 新疆卫视,http://php.jdshipin.com:8880/cqyx.php?id=XINJIANGSD
 云南卫视,http://php.jdshipin.com/TVOD/hljyd.php?id=3221226444
 云南卫视,http://php.jdshipin.com:8880/cqyx.php?id=YUNNANSD
-大湾区卫视,http://z.b.bkpcp.top/m.php?id=dwqws
+大湾区卫视,http://goo.bkpcp.top/mg/dwqws
 
 ☘️综合频道,#genre#
 广东珠江,http://iptv.diyp.tech/iptv.php?key=gat2&id=5
@@ -200,7 +197,14 @@ CCTV-16_奥林匹克_4K,http://php.jdshipin.com:8880/itv6s.php?cid=bestzb&id=500
 东方影视,http://php.jdshipin.com:8880/itv6.php?cid=bestzb&id=5000000010000032212
 东方财经,http://php.jdshipin.com:8880/itv6.php?cid=bestzb&id=5000000007000010003
 广东影视,http://php.jdshipin.com:8880/chudian.php?id=gdys
-翡翠台,rtmp://sy.ecoheze.com/live/gdfc
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=1
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=2
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=3
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=4
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=5
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=6
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=7
+翡翠台,http://iptv.diyp.tech/iptv.php?key=gat1&id=8
 鳳凰中文,http://iptv.diyp.tech/iptv.php?key=gat1&id=22
 鳳凰中文,http://iptv.diyp.tech/iptv.php?key=gat1&id=23
 鳳凰中文,http://iptv.diyp.tech/iptv.php?key=gat2&id=3
@@ -234,9 +238,6 @@ CCTV-16_奥林匹克_4K,http://php.jdshipin.com:8880/itv6s.php?cid=bestzb&id=500
 凤凰卫视,http://php.jdshipin.com:8880/smt.php?id=phoenixtv_hd
 凤凰卫视,http://php.jdshipin.com/TVOD/iptv.php?id=fhzw
 香港卫视,http://stream.qhbtv.com/adws/sd/live.m3u8
-靖天電影,http://kkk.jjjj.jiduo.me/api.php?n=tttt&id=6755&tk=aa0698566417
-靖天電影,http://kkk.jjjj.jiduo.me/api.php?n=tttt&id=5899&tk=e640d0a1bf70
-靖天電影,http://kkk.jjjj.jiduo.me/api.php?n=tttt&id=6800&tk=e503191f8e20
 环球电视,http://zb.xzxwhcb.com:9999/hls/world.m3u8
 动物星球,https://d18dyiwu97wm6q.cloudfront.net/playlist2160p.m3u8
 AMC电影,http://122.117.71.103:8559/http/61.222.53.250:8092/upload/115/AMC_TS-1111_1.m3u8

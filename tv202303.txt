@@ -13,6 +13,7 @@
 南城三元路立交,https://radio.sun0769.com/dgrtv1/out3.m3u8
 
 香港卫视台,http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8
+ViuTV,http://198.16.100.186:8278/viu1_twn/playlist.m3u8?tid=MF9F2344917423449174&ct=19254&tsum=3cb061ac749a32280d3b88c022a1403f
 广州新闻,https://stream1.freetv.fun/yan-zhou-xin-wen-8.m3u8
 广州影视,https://stream1.freetv.fun/yan-zhou-zong-he-6.m3u8
 

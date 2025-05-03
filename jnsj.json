@@ -1,0 +1,14 @@
+﻿{
+    "urls": [
+        { "url": "http://www.饭太硬.com/tv", "name": "饭太硬线路" },                    
+        { "url": "https://www.mpanso.com/小米/DEMO.json", "name": "小米线路" },      
+        { "url": "http://肥猫.com", "name": "肥猫" },                             
+        { "url": "http://tvbox.王二小放牛娃.top", "name": "王二小线路" },
+        {"url": "http://tv.laohu.cool/tvbox.json", "name": "老虎线路" },
+        { "url": "https://tv.xn--yhqu5zs87a.top", "name": "📁莱斯📁" },
+        {"url": "http://www.fish2018.us.kg/p/jsm.json","name": "📁jsm📁" },
+        {"url": "clan://localhost/TVBox/jsm.json","name": "📁本地配置📁" },
+        { "url": "http://o.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌", "name": "欧歌线路" }
+            ]
+}
+

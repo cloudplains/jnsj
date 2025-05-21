@@ -17,7 +17,7 @@ class SpeedUI:
         frame_default_sort_column2.pack(side=tk.RIGHT, fill=tk.Y)
 
         self.open_speed_test_label = tk.Label(
-            frame_default_sort_column1, text="测速排序:", width=12
+            frame_default_sort_column1, text="开启测速:", width=12
         )
         self.open_speed_test_label.pack(side=tk.LEFT, padx=4, pady=8)
         self.open_speed_test_var = tk.BooleanVar(value=config.open_speed_test)

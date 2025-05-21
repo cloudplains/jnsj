@@ -321,7 +321,7 @@ class ConfigManager:
 
     @property
     def open_supply(self):
-        return self.config.getboolean("Settings", "open_supply", fallback=False)
+        return self.config.getboolean("Settings", "open_supply", fallback=True)
 
     @property
     def update_time_position(self):
@@ -366,6 +366,26 @@ class ConfigManager:
     @property
     def speed_test_limit(self):
         return self.config.getint("Settings", "speed_test_limit", fallback=10)
+
+    @property
+    def location(self):
+        return [
+            l.strip()
+            for l in self.config.get(
+                "Settings", "location", fallback=""
+            ).split(",")
+            if l.strip()
+        ]
+
+    @property
+    def isp(self):
+        return [
+            i.strip()
+            for i in self.config.get(
+                "Settings", "isp", fallback=""
+            ).split(",")
+            if i.strip()
+        ]
 
     def load(self):
         """

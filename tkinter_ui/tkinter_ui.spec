@@ -24,6 +24,7 @@ a = Analysis(
         ('../updates/hotel/cache.pkl', 'updates/hotel'),
         ('../updates/multicast/multicast_map.json', 'updates/multicast'),
         ('../updates/multicast/cache.pkl', 'updates/multicast'),
+        ('../utils/ip_checker/data/qqwry.ipdb', 'utils/ip_checker/data'),
         ('../utils/nginx-rtmp-win32', 'utils/nginx-rtmp-win32'),
         ('../static/images/favicon.ico', 'static/images'),
         ('../static/images/alipay.jpg', 'static/images'),

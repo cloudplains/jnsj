@@ -177,8 +177,8 @@ def show_epg_gz():
 
 @app.route("/log")
 def show_log():
-    if os.path.exists(constants.sort_log_path):
-        with open(constants.sort_log_path, "r", encoding="utf-8") as file:
+    if os.path.exists(constants.result_log_path):
+        with open(constants.result_log_path, "r", encoding="utf-8") as file:
             content = file.read()
     else:
         content = constants.waiting_tip

@@ -93,8 +93,14 @@ async def get_channels_by_subscribe_urls(
                         name = format_channel_name(name)
                         if names and name not in names:
                             continue
-                        url = url.partition("$")[0]
-                        value = url if multicast else {"url": url, "headers": item.get("headers", None)}
+                        url_partition = url.partition("$")
+                        url = url_partition[0]
+                        info = url_partition[2]
+                        value = url if multicast else {
+                            "url": url,
+                            "headers": item.get("headers", None),
+                            "extra_info": info
+                        }
                         if in_whitelist:
                             value["origin"] = "whitelist"
                         if hotel:

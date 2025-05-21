@@ -9,6 +9,31 @@ class PreferUI:
         """
         Init prefer UI
         """
+        frame_location_isp = tk.Frame(root)
+        frame_location_isp.pack(fill=tk.X)
+        frame_location_isp_column1 = tk.Frame(frame_location_isp)
+        frame_location_isp_column1.pack(side=tk.LEFT, fill=tk.Y)
+        frame_location_isp_column2 = tk.Frame(frame_location_isp)
+        frame_location_isp_column2.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.location_label = tk.Label(
+            frame_location_isp_column1, text="归属地:", width=12
+        )
+        self.location_label.pack(side=tk.LEFT, padx=4, pady=8)
+        self.location_entry = tk.Entry(frame_location_isp_column1, width=24)
+        self.location_entry.pack(side=tk.LEFT, padx=4, pady=8)
+        self.location_entry.insert(0, ",".join(config.location))
+        self.location_entry.bind("<KeyRelease>", self.update_location)
+
+        self.isp_label = tk.Label(
+            frame_location_isp_column2, text="运营商:", width=12
+        )
+        self.isp_label.pack(side=tk.LEFT, padx=4, pady=8)
+        self.isp_entry = tk.Entry(frame_location_isp_column2, width=24)
+        self.isp_entry.pack(side=tk.LEFT, padx=4, pady=8)
+        self.isp_entry.insert(0, ",".join(config.isp))
+        self.isp_entry.bind("<KeyRelease>", self.update_isp)
+
         config_options = [
             {"label_text": f"结果来源优先{i + 1}:", "combo_box_value": value}
             for i, value in enumerate(self.get_origin_type_prefer_index(config.origin_type_prefer))
@@ -29,7 +54,7 @@ class PreferUI:
             frame_prefer_ipv_type, text="结果协议优先:", width=12
         )
         self.prefer_ipv_type_label.pack(side=tk.LEFT, padx=4, pady=8)
-        self.prefer_ipv_type_combo = ttk.Combobox(frame_prefer_ipv_type)
+        self.prefer_ipv_type_combo = ttk.Combobox(frame_prefer_ipv_type, width=22)
         self.prefer_ipv_type_combo.pack(side=tk.LEFT, padx=4, pady=8)
         self.prefer_ipv_type_combo["values"] = ("IPv4", "IPv6", "自动")
         ipv_type_prefer = config.ipv_type_prefer
@@ -76,6 +101,20 @@ class PreferUI:
             index_list[i] = origin_type_prefer_obj[item]
         return index_list
 
+    def update_location(self, event):
+        config.set(
+            "Settings",
+            "location",
+            self.location_entry.get(),
+        )
+
+    def update_isp(self, event):
+        config.set(
+            "Settings",
+            "isp",
+            self.isp_entry.get(),
+        )
+
     def update_ipv_type_prefer(self, event):
         config.set(
             "Settings",
@@ -92,6 +131,8 @@ class PreferUI:
         self.prefer_ipv_type_combo.config(state=state)
         for input in self.ipv_type_input:
             input.change_state(state)
+        self.location_entry.config(state=state)
+        self.isp_entry.config(state=state)
         self.open_supply_checkbutton.config(state=state)
 
 
@@ -112,7 +153,7 @@ class IpvNumInput:
         )
         self.entry_label.pack(side=tk.LEFT, padx=4, pady=8)
 
-        self.entry = tk.Entry(self.frame_column1)
+        self.entry = tk.Entry(self.frame_column1, width=24)
         self.entry.insert(0, config.ipv_limit[ipv_type])
         self.entry.pack(side=tk.LEFT, padx=4, pady=8)
 
@@ -145,7 +186,7 @@ class ConfigOption:
         self.label = tk.Label(self.column1, text=label_text, width=12)
         self.label.pack(side=tk.LEFT, padx=4, pady=8)
 
-        self.combo_box = ttk.Combobox(self.column1)
+        self.combo_box = ttk.Combobox(self.column1, width=22)
         self.origin_type_prefer_obj = {
             "本地源": "local",
             "酒店源": "hotel",
@@ -165,7 +206,7 @@ class ConfigOption:
         self.entry_label = tk.Label(self.column2, text="数量:", width=12)
         self.entry_label.pack(side=tk.LEFT, padx=4, pady=8)
 
-        self.entry = tk.Entry(self.column2)
+        self.entry = tk.Entry(self.column2, width=24)
         if origin_type_prefer and combo_box_value is not None:
             self.entry.insert(
                 0,

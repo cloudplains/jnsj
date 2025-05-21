@@ -13,7 +13,7 @@ from multidict import CIMultiDictProxy
 import utils.constants as constants
 from utils.config import config
 from utils.tools import get_resolution_value
-from utils.types import TestResult, ChannelTestResult, TestResultCacheData, ChannelData
+from utils.types import TestResult, ChannelTestResult, TestResultCacheData
 
 http.cookies._is_legal_key = lambda _: True
 cache: TestResultCacheData = {}
@@ -28,6 +28,11 @@ min_speed_value = config.min_speed
 m3u8_headers = ['application/x-mpegurl', 'application/vnd.apple.mpegurl', 'audio/mpegurl', 'audio/x-mpegurl']
 default_ipv6_delay = 0.1
 default_ipv6_resolution = "1920x1080"
+default_ipv6_result = {
+    'speed': float("inf"),
+    'delay': default_ipv6_delay,
+    'resolution': default_ipv6_resolution
+}
 
 
 async def get_speed_with_download(url: str, headers: dict = None, session: ClientSession = None,
@@ -332,17 +337,6 @@ def get_speed_result(key: str) -> TestResult:
         return {'speed': 0, 'delay': -1, 'resolution': 0}
 
 
-def get_ipv6_default_result() -> TestResult:
-    """
-    Get the default result of the ipv6
-    """
-    return {
-        'speed': float("inf"),
-        'delay': default_ipv6_delay,
-        'resolution': default_ipv6_resolution
-    }
-
-
 async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_filter_resolution,
                     timeout=speed_test_timeout, callback=None) -> TestResult:
     """
@@ -357,7 +351,7 @@ async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_
             result = get_avg_result(cache[cache_key])
         else:
             if data['ipv_type'] == "ipv6" and ipv6_proxy:
-                result.update(get_ipv6_default_result())
+                result.update(default_ipv6_result)
             elif constants.rt_url_pattern.match(url) is not None:
                 start_time = time()
                 if not result['resolution'] and filter_resolution:
@@ -375,39 +369,28 @@ async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_
         return result
 
 
-def sort_result_key(item: TestResult | ChannelData) -> float:
-    """
-    Sort the result with key
-    """
-    speed, origin = item["speed"], item["origin"]
-    if origin in ["whitelist", "live", "hls"]:
-        return float("inf")
-    else:
-        return speed
-
-
-def get_sort_result(results, name=None, supply=open_supply, filter_speed=open_filter_speed,
-                    min_speed=min_speed_value,
-                    filter_resolution=open_filter_resolution, min_resolution=min_resolution_value,
-                    max_resolution=max_resolution_value, ipv6_support=True, logger=None) -> list[ChannelTestResult]:
+def get_sort_result(
+        results,
+        supply=open_supply,
+        filter_speed=open_filter_speed,
+        min_speed=min_speed_value,
+        filter_resolution=open_filter_resolution,
+        min_resolution=min_resolution_value,
+        max_resolution=max_resolution_value,
+        ipv6_support=True
+) -> list[ChannelTestResult]:
     """
     get the sort result
     """
     total_result = []
     for result in results:
-        if result["origin"] in ["whitelist", "live", "hls"]:
-            total_result.append(result)
-            continue
         if not ipv6_support and result["ipv_type"] == "ipv6":
-            result.update(get_ipv6_default_result())
-        result_speed, result_delay, resolution = result["speed"] or 0, result["delay"] or -1, result["resolution"]
-        try:
-            if logger:
-                logger.info(
-                    f"Name: {name}, URL: {result["url"]}, IPv_Type: {result["ipv_type"]}, Date: {result["date"]}, Delay: {result_delay} ms, Speed: {result_speed:.2f} M/s, Resolution: {resolution}"
-                )
-        except Exception as e:
-            print(e)
+            result.update(default_ipv6_result)
+        result_speed, result_delay, resolution = (
+            result.get("speed") or 0,
+            result.get("delay") or -1,
+            result.get("resolution")
+        )
         if result_delay < 0:
             continue
         if not supply:
@@ -418,5 +401,5 @@ def get_sort_result(results, name=None, supply=open_supply, filter_speed=open_fi
                 if resolution_value < min_resolution or resolution_value > max_resolution:
                     continue
         total_result.append(result)
-    total_result.sort(key=sort_result_key, reverse=True)
+    total_result.sort(key=lambda item: item.get("speed") or 0, reverse=True)
     return total_result

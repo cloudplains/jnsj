@@ -131,6 +131,7 @@ class UpdateSource:
                 )
                 ipv6_support = config.ipv6_support or check_ipv6_support()
                 cache_result = self.channel_data
+                test_result = {}
                 if config.open_speed_test:
                     urls_total = get_urls_len(self.channel_data)
                     test_data = copy.deepcopy(self.channel_data)
@@ -153,14 +154,14 @@ class UpdateSource:
                         ipv6=ipv6_support,
                         callback=lambda: self.pbar_update(name="测速", item_name="接口"),
                     )
-                    cache_result = test_result
-                    self.channel_data = sort_channel_result(
-                        self.channel_data,
-                        test_result,
-                        filter_host=config.speed_test_filter_host,
-                        ipv6_support=ipv6_support
-                    )
+                    cache_result = merge_objects(cache_result, test_result, match_key="url")
                     self.pbar.close()
+                self.channel_data = sort_channel_result(
+                    self.channel_data,
+                    result=test_result,
+                    filter_host=config.speed_test_filter_host,
+                    ipv6_support=ipv6_support
+                )
                 self.update_progress(
                     f"正在生成结果文件",
                     0,

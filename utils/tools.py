@@ -4,9 +4,7 @@ import logging
 import os
 import re
 import shutil
-import socket
 import sys
-import urllib.parse
 from collections import defaultdict
 from logging.handlers import RotatingFileHandler
 from time import time
@@ -239,22 +237,6 @@ def get_total_urls_from_sorted_data(data):
     else:
         total_urls = [channel_data["url"] for channel_data, _ in data]
     return list(dict.fromkeys(total_urls))[: config.urls_limit]
-
-
-def check_url_ipv6(url):
-    """
-    Check if the url is ipv6
-    """
-    try:
-        host = urllib.parse.urlparse(url).hostname
-        if host:
-            addr_info = socket.getaddrinfo(host, None, socket.AF_UNSPEC, socket.SOCK_STREAM)
-            for info in addr_info:
-                if info[0] == socket.AF_INET6:
-                    return True
-        return False
-    except:
-        return False
 
 
 def check_ipv6_support():

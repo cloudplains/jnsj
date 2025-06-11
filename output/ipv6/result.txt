@@ -1,5 +1,5 @@
 🕘️更新时间,#genre#
-2025-06-11 06:42:43,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
+2025-06-11 18:44:37,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
 
 📺央视频道,#genre#
 CCTV-1,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
@@ -1143,7 +1143,7 @@ BTV纪实,http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225729/index.m3
 营山电视台,http://file.ysxtv.cn/cms/videos/nmip-media/channellive/channel4/playlist.m3u8?zsicd
 蓬安新闻综合,http://palive.patv123.com:8091/live/xwpd_800K.m3u8
 蓬安新闻综合,http://palive.patv123.com:8091/live/xwpd_800K.m3u8?zsicd
-青神综合,http://lmt.scqstv.com:80/live1/live1.m3u8
+青神综合,http://lmt.scqstv.com/live1/live1.m3u8?zsicd
 
 ☘️陕西频道,#genre#
 陕西农林卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226204/index.m3u8

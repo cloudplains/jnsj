@@ -1,5 +1,5 @@
 🕘️更新时间,#genre#
-2025-07-21 18:48:05,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
+2025-07-22 06:46:16,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
 
 📺央视频道,#genre#
 CCTV-1,http://php.jdshipin.com/TVOD/iptv.php?id=rthk33
@@ -1273,7 +1273,6 @@ BTV纪实,http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225729/index.m3
 山东教育,http://z.b.bkpcp.top/m.php?id=sdjy
 山东教育,http://goo.bkpcp.top/mg/sdjy
 山东教育,http://iptv.huuc.edu.cn/hls/sdetv.m3u8
-山东教育,http://rrs01.hw.gmcc.net:8088/PLTV/81/224/3221226701/1.m3u8
 山东教育,http://annaxi.lw-home.com:11111/rtp/239.253.254.59:8000
 山东教育,http://cdnrrs.gx.chinamobile.com/PLTV/77777777/224/3221225708/index.m3u8?servicetype=1
 山东居家购物,http://livealone302.iqilu.com/iqilu/gwpd.m3u8

@@ -16,11 +16,16 @@
 ViuTV,http://198.16.100.186:8278/viu1_twn/playlist.m3u8?tid=MF9F2344917423449174&ct=19254&tsum=3cb061ac749a32280d3b88c022a1403f
 广州新闻,https://stream1.freetv.fun/yan-zhou-xin-wen-8.m3u8
 广州影视,https://stream1.freetv.fun/yan-zhou-zong-he-6.m3u8
-
-
-
-
-
+CNA新闻,https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_5.m3u8
+CNN,https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_0_3564000.m3u8
+俄罗斯GITV,http://hls-igi.cdnvideo.ru/igi/igi_hq/playlist.m3u8
+菲律宾NDTV,https://ndtv24x7elemarchana.akamaized.net/hls/live/2003678/ndtv24x7/ndtv24x7master.m3u8
+韩国CJB,http://1.222.207.80:1935/live/cjbtv/chunklist_w1357270949.m3u8
+韩国NBS,https://media.joycorp.co.kr:4443/live/live_720p/playlist.m3u8
+台湾plus,https://bcovlive-a.akamaihd.net/rce33d845cb9e42dfa302c7ac345f7858/ap-northeast-1/6282251407001/playlist.m3u8
+泰国ASTV-News1,http://news1.live14.com/stream/news1_hi.m3u8
+伊朗news,http://live-hls-web-aja.getaj.net/AJA/02.m3u8
+印度TV9,https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/pub-iotv9hinjzgtpe/live_720p/chunks.m3u8
 探索亚洲,http://61.221.215.25:8800/hls/50/index.m3u8
 探索頻道,http://61.221.215.25:8800/hls/1/index.m3u8
 動物星球,http://61.221.215.25:8800/hls/57/index.m3u8
@@ -692,5 +697,3 @@ News98新聞台,http://stream.rcs.revma.com/55tyxsy4qtzuv
 龙广新闻广播 FM94.6[0*0],http://ls.qingting.fm/live/4974.m3u8
 龙广音乐广播 FM95.8[0*0],http://ls.qingting.fm/live/4969.m3u8
 龙广音乐广播 FM95.8[0*0],http://ls.qingting.fm/live/4969.m3u8
-
-

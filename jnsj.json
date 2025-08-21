@@ -22,9 +22,7 @@
         { "url": "https://play.iptv365.org/潇洒/api.json", "name": "潇洒" },
         { "url": "https://play.iptv365.org/南风/api.json", "name": "南风" },
         { "url": "https://play.iptv365.org/骚零/api.json", "name": "零零" },
-        { "url": "https://play.iptv365.org/白嫖/api.json", "name": "白嫖" },
-        { "url": "https://play.iptv365.org/短剧频道/api.json", "name": "短剧频道" },
-        { "url": "https://play.iptv365.org/少儿频道/api.json", "name": "少儿频道" },
-        { "url": "https://play.iptv365.org/动漫频道/api.json", "name": "动漫频道" }
+        { "url": "http://宝盒接口.top", "name": "宝盒" }
+
     ]
 }

@@ -12,6 +12,20 @@
 东莞生活资讯,https://stream.sun0769.com/dgrtv1/mp4tv2_800/index.m3u8  
 南城三元路立交,https://radio.sun0769.com/dgrtv1/out3.m3u8
 
+翡翠台,http://api.mg.itv888.cn:8080/hls/4bb8922027c/index.m3u8
+翡翠台 backup,http://api.mg.itv888.cn:8080/hls/ac8b06eb0c8/index.m3u8
+iNews 新闻台,http://api.mg.itv888.cn:8080/hls/e1bb5e8bc4f/index.m3u8
+J 2,http://api.mg.itv888.cn:8080/hls/c18815664e8/index.m3u8
+珍珠台,http://api.mg.itv888.cn:8080/hls/63e9ea6e5df/index.m3u8
+凤凰香港,http://api.mg.itv888.cn:8080/hls/e9660dce9a6/index.m3u8
+HOY资讯台,http://api.mg.itv888.cn:8080/hls/5e12ccd9191/index.m3u8
+RHK 31,http://api.mg.itv888.cn:8080/hls/7f79a251429/index.m3u8
+VIUTV1,http://api.mg.itv888.cn:8080/hls/13d52dc29d5/index.m3u8
+RHK 32,http://api.mg.itv888.cn:8080/hls/18c550eab1e/index.m3
+凤凰卫视,http://api.mg.itv888.cn:8080/hls/2f80047f91e/index.m3u8
+凤凰资讯,http://api.mg.itv888.cn:8080/hls/11ef1dc70d8/index.m3u8
+Viu6,http://api.mg.itv888.cn:8080/hls/0408f039a12/index.m3u8
+
 
 香港卫视台,http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8
 俄罗斯GITV,http://hls-igi.cdnvideo.ru/igi/igi_hq/playlist.m3u8
@@ -22,13 +36,8 @@
 泰国ASTV-News1,http://news1.live14.com/stream/news1_hi.m3u8
 伊朗news,http://live-hls-web-aja.getaj.net/AJA/02.m3u8
 印度TV9,https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/pub-iotv9hinjzgtpe/live_720p/chunks.m3u8
-探索亚洲,http://61.221.215.25:8800/hls/50/index.m3u8
-探索頻道,http://61.221.215.25:8800/hls/1/index.m3u8
-動物星球,http://61.221.215.25:8800/hls/57/index.m3u8
 
-法时尚,http://lb.streaming.sk/fashiontv/stream/chunklist.m3u8
 
-环球电视,http://zb.xzxwhcb.com:9999/hls/world.m3u8
 
 风景直播,#genre#
 
@@ -48,20 +57,14 @@
 四川成都安顺廊桥,https://gcalic.v.myalicdn.com/gc/zsslsjjfsd_1/index.m3u8
 广东韶关车八岭,https://gcalic.v.myalicdn.com/gc/zjjjjdl_1/index.m3u8
 云南保山青龙街,https://gcalic.v.myalicdn.com/gc/ylxs12_1/index.m3u8
-天津海河,https://gcalic.v.myalicdn.com/gc/hkylxs05_1/index.m3u8
 舟山东极岛远眺东海,https://gcalic.v.myalicdn.com/gc/djd01_1/index.m3u8
 巫山长江画卷,https://gcalic.v.myalicdn.com/gc/ljgcwglytylxs_1/index.m3u8
 青岛五四广场,https://gcalic.v.myalicdn.com/gc/zjwzbblh_1/index.m3u8
 云南勐焕大金塔,https://gcalic.v.myalicdn.com/gc/dhyyqst_1/index.m3u8
 湖南八角寨,https://gcalic.v.myalicdn.com/gc/hkts02_1/index.m3u8
 承德金山岭长城,https://gcalic.v.myalicdn.com/gc/hkts03_1/index.m3u8
-云南红河月亮小镇,https://gcalic.v.myalicdn.com/gc/hsyg_1/index.m3u8
 黄山飞来石,https://gcalic.v.myalicdn.com/gc/hsptgy_1/index.m3u8
-安徽,排云亭https://gcalic.v.myalicdn.com/gc/yxxdpf_1/index.m3u8
-吉林朱雀云顶远眺,https://gcalic.v.myalicdn.com/gc/hsxksqj_1/index.m3u8
-黄山梦笔生花,https://gcalic.v.myalicdn.com/gc/xywfl_1/index.m3u8
 密云古北水镇,https://gcalic.v.myalicdn.com/gc/dlst03_1/index.m3u8
-贵州梯田,https://gcalic.v.myalicdn.com/gc/qdls03_1/index.m3u8
 云南咖啡产业园,https://gcalic.v.myalicdn.com/gc/zyqcdx01_1/index.m3u8
 
 央视频道,#genre#

@@ -1,11 +1,7 @@
-## 更新频率(北京时间)
-|直播源|黑白名单|
-| ---- | ---- |
-|每日4点|每周五0点|
+- ✅ TV源1: [https://www.cloudplains.cn/result.txt](https://www.cloudplains.cn/result.txt)
+- ✅ TV源2: [https://www.cloudplains.cn/tv202303.txt](https://www.cloudplains.cn/tv202303.txt)
+- ✅ TV源3: [https://cloudplains.github.io/jnsj/result.txt](https://cloudplains.github.io/jnsj/result.txt)
+- ✅ TVBOX接口:[https://www.cloudplains.cn/jnsj.json](https://www.cloudplains.cn/jnsj.json)
+- ✅ 免责声明:本项目仅供学习交流用途，接口数据均来源于网络，如有侵权，请联系删除。
 
-## 直播源
-||完整|精简|其他|
-| ---- | ---- | ---- | ---- |
-|txt|[live.txt](https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.txt)|[live_lite.txt](https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live_lite.txt)|[other.txt](https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/others.txt)
-|m3u|[live.m3u](https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.m3u)|[live_lite.m3u](https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live_lite.m3u)||
-
+<img align="center" style="background: none;" src="https://raw.githubusercontent.com/simonguo/simonguo.github.io/output/github-contribution-grid-snake-dark.svg">

@@ -1,8 +1,8 @@
-name: 'Daily Job'
+name: 'WhiteList BlackList'
 
 on:
   schedule:
-    - cron: '0 20 * * *' # UTC
+    - cron: '0 16 * * 4' # UTC
   workflow_dispatch:
 
 jobs:
@@ -23,14 +23,14 @@ jobs:
           pip install opencc-python-reimplemented
 
       - name: Run Python script
-        run: python main.py
+        run: python assets/whitelist-blacklist/main.py
 
       - name: Commit changes
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "github_actions[bot]"
-          git add live.txt live.m3u live_lite.txt live_lite.m3u others.txt
-          git commit -m ":tada:  AutoUpdate $(date +'%Y%m%d')"
+          git add ./assets/whitelist-blacklist/*
+          git commit -m "黑白名单 AutoUpdate $(date +'%Y%m%d')"
 
       - name: Push changes
         uses: ad-m/github-push-action@master

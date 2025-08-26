@@ -48,6 +48,7 @@ ys_lines = []  # 央视频道
 ws_lines = []  # 卫视频道
 dy_lines = []  # 电影频道
 gat_lines = []  # 港澳台
+gj_lines = []  # 国际台
 zb_lines = []  # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
@@ -55,17 +56,13 @@ hain_lines = []  # 地方台-海南频道
 other_lines = []  # 其他
 other_lines_url = []  # 为降低other文件大小，剔除重复url添加
 
-whitelist_lines = read_txt_to_array(
-    'assets/whitelist-blacklist/whitelist_manual.txt')  # 白名单
-whitelist_auto_lines = read_txt_to_array(
-    'assets/whitelist-blacklist/whitelist_auto.txt')  # 白名单
-
 # 读取文本
 # 主频道
 ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
 gat_dictionary = read_txt_to_array('主频道/港澳台.txt')
+gj_dictionary = read_txt_to_array('主频道/国际台.txt')
 zb_dictionary = read_txt_to_array('主频道/直播中国.txt')
 
 # 地方台
@@ -224,6 +221,9 @@ def process_channel_line(line):
             elif channel_name in gat_dictionary:  # 港澳台
                 if check_url_existence(gat_lines, channel_address):
                     gat_lines.append(line)
+            elif channel_name in gj_dictionary:  # 国际台
+                if check_url_existence(gj_lines, channel_address):
+                    gj_lines.append(line)
             elif channel_name in zb_dictionary:  # 直播中国
                 if check_url_existence(zb_lines, channel_address):
                     zb_lines.append(line)
@@ -308,25 +308,6 @@ def sort_data(order, data):
     sorted_data = sorted(data, key=sort_key)
     return sorted_data
 
-
-# 白名单加入（不添加genre标题）
-print(f"添加白名单 whitelist.txt")
-for line in whitelist_lines:
-    process_channel_line(line)
-
-# 读取whitelist,把高响应源从白名单中抽出加入。
-print(f"添加白名单 whitelist_auto.txt")
-for line in whitelist_auto_lines:
-    if "#genre#" not in line and "," in line and "://" in line:
-        parts = line.split(",")
-        try:
-            response_time = float(parts[0].replace("ms", ""))
-        except ValueError:
-            print(f"response_time转换失败: {line}")
-            response_time = 60000  # 单位毫秒，转换失败给个60秒
-        if response_time < 2000:  # 2s以内的高响应源
-            process_channel_line(",".join(parts[1:]))
-
 # 加入配置的url
 for url in urls:
     if url.startswith("http"):
@@ -338,35 +319,26 @@ utc_time = datetime.now(timezone.utc)
 beijing_time = utc_time + timedelta(hours=8)
 # 格式化为所需的格式
 formatted_time = beijing_time.strftime("%Y%m%d %H:%M")
-version = formatted_time + \
-    ",https://gcalic.v.myalicdn.com/gc/wgw05_1/index.m3u8?contentid=2820180516001"
-
-# 瘦身版
-all_lines_simple = ["更新时间,#genre#"] + [version] + ['\n'] + \
-    ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
-    ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
-    ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
-    ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] + \
-    ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n'] + \
-    ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \
-    ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines)
+version = formatted_time + ",https://www.cloudplains.cn/tv202303.txt"
 
 # 合并所有对象中的行文本（去重，排序后拼接）
-all_lines = all_lines_simple + ['\n'] + other_lines
+all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
+           ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
+           ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
+           ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
+           ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] + \
+           ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \
+           ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines) + ['\n'] + \
+           ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] + \
+           ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n'] + \
+           other_lines
 
 # 将合并后的文本写入文件
 output_file = "live.txt"
-output_file_simple = "live_lite.txt"
 # 未匹配的写入文件
 others_file = "others.txt"
 
 try:
-    # 瘦身版
-    with open(output_file_simple, 'w', encoding='utf-8') as f:
-        for line in all_lines_simple:
-            f.write(line + '\n')
-    print(f"合并后的精简文本已保存到文件: {output_file_simple}")
-
     # 全集版
     with open(output_file, 'w', encoding='utf-8') as f:
         for line in all_lines:
@@ -414,7 +386,6 @@ def make_m3u(txt_file, m3u_file):
 
 
 make_m3u(output_file, "live.m3u")
-make_m3u(output_file_simple, "live_lite.m3u")
 
 # 执行结束时间
 timeend = datetime.now()

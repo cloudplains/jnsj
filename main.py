@@ -1,4 +1,4 @@
-﻿import urllib.request
+import urllib.request
 from urllib.parse import urlparse
 import re  # 正则
 import os
@@ -48,6 +48,7 @@ ys_lines = []  # 央视频道
 ws_lines = []  # 卫视频道
 dy_lines = []  # 电影频道
 gat_lines = []  # 港澳台
+zb_lines = []  # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
 
@@ -65,6 +66,7 @@ ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
 gat_dictionary = read_txt_to_array('主频道/港澳台.txt')
+zb_dictionary = read_txt_to_array('主频道/直播中国.txt')
 
 # 地方台
 gd_dictionary = read_txt_to_array('地方台/广东频道.txt')
@@ -222,6 +224,9 @@ def process_channel_line(line):
             elif channel_name in gat_dictionary:  # 港澳台
                 if check_url_existence(gat_lines, channel_address):
                     gat_lines.append(line)
+            elif channel_name in zb_dictionary:  # 直播中国
+                if check_url_existence(zb_lines, channel_address):
+                    zb_lines.append(line)
             elif channel_name in gd_dictionary:  # 地方台-广东频道
                 if check_url_existence(gd_lines, channel_address):
                     gd_lines.append(line)
@@ -237,9 +242,6 @@ def process_channel_line(line):
 def process_url(url):
     print(f"处理URL: {url}")
     try:
-        # 存入other_lines便于check 2024-08-02 10:41
-        other_lines.append(url+",#genre#")
-
         # 创建一个请求对象并添加自定义header
         headers = {
             'User-Agent': 'PostmanRuntime-ApipostRuntime/1.1.0',
@@ -307,14 +309,12 @@ def sort_data(order, data):
     return sorted_data
 
 
-# 白名单加入
-other_lines.append("白名单,#genre#")
+# 白名单加入（不添加genre标题）
 print(f"添加白名单 whitelist.txt")
 for line in whitelist_lines:
     process_channel_line(line)
 
 # 读取whitelist,把高响应源从白名单中抽出加入。
-other_lines.append("白名单测速,#genre#")
 print(f"添加白名单 whitelist_auto.txt")
 for line in whitelist_auto_lines:
     if "#genre#" not in line and "," in line and "://" in line:
@@ -347,6 +347,7 @@ all_lines_simple = ["更新时间,#genre#"] + [version] + ['\n'] + \
     ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
     ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
     ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] + \
+    ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n'] + \
     ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \
     ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines)
 

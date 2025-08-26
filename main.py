@@ -5,9 +5,14 @@ import os
 from datetime import datetime, timedelta, timezone
 import random
 import opencc  # 简繁转换
+import socket
+import ssl
 
 # 执行开始时间
 timestart = datetime.now()
+
+# 设置全局超时时间（秒）
+SOCKET_TIMEOUT = 5
 
 # 读取文本方法
 
@@ -123,6 +128,37 @@ def convert_m3u_to_txt(m3u_content):
     # 将结果合并成一个字符串，以换行符分隔
     return '\n'.join(txt_lines)
 
+# URL有效性验证函数
+def is_url_valid(url):
+    """
+    检查URL是否有效（可访问）
+    """
+    if not url or not url.startswith(('http://', 'https://', 'rtmp://', 'rtsp://')):
+        return False
+        
+    try:
+        # 设置超时
+        socket.setdefaulttimeout(SOCKET_TIMEOUT)
+        
+        # 对于非HTTPS链接，创建不验证SSL的上下文
+        if url.startswith('https://'):
+            # 对于HTTPS链接，创建不验证SSL的上下文
+            context = ssl.create_default_context()
+            context.check_hostname = False
+            context.verify_mode = ssl.CERT_NONE
+            response = urllib.request.urlopen(url, timeout=SOCKET_TIMEOUT, context=context)
+        else:
+            response = urllib.request.urlopen(url, timeout=SOCKET_TIMEOUT)
+            
+        # 检查响应状态码
+        if response.getcode() in [200, 206, 302]:  # 200 OK, 206 Partial Content, 302 Found
+            return True
+        else:
+            return False
+    except Exception as e:
+        # print(f"URL验证失败: {url}, 错误: {e}")  # 调试用，正式使用可注释掉
+        return False
+
 # 在list是否已经存在url 2024-07-22 11:18
 
 
@@ -208,6 +244,11 @@ def process_channel_line(line):
         line = channel_name+","+channel_address  # 重新组织line
 
         if len(channel_address) > 0 and channel_address not in combined_blacklist:  # 判断当前源是否在blacklist中
+            # 验证URL有效性
+            if not is_url_valid(channel_address):
+                print(f"无效URL跳过: {channel_name} - {channel_address}")
+                return
+            
             # 根据行内容判断存入哪个对象，开始分发
             if channel_name in ys_dictionary:  # 央视频道
                 if check_url_existence(ys_lines, channel_address):

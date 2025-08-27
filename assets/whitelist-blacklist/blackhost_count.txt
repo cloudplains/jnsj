@@ -195,6 +195,7 @@ scgctvshow.sctv.com: 6
 live.yantaitv.cn: 4
 amg09501-questar-amg09501c3-stirr-us-3096.playouts.now.amagi.tv: 1
 124.93.18.238:9003: 16
+8.138.7.223
 113.56.95.69:53765: 11
 www.douzhicloud.site:35455: 56
 58.144.154.93: 7

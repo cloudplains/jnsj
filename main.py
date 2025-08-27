@@ -181,7 +181,7 @@ def clean_url(url):
     return url
 
 # 添加channel_name前剔除部分特定字符
-removal_list = ["「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电信", "（HD）", "[超清]", "高清", "超清", "-HD", "(HK)", "AKtv", "@", "IPV6", "🎞️", "🎦", " ", "[BD]", "[VGA]", "[HD]", "[SD]", "(1080p)", "(720p)", "(480p)"]
+removal_list = ["「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电信", "（HD）", "[超清]", "高清", "超清", "-HD", "(HK)", "AKtv", "@", "IPV6", "🎞🎞️", "🎦🎦", " ", "[BD]", "[VGA]", "[HD]", "[SD]", "(1080p)", "(720p)", "(480p)"]
 
 def clean_channel_name(channel_name, removal_list):
     for item in removal_list:
@@ -268,10 +268,13 @@ def process_channel_line(line):
                 elif channel_name in hain_dictionary:
                     if check_url_existence(hain_lines, channel_address) and not is_channel_full(channel_name, hain_lines):
                         hain_lines.append(line)
-                else:
-                    if channel_address not in other_lines_url:
-                        other_lines_url.append(channel_address)
-                        other_lines.append(line)
+                # 完全移除其他分类的收集
+                # 这样可以确保最终文件中不会出现未分类的源
+                # 如果需要重新启用其他分类，可以取消以下注释：
+                # else:
+                #     if channel_address not in other_lines_url:
+                #         other_lines_url.append(channel_address)
+                #         other_lines.append(line)
     except Exception as e:
         print(f"处理频道行时出错: {e}, 行内容: {line}")
 
@@ -321,7 +324,8 @@ def process_url(url):
                                 valid_lines += 1
 
             print(f"有效行数: {valid_lines}")
-            other_lines.append('\n')
+            # 注释掉这行，不再向other_lines添加换行符
+            # other_lines.append('\n')
 
     except Exception as e:
         print(f"处理URL时发生错误：{e}")
@@ -358,9 +362,10 @@ print(f"国际台: {len(gj_lines)} 行")
 print(f"直播中国: {len(zb_lines)} 行")
 print(f"广东频道: {len(gd_lines)} 行")
 print(f"海南频道: {len(hain_lines)} 行")
-print(f"其他: {len(other_lines)} 行")
+# 注释掉"其他"分类的统计信息
+# print(f"其他: {len(other_lines)} 行")
 
-# 合并所有对象中的行文本
+# 合并所有对象中的行文本（已移除other_lines）
 all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
@@ -369,8 +374,7 @@ all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \
            ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines) + ['\n'] + \
            ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] + \
-           ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n'] + \
-           other_lines
+           ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n']
 
 # 将合并后的文本写入文件
 output_file = "live.txt"

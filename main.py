@@ -20,15 +20,31 @@ sys.stderr = os.fdopen(sys.stderr.fileno(), 'w', 1)
 
 print("脚本开始执行")
 
-# 读取文本方法
+# 读取文本方法（支持多种编码）
 def read_txt_to_array(file_name):
     try:
-        print(f"尝试读取文件: {file_name}")
+        # 先尝试 UTF-8 编码
         with open(file_name, 'r', encoding='utf-8') as file:
             lines = file.readlines()
             lines = [line.strip() for line in lines]
-            print(f"成功读取文件 {file_name}, 行数: {len(lines)}")
             return lines
+    except UnicodeDecodeError:
+        try:
+            # 如果 UTF-8 失败，尝试 GBK 编码
+            with open(file_name, 'r', encoding='gbk') as file:
+                lines = file.readlines()
+                lines = [line.strip() for line in lines]
+                return lines
+        except UnicodeDecodeError:
+            try:
+                # 如果 GBK 也失败，尝试 latin-1 编码
+                with open(file_name, 'r', encoding='latin-1') as file:
+                    lines = file.readlines()
+                    lines = [line.strip() for line in lines]
+                    return lines
+            except Exception as e:
+                print(f"无法确定合适的编码格式进行解码文件: {file_name}, 错误: {e}")
+                return []
     except FileNotFoundError:
         print(f"File '{file_name}' not found.")
         return []
@@ -36,19 +52,28 @@ def read_txt_to_array(file_name):
         print(f"读取文件 {file_name} 时发生错误: {e}")
         return []
 
-# 读取黑名单
+# 读取黑名单（支持多种编码）
 def read_blacklist_from_txt(file_path):
     try:
-        print(f"尝试读取黑名单文件: {file_path}")
+        # 先尝试 UTF-8 编码
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
+    except UnicodeDecodeError:
+        try:
+            # 如果 UTF-8 失败，尝试 GBK 编码
+            with open(file_path, 'r', encoding='gbk') as file:
+                lines = file.readlines()
+        except UnicodeDecodeError:
+            try:
+                # 如果 GBK 也失败，尝试 latin-1 编码
+                with open(file_path, 'r', encoding='latin-1') as file:
+                    lines = file.readlines()
+            except Exception as e:
+                print(f"读取黑名单时出错: {e}")
+                return []
 
-        BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
-        print(f"成功读取黑名单 {file_path}, 行数: {len(BlackList)}")
-        return BlackList
-    except Exception as e:
-        print(f"读取黑名单时出错: {e}")
-        return []
+    BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
+    return BlackList
 
 print("正在读取黑名单...")
 blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
@@ -218,7 +243,11 @@ def process_channel_line(line):
             line = channel_name + "," + channel_address
 
             if len(channel_address) > 0 and channel_address not in combined_blacklist:
-                if channel_name in ys_dictionary:
+                # 特别处理直播中国分类 - 只保留明确的直播中国频道
+                if channel_name in zb_dictionary:
+                    if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
+                        zb_lines.append(line)
+                elif channel_name in ys_dictionary:
                     if check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines):
                         ys_lines.append(line)
                 elif channel_name in ws_dictionary:
@@ -233,9 +262,6 @@ def process_channel_line(line):
                 elif channel_name in gj_dictionary:
                     if check_url_existence(gj_lines, channel_address) and not is_channel_full(channel_name, gj_lines):
                         gj_lines.append(line)
-                elif channel_name in zb_dictionary:
-                    if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
-                        zb_lines.append(line)
                 elif channel_name in gd_dictionary:
                     if check_url_existence(gd_lines, channel_address) and not is_channel_full(channel_name, gd_lines):
                         gd_lines.append(line)

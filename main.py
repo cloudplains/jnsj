@@ -319,8 +319,6 @@ all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
 
 # 将合并后的文本写入文件
 output_file = "live.txt"
-# 未匹配的写入文件
-others_file = "others.txt"
 
 try:
     # 全集版
@@ -328,12 +326,6 @@ try:
         for line in all_lines:
             f.write(line + '\n')
     print(f"合并后的文本已保存到文件: {output_file}")
-
-    # 其他
-    with open(others_file, 'w', encoding='utf-8') as f:
-        for line in other_lines:
-            f.write(line + '\n')
-    print(f"其他已保存到文件: {others_file}")
 
 except Exception as e:
     print(f"保存文件时发生错误：{e}")
@@ -361,7 +353,7 @@ def make_m3u(txt_file, m3u_file):
                     output_text += f"#EXTINF:-1  tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\"  group-title=\"{group_name}\",{channel_name}\n"
                     output_text += f"{channel_url}\n"
 
-        with open(f"{m3u_file}", "w", encoding='utf-8') as file:
+        with open(f"{m3u_file}", "w", encoding'utf-8') as file:
             file.write(output_text)
         print(f"M3U文件 '{m3u_file}' 生成成功。")
     except Exception as e:
@@ -384,10 +376,8 @@ print(f"执行时间: {minutes} 分 {seconds} 秒")
 
 combined_blacklist_hj = len(combined_blacklist)
 all_lines_hj = len(all_lines)
-other_lines_hj = len(other_lines)
 print(f"blacklist行数: {combined_blacklist_hj} ")
 print(f"live.txt行数: {all_lines_hj} ")
-print(f"others.txt行数: {other_lines_hj} ")
 
 # 备用1：http://tonkiang.us
 # 备用2：https://www.zoomeye.hk,https://www.shodan.io,https://tv.cctv.com/live/

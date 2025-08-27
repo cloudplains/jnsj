@@ -1,10 +1,14 @@
 import urllib.request
 from urllib.parse import urlparse
-import re  # 正则
+import re
 import os
 from datetime import datetime, timedelta, timezone
 import random
-import opencc  # 简繁转换
+import opencc
+import ssl
+
+# 跳过SSL证书验证（解决某些HTTPS连接问题）
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # 执行开始时间
 timestart = datetime.now()
@@ -25,20 +29,21 @@ def read_txt_to_array(file_name):
 
 # read BlackList 2024-06-17 15:02
 def read_blacklist_from_txt(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
 
-    BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
-    return BlackList
+        BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
+        return BlackList
+    except Exception as e:
+        print(f"读取黑名单时出错: {e}")
+        return []
 
-blacklist_auto = read_blacklist_from_txt(
-    'assets/whitelist-blacklist/blacklist_auto.txt')
-blacklist_manual = read_blacklist_from_txt(
-    'assets/whitelist-blacklist/blacklist_manual.txt')
+blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
+blacklist_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
 combined_blacklist = set(blacklist_auto + blacklist_manual)
 
 # 定义多个对象用于存储不同内容的行文本
-# 主频道
 ys_lines = []  # 央视频道
 ws_lines = []  # 卫视频道
 dy_lines = []  # 电影频道
@@ -67,16 +72,23 @@ hain_dictionary = read_txt_to_array('地方台/海南频道.txt')
 # 自定义源
 urls = read_txt_to_array('assets/urls.txt')
 
+print(f"读取到 {len(urls)} 个URL")
+
 # 简繁转换
 def traditional_to_simplified(text: str) -> str:
-    # 初始化转换器，"t2s" 表示从繁体转为简体
-    converter = opencc.OpenCC('t2s')
-    simplified_text = converter.convert(text)
-    return simplified_text
+    try:
+        converter = opencc.OpenCC('t2s')
+        simplified_text = converter.convert(text)
+        return simplified_text
+    except Exception as e:
+        print(f"繁简转换错误: {e}")
+        return text
 
 # M3U格式判断
 def is_m3u_content(text):
     lines = text.splitlines()
+    if not lines:
+        return False
     first_line = lines[0].strip()
     return first_line.startswith("#EXTM3U")
 
@@ -125,7 +137,7 @@ def check_url_existence(data_list, url):
     if "127.0.0.1" in url:
         return False
     # Extract URLs from the data list
-    urls = [item.split(',')[1] for item in data_list]
+    urls = [item.split(',')[1] for item in data_list if len(item.split(',')) > 1]
     return url not in urls  # 如果不存在则返回true，需要
 
 # 处理带$的URL，把$之后的内容都去掉（包括$也去掉） 【2024-08-08 22:29:11】
@@ -153,14 +165,19 @@ def clean_channel_name(channel_name, removal_list):
 # 读取纠错频道名称方法
 def load_corrections_name(filename):
     corrections = {}
-    with open(filename, 'r', encoding='utf-8') as f:
-        for line in f:
-            if not line.strip():  # 跳过空行
-                continue
-            parts = line.strip().split(',')
-            correct_name = parts[0]
-            for name in parts[1:]:
-                corrections[name] = correct_name
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            for line in f:
+                if not line.strip():  # 跳过空行
+                    continue
+                parts = line.strip().split(',')
+                if len(parts) < 2:
+                    continue
+                correct_name = parts[0]
+                for name in parts[1:]:
+                    corrections[name] = correct_name
+    except Exception as e:
+        print(f"读取纠错文件时出错: {e}")
     return corrections
 
 # 读取纠错文件
@@ -182,58 +199,65 @@ def is_channel_full(channel_name, target_list):
 
 # 分发直播源，归类，把这部分从process_url剥离出来，为以后加入whitelist源清单做准备。
 def process_channel_line(line):
-    if "#genre#" not in line and "#EXTINF:" not in line and "," in line and "://" in line:
-        channel_name = line.split(',')[0]
-        channel_name = traditional_to_simplified(channel_name)  # 繁转简
-        # 分发前清理channel_name中特定字符
-        channel_name = clean_channel_name(channel_name, removal_list)
-        channel_name = correct_name_data(channel_name).strip()  # 根据纠错文件处理
+    try:
+        if "#genre#" not in line and "#EXTINF:" not in line and "," in line and "://" in line:
+            parts = line.split(',', 1)
+            if len(parts) < 2:
+                return
+                
+            channel_name = parts[0]
+            channel_name = traditional_to_simplified(channel_name)  # 繁转简
+            # 分发前清理channel_name中特定字符
+            channel_name = clean_channel_name(channel_name, removal_list)
+            channel_name = correct_name_data(channel_name).strip()  # 根据纠错文件处理
 
-        # 把URL中$之后的内容都去掉
-        channel_address = clean_url(line.split(',')[1]).strip()
-        line = channel_name+","+channel_address  # 重新组织line
+            # 把URL中$之后的内容都去掉
+            channel_address = clean_url(parts[1]).strip()
+            line = channel_name + "," + channel_address  # 重新组织line
 
-        if len(channel_address) > 0 and channel_address not in combined_blacklist:  # 判断当前源是否在blacklist中
-            # 根据行内容判断存入哪个对象，开始分发
-            if channel_name in ys_dictionary:  # 央视频道
-                if check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines):
-                    ys_lines.append(line)
-            elif channel_name in ws_dictionary:  # 卫视频道
-                if check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines):
-                    ws_lines.append(line)
-            elif channel_name in dy_dictionary:  # 电影频道
-                if check_url_existence(dy_lines, channel_address) and not is_channel_full(channel_name, dy_lines):
-                    dy_lines.append(line)
-            elif channel_name in gat_dictionary:  # 港澳台
-                if check_url_existence(gat_lines, channel_address) and not is_channel_full(channel_name, gat_lines):
-                    gat_lines.append(line)
-            elif channel_name in gj_dictionary:  # 国际台
-                if check_url_existence(gj_lines, channel_address) and not is_channel_full(channel_name, gj_lines):
-                    gj_lines.append(line)
-            elif channel_name in zb_dictionary:  # 直播中国
-                if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
-                    zb_lines.append(line)
-            elif channel_name in gd_dictionary:  # 地方台-广东频道
-                if check_url_existence(gd_lines, channel_address) and not is_channel_full(channel_name, gd_lines):
-                    gd_lines.append(line)
-            elif channel_name in hain_dictionary:  # 地方台-海南频道
-                if check_url_existence(hain_lines, channel_address) and not is_channel_full(channel_name, hain_lines):
-                    hain_lines.append(line)
-            else:
-                if channel_address not in other_lines_url:
-                    other_lines_url.append(channel_address)  # 记录已加url
-                    other_lines.append(line)
+            if len(channel_address) > 0 and channel_address not in combined_blacklist:  # 判断当前源是否在blacklist中
+                # 根据行内容判断存入哪个对象，开始分发
+                if channel_name in ys_dictionary:  # 央视频道
+                    if check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines):
+                        ys_lines.append(line)
+                elif channel_name in ws_dictionary:  # 卫视频道
+                    if check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines):
+                        ws_lines.append(line)
+                elif channel_name in dy_dictionary:  # 电影频道
+                    if check_url_existence(dy_lines, channel_address) and not is_channel_full(channel_name, dy_lines):
+                        dy_lines.append(line)
+                elif channel_name in gat_dictionary:  # 港澳台
+                    if check_url_existence(gat_lines, channel_address) and not is_channel_full(channel_name, gat_lines):
+                        gat_lines.append(line)
+                elif channel_name in gj_dictionary:  # 国际台
+                    if check_url_existence(gj_lines, channel_address) and not is_channel_full(channel_name, gj_lines):
+                        gj_lines.append(line)
+                elif channel_name in zb_dictionary:  # 直播中国
+                    if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
+                        zb_lines.append(line)
+                elif channel_name in gd_dictionary:  # 地方台-广东频道
+                    if check_url_existence(gd_lines, channel_address) and not is_channel_full(channel_name, gd_lines):
+                        gd_lines.append(line)
+                elif channel_name in hain_dictionary:  # 地方台-海南频道
+                    if check_url_existence(hain_lines, channel_address) and not is_channel_full(channel_name, hain_lines):
+                        hain_lines.append(line)
+                else:
+                    if channel_address not in other_lines_url:
+                        other_lines_url.append(channel_address)  # 记录已加url
+                        other_lines.append(line)
+    except Exception as e:
+        print(f"处理频道行时出错: {e}, 行内容: {line}")
 
 def process_url(url):
     print(f"处理URL: {url}")
     try:
         # 创建一个请求对象并添加自定义header
         headers = {
-            'User-Agent': 'PostmanRuntime-ApipostRuntime/1.1.0',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
         }
         req = urllib.request.Request(url, headers=headers)
         # 打开URL并读取内容
-        with urllib.request.urlopen(req, timeout=10) as response:
+        with urllib.request.urlopen(req, timeout=15) as response:
             # 以二进制方式读取数据
             data = response.read()
             # 将二进制数据解码为字符串
@@ -250,6 +274,7 @@ def process_url(url):
                         text = data.decode('iso-8859-1')
                     except UnicodeDecodeError:
                         print("无法确定合适的编码格式进行解码。")
+                        return
 
             # 处理m3u提取channel_name和channel_address
             if is_m3u_content(text):
@@ -258,20 +283,30 @@ def process_url(url):
             # 逐行处理内容
             lines = text.split('\n')
             print(f"行数: {len(lines)}")
+            valid_lines = 0
             for line in lines:
                 if "#genre#" not in line and "," in line and "://" in line:
                     # 拆分成频道名和URL部分
-                    channel_name, channel_address = line.split(',', 1)
+                    parts = line.split(',', 1)
+                    if len(parts) < 2:
+                        continue
+                        
+                    channel_name, channel_address = parts
                     # 需要加处理带#号源=予加速源
                     if "#" not in channel_address:
                         # 如果没有井号，则照常按照每行规则进行分发
                         process_channel_line(line)
+                        valid_lines += 1
                     else:
                         # 如果有"#"号，则根据"#"号分隔
                         url_list = channel_address.split('#')
                         for channel_url in url_list:
-                            newline = f'{channel_name},{channel_url}'
-                            process_channel_line(newline)
+                            if "://" in channel_url:  # 确保是有效的URL
+                                newline = f'{channel_name},{channel_url}'
+                                process_channel_line(newline)
+                                valid_lines += 1
+
+            print(f"有效行数: {valid_lines}")
 
             # 每个url处理完成后，在other_lines加个回车 2024-08-02 10:46
             other_lines.append('\n')
@@ -304,6 +339,17 @@ beijing_time = utc_time + timedelta(hours=8)
 # 格式化为所需的格式
 formatted_time = beijing_time.strftime("%Y%m%d %H:%M")
 version = formatted_time + ",https://www.cloudplains.cn/tv202303.txt"
+
+# 打印统计信息
+print(f"央视频道: {len(ys_lines)} 行")
+print(f"卫视频道: {len(ws_lines)} 行")
+print(f"电影频道: {len(dy_lines)} 行")
+print(f"港澳台: {len(gat_lines)} 行")
+print(f"国际台: {len(gj_lines)} 行")
+print(f"直播中国: {len(zb_lines)} 行")
+print(f"广东频道: {len(gd_lines)} 行")
+print(f"海南频道: {len(hain_lines)} 行")
+print(f"其他: {len(other_lines)} 行")
 
 # 合并所有对象中的行文本（去重，排序后拼接）
 all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \

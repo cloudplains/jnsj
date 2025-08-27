@@ -1,4 +1,4 @@
-https://jihulab.com/237331946/2/-/raw/main/live.txt
+ï»¿https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
 http://west.shaonv.me/tvbox/live.txt
 http://api.lmxsd.cn/2485.txt
@@ -77,56 +77,56 @@ http://tot.totalh.net/tttt.txt
 https://live.zbds.org/tv/iptv4.txt
 https://d.kstore.dev/download/12441/ds9.txt
 http://8.134.67.252/tv202303.txt
-http://47.120.41.246:8899/zb.txt  # IPTVÖ±²¥
- http://8.138.7.223/live.txt  # ĞÜÃ¨Ö±²¥Ô´
- https://epg.pw/test_channels.m3u # ÖĞ¹ú´óÂ½ÆµµÀ
- https://epg.pw/test_channels_hong_kong.m3u # ÖĞ¹úÏã¸ÛÆµµÀ
- https://epg.pw/test_channels_macau.m3u # ÖĞ¹ú°ÄÃÅÆµµÀ
- https://epg.pw/test_channels_malaysia.m3u # ÂíÀ´Î÷ÑÇÆµµÀ
- https://epg.pw/test_channels_singapore.m3u # ĞÂ¼ÓÆÂÆµµÀ
- https://epg.pw/test_channels_taiwan.m3u # ÖĞ¹úÌ¨ÍåÆµµÀ
- https://gitee.com/xxy002/zhiboyuan/raw/master/dsy # £¨ÑëÊÓÆµµÀ¡¢ÎÀÊÓÆµµÀ¡¢¸Û°ÄÌ¨¡¢Êı×ÖµçÊÓ¡¢¶¯Âş£©
- https://iptv-org.github.io/iptv/countries/tw.m3u # ÖĞ¹úÌ¨ÍåÆµµÀ
- https://iptv-org.github.io/iptv/index.m3u # ÊÀ½ç¸÷µØÃâ·ÑµçÊÓÆµµÀ
- https://live.fanmingming.cn/tv/m3u/ipv6.m3u # ·¶Ã÷Ã÷Ö±²¥Ô´¹úÄÚ¾µÏñ¼ÓËÙµØÖ·
- https://live.iptv365.org/live.m3u   # TVÖ±²¥Ô´ (Ã¿ÈÕ×Ô¶¯ÊÕ¼¯?³ÖĞø¸üĞÂ)
- https://live.iptv365.org/live.txt   # TVÖ±²¥Ô´ (Ã¿ÈÕ×Ô¶¯ÊÕ¼¯?³ÖĞø¸üĞÂ)
- https://live.izbds.com/tv/iptv4.m3u # M3U ¸ñÊ½Ö±²¥Ô´£¨ÒÑ´øÌ¨±êºÍEPG£©
- https://live.izbds.com/tv/iptv4.txt # ×Ô¶¯É¨ÃèÖ±²¥Ô´ IPTV4
- https://live.izbds.com/tv/iptv6.m3u # M3U ¸ñÊ½Ö±²¥Ô´£¨ÒÑ´øÌ¨±êºÍEPG£©
- https://live.izbds.com/tv/iptv6.txt # ×Ô¶¯É¨ÃèÖ±²¥Ô´ IPTV6
- https://live.kilvn.com/iptv.m3u  # ×Ô¶¯¸üĞÂÔ´(ÉÏÓÎ·¶Ã÷Ã÷Ô´)
- https://live.zbds.top/tv/iptv4.txt  # Ö±²¥µçÊÓIPV4
- https://raw.githubusercontent.com/BigBigGrandG/IPTV-URL/release/Gather.m3u # BigBigGrandGÔ´£¬ÓĞ²¿·ÖIPv6
+http://47.120.41.246:8899/zb.txt  # IPTVç›´æ’­
+ http://8.138.7.223/live.txt  # ç†ŠçŒ«ç›´æ’­æº
+ https://epg.pw/test_channels.m3u # ä¸­å›½å¤§é™†é¢‘é“
+ https://epg.pw/test_channels_hong_kong.m3u # ä¸­å›½é¦™æ¸¯é¢‘é“
+ https://epg.pw/test_channels_macau.m3u # ä¸­å›½æ¾³é—¨é¢‘é“
+ https://epg.pw/test_channels_malaysia.m3u # é©¬æ¥è¥¿äºšé¢‘é“
+ https://epg.pw/test_channels_singapore.m3u # æ–°åŠ å¡é¢‘é“
+ https://epg.pw/test_channels_taiwan.m3u # ä¸­å›½å°æ¹¾é¢‘é“
+ https://gitee.com/xxy002/zhiboyuan/raw/master/dsy # ï¼ˆå¤®è§†é¢‘é“ã€å«è§†é¢‘é“ã€æ¸¯æ¾³å°ã€æ•°å­—ç”µè§†ã€åŠ¨æ¼«ï¼‰
+ https://iptv-org.github.io/iptv/countries/tw.m3u # ä¸­å›½å°æ¹¾é¢‘é“
+ https://iptv-org.github.io/iptv/index.m3u # ä¸–ç•Œå„åœ°å…è´¹ç”µè§†é¢‘é“
+ https://live.fanmingming.cn/tv/m3u/ipv6.m3u # èŒƒæ˜æ˜ç›´æ’­æºå›½å†…é•œåƒåŠ é€Ÿåœ°å€
+ https://live.iptv365.org/live.m3u   # TVç›´æ’­æº (æ¯æ—¥è‡ªåŠ¨æ”¶é›†?æŒç»­æ›´æ–°)
+ https://live.iptv365.org/live.txt   # TVç›´æ’­æº (æ¯æ—¥è‡ªåŠ¨æ”¶é›†?æŒç»­æ›´æ–°)
+ https://live.izbds.com/tv/iptv4.m3u # M3U æ ¼å¼ç›´æ’­æºï¼ˆå·²å¸¦å°æ ‡å’ŒEPGï¼‰
+ https://live.izbds.com/tv/iptv4.txt # è‡ªåŠ¨æ‰«æç›´æ’­æº IPTV4
+ https://live.izbds.com/tv/iptv6.m3u # M3U æ ¼å¼ç›´æ’­æºï¼ˆå·²å¸¦å°æ ‡å’ŒEPGï¼‰
+ https://live.izbds.com/tv/iptv6.txt # è‡ªåŠ¨æ‰«æç›´æ’­æº IPTV6
+ https://live.kilvn.com/iptv.m3u  # è‡ªåŠ¨æ›´æ–°æº(ä¸Šæ¸¸èŒƒæ˜æ˜æº)
+ https://live.zbds.top/tv/iptv4.txt  # ç›´æ’­ç”µè§†IPV4
+ https://raw.githubusercontent.com/BigBigGrandG/IPTV-URL/release/Gather.m3u # BigBigGrandGæºï¼Œæœ‰éƒ¨åˆ†IPv6
  https://raw.githubusercontent.com/BurningC4/Chinese-IPTV/master/TV-IPV4.m3u
- https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u # ·¶Ã÷Ã÷Ö±²¥Ô´
- https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/v6.m3u # ·¶Ã÷Ã÷Ö±²¥Ô´£¬ÓĞ²¿·ÖIPv6
- https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8 # ÊÀ½ç¸÷µØÃâ·ÑµçÊÓÆµµÀ
- https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/bestv.m3u # °ÙÊÓÍ¨Ô´
- https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/cqyx.m3u # ÖØÇì¹ãµçÔ´
- https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/hbgd.m3u # ºÓ±±¹ãµçÔ´
- https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/IPTV.m3u # ¹úÄÚ4K/8KÔ´
+ https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u # èŒƒæ˜æ˜ç›´æ’­æº
+ https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/v6.m3u # èŒƒæ˜æ˜ç›´æ’­æºï¼Œæœ‰éƒ¨åˆ†IPv6
+ https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8 # ä¸–ç•Œå„åœ°å…è´¹ç”µè§†é¢‘é“
+ https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/bestv.m3u # ç™¾è§†é€šæº
+ https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/cqyx.m3u # é‡åº†å¹¿ç”µæº
+ https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/hbgd.m3u # æ²³åŒ—å¹¿ç”µæº
+ https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/IPTV.m3u # å›½å†…4K/8Kæº
  https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/msp.m3u
- https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/yqgd.m3u # ÑôÈª¹ãµçÔ´
+ https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/yqgd.m3u # é˜³æ³‰å¹¿ç”µæº
  https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u   # IPTV IPv4
  https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u   # IPTV IPv6
- https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u   # IPTV Ä¬ÈÏÔ´
- https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u # KimentanmÔ´£¬ÓĞ²¿·ÖIPv6
- https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.m3u # TVÖ±²¥Ô´
- https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.m3u   # äìÈ÷AIÖ±²¥
- https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.txt   # äìÈ÷AIÖ±²¥
+ https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u   # IPTV é»˜è®¤æº
+ https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u # Kimentanmæºï¼Œæœ‰éƒ¨åˆ†IPv6
+ https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.m3u # TVç›´æ’­æº
+ https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.m3u   # æ½‡æ´’AIç›´æ’­
+ https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.txt   # æ½‡æ´’AIç›´æ’­
  https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv4.m3u # myIPTV IPv4
  https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv6.m3u # myIPTV IPv6
- https://raw.githubusercontent.com/tianya7981/jiekou/refs/heads/main/Ò°»ğ959  # Ò°»ğ959
- https://raw.githubusercontent.com/vamoschuck/TV/main/M3U # ²è¿ÍÔ´
- https://raw.githubusercontent.com/whpsky/iptv/main/chinatv.m3u # whpsky Ô´
- https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u # YanG¼¯ºÏÔ´£¬ÓĞ²¿·ÖIPv6
- https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u # YueChan Ö±²¥Ô´
+ https://raw.githubusercontent.com/tianya7981/jiekou/refs/heads/main/é‡ç«959  # é‡ç«959
+ https://raw.githubusercontent.com/vamoschuck/TV/main/M3U # èŒ¶å®¢æº
+ https://raw.githubusercontent.com/whpsky/iptv/main/chinatv.m3u # whpsky æº
+ https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u # YanGé›†åˆæºï¼Œæœ‰éƒ¨åˆ†IPv6
+ https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u # YueChan ç›´æ’­æº
  https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/APTV.m3u
- https://szyyds.cn/tv/live/x.txt  # Ğ¡ÂíÓ°ÊÓ
+ https://szyyds.cn/tv/live/x.txt  # å°é©¬å½±è§†
  https://tv.iill.top/m3u/Gather
-https://raw.githubusercontent.com/asdjkl6/tv/tv/.m3u/ÕûÌ×Ö±²¥Ô´/²âÊÔ/ÕûÌ×Ö±²¥Ô´/kk.txt
-https://raw.githubusercontent.com/asdjkl6/tv/tv/.m3u/ÕûÌ×Ö±²¥Ô´/²âÊÔ/ÕûÌ×Ö±²¥Ô´/l.txt
+https://raw.githubusercontent.com/asdjkl6/tv/tv/.m3u/æ•´å¥—ç›´æ’­æº/æµ‹è¯•/æ•´å¥—ç›´æ’­æº/kk.txt
+https://raw.githubusercontent.com/asdjkl6/tv/tv/.m3u/æ•´å¥—ç›´æ’­æº/æµ‹è¯•/æ•´å¥—ç›´æ’­æº/l.txt
 https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u
 https://raw.githubusercontent.com/Guovin/iptv-database/master/result.txt
 https://raw.githubusercontent.com/iptv-org/iptv/gh-pages/countries/cn.m3u

@@ -10,10 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 获取所有历史记录而不是单次提交
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
@@ -22,37 +24,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install opencc-python-reimplemented
 
-      - name: Run Python script with debug output
-        run: |
-          # 运行 Python 脚本并捕获所有输出
-          python main.py 2>&1 | tee python_output.log
-          # 检查退出状态
-          if [ ${PIPESTATUS[0]} -ne 0 ]; then
-            echo "Python script failed with exit code ${PIPESTATUS[0]}"
-            cat python_output.log
-            exit 1
-          fi
-          # 显示 Python 脚本的输出
-          cat python_output.log
-
-      - name: Check if files were created
-        run: |
-          echo "Checking if live.txt and live.m3u were created:"
-          ls -la live.txt live.m3u 2>/dev/null || echo "Files not found"
-          echo "Content of live.txt (first 10 lines):"
-          head -n 10 live.txt 2>/dev/null || echo "File not found or empty"
+      - name: Run Python script
+        run: python main.py
 
       - name: Commit changes
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "github_actions[bot]"
+          git add live.txt live.m3u
           # 检查是否有更改需要提交
-          if git diff --quiet --exit-code; then
+          if git diff --staged --quiet; then
             echo "No changes to commit"
+            exit 0
           else
-            git add live.txt live.m3u
-            git commit -m ":tada:  AutoUpdate $(date +'%Y%m%d')"
+            git commit -m ":tada: AutoUpdate $(date +'%Y%m%d')"
           fi
+
+      - name: Pull and rebase
+        run: |
+          git pull origin main --rebase
 
       - name: Push changes
         uses: ad-m/github-push-action@master

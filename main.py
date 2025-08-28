@@ -82,6 +82,7 @@ combined_blacklist = set(blacklist_auto + blacklist_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
 
 # 定义多个对象用于存储不同内容的行文本
+zh_lines = []  # 综合频道
 ys_lines = []  # 央视频道
 ws_lines = []  # 卫视频道
 dy_lines = []  # 电影频道
@@ -97,6 +98,7 @@ other_lines_url = []  # 为降低other文件大小，剔除重复url添加
 print("正在读取频道字典...")
 # 读取文本
 # 主频道
+zh_dictionary = read_txt_to_array('主频道/综合频道.txt')  # 新增综合频道
 ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
@@ -181,7 +183,7 @@ def clean_url(url):
     return url
 
 # 添加channel_name前剔除部分特定字符
-removal_list = ["「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电信", "（HD）", "[超清]", "高清", "超清", "-HD", "(HK)", "AKtv", "@", "IPV6", "🎞🎞️", "🎦🎦", " ", "[BD]", "[VGA]", "[HD]", "[SD]", "(1080p)", "(720p)", "(480p)"]
+removal_list = ["「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电信", "（HD）", "[超清]", "高清", "超清", "-HD", "(HK)", "AKtv", "@", "IPV6", "🎞🎞🎞🎞️", "🎦🎦🎦🎦", " ", "[BD]", "[VGA]", "[HD]", "[SD]", "(1080p)", "(720p)", "(480p)"]
 
 def clean_channel_name(channel_name, removal_list):
     for item in removal_list:
@@ -247,6 +249,10 @@ def process_channel_line(line):
                 if channel_name in zb_dictionary:
                     if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
                         zb_lines.append(line)
+                # 新增综合频道处理（放在央视频道前面）
+                elif channel_name in zh_dictionary:
+                    if check_url_existence(zh_lines, channel_address) and not is_channel_full(channel_name, zh_lines):
+                        zh_lines.append(line)
                 elif channel_name in ys_dictionary:
                     if check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines):
                         ys_lines.append(line)
@@ -285,7 +291,8 @@ def process_url(url):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
         }
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=20) as response:
+        # 修改超时时间为5秒
+        with urllib.request.urlopen(req, timeout=5) as response:
             data = response.read()
             try:
                 text = data.decode('utf-8')
@@ -354,6 +361,7 @@ version = formatted_time + ",https://www.cloudplains.cn/tv202303.txt"
 
 # 打印统计信息
 print(f"\n统计信息:")
+print(f"综合频道: {len(zh_lines)} 行")
 print(f"央视频道: {len(ys_lines)} 行")
 print(f"卫视频道: {len(ws_lines)} 行")
 print(f"电影频道: {len(dy_lines)} 行")
@@ -367,6 +375,7 @@ print(f"海南频道: {len(hain_lines)} 行")
 
 # 合并所有对象中的行文本（已移除other_lines）
 all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
+           ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] + \
            ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
            ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \

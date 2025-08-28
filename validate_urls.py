@@ -2,8 +2,8 @@
 from datetime import datetime
 import os
 
-# 读取urls.txt
-with open('urls.txt', 'r') as f:
+# 读取assets/urls.txt
+with open('assets/urls.txt', 'r') as f:
     urls = [line.strip() for line in f.readlines() if line.strip()]
 
 # 验证函数

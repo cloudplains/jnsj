@@ -1,64 +1,31 @@
-- name: Create and run validation script
+- name: Commit changes
   run: |
-    cat << 'EOL' > validate_urls.py
-import requests
-import time
-from datetime import datetime
-
-def validate_urls():
-    with open('urls.txt', 'r', encoding='utf-8') as f:
-        urls = [line.strip() for line in f if line.strip()]
+    # 配置Git用户
+    git config --local user.email "actions@github.com"
+    git config --local user.name "github-actions[bot]"
     
-    print(f"Found {len(urls)} URLs to validate")
+    # 只添加特定文件
+    git add tv202303.txt tv202303.m3u
     
-    valid_urls = []
-    invalid_urls = []
-    
-    for i, url in enumerate(urls):
-        try:
-            print(f"Testing URL {i+1}/{len(urls)}: {url}")
-            response = requests.get(url, timeout=10, allow_redirects=True)
-            if response.status_code == 200:
-                valid_urls.append(url)
-                print(f"✓ Valid: {url}")
-            else:
-                invalid_urls.append(url)
-                print(f"✗✗ Invalid (status {response.status_code}): {url}")
-        except Exception as e:
-            invalid_urls.append(url)
-            print(f"✗✗ Error: {url} - {str(e)}")
-        
-        time.sleep(0.5)
-    
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_filename = f"urls_{timestamp}.txt"
-    
-    with open(backup_filename, 'w', encoding='utf-8') as f:
-        for url in valid_urls:
-            f.write(url + '\n')
-    
-    with open('urls.txt', 'w', encoding='utf-8') as f:
-        for url in valid_urls:
-            f.write(url + '\n')
-    
-    report = f"""URL Validation Report
-Generated at: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-Total URLs: {len(urls)}
-Valid URLs: {len(valid_urls)}
-Invalid URLs: {len(invalid_urls)}
-Backup file: {backup_filename}
-"""
-    
-    print(report)
-    
-    with open('url_validation_report.txt', 'w', encoding='utf-8') as f:
-        f.write(report)
-        if invalid_urls:
-            f.write("\nInvalid URLs:\n")
-            for url in invalid_urls:
-                f.write(f"- {url}\n")
-
-if __name__ == "__main__":
-    validate_urls()
-EOL
-    python validate_urls.py
+    # 检查是否有变更
+    if [ -z "$(git status --porcelain)" ]; then
+      echo "没有变更需要提交"
+    else
+      # 获取最新变更
+      git pull origin main --rebase --autostash
+      
+      # 提交变更
+      git commit -m ":rocket: AutoUpdate $(date +'%Y%m%d')"
+      
+      # 重试推送（最多3次）
+      for i in {1..3}; do
+        git pull origin main --rebase
+        if git push origin main; then
+          echo "推送成功"
+          break
+        else
+          echo "推送失败，重试 $i/3"
+          sleep 5
+        fi
+      done
+    fi

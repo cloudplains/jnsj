@@ -1,4 +1,4 @@
-import urllib.request
+﻿import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -77,7 +77,7 @@ def read_blacklist_from_txt(file_path):
 
 print("正在读取黑名单...")
 blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
-black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
+black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/black_list_manual.txt')
 combined_blacklist = set(blacklist_auto + blacklist_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
 

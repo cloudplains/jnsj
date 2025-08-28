@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -27,9 +25,6 @@ jobs:
 
     - name: Validate URLs and create backup
       run: |
-        # 获取当前时间戳
-        TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-        
         # 创建验证脚本
         cat > validate_urls.py << 'EOF'
 import requests
@@ -110,12 +105,9 @@ EOF
         git config --local user.email "actions@github.com"
         git config --local user.name "github-actions[bot]"
         
-        # 获取当前时间戳
-        TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-        
         # 添加所有可能生成的文件
         git add urls.txt
-        git add "urls_$TIMESTAMP.txt" 2>/dev/null || echo "No backup file found"
+        git add urls_*.txt 2>/dev/null || echo "No backup files found"
         git add url_validation_report.txt 2>/dev/null || echo "No report file found"
         
         if git diff --staged --quiet; then

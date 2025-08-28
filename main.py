@@ -43,7 +43,7 @@ def read_txt_to_array(file_name):
                     lines = [line.strip() for line in lines]
                     return lines
             except Exception as e:
-                print(f"无法确定合适的编码格式进行解码文件: {file_name}, 错误: {e}")
+                print(f"无法确定合适的编码格式进行解码文件: {file_name}, 错误: {极")
                 return []
     except FileNotFoundError:
         print(f"File '{file_name}' not found.")
@@ -88,7 +88,7 @@ ws_lines = []  # 卫视频道
 dy_lines = []  # 电影频道
 gat_lines = []  # 港澳台
 gj_lines = []  # 国际台
-zb_lines = []  # 直播中国
+zb_lines = [] 极 # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
 
@@ -266,7 +266,7 @@ def process_channel_line(line):
                     if check_url_existence(gat_lines, channel_address) and not is_channel_full(channel_name, gat_lines):
                         gat_lines.append(line)
                 elif channel_name in gj_dictionary:
-                    if check_url_existence(gj_lines, channel_address) and not is_channel_full(channel_name, gj_lines):
+                    if check_url_existence(gj_lines, channel_address) and not is极channel_full(channel_name, gj_lines):
                         gj_lines.append(line)
                 elif channel_name in gd_dictionary:
                     if check_url_existence(gd_lines, channel_address) and not is_channel_full(channel_name, gd_lines):
@@ -357,6 +357,7 @@ for url in urls:
 utc_time = datetime.now(timezone.utc)
 beijing_time = utc_time + timedelta(hours=8)
 formatted_time = beijing_time.strftime("%Y%m%d %H:%M")
+# 修改链接指向新文件名
 version = formatted_time + ",https://www.cloudplains.cn/tv202303.txt"
 
 # 打印统计信息
@@ -385,8 +386,8 @@ all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] + \
            ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n']
 
-# 将合并后的文本写入文件
-output_file = "live.txt"
+# 修改输出文件名为 tv202303.txt
+output_file = "tv202303.txt"
 
 try:
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -422,7 +423,8 @@ def make_m3u(txt_file, m3u_file):
     except Exception as e:
         print(f"生成M3U文件时发生错误: {e}")
 
-make_m3u(output_file, "live.m3u")
+# 修改M3U文件名为 tv202303.m3u
+make_m3u(output_file, "tv202303.m3u")
 
 # 执行结束时间
 timeend = datetime.now()
@@ -433,4 +435,4 @@ seconds = int(total_seconds % 60)
 
 print(f"执行时间: {minutes} 分 {seconds} 秒")
 print(f"blacklist行数: {len(combined_blacklist)}")
-print(f"live.txt行数: {len(all_lines)}")
+print(f"{output_file}行数: {len(all_lines)}")

@@ -1,5 +1,5 @@
 更新时间,#genre#
-20250827 17:29,https://www.cloudplains.cn/tv202303.txt
+20250828 04:25,https://www.cloudplains.cn/tv202303.txt
 
 
 央视频道,#genre#
@@ -206,9 +206,9 @@ CCTV央视台球,http://ymz.stkeyu.top:8303/rtp/239.253.43.21:5146
 CCTV央视台球,http://home.sylaigym.top:8887/rtp/239.69.1.98:10224
 CCTV风云足球,http://111.61.236.247:9081/hls/58/index.m3u8
 CCTV风云足球,http://183.11.239.36:808/hls/133/index.m3u8
+CCTV风云足球,https://epg.pw/stream/ac8062ec9484078061d3bef507c15a423ac57ae4144e3fcc4b0a198dd420f911.m3u8
 CCTV风云足球,http://120.76.248.139/live/bfgd/4200000225.m3u8
 CCTV风云足球,http://dassby.qqff.top:99/live/风云足球/index.m3u8
-CCTV风云足球,https://epg.pw/stream/ac8062ec9484078061d3bef507c15a423ac57ae4144e3fcc4b0a198dd420f911.m3u8
 CCTV风云足球,http://202.102.201.244:40022/rtp/238.1.79.57:4592
 CCTV风云足球,http://ymz.stkeyu.top:8303/rtp/239.253.43.20:5146
 CCTV风云足球,http://ymz.stkeyu.top:8303/rtp/239.253.43.14:5146
@@ -257,8 +257,8 @@ CETV1,http://[2409:8087:3c02:21:0:1:0:100a]:6410/shandong_cabletv.live.zte.com//
 CETV1,http://[2409:8087:3c02:0021:0000:0001:0000:100a]:6410/shandong_cabletv.live.zte.com////CHANNEL00000076/index.m3u8?IASHttpSessionId=
 CETV1,http://183.11.239.36:808/hls/122/index.m3u8
 CETV1,https://cc06.tv12.xyz/23.m3u8
-CETV1,https://migu.188766.xyz/?migutoken=a55dadc35d37e3e168faf8268cc6fa97&id=CETV1&type=yy
 CETV1,http://111.43.126.240:9003/hls/34/index.m3u8
+CETV1,http://ygbh.site/php/bfgd.php?id=135
 CETV2,http://10.255.126.3:8006/AHBKLIVE/00005000000000000000000000000251
 CETV2,http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001226/index.m3u8
 CETV2,http://v6po3.skycf.eu.org/p6/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221225756/index.m3u8
@@ -631,8 +631,8 @@ CETV4,http://39.134.67.108/PLTV/88888888/224/3221225750/1.m3u8
 安多卫视,https://stream1.freetv.fun/52d0df257c5c3cec42f2ae19268dbbc261256ff391b27bd83553bea941d0c186.m3u8
 安多卫视,http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225659/index.m3u8
 安多卫视,https://liveout.xntv.tv/a65jur/96iln2.m3u8
-安多卫视,http://36.105.100.208:35455/itv/1000000005000266001.m3u8
 安多卫视,https://liveout.xntv.tv/a65jur/90p2i1.m3u8?zqinghd
+安多卫视,http://36.105.100.208:35455/itv/1000000005000266001.m3u8
 安多卫视,https://stream1.freetv.fun/ipv6-an-duo-wei-shi-45.m3u8
 安多卫视,https://stream1.freetv.fun/an-duo-wei-shi-41.m3u8
 三沙卫视,http://10.255.126.3:8006/AHBKLIVE/00000001000000050000000000000589
@@ -647,14 +647,14 @@ CETV4,http://39.134.67.108/PLTV/88888888/224/3221225750/1.m3u8
 三沙卫视,https://stream1.freetv.fun/san-sha-wei-shi-5.m3u8
 人间卫视,http://61.216.67.119:1935/bltvhd/bltv1/chunklist_w1266569526.m3u8
 人间卫视,https://5ddce30eb4b55.streamlock.net/bltvhd/bltv1/chunklist_w511254805.m3u8
+人间卫视,https://5ddce30eb4b55.streamlock.net/bltvhd/bltv1/playlist.m3u8
+人间卫视,http://61.216.67.119:1935/bltvhd/bltv1/playlist.m3u8
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-4.m3u8
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-10.ctv
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-3.m3u8
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-5.m3u8
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-7.ctv
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-12.m3u8
-人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-2.m3u8
-人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-11.m3u8
 兵团卫视,http://10.255.126.3:8006/AHBKLIVE/00000001000000050000000000000462
 兵团卫视,https://live.goodiptv.club/api/sxg.php?id=btws_4000
 兵团卫视,http://go.bkpcp.top/mg/btws
@@ -741,12 +741,12 @@ CETV4,http://39.134.67.108/PLTV/88888888/224/3221225750/1.m3u8
 凤凰香港,https://stream1.freetv.fun/feng-huang-xiang-gang-3.m3u8
 星空卫视,http://iot-mqqt.111yao.cn:8080/live/diyp_xingkong.m3u8
 星空卫视,http://122.224.58.42:85/tsfile/live/1024_1.m3u8?key=txiptv&playlive=1&authid=0
+星空卫视,http://218.202.220.2:5000/nn_live.ts?id=STARTV
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-2.ctv
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-13.m3u8
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-4.ctv
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-1.ctv
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-11.m3u8
-星空卫视,http://218.202.220.2:5000/nn_live.ts?id=STARTV
 星空卫视,https://cdn.iptv8k.top/dl/jrys.php?id=21&time=20240926215313&ip=111.229.253.40
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-10.m3u8
 TVB翡翠,http://php.jdshipin.com:8880/smt.php?id=jade_twn
@@ -886,12 +886,12 @@ Now财经,http://iptv.4666888.xyz/iptv.php?id=20085
 中天综合,http://iptv.4666888.xyz/iptv.php?id=20195
 中天亚洲,http://iptv.4666888.xyz/iptv.php?id=20196
 中天亚洲,https://stream1.freetv.fun/zhong-tian-ya-zhou-7.m3u8
-中天亚洲,https://stream1.freetv.fun/zhong-tian-ya-zhou-9.ctv
 中天亚洲,https://stream1.freetv.fun/zhong-tian-ya-zhou-11.ctv
 中天亚洲,https://stream1.freetv.fun/zhong-tian-ya-zhou-4.m3u8
 中天亚洲,http://s1.an94tv.cfd/astro/CH-1/AKTV.m3u8
 中天亚洲,http://api.mytv666.top/api/hk.php?id=3962383334666661326334396461326537383063663333666566333830363536267469643d74762669643d313030
 中天亚洲,http://api.mytv666.top/api/hk.php?id=6230353962323532613838363830373564306164326137336138366430623435267469643d77696e74763132332669643d3738
+中天亚洲,https://stream1.freetv.fun/zhong-tian-ya-zhou-9.ctv
 中视新闻,http://iptv.4666888.xyz/iptv.php?id=20171
 中视新闻,https://stream1.freetv.fun/zhong-shi-xin-wen-8.ctv
 中视新闻,https://stream1.freetv.fun/zhong-shi-xin-wen-6.m3u8
@@ -967,6 +967,7 @@ Now财经,http://iptv.4666888.xyz/iptv.php?id=20085
 寰宇新闻,https://stream1.freetv.fun/huan-yu-xin-wen-6.m3u8
 寰宇新闻,https://stream1.freetv.fun/huan-yu-xin-wen-4.m3u8
 澳亚卫视,https://stream1.freetv.fun/ao-ya-wei-shi-1.ctv
+澳亚卫视,http://live.mastvnet.com:800/4rlff1m/a/live.m3u8
 澳亚卫视,https://345iptv.com/?act=play&token=53ceeef30429e4252363292d47612ba4&tid=gt&id=41&p=0
 澳亚卫视,https://stream1.freetv.fun/272b491cb7edf448a56c75a2677cdfa0f9427bc87d01f02765f5aff658dadeba.m3u8
 澳门莲花,http://php.jdshipin.com/amlh.php
@@ -981,8 +982,8 @@ Now财经,http://iptv.4666888.xyz/iptv.php?id=20085
 东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-2.m3u8
 东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-9.ctv
 东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-7.m3u8
-东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-5.ctv
 东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-1.m3u8
+东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-5.ctv
 东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-7.ctv
 东森新闻,https://stream1.freetv.fun/dong-sen-xin-wen-6.ctv
 东森综合,https://cdn.iptv8k.top/dl/jrys.php?id=220&time=20240926215313&ip=111.229.253.40
@@ -1170,9 +1171,65 @@ CNA,https://live1.mediadesk.al/cnatvlive.m3u8
 南国都市,https://tencentplay.gztv.com/live/nanguodushi.m3u8?txSecret=550af55c0ea34ce492748481415b6dfa&txTime=1903e7b17de
 南国都市,http://tencentplay.gztv.com/live/nanguodushi.m3u8?txSecret=140110ae3d6c936a77f94c4f4d85b0d3&txTime=18d57929bd4
 南国都市,https://stream1.freetv.fun/nan-guo-du-shi-1.m3u8
+东莞生活资讯,https://stream.sun0769.com/dgrtv1/mp4tv2_800/index.m3u8
+东莞生活资讯,https://stream.sun0769.com/dgrtv1/mp4tv2_1500/index.m3u8
+东莞生活资讯,http://php.jdshipin.com:8880/0769.php?id=shzx
+东莞新闻综合,https://stream.sun0769.com/dgrtv1/mp4tv1_800/index.m3u8
+东莞新闻综合,https://stream1.freetv.fun/dong-wan-xin-wen-zong-he-1.m3u8
+东莞新闻综合,https://stream1.freetv.fun/dong-wan-xin-wen-zong-he-2.m3u8
+东莞新闻综合,https://stream1.freetv.fun/dong-wan-xin-wen-zong-he-5.ctv
+东莞新闻综合,http://stream.sun0769.com/dgrtv1/mp4tv1_1500.flv
+东莞新闻综合,http://php.jdshipin.com:8880/0769.php?id=xwzh
+广东大湾区卫视,http://183.11.239.36:808/hls/132/index.m3u8
+广东经济科教,http://kkk.888.3116598.xyz/api.php?n=liujiahui&id=UWGokX&tk=bknhp6JvJlqE
+广东经济科教,https://stream1.freetv.fun/yan-dong-jing-ji-ke-jiao-9.ctv
+广东经济科教,https://stream1.freetv.fun/yan-dong-jing-ji-ke-jiao-5.m3u8
+广东经济科教,https://stream1.freetv.fun/yan-dong-jing-ji-ke-jiao-15.ctv
+广东经济科教,https://stream1.freetv.fun/yan-dong-jing-ji-ke-jiao-14.ctv
+广东经济科教,https://stream1.freetv.fun/yan-dong-jing-ji-ke-jiao-7.ctv
+广东经济科教,https://stream1.freetv.fun/yan-dong-jing-ji-ke-jiao-2.ctv
+广东经济科教,https://stream1.freetv.fun/yan-dong-jing-ji-ke-jiao-8.ctv
+广东体育,https://stream1.freetv.fun/yan-dong-ti-yu-5.m3u8
+广东体育,http://120.238.94.10:9901/tsfile/live/1012_1.m3u8
+广东体育,http://183.11.239.36:808/hls/2/index.m3u8
+广东体育,http://cdn2.163189.xyz/live/gdty/stream.m3u8
+广东体育,http://cdn2.132.us.kg/live/gdty/stream.m3u8
+广东体育,http://php.jdshipin.com/TVOD/iptv.php?id=gdty
+广东体育,http://qjrhc.jydjd.top:2911/udp/224.1.100.33:11111
+广东体育,http://qjrhc.jydjd.top:2911/udp/224.1.100.34:11111
+广东体育,http://120.77.205.62:8087/rtp/239.77.0.112:5146
+广东体育,http://218.13.170.98:9901/tsfile/live/0019_1.m3u8
+广东珠江频道,http://8.138.7.223/tv/gd.php?id=0002
+广州法治频道,https://tencentplay.gztv.com/live/fazhi.m3u8?txSecret=20dfe98b09fcc32036f01f02603af87e&txTime=19072194574
+广州法治频道,https://tencentplay.gztv.com/live/fazhi.m3u8?txSecret=4400d75d2114b2db07d86eda8f8218ee&txTime=191b60ce0f6
+广州新闻频道,https://tencentplay.gztv.com/live/xinwen.m3u8?txSecret=520177bc9dd6916a7d6fa86bdb3f8830&txTime=191b5f5b230
+广州新闻频道,https://tencentplay.gztv.com/live/xinwen.m3u8?txSecret=6f73647cae387d01a3c2132074132a83&txTime=18d00acf487
+广州新闻频道,https://tencentplay.gztv.com/live/xinwen.m3u8?txSecret=dd1b312cc1b5cbe9fad85bf5ddce4b10&txTime=190723b940c
+河源综合频道,http://tmpstream.hyrtv.cn/xwzh/sd/live.m3u8?zguangd
+清远文旅生活,http://zmylivestream.nfnews.com/zmy_slive/25321.m3u8
+汕头综合频道,http://8.138.7.223/tv/gd.php?id=0401
+韶关新闻综合,https://live.sgmsw.cn/hls/lhx1FUeZg/playlist.m3u8
+韶关新闻综合,https://stream1.freetv.fun/shao-guan-xin-wen-zong-he-3.m3u8
+深圳体育健康,http://183.11.239.36:808/hls/158/index.m3u8
+深圳体育健康,http://jxtv3.gdsz.eu.org:8081/hls/70/index.m3u8
+深圳体育健康,ttp://jxtv3.gdsz.eu.org:8081/hls/142/index.m3u8
+肇庆生活服务,http://zmylivestream.nfnews.com/zmy_slive/27871.m3u8
 
 
 海南频道,#genre#
+海南公共,http://8.138.7.223/tv/hainan.php?id=ggpd
+海南公共,https://stream1.freetv.fun/ipv6-hai-nan-gong-gong-8.m3u8
+海南公共,https://live3.hnntv.cn/srs/tv/ggpd.m3u8
+海南公共,http://nn.7x9d.cn/地方台8563/海南.php?id=ggpd
+海南少儿,http://8.138.7.223/tv/hainan.php?id=sepd
+海南少儿,https://live3.hnntv.cn/srs/tv/sepd.m3u8
+海南少儿,http://nn.7x9d.cn/地方台8563/海南.php?id=sepd
+海南少儿,http://vapi.91kds.cc/live1/hitv.m3u8?id=hiqs&apiKey=2079b631b519ec17da0bc09844eb8419
+海南文旅,http://8.138.7.223/tv/hainan.php?id=wlpd
+海南文旅,https://stream1.freetv.fun/ipv6-hai-nan-wen-lu-7.m3u8
+海南文旅,http://nn.7x9d.cn/地方台8563/海南.php?id=wlpd
+海南文旅,https://live3.hnntv.cn/srs/tv/wlpd.m3u8
+海南文旅,http://vapi.91kds.cc/live1/hitv.m3u8?id=hiys&apiKey=2079b631b519ec17da0bc09844eb8419
 海南新闻,http://ls.qingting.fm/live/1861.m3u8
 海南新闻,http://8.138.7.223/tv/hainan.php?id=xwpd
 海南新闻,https://stream1.freetv.fun/ipv6-hai-nan-xin-wen-6.m3u8
@@ -1182,26 +1239,12 @@ CNA,https://live1.mediadesk.al/cnatvlive.m3u8
 海南自贸,http://8.138.7.223/tv/hainan.php?id=jjpd
 海南自贸,http://nn.7x9d.cn/地方台8563/海南.php?id=jjpd
 海南自贸,https://live3.hnntv.cn/srs/tv/jjpd.m3u8
-海南文旅,http://8.138.7.223/tv/hainan.php?id=wlpd
-海南文旅,https://stream1.freetv.fun/ipv6-hai-nan-wen-lu-7.m3u8
-海南文旅,http://nn.7x9d.cn/地方台8563/海南.php?id=wlpd
-海南文旅,https://live3.hnntv.cn/srs/tv/wlpd.m3u8
-海南文旅,http://vapi.91kds.cc/live1/hitv.m3u8?id=hiys&apiKey=2079b631b519ec17da0bc09844eb8419
-海南少儿,http://8.138.7.223/tv/hainan.php?id=sepd
-海南少儿,https://live3.hnntv.cn/srs/tv/sepd.m3u8
-海南少儿,http://nn.7x9d.cn/地方台8563/海南.php?id=sepd
-海南少儿,http://vapi.91kds.cc/live1/hitv.m3u8?id=hiqs&apiKey=2079b631b519ec17da0bc09844eb8419
-海南公共,http://8.138.7.223/tv/hainan.php?id=ggpd
-海南公共,https://stream1.freetv.fun/ipv6-hai-nan-gong-gong-8.m3u8
-海南公共,https://live3.hnntv.cn/srs/tv/ggpd.m3u8
-海南公共,http://nn.7x9d.cn/地方台8563/海南.php?id=ggpd
 
 
 电影频道,#genre#
 
 
 直播中国,#genre#
-直播中国精编直播,https://gcalic.v.myalicdn.com/gc/wgw05_1/index.m3u8
 江苏-无锡鼋头渚赏樱阁,https://gcalic.v.myalicdn.com/gc/pshdxg01_1/index.m3u8?contentid=2820180516001
 江苏-南京牛首山,https://gcalic.v.myalicdn.com/gc/nss01_1/index.m3u8?contentid=2820180516001
 江苏-南京玄武湖公园,https://gcalic.v.myalicdn.com/gc/xwh01_1/index.m3u8?contentid=2820180516001
@@ -1278,8 +1321,8 @@ CNA,https://live1.mediadesk.al/cnatvlive.m3u8
 泰山白云亭悬崖,https://gcalic.v.myalicdn.com/gc/hkts02_1/index.m3u8
 泰山太平岭,https://gcalic.v.myalicdn.com/gc/hkts09_1/index.m3u8
 泰山碧霞祠,https://gcalic.v.myalicdn.com/gc/hkts03_1/index.m3u8
-黄山卧云峰,https://gcalic.v.myalicdn.com/gc/hswlf_1/index.m3u8?contentid=2820180516001
 黄山卧云峰,https://gcalic.v.myalicdn.com/gc/hswlf_1/index.m3u8
+黄山卧云峰,https://gcalic.v.myalicdn.com/gc/hswlf_1/index.m3u8?contentid=2820180516001
 黄山始信新道,https://gcalic.v.myalicdn.com/gc/hsyg_1/index.m3u8
 黄山排云亭,https://gcalic.v.myalicdn.com/gc/hspyt_1/index.m3u8
 黄山飞来石,https://gcalic.v.myalicdn.com/gc/hsptgy_1/index.m3u8
@@ -1304,5 +1347,6 @@ CNA,https://live1.mediadesk.al/cnatvlive.m3u8
 都江堰鱼嘴,https://gcalic.v.myalicdn.com/gc/djyqyl1_1/index.m3u8
 乐山大佛全景,https://gcalic.v.myalicdn.com/gc/lsdfgfl_1/index.m3u8
 福建武夷山玉女峰,https://gcalic.v.myalicdn.com/gc/wysynf_1/index.m3u8
+四川成都安顺廊桥,https://gcalic.v.myalicdn.com/gc/zsslsjjfsd_1/index.m3u8
 
 

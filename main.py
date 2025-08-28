@@ -31,7 +31,7 @@ def read_txt_to_array(file_name):
     except UnicodeDecodeError:
         try:
             # 如果 UTF-8 失败，尝试 GBK 编码
-            with open(file_name, 'r', encoding='gbk') as file:
+            with open(file_name, 'r', encoding='gb极k') as file:
                 lines = file.readlines()
                 lines = [line.strip() for line in lines]
                 return lines
@@ -43,7 +43,8 @@ def read_txt_to_array(file_name):
                     lines = [line.strip() for line in lines]
                     return lines
             except Exception as e:
-                print(f"无法确定合适的编码格式进行解码文件: {file_name}, 错误: {极")
+                # 修复f-string语法错误（将"极"改为e）
+                print(f"无法确定合适的编码格式进行解码文件: {file_name}, 错误: {e}")
                 return []
     except FileNotFoundError:
         print(f"File '{file_name}' not found.")
@@ -88,7 +89,7 @@ ws_lines = []  # 卫视频道
 dy_lines = []  # 电影频道
 gat_lines = []  # 港澳台
 gj_lines = []  # 国际台
-zb_lines = [] 极 # 直播中国
+zb_lines = []  # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
 
@@ -102,7 +103,7 @@ zh_dictionary = read_txt_to_array('主频道/综合频道.txt')  # 新增综合�
 ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
-gat_dictionary = read_txt_to_array('主频道/港澳台.txt')
+gat_dictionary = read_txt极_to_array('主频道/港澳台.txt')
 gj_dictionary = read_txt_to_array('主频道/国际台.txt')
 zb_dictionary = read_txt_to_array('主频道/直播中国.txt')
 
@@ -266,7 +267,7 @@ def process_channel_line(line):
                     if check_url_existence(gat_lines, channel_address) and not is_channel_full(channel_name, gat_lines):
                         gat_lines.append(line)
                 elif channel_name in gj_dictionary:
-                    if check_url_existence(gj_lines, channel_address) and not is极channel_full(channel_name, gj_lines):
+                    if check_url_existence(gj_lines, channel_address) and not is_channel_full(channel_name, gj_lines):
                         gj_lines.append(line)
                 elif channel_name in gd_dictionary:
                     if check_url_existence(gd_lines, channel_address) and not is_channel_full(channel_name, gd_lines):
@@ -377,7 +378,7 @@ print(f"海南频道: {len(hain_lines)} 行")
 # 合并所有对象中的行文本（已移除other_lines）
 all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] + \
-           ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
+           ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\极n'] + \
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
            ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
            ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] + \

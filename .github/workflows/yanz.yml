@@ -116,7 +116,7 @@ EOL
           echo "No changes to commit"
         else
           # 提交变更
-          git commit -m '✅ URL validation - $(date +'%Y%m%d_%H%M%S')'
+          git commit -m "✅ URL validation - $(date +'%Y%m%d_%H%M%S')"
           
           # 拉取最新代码并合并
           git pull --rebase origin ${{ github.event.repository.default_branch }}

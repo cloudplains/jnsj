@@ -1,50 +1,47 @@
-name: 'Daily Job'
+name: Run Script
 
 on:
   schedule:
-    - cron: '0 20 * * *' # UTC
-  workflow_dispatch:
+    - cron: '0 0 * * *'  # 每天UTC时间0点运行（北京时间8点）
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   run_job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # 获取所有历史记录而不是单次提交
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        repository: cloudplains/jnsj
+        token: ${{ secrets.GITHUB_TOKEN }}
+        ssh-strict: true
+        persist-credentials: true
+        clean: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install opencc-python-reimplemented
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install opencc-python-reimplemented
 
-      - name: Run Python script
-        run: python main.py
+    - name: Run main.py
+      run: python main.py
 
-      - name: Commit changes
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "github_actions[bot]"
-          git add live.txt live.m3u
-          # 检查是否有更改需要提交
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-            exit 0
-          else
-            git commit -m ":tada: AutoUpdate $(date +'%Y%m%d')"
-          fi
-
-      - name: Pull and rebase
-        run: |
+    - name: Commit changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "github-actions[bot]"
+        git add tv202303.txt tv202303.m3u
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m ":rocket: AutoUpdate $(date +'%Y%m%d')"
           git pull origin main --rebase
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PAT }}
+          git push origin main
+        fi

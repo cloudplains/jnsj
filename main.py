@@ -1,5 +1,5 @@
 import urllib.request
-from urllib.parse import urlparse
+from urllib.parse import urlparse, quote
 import re
 import os
 from datetime import datetime, timedelta, timezone
@@ -11,7 +11,7 @@ import sys
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
 
-# 执行开始极时间
+# 执行开始时间
 timestart = datetime.now()
 
 # 设置标准输出和错误输出立即刷新
@@ -30,7 +30,7 @@ def read_txt_to_array(file_name):
             return lines
     except UnicodeDecodeError:
         try:
-            # 如果 UTF-8 失败，尝试 GBK 编码
+            # 如果 UTF-8 失败，尝试 GBK 极编码
             with open(file_name, 'r', encoding='gbk') as file:
                 lines = file.readlines()
                 lines = [line.strip() for line in lines]
@@ -77,7 +77,7 @@ def read_blacklist_from_txt(file_path):
 
 print("正在读取黑名单...")
 blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
-blacklist_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
+black极list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
 combined_blacklist = set(blacklist_auto + blacklist_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
 
@@ -102,7 +102,6 @@ zh_dictionary = read_txt_to_array('主频道/综合频道.txt')  # 新增综合�
 ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
-# 修复这里：将 read_txt极_to_array 改为 read_txt_to_array
 gat_dictionary = read_txt_to_array('主频道/港澳台.txt')
 gj_dictionary = read_txt_to_array('主频道/国际台.txt')
 zb_dictionary = read_txt_to_array('主频道/直播中国.txt')
@@ -135,7 +134,7 @@ def is_m3u_content(text):
     first_line = lines[0].strip()
     return first_line.startswith("#EXTM3U")
 
-def convert_m3u_to_txt(m3极u_content):
+def convert_m3u_to_txt(m3u_content):
     # 分行处理
     lines = m3u_content.split('\n')
 
@@ -285,6 +284,15 @@ def process_channel_line(line):
     except Exception as e:
         print(f"处理频道行时出错: {e}, 行内容: {line}")
 
+# 修复URL处理函数
+def safe_process_url(url):
+    try:
+        # 对URL进行编码处理
+        encoded_url = quote(url, safe=':/?&=')
+        process_url(encoded_url)
+    except Exception as e:
+        print(f"处理URL时发生错误：{e}")
+
 def process_url(url):
     print(f"\n开始处理URL: {url}")
     try:
@@ -352,7 +360,7 @@ def sort_data(order, data):
 print("\n开始处理所有URL...")
 for url in urls:
     if url.startswith("http"):
-        process_url(url)
+        safe_process_url(url)
 
 # 获取当前的 UTC 时间
 utc_time = datetime.now(timezone.utc)
@@ -436,4 +444,4 @@ seconds = int(total_seconds % 60)
 
 print(f"执行时间: {minutes} 分 {seconds} 秒")
 print(f"blacklist行数: {len(combined_blacklist)}")
-print(f"{output_file}行极数: {len(all_lines)}")
+print(f"{output_file}行数: {len(all_lines)}")  # 修复这里的打印错误

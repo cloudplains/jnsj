@@ -1,30 +1,6 @@
-name: URL Validation Workflow
-
-on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
-jobs:
-  validate_urls:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.10
-
-    - name: Install dependencies
-      run: |
-        pip install requests
-
-    - name: Create and run validation script
-      run: |
-        cat > validate_urls.py << 'EOL'
+- name: Create and run validation script
+  run: |
+    cat << 'EOL' > validate_urls.py
 import requests
 import time
 from datetime import datetime
@@ -47,10 +23,10 @@ def validate_urls():
                 print(f"✓ Valid: {url}")
             else:
                 invalid_urls.append(url)
-                print(f"✗ Invalid (status {response.status_code}): {url}")
+                print(f"✗✗ Invalid (status {response.status_code}): {url}")
         except Exception as e:
             invalid_urls.append(url)
-            print(f"✗ Error: {url} - {str(e)}")
+            print(f"✗✗ Error: {url} - {str(e)}")
         
         time.sleep(0.5)
     
@@ -85,18 +61,4 @@ Backup file: {backup_filename}
 if __name__ == "__main__":
     validate_urls()
 EOL
-
-        python validate_urls.py
-
-    - name: Commit changes
-      run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "github-actions[bot]"
-        git add .
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m "✅ URL validation - $(date +'%Y%m%d_%H%M%S')"
-          git pull --rebase
-          git push
-        fi
+    python validate_urls.py

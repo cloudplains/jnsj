@@ -25,9 +25,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests
 
-    - name: Validate URLs and generate new file
+    - name: Create and run URL validation script
       run: |
-        python -c "
+        # 创建Python脚本
+        cat > validate_urls.py << 'EOL'
 import requests
 from datetime import datetime
 import os
@@ -66,18 +67,26 @@ with open(output_filename, 'w') as f:
         f.write(url + '\n')
 
 print(f'Valid URLs saved to {output_filename}')
-        "
+EOL
+
+        # 运行脚本
+        python validate_urls.py
 
     - name: Commit changes
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "github-actions[bot]"
-        current_time=$(date +'%Y%m%d_%H%M%S')
-        git add "urls_${current_time}.txt"
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
+        # 获取最新的生成文件
+        latest_file=$(ls -t urls_*.txt | head -n1)
+        if [ -n "$latest_file" ]; then
+          git add "$latest_file"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m ":rocket: AutoValidate URLs $(date +'%Y%m%d_%H%M%S')"
+            git pull origin main --rebase
+            git push origin main
+          fi
         else
-          git commit -m ":rocket: AutoValidate URLs $(date +'%Y%m%d_%H%M%S')"
-          git pull origin main --rebase
-          git push origin main
+          echo "No URL file found to commit"
         fi

@@ -1,0 +1,127 @@
+name: URL Validation Workflow
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天UTC时间0点运行（北京时间8点）
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  validate_urls:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Validate URLs and create backup
+      run: |
+        # 获取当前时间戳
+        TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+        
+        # 创建验证脚本
+        cat > validate_urls.py << 'EOF'
+import requests
+import time
+from datetime import datetime
+import os
+
+def validate_urls():
+    # 读取urls.txt文件
+    with open('urls.txt', 'r', encoding='utf-8') as f:
+        urls = [line.strip() for line in f if line.strip()]
+    
+    print(f"Found {len(urls)} URLs to validate")
+    
+    valid_urls = []
+    invalid_urls = []
+    
+    # 验证每个URL
+    for i, url in enumerate(urls):
+        try:
+            print(f"Testing URL {i+1}/{len(urls)}: {url}")
+            response = requests.get(url, timeout=10, allow_redirects=True)
+            if response.status_code == 200:
+                valid_urls.append(url)
+                print(f"✓ Valid: {url}")
+            else:
+                invalid_urls.append(url)
+                print(f"✗ Invalid (status {response.status_code}): {url}")
+        except Exception as e:
+            invalid_urls.append(url)
+            print(f"✗ Error: {url} - {str(e)}")
+        
+        # 添加短暂延迟，避免请求过于频繁
+        time.sleep(0.5)
+    
+    # 获取当前时间戳
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # 保存有效的URL到新文件
+    backup_filename = f"urls_{timestamp}.txt"
+    with open(backup_filename, 'w', encoding='utf-8') as f:
+        for url in valid_urls:
+            f.write(url + '\n')
+    
+    # 也更新原始的urls.txt文件（只保留有效的URL）
+    with open('urls.txt', 'w', encoding='utf-8') as f:
+        for url in valid_urls:
+            f.write(url + '\n')
+    
+    # 生成报告
+    report = f"""URL Validation Report
+Generated at: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+Total URLs: {len(urls)}
+Valid URLs: {len(valid_urls)}
+Invalid URLs: {len(invalid_urls)}
+Backup file: {backup_filename}
+"""
+    
+    print(report)
+    
+    # 保存报告到文件
+    with open('url_validation_report.txt', 'w', encoding='utf-8') as f:
+        f.write(report)
+        if invalid_urls:
+            f.write("\nInvalid URLs:\n")
+            for url in invalid_urls:
+                f.write(f"- {url}\n")
+
+if __name__ == "__main__":
+    validate_urls()
+EOF
+
+        # 运行验证脚本
+        python validate_urls.py
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        # 获取当前时间戳
+        TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+        
+        # 添加所有可能生成的文件
+        git add urls.txt
+        git add "urls_$TIMESTAMP.txt" 2>/dev/null || echo "No backup file found"
+        git add url_validation_report.txt 2>/dev/null || echo "No report file found"
+        
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "✅ URL validation - $(date +'%Y%m%d_%H%M%S')"
+          git pull origin main --rebase
+          git push origin main
+        fi

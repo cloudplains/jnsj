@@ -54,10 +54,10 @@ def validate_urls():
                 print(f"✓ Valid: {url}")
             else:
                 invalid_urls.append(url)
-                print(f"✗ Invalid (status {response.status_code}): {url}")
+                print(f"✗✗ Invalid (status {response.status_code}): {url}")
         except Exception as e:
             invalid_urls.append(url)
-            print(f"✗ Error: {url} - {str(e)}")
+            print(f"✗✗ Error: {url} - {str(e)}")
         
         # 防止请求过快被封禁
         time.sleep(0.5)

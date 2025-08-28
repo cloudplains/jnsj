@@ -77,8 +77,8 @@ def read_blacklist_from_txt(file_path):
 
 print("正在读取黑名单...")
 blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
-black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/black_list_manual.txt')
-combined_blacklist = set(blacklist_auto + blacklist_manual)
+black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')  # 文件名已更正
+combined_blacklist = set(blacklist_auto + black_list_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
 
 # 定义多个对象用于存储不同内容的行文本

@@ -32,17 +32,11 @@ jobs:
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "github-actions[bot]"
-        # 获取最新的生成文件
-        latest_file=$(ls -t urls_*.txt | head -n1)
-        if [ -n "$latest_file" ]; then
-          git add "$latest_file"
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m ":rocket: AutoValidate URLs $(date +'%Y%m%d_%H%M%S')"
-            git pull origin main --rebase
-            git push origin main
-          fi
+        git add "urls_valid.txt"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
         else
-          echo "No URL file found to commit"
+          git commit -m ":rocket: AutoValidate URLs $(date +'%Y%m%d_%H%M%S')"
+          git pull origin main --rebase
+          git push origin main
         fi

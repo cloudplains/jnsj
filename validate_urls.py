@@ -26,12 +26,13 @@ for url in urls:
     else:
         print(f'Invalid: {url}')
 
-# 生成文件名
-current_time = datetime.now().strftime('%Y%m%d_%H%M%S')
-output_filename = f'urls_{current_time}.txt'
+# 使用固定文件名
+output_filename = 'urls_valid.txt'
 
-# 写入有效的URL
+# 写入有效的URL，并在文件开头添加更新时间
 with open(output_filename, 'w') as f:
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    f.write(f"# 更新时间: {current_time}\n")
     for url in valid_urls:
         f.write(url + '\n')
 

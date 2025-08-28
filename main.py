@@ -30,7 +30,7 @@ def read_txt_to_array(file_name):
             return lines
     except UnicodeDecodeError:
         try:
-            # 如果 UTF-8 失败，尝试 GBK 极编码
+            # 如果 UTF-8 失败，尝试 GBK 编码
             with open(file_name, 'r', encoding='gbk') as file:
                 lines = file.readlines()
                 lines = [line.strip() for line in lines]
@@ -77,7 +77,7 @@ def read_blacklist_from_txt(file_path):
 
 print("正在读取黑名单...")
 blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
-black极list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
+black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
 combined_blacklist = set(blacklist_auto + blacklist_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
 

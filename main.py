@@ -11,7 +11,7 @@ import sys
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
 
-# 执行开始时间
+# 执行开始极时间
 timestart = datetime.now()
 
 # 设置标准输出和错误输出立即刷新
@@ -31,7 +31,7 @@ def read_txt_to_array(file_name):
     except UnicodeDecodeError:
         try:
             # 如果 UTF-8 失败，尝试 GBK 编码
-            with open(file_name, 'r', encoding='gb极k') as file:
+            with open(file_name, 'r', encoding='gbk') as file:
                 lines = file.readlines()
                 lines = [line.strip() for line in lines]
                 return lines
@@ -43,7 +43,6 @@ def read_txt_to_array(file_name):
                     lines = [line.strip() for line in lines]
                     return lines
             except Exception as e:
-                # 修复f-string语法错误（将"极"改为e）
                 print(f"无法确定合适的编码格式进行解码文件: {file_name}, 错误: {e}")
                 return []
     except FileNotFoundError:
@@ -103,7 +102,8 @@ zh_dictionary = read_txt_to_array('主频道/综合频道.txt')  # 新增综合�
 ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
-gat_dictionary = read_txt极_to_array('主频道/港澳台.txt')
+# 修复这里：将 read_txt极_to_array 改为 read_txt_to_array
+gat_dictionary = read_txt_to_array('主频道/港澳台.txt')
 gj_dictionary = read_txt_to_array('主频道/国际台.txt')
 zb_dictionary = read_txt_to_array('主频道/直播中国.txt')
 
@@ -135,7 +135,7 @@ def is_m3u_content(text):
     first_line = lines[0].strip()
     return first_line.startswith("#EXTM3U")
 
-def convert_m3u_to_txt(m3u_content):
+def convert_m3u_to_txt(m3极u_content):
     # 分行处理
     lines = m3u_content.split('\n')
 
@@ -378,7 +378,7 @@ print(f"海南频道: {len(hain_lines)} 行")
 # 合并所有对象中的行文本（已移除other_lines）
 all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] + \
-           ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\极n'] + \
+           ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
            ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
            ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] + \
@@ -436,4 +436,4 @@ seconds = int(total_seconds % 60)
 
 print(f"执行时间: {minutes} 分 {seconds} 秒")
 print(f"blacklist行数: {len(combined_blacklist)}")
-print(f"{output_file}行数: {len(all_lines)}")
+print(f"{output_file}行极数: {len(all_lines)}")

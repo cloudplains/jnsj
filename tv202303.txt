@@ -1,5 +1,5 @@
 更新时间,#genre#
-20250829 11:48,https://www.cloudplains.cn/tv202303.txt
+20250829 15:24,https://www.cloudplains.cn/tv202303.txt
 
 
 综合频道,#genre#
@@ -303,12 +303,14 @@ CCTV怀旧剧场,http://dassby.qqff.top:99/live/怀旧剧场/index.m3u8
 CCTV怀旧剧场,http://wmh.wmh.ink:6633/rtp/239.253.43.5:5146
 CCTV怀旧剧场,http://ymz.stkeyu.top:8303/rtp/239.253.43.5:5146
 CCTV怀旧剧场,http://43.152.25.217:80/tencent.live.cbncdn.cn/__cl/cg:live/__c/hjjcHD/__op/default/__f/index.m3u8
+CCTV发现之旅,http://8.134.110.147:5300/?id=fxzl
 CCTV发现之旅,http://8.138.7.223/tv/migu3.php?id=fxzl
 CCTV发现之旅,http://117.72.194.224:656/zb.php?id=fxzl
 CCTV电视指南,http://120.76.248.139/live/bfgd/4200000164.m3u8
 CCTV电视指南,http://ymz.stkeyu.top:8303/rtp/239.253.43.19:5146
 CCTV电视指南,http://wmh.wmh.ink:6633/rtp/239.253.43.19:5146
 CCTV电视指南,http://ymz.stkeyu.top:8303/rtp/239.253.43.10:5146
+CCTV老故事,http://8.134.110.147:5300/?id=lgs
 CCTV老故事,http://8.138.7.223/tv/migu3.php?id=lgs
 CCTV老故事,http://117.72.194.224:656/zb.php?id=lgs
 CCTV4K,http://[2409:8087:2001:20:2800:0:df6e:eb26]:80/ott.mobaibox.com/PLTV/3/224/3221228472/index.m3u8

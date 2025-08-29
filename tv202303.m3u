@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://epg.112114.xyz/pp.xml.gz"
-#EXTINF:-1 tvg-name="20250829 11:48" tvg-logo="https://epg.112114.xyz/logo/20250829 11:48.png" group-title="更新时间",20250829 11:48
+#EXTINF:-1 tvg-name="20250829 15:24" tvg-logo="https://epg.112114.xyz/logo/20250829 15:24.png" group-title="更新时间",20250829 15:24
 https://www.cloudplains.cn/tv202303.txt
 #EXTINF:-1 tvg-name="东莞生活资讯" tvg-logo="https://epg.112114.xyz/logo/东莞生活资讯.png" group-title="综合频道",东莞生活资讯
 https://stream.sun0769.com/dgrtv1/mp4tv2_800/index.m3u8
@@ -596,6 +596,8 @@ http://ymz.stkeyu.top:8303/rtp/239.253.43.5:5146
 #EXTINF:-1 tvg-name="CCTV怀旧剧场" tvg-logo="https://epg.112114.xyz/logo/CCTV怀旧剧场.png" group-title="央视频道",CCTV怀旧剧场
 http://43.152.25.217:80/tencent.live.cbncdn.cn/__cl/cg:live/__c/hjjcHD/__op/default/__f/index.m3u8
 #EXTINF:-1 tvg-name="CCTV发现之旅" tvg-logo="https://epg.112114.xyz/logo/CCTV发现之旅.png" group-title="央视频道",CCTV发现之旅
+http://8.134.110.147:5300/?id=fxzl
+#EXTINF:-1 tvg-name="CCTV发现之旅" tvg-logo="https://epg.112114.xyz/logo/CCTV发现之旅.png" group-title="央视频道",CCTV发现之旅
 http://8.138.7.223/tv/migu3.php?id=fxzl
 #EXTINF:-1 tvg-name="CCTV发现之旅" tvg-logo="https://epg.112114.xyz/logo/CCTV发现之旅.png" group-title="央视频道",CCTV发现之旅
 http://117.72.194.224:656/zb.php?id=fxzl
@@ -607,6 +609,8 @@ http://ymz.stkeyu.top:8303/rtp/239.253.43.19:5146
 http://wmh.wmh.ink:6633/rtp/239.253.43.19:5146
 #EXTINF:-1 tvg-name="CCTV电视指南" tvg-logo="https://epg.112114.xyz/logo/CCTV电视指南.png" group-title="央视频道",CCTV电视指南
 http://ymz.stkeyu.top:8303/rtp/239.253.43.10:5146
+#EXTINF:-1 tvg-name="CCTV老故事" tvg-logo="https://epg.112114.xyz/logo/CCTV老故事.png" group-title="央视频道",CCTV老故事
+http://8.134.110.147:5300/?id=lgs
 #EXTINF:-1 tvg-name="CCTV老故事" tvg-logo="https://epg.112114.xyz/logo/CCTV老故事.png" group-title="央视频道",CCTV老故事
 http://8.138.7.223/tv/migu3.php?id=lgs
 #EXTINF:-1 tvg-name="CCTV老故事" tvg-logo="https://epg.112114.xyz/logo/CCTV老故事.png" group-title="央视频道",CCTV老故事

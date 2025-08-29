@@ -1,6 +1,12 @@
 #EXTM3U x-tvg-url="https://epg.112114.xyz/pp.xml.gz"
-#EXTINF:-1 tvg-name="20250829 11:15" tvg-logo="https://epg.112114.xyz/logo/20250829 11:15.png" group-title="更新时间",20250829 11:15
+#EXTINF:-1 tvg-name="20250829 11:48" tvg-logo="https://epg.112114.xyz/logo/20250829 11:48.png" group-title="更新时间",20250829 11:48
 https://www.cloudplains.cn/tv202303.txt
+#EXTINF:-1 tvg-name="东莞生活资讯" tvg-logo="https://epg.112114.xyz/logo/东莞生活资讯.png" group-title="综合频道",东莞生活资讯
+https://stream.sun0769.com/dgrtv1/mp4tv2_800/index.m3u8
+#EXTINF:-1 tvg-name="东莞生活资讯" tvg-logo="https://epg.112114.xyz/logo/东莞生活资讯.png" group-title="综合频道",东莞生活资讯
+https://stream.sun0769.com/dgrtv1/mp4tv2_1500/index.m3u8
+#EXTINF:-1 tvg-name="东莞生活资讯" tvg-logo="https://epg.112114.xyz/logo/东莞生活资讯.png" group-title="综合频道",东莞生活资讯
+http://php.jdshipin.com:8880/0769.php?id=shzx
 #EXTINF:-1 tvg-name="南城三元路立交" tvg-logo="https://epg.112114.xyz/logo/南城三元路立交.png" group-title="综合频道",南城三元路立交
 https://radio.sun0769.com/dgrtv1/out3.m3u8
 #EXTINF:-1 tvg-name="翡翠台" tvg-logo="https://epg.112114.xyz/logo/翡翠台.png" group-title="综合频道",翡翠台
@@ -1605,6 +1611,10 @@ https://stream1.freetv.fun/ming-zhu-10.m3u8
 http://utv1.hqtvzb.com:9999/hls/world.m3u8
 #EXTINF:-1 tvg-name="民视影剧" tvg-logo="https://epg.112114.xyz/logo/民视影剧.png" group-title="港澳台",民视影剧
 https://stream1.freetv.fun/min-shi-ying-ju-2.ctv
+#EXTINF:-1 tvg-name="民视旅游" tvg-logo="https://epg.112114.xyz/logo/民视旅游.png" group-title="港澳台",民视旅游
+http://iptv.4666888.xyz/iptv.php?id=20218
+#EXTINF:-1 tvg-name="民视旅游" tvg-logo="https://epg.112114.xyz/logo/民视旅游.png" group-title="港澳台",民视旅游
+https://stream1.freetv.fun/min-shi-lu-you-1.ctv
 #EXTINF:-1 tvg-name="澳亚卫视" tvg-logo="https://epg.112114.xyz/logo/澳亚卫视.png" group-title="港澳台",澳亚卫视
 https://stream1.freetv.fun/ao-ya-wei-shi-1.ctv
 #EXTINF:-1 tvg-name="澳亚卫视" tvg-logo="https://epg.112114.xyz/logo/澳亚卫视.png" group-title="港澳台",澳亚卫视

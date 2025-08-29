@@ -26,14 +26,9 @@ for url in urls:
     else:
         print(f'Invalid: {url}')
 
-# 使用固定文件名
-output_filename = 'urls_valid.txt'
-
-# 写入有效的URL，并在文件开头添加更新时间
-with open(output_filename, 'w') as f:
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    f.write(f"# 更新时间: {current_time}\n")
+# 直接覆盖原文件
+with open('assets/urls.txt', 'w') as f:
     for url in valid_urls:
         f.write(url + '\n')
 
-print(f'Valid URLs saved to {output_filename}')
+print('Original file assets/urls.txt has been updated with valid URLs.')

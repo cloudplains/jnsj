@@ -7,6 +7,7 @@ import random
 import opencc
 import ssl
 import sys
+import socket
 
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -228,6 +229,60 @@ def is_channel_full(channel_name, target_list):
     count = sum(1 for line in target_list if line.startswith(channel_name + ","))
     return count >= 10
 
+# 直播源验证函数
+def validate_stream_url(url, timeout=3):
+    """
+    验证直播源是否可访问
+    """
+    try:
+        # 解析URL获取主机和端口
+        parsed_url = urlparse(url)
+        host = parsed_url.hostname
+        port = parsed_url.port or (443 if parsed_url.scheme == 'https' else 80)
+        
+        # 首先尝试TCP连接测试
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        result = sock.connect_ex((host, port))
+        sock.close()
+        
+        if result != 0:
+            return False  # TCP连接失败
+            
+        # 对于HTTP/HTTPS协议，进行更详细的验证
+        if url.startswith(('http://', 'https://')):
+            try:
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'Accept': '*/*',
+                    'Connection': 'close',
+                    'Range': 'bytes=0-1024'  # 只请求少量数据以验证
+                }
+                
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=timeout) as response:
+                    # 检查状态码
+                    if response.getcode() not in [200, 206]:
+                        return False
+                    
+                    # 检查内容类型
+                    content_type = response.headers.get('Content-Type', '')
+                    if not any(x in content_type for x in ['video', 'audio', 'application/octet-stream', 'application/vnd.apple.mpegurl']):
+                        return False
+                        
+            except urllib.error.HTTPError as e:
+                # 对于部分HTTP错误，仍然可能是可用的流
+                if e.code in [200, 206, 301, 302, 307]:
+                    return True
+                return False
+            except Exception:
+                return False
+                
+        return True
+        
+    except Exception:
+        return False
+
 # 分发直播源
 def process_channel_line(line):
     try:
@@ -254,11 +309,19 @@ def process_channel_line(line):
                     if check_url_existence(zh_lines, channel_address) and not is_channel_full(channel_name, zh_lines):
                         zh_lines.append(line)
                 elif channel_name in ys_dictionary:
-                    if check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines):
+                    # 对央视频道进行额外验证
+                    if (check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines) and
+                        validate_stream_url(channel_address)):
                         ys_lines.append(line)
+                    else:
+                        print(f"央视频道验证失败: {channel_name} - {channel_address}")
                 elif channel_name in ws_dictionary:
-                    if check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines):
+                    # 对卫视频道进行额外验证
+                    if (check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines) and
+                        validate_stream_url(channel_address)):
                         ws_lines.append(line)
+                    else:
+                        print(f"卫视频道验证失败: {channel_name} - {channel_address}")
                 elif channel_name in dy_dictionary:
                     if check_url_existence(dy_lines, channel_address) and not is_channel_full(channel_name, dy_lines):
                         dy_lines.append(line)
@@ -274,13 +337,6 @@ def process_channel_line(line):
                 elif channel_name in hain_dictionary:
                     if check_url_existence(hain_lines, channel_address) and not is_channel_full(channel_name, hain_lines):
                         hain_lines.append(line)
-                # 完全移除其他分类的收集
-                # 这样可以确保最终文件中不会出现未分类的源
-                # 如果需要重新启用其他分类，可以取消以下注释：
-                # else:
-                #     if channel_address not in other_lines_url:
-                #         other_lines_url.append(channel_address)
-                #         other_lines.append(line)
     except Exception as e:
         print(f"处理频道行时出错: {e}, 行内容: {line}")
 
@@ -380,8 +436,6 @@ print(f"国际台: {len(gj_lines)} 行")
 print(f"直播中国: {len(zb_lines)} 行")
 print(f"广东频道: {len(gd_lines)} 行")
 print(f"海南频道: {len(hain_lines)} 行")
-# 注释掉"其他"分类的统计信息
-# print(f"其他: {len(other_lines)} 行")
 
 # 合并所有对象中的行文本（已移除other_lines）
 all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \

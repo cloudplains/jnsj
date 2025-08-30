@@ -10,7 +10,6 @@ http://47.120.41.246:8899/zb.txt
 https://3043.kstore.space/bhvip/bhzb.txt
 https://live.freetv.top/douyuyqk.m3u
 https://live.zhoujie218.top/tv/iptv4.txt
-https://tv.850930.xyz/kdsb.txt
 https://tv.850930.xyz/pix.m3u
 https://jihulab.com/-/snippets/5265/raw/main/.txt
 https://raw.githubusercontent.com/cyalias/mytvs-github/refs/heads/main/mytv.txt

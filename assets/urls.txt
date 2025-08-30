@@ -1,4 +1,4 @@
-http://west.shaonv.me/tvbox/live.txt
+﻿http://west.shaonv.me/tvbox/live.txt
 http://api.lmxsd.cn/2485.txt
 https://gitee.com/jin-xueling/cinematography/raw/master/json.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
@@ -109,7 +109,7 @@ https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
 https://www.cloudplains.cn/live.txt
-https://www.cloudplains.cn/tv202303.txt
+
 https://gitee.com/mytv-android/iptv-api/raw/master/output/result.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u

@@ -3,7 +3,7 @@ name: Sync External Releases
 on:
   workflow_dispatch:  # 允许手动触发
   schedule:
-    - cron: '0 0 * * *'  # 每天UTC时间0点运行一次
+    - cron: '0 0 * * *'  # 每天 UTC 时间 0 点运行一次
 
 jobs:
   sync-releases:
@@ -14,6 +14,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # 获取所有历史记录和标签，避免标签找不到的问题:cite[1]
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -23,31 +25,39 @@ jobs:
     - name: Install dependencies
       run: pip install requests
 
+    - name: Create downloads directory
+      run: mkdir -p ./downloads
+
     - name: Run sync script
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python sync_releases.py --repo Guovin/iptv-api --dest-dir ./downloads
+        python sync_releases.py --repo-url https://github.com/Guovin/iptv-api --dest-dir ./downloads
+
+    - name: List downloaded files
+      run: ls -la ./downloads/
 
     - name: Create Release
       id: create_release
       uses: ncipollo/release-action@v1
       with:
-        tag_name: synced-${{ github.run_id }}
+        tag: synced-${{ github.run_id }}  # 使用正确的 tag 参数而不是 tag_name:cite[2]
         name: Synced Releases (${{ github.run_id }})
         body: |
-          自动同步的外部Release资源
+          自动同步的外部 Release 资源
           同步时间: ${{ github.run_created }}
           源仓库: Guovin/iptv-api
         draft: false
         prerelease: false
         makeLatest: "false"
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload Release Assets
       uses: ncipollo/release-action@v1
       with:
         artifacts: "./downloads/*.zip"
         artifactContentType: "application/zip"
-        tag: synced-${{ github.run_id }}
+        tag: synced-${{ github.run_id }}  # 使用正确的 tag 参数:cite[2]
         allowUpdates: true
         replacesArtifacts: true
+        token: ${{ secrets.GITHUB_TOKEN }}

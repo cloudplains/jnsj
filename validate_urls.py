@@ -39,8 +39,13 @@ def validate_txt_urls():
             # 添加延迟，避免请求过于频繁
             time.sleep(0.5)
 
+        # 添加更新时间标记
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        header = f"# 更新时间: {timestamp}\n# 有效URL数量: {len(valid_urls)}\n\n"
+        
         # 直接覆盖原文件
         with open('assets/urls.txt', 'w') as f:
+            f.write(header)
             for url in valid_urls:
                 f.write(url + '\n')
 
@@ -73,8 +78,11 @@ def validate_json_urls():
             # 添加延迟，避免请求过于频繁
             time.sleep(0.5)
         
-        # 更新数据
+        # 更新数据并添加更新时间标记
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         data['urls'] = valid_urls
+        data['last_updated'] = timestamp
+        data['valid_count'] = len(valid_urls)
         
         # 写回文件
         with open('jnsj.json', 'w', encoding='utf-8') as f:

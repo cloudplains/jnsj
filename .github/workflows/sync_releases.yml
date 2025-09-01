@@ -15,7 +15,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # 获取所有历史记录和标签，避免标签找不到的问题:cite[1]
+        fetch-depth: 0  # 获取所有历史记录和标签，避免标签找不到的问题
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -28,20 +28,37 @@ jobs:
     - name: Create downloads directory
       run: mkdir -p ./downloads
 
-    - name: Run sync script
+    - name: Run sync script with debug info
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         python sync_releases.py --repo-url https://github.com/Guovin/iptv-api --dest-dir ./downloads
 
-    - name: List downloaded files
-      run: ls -la ./downloads/
+    - name: List downloaded files with details
+      run: ls -la ./downloads/ && echo "文件详情:" && for file in ./downloads/*; do echo "- $file: $(wc -c < "$file") 字节"; done
 
-    - name: Create Release
+    - name: Check if files are valid zip archives
+      run: |
+        for file in ./downloads/*.zip; do
+          if [ -f "$file" ]; then
+            echo "检查文件: $file"
+            if unzip -tq "$file" >/dev/null 2>&1; then
+              echo "✓ $file 是有效的 ZIP 文件"
+            else
+              echo "✗ $file 不是有效的 ZIP 文件"
+              echo "文件内容开头:"
+              head -c 200 "$file" | cat -A
+              echo ""
+            fi
+          fi
+        done
+
+    - name: Create Release (only if files exist)
       id: create_release
+      if: hashFiles('./downloads/*.zip') != ''
       uses: ncipollo/release-action@v1
       with:
-        tag: synced-${{ github.run_id }}  # 使用正确的 tag 参数而不是 tag_name:cite[2]
+        tag: synced-${{ github.run_id }}
         name: Synced Releases (${{ github.run_id }})
         body: |
           自动同步的外部 Release 资源
@@ -52,12 +69,19 @@ jobs:
         makeLatest: "false"
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload Release Assets
+    - name: Upload Release Assets (only if files exist)
+      if: hashFiles('./downloads/*.zip') != ''
       uses: ncipollo/release-action@v1
       with:
         artifacts: "./downloads/*.zip"
         artifactContentType: "application/zip"
-        tag: synced-${{ github.run_id }}  # 使用正确的 tag 参数:cite[2]
+        tag: synced-${{ github.run_id }}
         allowUpdates: true
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Notify if no files downloaded
+      if: hashFiles('./downloads/*.zip') == ''
+      run: |
+        echo "没有下载到有效的 ZIP 文件，请检查脚本输出以了解详情"
+        exit 1

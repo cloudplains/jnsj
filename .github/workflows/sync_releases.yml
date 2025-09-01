@@ -1,10 +1,9 @@
-﻿# sync_releases.yml
-name: Sync External Releases
+﻿name: Sync External Releases
 
 on:
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 0'  # 每周日 UTC 时间 0 点运行一次
+    - cron: '0 0 * * 0'
 
 jobs:
   sync-releases:
@@ -39,9 +38,12 @@ jobs:
       run: |
         python sync_releases.py --repo-list ./repos.json --dest-dir ./downloads
 
-    - name: List downloaded files
+    - name: Validate downloaded files
       run: |
-        find ./downloads -type f -exec ls -la {} \;
+        if [ -z "$(ls -A ./downloads)" ]; then
+          echo "❌ 错误：未下载任何有效文件"
+          exit 1
+        fi
 
     - name: Check if files are valid archives
       run: |
@@ -49,7 +51,8 @@ jobs:
           if unzip -tq "$file" >/dev/null 2>&1; then
             echo "✓ $file 是有效的 ZIP 文件"
           else
-            echo "✗ $file 不是有效的 ZIP 文件"
+            echo "❌ $file 不是有效的 ZIP 文件"
+            rm -f "$file"
           fi
         done
         
@@ -57,7 +60,8 @@ jobs:
           if tar -tzf "$file" >/dev/null 2>&1; then
             echo "✓ $file 是有效的 TAR.GZ 文件"
           else
-            echo "✗ $file 不是有效的 TAR.GZ 文件"
+            echo "❌ $file 不是有效的 TAR.GZ 文件"
+            rm -f "$file"
           fi
         done
 
@@ -91,33 +95,30 @@ jobs:
         done
 
     - name: Create Release
-      if: hashFiles('./downloads/**') != ''
+      id: create_release
       uses: ncipollo/release-action@v1
       with:
-        tag: synced-${{ github.run_id }}
-        name: Synced Releases (${{ github.run_id }})
+        tag: synced-${{ github.run_id }}-${{ github.run_attempt }}
+        name: Synced Releases (${{ github.run_id }}.${{ github.run_attempt }})
         body: |
           自动同步的外部 Release 资源
           同步时间: ${{ github.run_created }}
           源仓库: 
           - Guovin/iptv-api
           - nginx/nginx
+          工作流运行信息:
+          - ID: ${{ github.run_id }}
+          - 尝试: ${{ github.run_attempt }}
         draft: false
         prerelease: false
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload Release Assets
-      if: hashFiles('./downloads/**') != ''
       uses: ncipollo/release-action@v1
       with:
         artifacts: "./downloads/**"
-        tag: synced-${{ github.run_id }}
+        tag: synced-${{ github.run_id }}-${{ github.run_attempt }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Clean up downloaded files
-      if: hashFiles('./downloads/**') != ''
       run: rm -rf ./downloads
-
-    - name: Notify if no files downloaded
-      if: hashFiles('./downloads/**') == ''
-      run: echo "没有下载到有效的文件" && exit 1

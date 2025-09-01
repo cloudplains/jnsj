@@ -17401,4 +17401,967 @@ CETV早期教育,http://118.78.196.110:55555/rtp/226.0.2.99:8704
 阳泉-2科教,http://118.78.196.110:55555/rtp/226.0.2.234:9784
 
 
+綜合其他,#genre#
+民視第一台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv003/index.m3u8
+民視台灣台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv001/index.m3u8
+民視,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv002/index.m3u8
+大愛電視台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live007/index.m3u8
+中視,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv040/index.m3u8
+華視,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv041/index.m3u8
+三立綜合台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live207/index.m3u8
+客家電視台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv043/index.m3u8
+中視菁采台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv064/index.m3u8
+靖天綜合台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv046/index.m3u8
+靖天日本台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv047/index.m3u8
+新唐人亞太台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live050/index.m3u8
+ARIRANG阿里郎頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv079/index.m3u8
+原住民族電視台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live014/index.m3u8
+東森購物四台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live049/index.m3u8
+東森購物1台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live047/index.m3u8
+東森購物1台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv102/index.m3u8
+TVBS,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv073/index.m3u8
+東森購物2台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live046/index.m3u8
+東森購物2台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv103/index.m3u8
+靖天育樂台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv062/index.m3u8
+KLT靖天國際台HD,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv063/index.m3u8
+NICETV靖天歡樂台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv054/index.m3u8
+靖天資訊台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv065/index.m3u8
+韓國娛樂台KMTV,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv016/index.m3u8
+東森購物三台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live048/index.m3u8
+好消息,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv16/index.m3u8
+好消息2台,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv17/index.m3u8
+大愛二台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live106/index.m3u8
+人間衛視,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live008/index.m3u8
+國會頻道1,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv084/index.m3u8
+國會頻道2,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv085/index.m3u8
+民視第一台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv003/index.m3u8
+民視台灣台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv001/index.m3u8
+民視,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv155/index.m3u8
+中視,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv040/index.m3u8
+華視,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv041/index.m3u8
+中天亞洲台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv109/index.m3u8
+客家電視台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv043/index.m3u8
+中視菁采台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv064/index.m3u8
+靖天綜合台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv046/index.m3u8
+靖天日本台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv047/index.m3u8
+ARIRANG阿里郎頻道,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv079/index.m3u8
+TVBS,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv073/index.m3u8
+靖天育樂台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv062/index.m3u8
+KLT靖天國際台HD,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv063/index.m3u8
+NICETV靖天歡樂台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv054/index.m3u8
+靖天資訊台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv065/index.m3u8
+韓國娛樂台KMTV,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv016/index.m3u8
+好消息,http://xn--elt51t.azip.dpdns.org:5008/li-litv-ftv16/index.m3u8
+好消息2台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-ftv17/index.m3u8
+國會頻道1台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv084/index.m3u8
+國會頻道2台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv085/index.m3u8
+台視,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv066/index.m3u8
+台視,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv066/index.m3u8
+中視,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv040/index.m3u8
+華視,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv041/index.m3u8
+好消息,http://xn--elt51t.azip.dpdns.org:5008/of-litv-ftv16/index.m3u8
+好消息2台,http://xn--elt51t.azip.dpdns.org:5008/of-litv-ftv17/index.m3u8
+國會頻道1台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv084/index.m3u8
+國會頻道2台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv085/index.m3u8
+東森購物1台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv102/index.m3u8
+東森購物2台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv103/index.m3u8
+電影戲劇,#genre#
+中視經典台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv080/index.m3u8
+ROCKENTERTAINMENT,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live080/index.m3u8
+公視戲劇,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv042/index.m3u8
+民視影劇台,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv09/index.m3u8
+HITS頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live620/index.m3u8
+霹靂布袋戲,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live145/index.m3u8
+靖天戲劇台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv058/index.m3u8
+靖洋戲劇台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv045/index.m3u8
+金光布袋戲,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live144/index.m3u8
+ROCKACTION,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live138/index.m3u8
+采昌影劇台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv049/index.m3u8
+靖天映畫,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv055/index.m3u8
+靖天電影台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv061/index.m3u8
+影迷數位電影台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv011/index.m3u8
+amc電影台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv017/index.m3u8
+CINEMAWORLD,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live069/index.m3u8
+MYCINEMAEUROPEHD我的歐洲電影,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv10/index.m3u8
+TVBS台劇台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live088/index.m3u8
+經典電影台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live021/index.m3u8
+戲劇免費看 1台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live010/index.m3u8
+中視經典台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv080/index.m3u8
+龍華洋片台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn02/index.m3u8
+龍華電影台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn03/index.m3u8
+龍華日韓台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn11/index.m3u8
+龍華偶像台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn12/index.m3u8
+龍華戲劇台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn18/index.m3u8
+龍華經典台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn21/index.m3u8
+公視戲劇,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv042/index.m3u8
+民視影劇台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-ftv09/index.m3u8
+靖天戲劇台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv058/index.m3u8
+靖洋戲劇台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv045/index.m3u8
+采昌影劇台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv049/index.m3u8
+靖天映畫,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv055/index.m3u8
+靖天電影台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv061/index.m3u8
+影迷數位電影台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv011/index.m3u8
+amc電影台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv017/index.m3u8
+台灣戲劇台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn22/index.m3u8
+台灣戲劇台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn22/index.m3u8
+龍華洋片台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn02/index.m3u8
+龍華電影台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn03/index.m3u8
+龍華日韓台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn11/index.m3u8
+龍華偶像台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn12/index.m3u8
+龍華戲劇台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn18/index.m3u8
+龍華經典台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn21/index.m3u8
+音樂綜藝,#genre#
+八大綜藝台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv039/index.m3u8
+TVBS精采台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv067/index.m3u8
+愛爾達娛樂台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv070/index.m3u8
+民視綜藝台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv004/index.m3u8
+豬哥亮歌廳秀,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv006/index.m3u8
+TVBS歡樂台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv068/index.m3u8
+電影原聲台CMUSIC,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live031/index.m3u8
+TRACEURBAN,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv082/index.m3u8
+MTVLIVEHD音樂頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live025/index.m3u8
+MEZZOLIVEHD,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv083/index.m3u8
+CLASSICA古典樂,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv059/index.m3u8
+八大精彩台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv034/index.m3u8
+TVBS綜藝台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live087/index.m3u8
+八大綜藝台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv039/index.m3u8
+TVBS精采台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv067/index.m3u8
+愛爾達娛樂台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv070/index.m3u8
+民視綜藝台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv004/index.m3u8
+豬哥亮歌廳秀,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv006/index.m3u8
+TVBS歡樂台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv068/index.m3u8
+TRACEURBAN,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv082/index.m3u8
+MEZZOLIVEHD,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv083/index.m3u8
+CLASSICA古典樂,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv059/index.m3u8
+八大精彩台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv034/index.m3u8
+生活旅遊,#genre#
+GLOBALTREKKER,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live112/index.m3u8
+LIFETIME娛樂頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live029/index.m3u8
+INULTRA,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live096/index.m3u8
+PETCLUBTVHD,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv110/index.m3u8
+民視旅遊台,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv07/index.m3u8
+滾動力ROLLOR,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live012/index.m3u8
+亞洲旅遊台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv076/index.m3u8
+FUN探索娛樂台4K,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live011/index.m3u8
+幸福空間居家台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live206/index.m3u8
+LOVENATURE,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live208/index.m3u8
+愛爾達生活旅遊台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live120/index.m3u8
+LUXETVCHANNEL,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live121/index.m3u8
+TV5MONDESTYLEHD生活時尚,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live122/index.m3u8
+MAGELLANTV頻道(麥哲倫頻道),http://xn--elt51t.azip.dpdns.org:5008/4gtv-live123/index.m3u8
+PETCLUBTVHD,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv110/index.m3u8
+民視旅遊台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-ftv07/index.m3u8
+亞洲旅遊台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv076/index.m3u8
+SMART知識台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn19/index.m3u8
+亞洲旅遊台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv076/index.m3u8
+SMART知識台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn19/index.m3u8
+兒童卡通,#genre#
+LIVEABC互動英語頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live030/index.m3u8
+達文西頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv018/index.m3u8
+ELTV生活英語台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn20/index.m3u8
+NICKJR.兒童頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live032/index.m3u8
+尼克兒童頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live105/index.m3u8
+DREAMWORKS頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live017/index.m3u8
+靖天卡通台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv044/index.m3u8
+靖洋卡通NICEBINGO,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv057/index.m3u8
+MOMO親子台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live107/index.m3u8
+經典卡通台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live022/index.m3u8
+精選動漫台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live024/index.m3u8
+龍華卡通台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn01/index.m3u8
+達文西頻道,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv018/index.m3u8
+ELTV生活英語台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn20/index.m3u8
+靖天卡通台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv044/index.m3u8
+靖洋卡通NICEBINGO,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv057/index.m3u8
+ELTV生活英語台,http://xn--elt51t.azip.dpdns.org:5008/of-litv-longturn20/index.m3u8
+龍華卡通台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn01/index.m3u8
+新聞財經,#genre#
+鏡電視新聞台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv075/index.m3u8
+東森新聞台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv152/index.m3u8
+華視新聞,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv052/index.m3u8
+民視新聞台,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv13/index.m3u8
+三立新聞INEWS,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live089/index.m3u8
+東森財經新聞台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv153/index.m3u8
+中視新聞台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv074/index.m3u8
+中天新聞台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv009/index.m3u8
+BLOOMBERGTV,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live059/index.m3u8
+寰宇新聞台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn14/index.m3u8
+寰宇新聞台灣台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv156/index.m3u8
+SBN全球財經台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live060/index.m3u8
+NHK新聞資訊台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live168/index.m3u8
+FRANCE24英文台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live146/index.m3u8
+半島國際新聞台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live157/index.m3u8
+VOA美國之音,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv03/index.m3u8
+CNBCASIA財經台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live130/index.m3u8
+DW德國之聲,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live071/index.m3u8
+華視新聞,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv052/index.m3u8
+非凡新聞台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv010/index.m3u8
+非凡商業台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv048/index.m3u8
+台視財經台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv056/index.m3u8
+東森新聞台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv152/index.m3u8
+民視新聞台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-ftv13/index.m3u8
+TVBS新聞,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv072/index.m3u8
+東森財經新聞台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv153/index.m3u8
+中視新聞台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv074/index.m3u8
+中天新聞台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv009/index.m3u8
+寰宇新聞台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-longturn14/index.m3u8
+寰宇新聞台灣台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv156/index.m3u8
+寰宇財經台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv158/index.m3u8
+VOA美國之音,http://xn--elt51t.azip.dpdns.org:5008/li-litv-ftv03/index.m3u8
+台視新聞,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv051/index.m3u8
+第1商業台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv104/index.m3u8
+台視新聞,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv051/index.m3u8
+中視新聞台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv074/index.m3u8
+華視新聞,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv052/index.m3u8
+中天新聞台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv009/index.m3u8
+寰宇新聞台,http://xn--elt51t.azip.dpdns.org:5008/of-litv-longturn14/index.m3u8
+寰宇新聞台灣台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv156/index.m3u8
+寰宇財經台,http://xn--elt51t.azip.dpdns.org:5008/of-4gtv-4gtv158/index.m3u8
+第1商業台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv104/index.m3u8
+三立新聞INEWS,http://xn--elt51t.azip.dpdns.org:5008/iNEWS/index.m3u8
+倪珍播新聞,http://xn--elt51t.azip.dpdns.org:5008/nnews-zh/index.m3u8
+倪珍越南語新聞,http://xn--elt51t.azip.dpdns.org:5008/nnews-vn/index.m3u8
+倪珍報氣象,http://xn--elt51t.azip.dpdns.org:5008/nnews-wf/index.m3u8
+體育競技,#genre#
+TRACESPORTSTARS,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv077/index.m3u8
+智林體育台,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv101/index.m3u8
+時尚運動X,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv014/index.m3u8
+車迷TV,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live201/index.m3u8
+GINXESPORTSTV,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv053/index.m3u8
+博斯魅力網,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn04/index.m3u8
+博斯高球一台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn05/index.m3u8
+博斯高球二台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn06/index.m3u8
+博斯運動一台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn07/index.m3u8
+博斯運動二台HD,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn08/index.m3u8
+博斯網球台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn09/index.m3u8
+博斯無限台HD,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn10/index.m3u8
+博斯無限二台,http://xn--elt51t.azip.dpdns.org:5008/litv-longturn13/index.m3u8
+TRACESPORTSTARS,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv077/index.m3u8
+智林體育台,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv101/index.m3u8
+時尚運動X,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv014/index.m3u8
+GINXESPORTSTV,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv053/index.m3u8
+紀實探索,#genre#
+HISTORY歷史頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live026/index.m3u8
+CI罪案偵查頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-live027/index.m3u8
+CNEX紀實頻道,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv013/index.m3u8
+影迷數位紀實台,http://xn--elt51t.azip.dpdns.org:5008/litv-ftv15/index.m3u8
+CNEX紀實頻道,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv013/index.m3u8
+影迷數位紀實台,http://xn--elt51t.azip.dpdns.org:5008/li-litv-ftv15/index.m3u8
+歐飛點播,#genre#
+公視金獎台,http://xn--elt51t.azip.dpdns.org:5008/ofiii13/index.m3u8
+空中英語教室HD頻道,http://xn--elt51t.azip.dpdns.org:5008/ofiii16/index.m3u8
+哆啦Ａ夢台,http://xn--elt51t.azip.dpdns.org:5008/ofiii22/index.m3u8
+新哆啦A夢(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii23/index.m3u8
+TVBS食尚玩家,http://xn--elt51t.azip.dpdns.org:5008/ofiii31/index.m3u8
+東森娛樂台,http://xn--elt51t.azip.dpdns.org:5008/ofiii32/index.m3u8
+中天亞洲精采台,http://xn--elt51t.azip.dpdns.org:5008/ofiii36/index.m3u8
+經典劇場,http://xn--elt51t.azip.dpdns.org:5008/ofiii38/index.m3u8
+Yes娛樂,http://xn--elt51t.azip.dpdns.org:5008/ofiii47/index.m3u8
+Focus風采戲劇台,http://xn--elt51t.azip.dpdns.org:5008/ofiii1048/index.m3u8
+掏掏新聞,http://xn--elt51t.azip.dpdns.org:5008/ofiii50/index.m3u8
+國際大小事,http://xn--elt51t.azip.dpdns.org:5008/ofiii55/index.m3u8
+全國大罷免,http://xn--elt51t.azip.dpdns.org:5008/ofiii56/index.m3u8
+第1財經,http://xn--elt51t.azip.dpdns.org:5008/ofiii64/index.m3u8
+Golden 強片台,http://xn--elt51t.azip.dpdns.org:5008/ofiii70/index.m3u8
+周星馳台,http://xn--elt51t.azip.dpdns.org:5008/ofiii73/index.m3u8
+歐飛電影台,http://xn--elt51t.azip.dpdns.org:5008/ofiii74/index.m3u8
+歐飛動作電影台,http://xn--elt51t.azip.dpdns.org:5008/ofiii75/index.m3u8
+Focus探索新知台,http://xn--elt51t.azip.dpdns.org:5008/ofiii82/index.m3u8
+鄉民大學問,http://xn--elt51t.azip.dpdns.org:5008/ofiii83/index.m3u8
+野球名人房,http://xn--elt51t.azip.dpdns.org:5008/ofiii84/index.m3u8
+社會NOW什麼,http://xn--elt51t.azip.dpdns.org:5008/ofiii85/index.m3u8
+啦啦隊獨家專訪,http://xn--elt51t.azip.dpdns.org:5008/ofiii88/index.m3u8
+泰可愛旋風,http://xn--elt51t.azip.dpdns.org:5008/ofiii89/index.m3u8
+演唱會直擊,http://xn--elt51t.azip.dpdns.org:5008/ofiii91/index.m3u8
+健康問良醫,http://xn--elt51t.azip.dpdns.org:5008/ofiii92/index.m3u8
+ASMR行車紀錄,http://xn--elt51t.azip.dpdns.org:5008/ofiii94/index.m3u8
+Freeman @台灣,http://xn--elt51t.azip.dpdns.org:5008/ofiii95/index.m3u8
+饕客揪愛吃,http://xn--elt51t.azip.dpdns.org:5008/ofiii96/index.m3u8
+人氣動漫預告,http://xn--elt51t.azip.dpdns.org:5008/ofiii97/index.m3u8
+銀髮聚樂部,http://xn--elt51t.azip.dpdns.org:5008/ofiii99/index.m3u8
+錦繡安寧,http://xn--elt51t.azip.dpdns.org:5008/ofiii100/index.m3u8
+琅琊榜,http://xn--elt51t.azip.dpdns.org:5008/ofiii101/index.m3u8
+扶搖,http://xn--elt51t.azip.dpdns.org:5008/ofiii102/index.m3u8
+三國,http://xn--elt51t.azip.dpdns.org:5008/ofiii103/index.m3u8
+武媚娘傳奇,http://xn--elt51t.azip.dpdns.org:5008/ofiii104/index.m3u8
+長樂曲,http://xn--elt51t.azip.dpdns.org:5008/ofiii105/index.m3u8
+軍師聯盟,http://xn--elt51t.azip.dpdns.org:5008/ofiii106/index.m3u8
+軍師聯盟2 虎嘯龍吟,http://xn--elt51t.azip.dpdns.org:5008/ofiii107/index.m3u8
+東宮(完整版),http://xn--elt51t.azip.dpdns.org:5008/ofiii108/index.m3u8
+國色芳華,http://xn--elt51t.azip.dpdns.org:5008/ofiii109/index.m3u8
+楚喬傳,http://xn--elt51t.azip.dpdns.org:5008/ofiii110/index.m3u8
+倚天屠龍記 2019,http://xn--elt51t.azip.dpdns.org:5008/ofiii111/index.m3u8
+鳳囚凰,http://xn--elt51t.azip.dpdns.org:5008/ofiii112/index.m3u8
+步步驚心,http://xn--elt51t.azip.dpdns.org:5008/ofiii113/index.m3u8
+九重紫,http://xn--elt51t.azip.dpdns.org:5008/ofiii114/index.m3u8
+私藏浪漫,http://xn--elt51t.azip.dpdns.org:5008/ofiii115/index.m3u8
+去有風的地方,http://xn--elt51t.azip.dpdns.org:5008/ofiii116/index.m3u8
+以愛為營,http://xn--elt51t.azip.dpdns.org:5008/ofiii117/index.m3u8
+向風而行,http://xn--elt51t.azip.dpdns.org:5008/ofiii118/index.m3u8
+以家人之名,http://xn--elt51t.azip.dpdns.org:5008/ofiii119/index.m3u8
+有你的時光裡,http://xn--elt51t.azip.dpdns.org:5008/ofiii120/index.m3u8
+好運家,http://xn--elt51t.azip.dpdns.org:5008/ofiii121/index.m3u8
+請叫我總監,http://xn--elt51t.azip.dpdns.org:5008/ofiii122/index.m3u8
+三十而已,http://xn--elt51t.azip.dpdns.org:5008/ofiii123/index.m3u8
+月嫂先生,http://xn--elt51t.azip.dpdns.org:5008/ofiii124/index.m3u8
+豬哥壹級棒,http://xn--elt51t.azip.dpdns.org:5008/ofiii126/index.m3u8
+醫師好辣,http://xn--elt51t.azip.dpdns.org:5008/ofiii128/index.m3u8
+WTO姐妹會,http://xn--elt51t.azip.dpdns.org:5008/ofiii129/index.m3u8
+綜藝玩很大,http://xn--elt51t.azip.dpdns.org:5008/ofiii130/index.m3u8
+全民星攻略,http://xn--elt51t.azip.dpdns.org:5008/ofiii131/index.m3u8
+健康2.0,http://xn--elt51t.azip.dpdns.org:5008/ofiii132/index.m3u8
+台灣啟示錄,http://xn--elt51t.azip.dpdns.org:5008/ofiii133/index.m3u8
+法眼黑與白,http://xn--elt51t.azip.dpdns.org:5008/ofiii134/index.m3u8
+天才衝衝衝,http://xn--elt51t.azip.dpdns.org:5008/ofiii135/index.m3u8
+一步一腳印 發現新台灣,http://xn--elt51t.azip.dpdns.org:5008/ofiii136/index.m3u8
+女人我最大,http://xn--elt51t.azip.dpdns.org:5008/ofiii137/index.m3u8
+看板人物,http://xn--elt51t.azip.dpdns.org:5008/ofiii138/index.m3u8
+威廉沈歡樂送,http://xn--elt51t.azip.dpdns.org:5008/ofiii139/index.m3u8
+木曜4超玩 一日系列,http://xn--elt51t.azip.dpdns.org:5008/ofiii140/index.m3u8
+一字千金,http://xn--elt51t.azip.dpdns.org:5008/ofiii142/index.m3u8
+11點熱吵店,http://xn--elt51t.azip.dpdns.org:5008/ofiii143/index.m3u8
+麥卡貝網路電視,http://xn--elt51t.azip.dpdns.org:5008/ofiii144/index.m3u8
+回到20歲,http://xn--elt51t.azip.dpdns.org:5008/ofiii145/index.m3u8
+白雪公主非死不可,http://xn--elt51t.azip.dpdns.org:5008/ofiii146/index.m3u8
+好搭檔,http://xn--elt51t.azip.dpdns.org:5008/ofiii147/index.m3u8
+頭腦共助,http://xn--elt51t.azip.dpdns.org:5008/ofiii148/index.m3u8
+凌晨兩點的灰姑娘,http://xn--elt51t.azip.dpdns.org:5008/ofiii149/index.m3u8
+台灣靈異事件,http://xn--elt51t.azip.dpdns.org:5008/ofiii150/index.m3u8
+包青天 1993版,http://xn--elt51t.azip.dpdns.org:5008/ofiii151/index.m3u8
+我的婆婆怎麼那麼可愛,http://xn--elt51t.azip.dpdns.org:5008/ofiii152/index.m3u8
+村裡來了個暴走女外科,http://xn--elt51t.azip.dpdns.org:5008/ofiii153/index.m3u8
+一把青,http://xn--elt51t.azip.dpdns.org:5008/ofiii154/index.m3u8
+茶金,http://xn--elt51t.azip.dpdns.org:5008/ofiii155/index.m3u8
+苦力,http://xn--elt51t.azip.dpdns.org:5008/ofiii156/index.m3u8
+俗女養成記,http://xn--elt51t.azip.dpdns.org:5008/ofiii157/index.m3u8
+麻醉風暴,http://xn--elt51t.azip.dpdns.org:5008/ofiii158/index.m3u8
+雖然等級只有1級但固有技能是最強的,http://xn--elt51t.azip.dpdns.org:5008/ofiii159/index.m3u8
+擁有超常技能的異世界流浪美食家,http://xn--elt51t.azip.dpdns.org:5008/ofiii160/index.m3u8
+WIND BREAKER—防風少年—,http://xn--elt51t.azip.dpdns.org:5008/ofiii161/index.m3u8
+在異世界獲得超強能力的我，在現實世界照樣無敵～等級提升改變人生命運～,http://xn--elt51t.azip.dpdns.org:5008/ofiii162/index.m3u8
+第一神拳,http://xn--elt51t.azip.dpdns.org:5008/ofiii163/index.m3u8
+刀劍神域(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii164/index.m3u8
+蠟筆小新(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii165/index.m3u8
+我們這一家,http://xn--elt51t.azip.dpdns.org:5008/ofiii166/index.m3u8
+獵人(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii167/index.m3u8
+中華一番(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii168/index.m3u8
+隊長小翼(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii169/index.m3u8
+SPY X FAMILY 間諜家家酒,http://xn--elt51t.azip.dpdns.org:5008/ofiii170/index.m3u8
+SPY X FAMILY 間諜家家酒(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii171/index.m3u8
+無職轉生，到了異世界就拿出真本事,http://xn--elt51t.azip.dpdns.org:5008/ofiii172/index.m3u8
+關於我轉生變成史萊姆這檔事(國),http://xn--elt51t.azip.dpdns.org:5008/ofiii173/index.m3u8
+夏目友人帳,http://xn--elt51t.azip.dpdns.org:5008/ofiii174/index.m3u8
+家庭教師HITMAN REBORN!(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii175/index.m3u8
+烘焙王(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii176/index.m3u8
+鋼之鍊金術師,http://xn--elt51t.azip.dpdns.org:5008/ofiii177/index.m3u8
+JOJO 的奇妙冒險,http://xn--elt51t.azip.dpdns.org:5008/ofiii178/index.m3u8
+葬送的芙莉蓮,http://xn--elt51t.azip.dpdns.org:5008/ofiii179/index.m3u8
+史上最強弟子兼一(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii180/index.m3u8
+爆漫王(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii181/index.m3u8
+忍者亂太郎(中文版),http://xn--elt51t.azip.dpdns.org:5008/ofiii182/index.m3u8
+膽大黨,http://xn--elt51t.azip.dpdns.org:5008/ofiii183/index.m3u8
+新忍者哈特利,http://xn--elt51t.azip.dpdns.org:5008/ofiii184/index.m3u8
+凡爾賽玫瑰,http://xn--elt51t.azip.dpdns.org:5008/ofiii185/index.m3u8
+生命的贏家,http://xn--elt51t.azip.dpdns.org:5008/ofiii192/index.m3u8
+海派甜心,http://xn--elt51t.azip.dpdns.org:5008/ofiii195/index.m3u8
+不良笑花,http://xn--elt51t.azip.dpdns.org:5008/ofiii196/index.m3u8
+戰神,http://xn--elt51t.azip.dpdns.org:5008/ofiii197/index.m3u8
+王子看見二公主,http://xn--elt51t.azip.dpdns.org:5008/ofiii198/index.m3u8
+呼叫大明星,http://xn--elt51t.azip.dpdns.org:5008/ofiii199/index.m3u8
+大新聞大爆卦,http://xn--elt51t.azip.dpdns.org:5008/ofiii201/index.m3u8
+新聞大白話,http://xn--elt51t.azip.dpdns.org:5008/ofiii202/index.m3u8
+文茜的世界周報,http://xn--elt51t.azip.dpdns.org:5008/ofiii203/index.m3u8
+寰宇全視界,http://xn--elt51t.azip.dpdns.org:5008/ofiii204/index.m3u8
+文茜的世界財經周報,http://xn--elt51t.azip.dpdns.org:5008/ofiii205/index.m3u8
+環球大戰線,http://xn--elt51t.azip.dpdns.org:5008/ofiii206/index.m3u8
+少康戰情室,http://xn--elt51t.azip.dpdns.org:5008/ofiii207/index.m3u8
+國民大會,http://xn--elt51t.azip.dpdns.org:5008/ofiii208/index.m3u8
+電動車時代,http://xn--elt51t.azip.dpdns.org:5008/ofiii215/index.m3u8
+SiCAR愛車酷,http://xn--elt51t.azip.dpdns.org:5008/ofiii216/index.m3u8
+狂人日誌,http://xn--elt51t.azip.dpdns.org:5008/ofiii217/index.m3u8
+脖子解說 Mr. Neck,http://xn--elt51t.azip.dpdns.org:5008/ofiii218/index.m3u8
+食尚玩家-Hello腹餓代,http://xn--elt51t.azip.dpdns.org:5008/ofiii225/index.m3u8
+食尚玩家-天菜就醬吃,http://xn--elt51t.azip.dpdns.org:5008/ofiii226/index.m3u8
+食尚玩家-2天1夜go,http://xn--elt51t.azip.dpdns.org:5008/ofiii227/index.m3u8
+食尚玩家-熱血48小時,http://xn--elt51t.azip.dpdns.org:5008/ofiii228/index.m3u8
+食尚玩家-魚肉鄉民,http://xn--elt51t.azip.dpdns.org:5008/ofiii229/index.m3u8
+食尚玩家-瘋狂總部,http://xn--elt51t.azip.dpdns.org:5008/ofiii230/index.m3u8
+非凡大探索,http://xn--elt51t.azip.dpdns.org:5008/ofiii234/index.m3u8
+台灣1001個故事,http://xn--elt51t.azip.dpdns.org:5008/ofiii235/index.m3u8
+詹姆士出走料理,http://xn--elt51t.azip.dpdns.org:5008/ofiii236/index.m3u8
+進擊的台灣,http://xn--elt51t.azip.dpdns.org:5008/ofiii237/index.m3u8
+世界第一等,http://xn--elt51t.azip.dpdns.org:5008/ofiii238/index.m3u8
+台灣第一等,http://xn--elt51t.azip.dpdns.org:5008/ofiii239/index.m3u8
+溢遊未盡,http://xn--elt51t.azip.dpdns.org:5008/ofiii240/index.m3u8
+台灣真善美,http://xn--elt51t.azip.dpdns.org:5008/ofiii241/index.m3u8
+請問今晚住誰家,http://xn--elt51t.azip.dpdns.org:5008/ofiii242/index.m3u8
+早餐中國,http://xn--elt51t.azip.dpdns.org:5008/ofiii243/index.m3u8
+溢起趣打卡,http://xn--elt51t.azip.dpdns.org:5008/ofiii244/index.m3u8
+台灣壹百種味道,http://xn--elt51t.azip.dpdns.org:5008/ofiii245/index.m3u8
+紓壓雷雨聲,http://xn--elt51t.azip.dpdns.org:5008/ofiii250/index.m3u8
+療癒下雨聲,http://xn--elt51t.azip.dpdns.org:5008/ofiii251/index.m3u8
+放鬆的爵士午後,http://xn--elt51t.azip.dpdns.org:5008/ofiii252/index.m3u8
+外燒柴火聲,http://xn--elt51t.azip.dpdns.org:5008/ofiii253/index.m3u8
+夏日陽光海浪聲,http://xn--elt51t.azip.dpdns.org:5008/ofiii254/index.m3u8
+香港频道,#genre#
+翡翠台,https://012v4.pendy.dpdns.org/hls/3672252c-bea6-40ce-b186-e2072a0fd9f9/playlist.m3u8
+翡翠台,http://php.jdshipin.com:8880/smt.php?id=jade_twn
+翡翠台,http://php.jdshipin.com:8880/TVOD/iptv.php?id=fct4
+凤凰卫视中文台,https://011v4.pendy.dpdns.org/stream/tvb/pcc/master.m3u8?u=judy&p=213f2541f159ac2ec56f4173f3731fdd6ac1ea725a0c7892870cf85ea22cb3cc
+凤凰中文,https://live.tvfix.org/live/fhzw/index.m3u8
+凤凰中文,http://php.jdshipin.com:8880/smt.php?id=phoenixtv_hd
+凤凰卫视香港台,https://011v4.pendy.dpdns.org/stream/tvb/phk/master.m3u8?u=judy&p=213f2541f159ac2ec56f4173f3731fdd6ac1ea725a0c7892870cf85ea22cb3cc
+凤凰香港,https://live.tvfix.org/live/fhxg/index.m3u8
+凤凰香港,http://php.jdshipin.com:8880/smt.php?id=hkphoenix_twn
+凤凰卫视资讯台,https://011v4.pendy.dpdns.org/stream/tvb/pin/master.m3u8?u=judy&p=213f2541f159ac2ec56f4173f3731fdd6ac1ea725a0c7892870cf85ea22cb3cc
+凤凰资讯,https://live.tvfix.org/live/fhzx/index.m3u8
+凤凰资讯,http://php.jdshipin.com:8880/smt.php?id=phoenixinfo_hd
+美亚电影台,https://011v4.pendy.dpdns.org/stream/tvb/cmam/master.m3u8?u=judy&p=213f2541f159ac2ec56f4173f3731fdd6ac1ea725a0c7892870cf85ea22cb3cc
+美亚电影台,https://mysupertv.pendy.dpdns.org/CMAM/cmam.m3u8
+美亚电影台,http://php.jdshipin.com:8880/smt.php?id=meiyamovie_twn
+ALL THE K-POP,https://011v4.pendy.dpdns.org/stream/tvb/popc/master.m3u8?u=judy&p=213f2541f159ac2ec56f4173f3731fdd6ac1ea725a0c7892870cf85ea22cb3cc
+PopC,https://mysupertv.pendy.dpdns.org/PopC/popc.m3u8
+明珠台,https://011v4.pendy.dpdns.org/stream/tvb/pearl/master.m3u8?u=judy&p=213f2541f159ac2ec56f4173f3731fdd6ac1ea725a0c7892870cf85ea22cb3cc
+tvbplus,https://011v4.pendy.dpdns.org/stream/tvb/tvbplus/master.m3u8?u=judy&p=213f2541f159ac2ec56f4173f3731fdd6ac1ea725a0c7892870cf85ea22cb3cc
+tvbplus,https://mysupertv.pendy.dpdns.org/TVBPlus/tvbplus.m3u8
+tvbplus,http://php.jdshipin.com:8880/smt.php?id=j2_twn
+天映经典,https://mysupertv.pendy.dpdns.org/TYPD/typd.m3u8
+ANIMAX,https://live.tvfix.org/live/animax/index.m3u8
+华丽翡翠台,http://php.jdshipin.com:8880/smt.php?id=Tvbjade
+TVB星河,http://php.jdshipin.com:8880/smt.php?id=Xinhe
+TVBS,https://live.tvfix.org/live/tvbs/index.m3u8
+TVBS新闻台,https://live.tvfix.org/live/tvbsnews/index.m3u8
+无线新闻,https://live.tvfix.org/live/inews/index.m3u8
+无线新闻,http://php.jdshipin.com:8880/smt.php?id=inews_twn
+东森亚洲新闻台,https://live.tvfix.org/live/newsasia/index.m3u8
+娱乐新闻台,https://live.tvfix.org/live/enews/index.m3u8
+TVB娱乐新闻台,http://php.jdshipin.com:8880/smt.php?id=Tvbentertainment
+viutv,http://php.jdshipin.com:8880/smt.php?id=viu1_twn
+VIUTVSIX,http://php.jdshipin.com:8880/smt.php?id=viusix_twn
+rthk31,http://php.jdshipin.com:8880/smt.php?id=rhk31_twn
+rthk32,http://php.jdshipin.com:8880/smt.php?id=rhk32_twn
+千禧经典台,http://php.jdshipin.com:8880/smt.php?id=Tvbclassic
+天映,http://php.jdshipin.com:8880/smt.php?id=Celestial
+天映经典,http://php.jdshipin.com:8880/smt.php?id=Celestial2
+八度空间,http://php.jdshipin.com:8880/smt.php?id=TV8
+AstroAOD,http://php.jdshipin.com:8880/smt.php?id=Aodhd
+AstroAEC,http://php.jdshipin.com:8880/smt.php?id=AEC
+爱奇艺,http://php.jdshipin.com:8880/smt.php?id=Qiyi
+ASTROQUANJIA,http://php.jdshipin.com:8880/smt.php?id=Quanjia
+Astro欢喜台,http://php.jdshipin.com:8880/smt.php?id=Huahee
+beesport,#genre#
+TNT SPORTS 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_1
+TNT SPORTS 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_1_BU
+TNT SPORTS 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_2
+TNT SPORTS 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_2_BU
+TNT SPORTS 3,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_3
+TNT SPORTS 3,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_3_BU
+TNT SPORTS 4,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_4
+TNT SPORTS 4,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=TNT_Sports_4_BU
+SKY SPORTS FOOTBALL,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Football_BU
+SKY SPORTS FOOTBALL,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Football_Live_TV
+SKY SPORTS MAIN EVENT,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Main_Event
+SKY SPORTS MAIN EVENT,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Main_Event_BU
+SKY SPORTS PREMIER LEAGUE,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Premier_League
+SKY SPORTS PREMIER LEAGUE,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Premier_League_BU
+SKY SPORTS ACTION,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Action_Live_TV
+SKY SPORTS MIX,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Mix_Live_TV
+SKY SPORTS ARENA,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Arena_Live_TV
+SKY SPORTS NEWS,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_News_Live_TV
+SKY SPORTS CRICKET,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Cricket_Live_TV
+Sky Sports Tennis,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Tennis
+SKY SPORTS F1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_F1_Live_TV
+SKY SPORTS GOLF,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Golf_Live_TV
+SKY SPORTS RACING,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Sky_Sports_Racing_Live_TV
+BEIN SPORTS USA,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Bein_Sports_USA_Live_TV
+TENNIS CHANNEL,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Tennis_Channel_Live_TV
+LALIGA TV HD,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=La_Liga_TV_Live_TV
+HBO 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=HBO_Live_TV
+HBO 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=HBO_2_Live_TV
+Discovery Channel,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Discovery_Channel_Live_TV
+Discovery Life,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Discovery_Life_Live_TV
+Cinemax West,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Cinemax_West_Live_TV
+Great Movies,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=UK_Great_Movies_Live_TV
+Sky Cinema Comedy,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=UK_Sky_Cinema_Comedy_Live_TV
+Sky Cinema Family,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=UK_Sky_Cinema_Family_Live_TV
+Cartoon Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=UK_Cartoon_Network_Live_TV
+Virgin 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=UK_Virgin_2
+Virgin 3,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=UK_Virgin_3
+Virgin 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=UK_Virgin_1
+DAZN,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=DAZN_Live_TV
+Bein Sports English 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Bein_Sports_English_2_Live_TV
+SuperSport Premier League,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Premier_League_Live_TV
+SuperSport LaLiga,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_LaLiga_Live_TV
+SuperSport Action,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Action_Live_TV
+SuperSport Blitz,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Blitz_Live_TV
+SuperSport Cricket,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Cricket_Live_TV
+SuperSport Football,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Football_Live_TV
+SuperSport Golf,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Golf_Live_TV
+SuperSport Rugby,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Rugby_Live_TV
+SuperSport Tennis,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=SuperSport_Tennis_Live_TV
+Variety 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Variety_1_Live_TV
+Variety 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Variety_2_Live_TV
+Variety 3,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Variety_3_Live_TV
+Variety 4,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Variety_4_Live_TV
+Eurosport 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Eurosport_1_Live_TV
+Eurosport 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Eurosport_2_Live_TV
+Premier Sports 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Premier_Sports_1
+Premier Sports 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Premier_Sports_2
+Golf Channel,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Golf_Channel_Live_TV
+MLB Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=MLB_Network_Live_TV
+NBA TV,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=NBA_TV_Live_TV
+NFL Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=NFL_Network_Live_TV
+NFL REDZONE,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=NFL_REDZONE_Live_TV
+NHL Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=NHL_Network_Live_TV
+WWE,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=WWE_Live_TV
+Willow Cricket,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Willow_Cricket_Live_TV
+Willow Extra,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Willow_Extra_Live_TV
+World Fishing Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=World_Fishing_Network_Live_TV
+ESPN,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ESPN_Live_TV
+ESPN 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ESPN_2_Live_TV
+ESPN News,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ESPN_News_Live_TV
+ESPN U,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ESPN_U_Live_TV
+ITV 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ITV_1
+ITV 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ITV_2
+ITV 3,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ITV_3
+ITV 4,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ITV_4
+MUTV,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=MUTV_Live_TV
+LFC TV,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=LFC_TV_Live_TV
+FOX NEWS,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=FOX_NEWS_Live_TV
+ACC Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=ACC_Network_Live_TV
+Fight Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Fight_Network_Live_TV
+CBS Sports Network,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=CBS_Sports_Network_Live_TV
+CNBC,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=CNBC_Live_TV
+Fox Sports 1,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Fox_Sports_1_Live_TV
+Fox Sports 2,https://smart.pendy.dpdns.org/beesport-2025-proxy.php?id=Fox_Sports_2_Live_TV
+Smart☠️源,#genre#
+翡翠台,https://smart.pendy.dpdns.org/Smart.php?id=jade_twn
+翡翠台,https://smart.pendy.dpdns.org/Smart.php?id=Jade_xue
+香港|iNews 新闻台,https://smart.pendy.dpdns.org/Smart.php?id=inews_twn
+J2,https://smart.pendy.dpdns.org/Smart.php?id=j2_twn
+香港|珍珠台,https://smart.pendy.dpdns.org/Smart.php?id=pearl_twn
+凤凰香港,https://smart.pendy.dpdns.org/Smart.php?id=hkphoenix_twn
+香港|HOY资讯台,https://smart.pendy.dpdns.org/Smart.php?id=hoycaijing_twn
+香港|RHK 31,https://smart.pendy.dpdns.org/Smart.php?id=rhk31_twn
+VIUTV,https://smart.pendy.dpdns.org/Smart.php?id=viu1_twn
+香港|RHK 32,https://smart.pendy.dpdns.org/Smart.php?id=rhk32_twn
+香港|凤凰卫视,https://smart.pendy.dpdns.org/Smart.php?id=phoenixtv_hd
+凤凰资讯,https://smart.pendy.dpdns.org/Smart.php?id=phoenixinfo_hd
+香港|Viu6,https://smart.pendy.dpdns.org/Smart.php?id=viusix_twn
+CCTV1,https://smart.pendy.dpdns.org/Smart.php?id=cctv1
+CCTV2,https://smart.pendy.dpdns.org/Smart.php?id=cctv2
+CCTV3,https://smart.pendy.dpdns.org/Smart.php?id=cctv3
+CCTV4,https://smart.pendy.dpdns.org/Smart.php?id=cctv4
+CCTV4,https://smart.pendy.dpdns.org/Smart.php?id=Cctv4
+CCTV7,https://smart.pendy.dpdns.org/Smart.php?id=cctv7
+CCTV8,https://smart.pendy.dpdns.org/Smart.php?id=cctv8hd
+CCTV9,https://smart.pendy.dpdns.org/Smart.php?id=cctv9hd
+CCTV10,https://smart.pendy.dpdns.org/Smart.php?id=cctv10hd
+CCTV11,https://smart.pendy.dpdns.org/Smart.php?id=cctv11
+CCTV12,https://smart.pendy.dpdns.org/Smart.php?id=cctv12
+CCTV13,https://smart.pendy.dpdns.org/Smart.php?id=cctv13
+CCTV14,https://smart.pendy.dpdns.org/Smart.php?id=cctv14
+CCTV6,https://smart.pendy.dpdns.org/Smart.php?id=cctv6
+CCTV15,https://smart.pendy.dpdns.org/Smart.php?id=cctv15
+湖南卫视,https://smart.pendy.dpdns.org/Smart.php?id=hunan_twn
+浙江卫视,https://smart.pendy.dpdns.org/Smart.php?id=zhejiang_twn
+江苏卫视,https://smart.pendy.dpdns.org/Smart.php?id=jiangsu_twn
+深圳卫视,https://smart.pendy.dpdns.org/Smart.php?id=shenzhen
+东南卫视,https://smart.pendy.dpdns.org/Smart.php?id=fujian
+南方卫视,https://smart.pendy.dpdns.org/Smart.php?id=nanfang_twn
+广东卫视,https://smart.pendy.dpdns.org/Smart.php?id=guangdongweishi_twn
+北京卫视,https://smart.pendy.dpdns.org/Smart.php?id=beijing
+珠江,https://smart.pendy.dpdns.org/Smart.php?id=zhujiang
+广西卫视,https://smart.pendy.dpdns.org/Smart.php?id=guangxi
+湖北卫视,https://smart.pendy.dpdns.org/Smart.php?id=hubei
+四川卫视,https://smart.pendy.dpdns.org/Smart.php?id=sichuan_twn
+东方卫视,https://smart.pendy.dpdns.org/Smart.php?id=dongfangweishi_twn
+中国|CGTN,https://smart.pendy.dpdns.org/Smart.php?id=CGTN
+CCTV5,https://smart.pendy.dpdns.org/Smart.php?id=cctv5
+CCTV5+,https://smart.pendy.dpdns.org/Smart.php?id=cctv5plus
+体育频道|Astro Premier League 1,https://smart.pendy.dpdns.org/Smart.php?id=go_assp1
+体育频道|Astro EPL 1 backup,https://smart.pendy.dpdns.org/Smart.php?id=go_assp1x
+体育频道|Astro Premier League 2,https://smart.pendy.dpdns.org/Smart.php?id=go_assp2
+体育频道|Astro Grandstand,https://smart.pendy.dpdns.org/Smart.php?id=go_assp3
+体育频道|Astro Football,https://smart.pendy.dpdns.org/Smart.php?id=go_assp4
+体育频道|Astro Sports Plus,https://smart.pendy.dpdns.org/Smart.php?id=go_sportsplus
+体育频道|Astro Badminton 1,https://smart.pendy.dpdns.org/Smart.php?id=go_badminton1
+体育频道|Astro Badminton 2,https://smart.pendy.dpdns.org/Smart.php?id=go_badminton2
+体育频道|Astro W-Sports,https://smart.pendy.dpdns.org/Smart.php?id=go_assp5
+体育频道|Supersports 1,https://smart.pendy.dpdns.org/Smart.php?id=Assp1
+体育频道|Supersports 2,https://smart.pendy.dpdns.org/Smart.php?id=Assp2
+体育频道|Supersports 3,https://smart.pendy.dpdns.org/Smart.php?id=Assp3
+体育频道|Supersports 4,https://smart.pendy.dpdns.org/Smart.php?id=Assp4
+体育频道|WWE,https://smart.pendy.dpdns.org/Smart.php?id=Wwe
+体育频道|Fight Sports,https://smart.pendy.dpdns.org/Smart.php?id=Fs
+体育频道|NBA TV,https://smart.pendy.dpdns.org/Smart.php?id=Nba
+体育频道|Astro Cricket,https://smart.pendy.dpdns.org/Smart.php?id=Acricket
+体育频道|Astro Golf,https://smart.pendy.dpdns.org/Smart.php?id=Agolf
+体育频道|Tnt Sports 1,https://smart.pendy.dpdns.org/Smart.php?id=6fac0aaead
+体育频道|TNT Sports 2,https://smart.pendy.dpdns.org/Smart.php?id=d9a76a79cc
+体育频道|TNT Sports 3,https://smart.pendy.dpdns.org/Smart.php?id=5fea4d73db
+体育频道|TNT Sports 4,https://smart.pendy.dpdns.org/Smart.php?id=tntsport4
+体育频道|Sony Ten 1,https://smart.pendy.dpdns.org/Smart.php?id=ten1_raj
+体育频道|Sony Ten 2,https://smart.pendy.dpdns.org/Smart.php?id=ten2_raj
+体育频道|Sony Ten 3,https://smart.pendy.dpdns.org/Smart.php?id=ten3_raj
+体育频道|SPOTV 1 HD,https://smart.pendy.dpdns.org/Smart.php?id=go_spotv
+体育频道|SPO TV 2,https://smart.pendy.dpdns.org/Smart.php?id=go_spotv2
+体育频道|Skysports F1,https://smart.pendy.dpdns.org/Smart.php?id=tiankongf1
+体育频道|Skysports Cricket,https://smart.pendy.dpdns.org/Smart.php?id=tiankongcricket
+体育频道|Skysports EPL,https://smart.pendy.dpdns.org/Smart.php?id=tiankongepl
+EVE,https://smart.pendy.dpdns.org/Smart.php?id=tiankongmain
+体育频道|Skysports News,https://smart.pendy.dpdns.org/Smart.php?id=tiankongnews
+体育频道|Skysports Mix,https://smart.pendy.dpdns.org/Smart.php?id=tiankongmix
+爱尔达体育2,https://smart.pendy.dpdns.org/Smart.php?id=eltasport2_twn
+爱尔达体育3,https://smart.pendy.dpdns.org/Smart.php?id=eltasport3_twn
+体育频道|Rugby Pass TV,https://smart.pendy.dpdns.org/Smart.php?id=Rugbypasstv
+体育频道|RTM Sports HD,https://smart.pendy.dpdns.org/Smart.php?id=Rtmsport
+体育频道|Arena,https://smart.pendy.dpdns.org/Smart.php?id=Arena
+体育频道|Arena 2,https://smart.pendy.dpdns.org/Smart.php?id=Arena2
+体育频道|BolaArena 1,https://smart.pendy.dpdns.org/Smart.php?id=Bolaarena1
+体育频道|BolaArena 2,https://smart.pendy.dpdns.org/Smart.php?id=Bolaarena2
+体育频道|Astro Beinsports 1,https://smart.pendy.dpdns.org/Smart.php?id=Astrobein1
+体育频道|Astro Beinsports 2,https://smart.pendy.dpdns.org/Smart.php?id=Astrobein2
+体育频道|Astro Beinsports 3,https://smart.pendy.dpdns.org/Smart.php?id=Astrobein3
+TVBS,https://smart.pendy.dpdns.org/Smart.php?id=tvbs_n
+TVBS,https://smart.pendy.dpdns.org/Smart.php?id=tvbshuanle_twn
+TVBS,https://smart.pendy.dpdns.org/Smart.php?id=tvbs
+台湾|中天新闻 HD,https://smart.pendy.dpdns.org/Smart.php?id=ctinews
+台湾|中天娱乐 CTI Entertaiment,https://smart.pendy.dpdns.org/Smart.php?id=ctient
+台湾|中天综合 CTI Metro,https://smart.pendy.dpdns.org/Smart.php?id=ctizhonghe
+中天亚洲台,https://smart.pendy.dpdns.org/Smart.php?id=ctiasia_twn
+台视,https://smart.pendy.dpdns.org/Smart.php?id=ttv_taiwan
+台视,https://smart.pendy.dpdns.org/Smart.php?id=ttvnews_twn
+台视,https://smart.pendy.dpdns.org/Smart.php?id=ttvzhonghe
+中视,https://smart.pendy.dpdns.org/Smart.php?id=zhongshihd_twn
+中视,https://smart.pendy.dpdns.org/Smart.php?id=zhongshinews_twn
+民视,https://smart.pendy.dpdns.org/Smart.php?id=ftvhd_taiwan
+TVN,https://smart.pendy.dpdns.org/Smart.php?id=ftvnew_taiwan
+民视,https://smart.pendy.dpdns.org/Smart.php?id=ftvtaiwan_twn
+华视,https://smart.pendy.dpdns.org/Smart.php?id=ctshd_twn
+公视,https://smart.pendy.dpdns.org/Smart.php?id=ctv18_twn
+台湾|八大第一 GTV First,https://smart.pendy.dpdns.org/Smart.php?id=badafirst
+台湾|八大综合 GTV Metro,https://smart.pendy.dpdns.org/Smart.php?id=badazhonghe
+台湾|八大戏剧 GTV Drama,https://smart.pendy.dpdns.org/Smart.php?id=badadrama
+台湾|八大娱乐 GTV Entertainment,https://smart.pendy.dpdns.org/Smart.php?id=badaentertain
+HBO,https://smart.pendy.dpdns.org/Smart.php?id=hbohd_twn
+HBO,https://smart.pendy.dpdns.org/Smart.php?id=hbohit_twn
+台湾|Hollywood Movies,https://smart.pendy.dpdns.org/Smart.php?id=hollywoodmovies_twn
+台湾|三立台湾 Sanli Taiwan,https://smart.pendy.dpdns.org/Smart.php?id=sanlitaiwan
+三立戏剧,https://smart.pendy.dpdns.org/Smart.php?id=sanlixiju_twn
+台湾|三立综合 Sanli Metro,https://smart.pendy.dpdns.org/Smart.php?id=sanlizhonghe
+三立都会台,https://smart.pendy.dpdns.org/Smart.php?id=sanlidouhui
+TVN,https://smart.pendy.dpdns.org/Smart.php?id=ettvnews
+CI,https://smart.pendy.dpdns.org/Smart.php?id=cinemax_twn
+台湾|东森综合 ETTV Metro,https://smart.pendy.dpdns.org/Smart.php?id=ettvzhonghe
+台湾|东森戏剧 ETTV Drama,https://smart.pendy.dpdns.org/Smart.php?id=ettvdrama
+东森超视,https://smart.pendy.dpdns.org/Smart.php?id=ettvsuper
+台湾|东森财经新闻 ETTV Business,https://smart.pendy.dpdns.org/Smart.php?id=ettvcaijing_twn
+寰宇财经,https://smart.pendy.dpdns.org/Smart.php?id=huanyutaiwan_twn
+寰宇新闻,https://smart.pendy.dpdns.org/Smart.php?id=huanyuxinwen_twn
+公视,https://smart.pendy.dpdns.org/Smart.php?id=ctv2_twn
+台湾|大爱1台,https://smart.pendy.dpdns.org/Smart.php?id=daai_twn
+非凡新闻台,https://smart.pendy.dpdns.org/Smart.php?id=feifannews_twn
+龙华戏剧,https://smart.pendy.dpdns.org/Smart.php?id=lunghuaxiju_twn
+龙华经典,https://smart.pendy.dpdns.org/Smart.php?id=lunghuajingdian_twn
+龙华偶像,https://smart.pendy.dpdns.org/Smart.php?id=lunghuaidol_twn
+AXN,https://smart.pendy.dpdns.org/Smart.php?id=axn_twn
+靖天国际,https://smart.pendy.dpdns.org/Smart.php?id=jingtianintl_twn
+台湾|年代新闻,https://smart.pendy.dpdns.org/Smart.php?id=niandainews_twn
+纬来日本台,https://smart.pendy.dpdns.org/Smart.php?id=videolandjapan
+纬来电影台,https://smart.pendy.dpdns.org/Smart.php?id=videolandmovie
+纬来体育台,https://smart.pendy.dpdns.org/Smart.php?id=videolandsport
+纬来综合台,https://smart.pendy.dpdns.org/Smart.php?id=videolandzonghe
+台湾|纬来育乐,https://smart.pendy.dpdns.org/Smart.php?id=videolandyule
+台湾|纬来精彩,https://smart.pendy.dpdns.org/Smart.php?id=videolandspecial_twn
+台湾|好消息 2,https://smart.pendy.dpdns.org/Smart.php?id=good2_twn
+台湾|大爱2台,https://smart.pendy.dpdns.org/Smart.php?id=daai2_twn
+亚洲美食,https://smart.pendy.dpdns.org/Smart.php?id=afc_twn
+美食星球,https://smart.pendy.dpdns.org/Smart.php?id=foodplanet_twn
+台湾|亚洲旅游 TLC Asia,https://smart.pendy.dpdns.org/Smart.php?id=tlc_twn
+台湾|东森电影 ETTV Movie,https://smart.pendy.dpdns.org/Smart.php?id=ettvmovie
+台湾|阿里郎 Arirang,https://smart.pendy.dpdns.org/Smart.php?id=arirang_twn
+台湾|博斯运动 1,https://smart.pendy.dpdns.org/Smart.php?id=bosisport1_twn
+台湾|博斯运动 2,https://smart.pendy.dpdns.org/Smart.php?id=bosisport2_twn
+台湾|博斯高球2 HD,https://smart.pendy.dpdns.org/Smart.php?id=bosigolf2_twn
+台湾|博斯网球 HD,https://smart.pendy.dpdns.org/Smart.php?id=bositennis_twn
+台湾|东森洋片 ETTV Western,https://smart.pendy.dpdns.org/Smart.php?id=ettvwestern
+龙华洋片,https://smart.pendy.dpdns.org/Smart.php?id=lunghuawestern_twn
+台湾|博斯无限,https://smart.pendy.dpdns.org/Smart.php?id=bosiunlimited_twn
+MTV,https://smart.pendy.dpdns.org/Smart.php?id=mtvhd_twn
+台湾|龙详时代,https://smart.pendy.dpdns.org/Smart.php?id=lungxiangtime_twn
+台湾|EYETV 旅游,https://smart.pendy.dpdns.org/Smart.php?id=eyetvtravel_twn
+靖天卡通台,https://smart.pendy.dpdns.org/Smart.php?id=jingtiancartoon_twn
+台湾|EYETV 戏剧,https://smart.pendy.dpdns.org/Smart.php?id=eyetvxiju_twn
+卫视中文台,https://smart.pendy.dpdns.org/Smart.php?id=weishichinese_twn
+台湾|东森幼幼 Yoyo TV,https://smart.pendy.dpdns.org/Smart.php?id=yoyo_twn
+卫视电影台,https://smart.pendy.dpdns.org/Smart.php?id=weishimovie_twn
+台湾|美亚电影,https://smart.pendy.dpdns.org/Smart.php?id=meiyamovie_twn
+爱尔达影剧,https://smart.pendy.dpdns.org/Smart.php?id=eltayingju_twn
+爱尔达综合,https://smart.pendy.dpdns.org/Smart.php?id=eltazonghe_twn
+台湾|星卫电影,https://smart.pendy.dpdns.org/Smart.php?id=xingwei_movie
+亚洲旅游台,https://smart.pendy.dpdns.org/Smart.php?id=asiatravel_twn
+CI,https://smart.pendy.dpdns.org/Smart.php?id=Cinemax
+ANIMAX,https://smart.pendy.dpdns.org/Smart.php?id=Animax
+电影频道|Movies Now HD,https://smart.pendy.dpdns.org/Smart.php?id=moviesnow_raj
+电影频道|Star Movies HD,https://smart.pendy.dpdns.org/Smart.php?id=starmovies_raj
+HBO,https://smart.pendy.dpdns.org/Smart.php?id=Hbofamily
+HITS,https://smart.pendy.dpdns.org/Smart.php?id=Hits
+WARNERTV,https://smart.pendy.dpdns.org/Smart.php?id=WarnerTV
+HBO,https://smart.pendy.dpdns.org/Smart.php?id=Hbo
+HBO,https://smart.pendy.dpdns.org/Smart.php?id=Hbosignature
+HBO,https://smart.pendy.dpdns.org/Smart.php?id=Hbohitshd
+电影频道|SCM,https://smart.pendy.dpdns.org/Smart.php?id=Weishimovie
+DREAMWORKS,https://smart.pendy.dpdns.org/Smart.php?id=Dreamworks
+THRILL,https://smart.pendy.dpdns.org/Smart.php?id=Thrill
+HITS,https://smart.pendy.dpdns.org/Smart.php?id=Hitsmovie
+电影频道|One,https://smart.pendy.dpdns.org/Smart.php?id=One
+TVN,https://smart.pendy.dpdns.org/Smart.php?id=Tvnmovie
+电影频道|Celestial Classic,https://smart.pendy.dpdns.org/Smart.php?id=Celestial2
+电影频道|Celestial Movies HD,https://smart.pendy.dpdns.org/Smart.php?id=Celestialindo
+AXN,https://smart.pendy.dpdns.org/Smart.php?id=Axn
+电影频道|Paramount Network,https://smart.pendy.dpdns.org/Smart.php?id=Paramountnetwork
+电影频道|Astrol Kplus,https://smart.pendy.dpdns.org/Smart.php?id=Kplus
+电影频道|Rock Actions,https://smart.pendy.dpdns.org/Smart.php?id=Rockaction
+电影频道|Rock Entertainment,https://smart.pendy.dpdns.org/Smart.php?id=Rockentertain
+纪录频道|Natgeo_HD,https://smart.pendy.dpdns.org/Smart.php?id=natgeohd_twn
+纪录频道|NatGeo_Wild HD,https://smart.pendy.dpdns.org/Smart.php?id=natgeowild_twn
+纪录频道|Animal_Planet,https://smart.pendy.dpdns.org/Smart.php?id=animalplanet_twn
+DISCOVERY,https://smart.pendy.dpdns.org/Smart.php?id=discoverytwn_twn
+CI,https://smart.pendy.dpdns.org/Smart.php?id=ci_twn
+DISCOVERY,https://smart.pendy.dpdns.org/Smart.php?id=discoveryhd_twn
+纪录频道|NatGeo HD,https://smart.pendy.dpdns.org/Smart.php?id=Natgeo
+FASHIONTV,https://smart.pendy.dpdns.org/Smart.php?id=fashiontv_twn
+HISTORY,https://smart.pendy.dpdns.org/Smart.php?id=History
+BBCEARTH,https://smart.pendy.dpdns.org/Smart.php?id=bbcearth_twn
+BBCEARTH,https://smart.pendy.dpdns.org/Smart.php?id=bbclifestyle_twn
+纪录频道|NatGeo Wild HD,https://smart.pendy.dpdns.org/Smart.php?id=Natgeowild
+纪录频道|Animal Planet (Eng),https://smart.pendy.dpdns.org/Smart.php?id=AnimalPlanet
+纪录频道|TLC,https://smart.pendy.dpdns.org/Smart.php?id=Tlc
+纪录频道|Foodnetwork Hd,https://smart.pendy.dpdns.org/Smart.php?id=Foodnetwork
+纪录频道|HGTV,https://smart.pendy.dpdns.org/Smart.php?id=HGTV
+SKYNEWS,https://smart.pendy.dpdns.org/Smart.php?id=skynews_twn
+新闻频道|ABC News,https://smart.pendy.dpdns.org/Smart.php?id=abcnews_glo
+新闻频道|CBS HD,https://smart.pendy.dpdns.org/Smart.php?id=cbshd_glo
+新闻频道|CBSN HD,https://smart.pendy.dpdns.org/Smart.php?id=cbsn_glo
+FRANCE24,https://smart.pendy.dpdns.org/Smart.php?id=france24_twn
+DW,https://smart.pendy.dpdns.org/Smart.php?id=dw_twn
+NHK,https://smart.pendy.dpdns.org/Smart.php?id=nhkworld_japan
+FOX,https://smart.pendy.dpdns.org/Smart.php?id=foxnews_twn
+CNN,https://smart.pendy.dpdns.org/Smart.php?id=Cnn
+CNN,https://smart.pendy.dpdns.org/Smart.php?id=cnn_twn
+新闻频道|CNBC,https://smart.pendy.dpdns.org/Smart.php?id=cnbc_twn
+新闻频道|CNA,https://smart.pendy.dpdns.org/Smart.php?id=cna
+BBCWORLDNEWS,https://smart.pendy.dpdns.org/Smart.php?id=bbcnews_twn
+BBCWORLDNEWS,https://smart.pendy.dpdns.org/Smart.php?id=Bbcnews
+新闻频道|Bloomberg News,https://smart.pendy.dpdns.org/Smart.php?id=bloomberg_twn
+ALJAZEERA,https://smart.pendy.dpdns.org/Smart.php?id=aljazeera_twn
+BABYTV,https://smart.pendy.dpdns.org/Smart.php?id=Babytv
+CBEEBIES,https://smart.pendy.dpdns.org/Smart.php?id=Cbeebies
+儿童频道|Kids TV,https://smart.pendy.dpdns.org/Smart.php?id=KidsTV
+儿童频道|Momo TV,https://smart.pendy.dpdns.org/Smart.php?id=momo1_twn
+BABYTV,https://smart.pendy.dpdns.org/Smart.php?id=babytv_twn
+儿童频道|MiaoMi,https://smart.pendy.dpdns.org/Smart.php?id=MiaoMi
+儿童频道|Cartoon Network,https://smart.pendy.dpdns.org/Smart.php?id=Cn
+NICKELODEON,https://smart.pendy.dpdns.org/Smart.php?id=Nickelodeon
+儿童频道|Nick Jr,https://smart.pendy.dpdns.org/Smart.php?id=Nickjr
+新加坡|Channel 5,https://smart.pendy.dpdns.org/Smart.php?id=Channel5HD
+新加坡|Channel 8,https://smart.pendy.dpdns.org/Smart.php?id=Channel8HD
+新加坡|Suria,https://smart.pendy.dpdns.org/Smart.php?id=Suria
+新加坡|Channel U,https://smart.pendy.dpdns.org/Smart.php?id=ChannelU
+新加坡|Vasantham,https://smart.pendy.dpdns.org/Smart.php?id=Vasantham
+新加坡|CNA backup,https://smart.pendy.dpdns.org/Smart.php?id=cna_twn
+新加坡|MeWatch Ch 5,https://smart.pendy.dpdns.org/Smart.php?id=Mewatch_ch5
+新加坡|MeWatch Ch 8,https://smart.pendy.dpdns.org/Smart.php?id=Mewatch_ch8
+新加坡|MeWatch Ch U,https://smart.pendy.dpdns.org/Smart.php?id=Mewatch_chU
+新加坡|MeWatch Suria,https://smart.pendy.dpdns.org/Smart.php?id=Mewatch_Suria
+新加坡|MeWatch Vasantham,https://smart.pendy.dpdns.org/Smart.php?id=Mewatch_Vasantham
+新加坡|MeWatch CNA,https://smart.pendy.dpdns.org/Smart.php?id=Mewatch_cna
+马来西亚|TV1,https://smart.pendy.dpdns.org/Smart.php?id=TV1
+马来西亚|TV1 backup,https://smart.pendy.dpdns.org/Smart.php?id=TV1_backup
+马来西亚|TV2,https://smart.pendy.dpdns.org/Smart.php?id=TV2
+马来西亚|TV3,https://smart.pendy.dpdns.org/Smart.php?id=TV3
+马来西亚|TV3 SD,https://smart.pendy.dpdns.org/Smart.php?id=TV3_mega
+马来西亚|NTV7,https://smart.pendy.dpdns.org/Smart.php?id=NTV7
+马来西亚|TV8,https://smart.pendy.dpdns.org/Smart.php?id=TV8
+马来西亚|TV9,https://smart.pendy.dpdns.org/Smart.php?id=TV9
+马来西亚|Ria,https://smart.pendy.dpdns.org/Smart.php?id=Ria-0
+马来西亚|Ria-3,https://smart.pendy.dpdns.org/Smart.php?id=Ria_backup
+马来西亚|Al-Hijrah,https://smart.pendy.dpdns.org/Smart.php?id=Alhijrah
+马来西亚|Al-Hijrah backup,https://smart.pendy.dpdns.org/Smart.php?id=Alhijrah_backup
+马来西亚|Awani,https://smart.pendy.dpdns.org/Smart.php?id=Awani
+马来西亚|Bernama,https://smart.pendy.dpdns.org/Smart.php?id=Bernama
+马来西亚|Prima,https://smart.pendy.dpdns.org/Smart.php?id=Prima-0
+马来西亚|Prima backup,https://smart.pendy.dpdns.org/Smart.php?id=AAprima1
+马来西亚|Prima backup 2,https://smart.pendy.dpdns.org/Smart.php?id=AAprima
+马来西亚|Ceria,https://smart.pendy.dpdns.org/Smart.php?id=Ceria
+MTV,https://smart.pendy.dpdns.org/Smart.php?id=AstroMTV
+马来西亚|Mecca Live HD,https://smart.pendy.dpdns.org/Smart.php?id=quran_mido
+马来西亚|Madinah HD,https://smart.pendy.dpdns.org/Smart.php?id=sunnah_mido
+马来西亚|Oasis,https://smart.pendy.dpdns.org/Smart.php?id=Oasis
+马来西亚|Siar,https://smart.pendy.dpdns.org/Smart.php?id=Siar
+CI,https://smart.pendy.dpdns.org/Smart.php?id=AAcitra
+CI,https://smart.pendy.dpdns.org/Smart.php?id=AAcitra1
+马来西亚|Sensasi,https://smart.pendy.dpdns.org/Smart.php?id=Sensasi
+马来西亚|Aura,https://smart.pendy.dpdns.org/Smart.php?id=Aura
+马来西亚|Rania,https://smart.pendy.dpdns.org/Smart.php?id=Rania
+马来西亚|KBS World,https://smart.pendy.dpdns.org/Smart.php?id=KBS
+马来西亚|Boo,https://smart.pendy.dpdns.org/Smart.php?id=Boo
+马来西亚|Awesome TV,https://smart.pendy.dpdns.org/Smart.php?id=Dsangat
+马来西亚|Astro Sonypix,https://smart.pendy.dpdns.org/Smart.php?id=Asonypix
+马来西亚|Sony HD,https://smart.pendy.dpdns.org/Smart.php?id=SetOne
+TVN,https://smart.pendy.dpdns.org/Smart.php?id=TVN
+马来西亚|AEC,https://smart.pendy.dpdns.org/Smart.php?id=AEC
+马来西亚|华丽台 HD （Wah Lai Toi）,https://smart.pendy.dpdns.org/Smart.php?id=Wlt
+马来西亚|欢喜台 HD （Hua Hee Tai）,https://smart.pendy.dpdns.org/Smart.php?id=Huahee
+马来西亚|Astro QJ,https://smart.pendy.dpdns.org/Smart.php?id=Quanjia
+马来西亚|TVB Jade,https://smart.pendy.dpdns.org/Smart.php?id=Tvbjade
+马来西亚|TVB Asia,https://smart.pendy.dpdns.org/Smart.php?id=Tvbasia
+马来西亚|TVB Entertainment,https://smart.pendy.dpdns.org/Smart.php?id=Tvbentertainment
+马来西亚|TVB Classic,https://smart.pendy.dpdns.org/Smart.php?id=Tvbclassic
+马来西亚|AOD,https://smart.pendy.dpdns.org/Smart.php?id=Aodhd
+马来西亚|TVB 星河台 Xing He,https://smart.pendy.dpdns.org/Smart.php?id=Xinhe
+马来西亚|爱奇艺 iQiyi,https://smart.pendy.dpdns.org/Smart.php?id=Qiyi
+马来西亚|Goshop,https://smart.pendy.dpdns.org/Smart.php?id=Goshop
+马来西亚|Celestial Movies HD,https://smart.pendy.dpdns.org/Smart.php?id=Celestial
+马来西亚|Astro LOL,https://smart.pendy.dpdns.org/Smart.php?id=Astro_lol
+马来西亚|Astro Rusi,https://smart.pendy.dpdns.org/Smart.php?id=Rusi
+马来西亚|WION,https://smart.pendy.dpdns.org/Smart.php?id=Wion
+马来西亚|RTM Asean,https://smart.pendy.dpdns.org/Smart.php?id=Rtmasean
+印度尼西亚|TVRI National,https://smart.pendy.dpdns.org/Smart.php?id=TVRI
+印度尼西亚|RCTI,https://smart.pendy.dpdns.org/Smart.php?id=Rcti
+印度尼西亚|Kompass TV,https://smart.pendy.dpdns.org/Smart.php?id=Kompass
+印度尼西亚|Berita Satu,https://smart.pendy.dpdns.org/Smart.php?id=BeritaSatu_eko
+印度尼西亚|Indosiar HD,https://smart.pendy.dpdns.org/Smart.php?id=Indosiar
+印度尼西亚|AnTV,https://smart.pendy.dpdns.org/Smart.php?id=Antv
+印度尼西亚|MNC TV,https://smart.pendy.dpdns.org/Smart.php?id=Mnctv
+印度尼西亚|Trans 7,https://smart.pendy.dpdns.org/Smart.php?id=Trans7_eko
+印度尼西亚|Transtv,https://smart.pendy.dpdns.org/Smart.php?id=Transtv
+印度尼西亚|JTV,https://smart.pendy.dpdns.org/Smart.php?id=JTV_eko
+印度尼西亚|Metro TV,https://smart.pendy.dpdns.org/Smart.php?id=metrotv_eko
+印度尼西亚|SCTV,https://smart.pendy.dpdns.org/Smart.php?id=SCTV
+印度尼西亚|Tvone,https://smart.pendy.dpdns.org/Smart.php?id=Tvone
+印度尼西亚|TVMU,https://smart.pendy.dpdns.org/Smart.php?id=TVMU_eko
+印度尼西亚|GTV,https://smart.pendy.dpdns.org/Smart.php?id=Gtv
+印度尼西亚|RTV,https://smart.pendy.dpdns.org/Smart.php?id=Rtv
+印度尼西亚|Jak TV,https://smart.pendy.dpdns.org/Smart.php?id=JakTV
+印度尼西亚|iNews TV,https://smart.pendy.dpdns.org/Smart.php?id=Inewstv
+印度尼西亚|Daai TV,https://smart.pendy.dpdns.org/Smart.php?id=DaaiTV
+印度尼西亚|Net TV,https://smart.pendy.dpdns.org/Smart.php?id=NetTV
+印度尼西亚|EWTN,https://smart.pendy.dpdns.org/Smart.php?id=Ewtn
+印度尼西亚|AlQuran AlKareem,https://smart.pendy.dpdns.org/Smart.php?id=AlQuran
+印度尼西亚|Tawaf TV,https://smart.pendy.dpdns.org/Smart.php?id=TawafTV
+印度尼西亚|Vision Prime,https://smart.pendy.dpdns.org/Smart.php?id=VisionPrime
+MTV,https://smart.pendy.dpdns.org/Smart.php?id=MuslimTV
+印度尼西亚|Music TV,https://smart.pendy.dpdns.org/Smart.php?id=MusicTV
+印度尼西亚|Lifestyle&amp;Fashion,https://smart.pendy.dpdns.org/Smart.php?id=Lifestyle
+印度尼西亚|Entertain,https://smart.pendy.dpdns.org/Smart.php?id=Entertain
+印度|Sun TV HD,https://smart.pendy.dpdns.org/Smart.php?id=Suntv
+印度|Star Vijay,https://smart.pendy.dpdns.org/Smart.php?id=Starvijay
+印度|Colors Tamil,https://smart.pendy.dpdns.org/Smart.php?id=Colorstam
+印度|Sun Music,https://smart.pendy.dpdns.org/Smart.php?id=Sunmusic
+印度|Astro Sunlife,https://smart.pendy.dpdns.org/Smart.php?id=Sunlife
+印度|Astro Vaanavil,https://smart.pendy.dpdns.org/Smart.php?id=Vaanavil
+Z,https://smart.pendy.dpdns.org/Smart.php?id=Zeetamil
+Z,https://smart.pendy.dpdns.org/Smart.php?id=Zeebusiness
+印度|News 18 Tamil,https://smart.pendy.dpdns.org/Smart.php?id=news18tamil_raj
+印度|Adithya,https://smart.pendy.dpdns.org/Smart.php?id=Adithya
+印度|Makkal TV,https://smart.pendy.dpdns.org/Smart.php?id=Makkaltv
+Z,https://smart.pendy.dpdns.org/Smart.php?id=Zeeaction
+印度|Astro KTV,https://smart.pendy.dpdns.org/Smart.php?id=Astroktv
+Z,https://smart.pendy.dpdns.org/Smart.php?id=Zeetvhd
+CI,https://smart.pendy.dpdns.org/Smart.php?id=Zeecinemahd
+印度|Color HD,https://smart.pendy.dpdns.org/Smart.php?id=Colorhd
+印度|Starplus HD,https://smart.pendy.dpdns.org/Smart.php?id=Starplushd
+印度|Picture HD,https://smart.pendy.dpdns.org/Smart.php?id=Npicture
+Z,https://smart.pendy.dpdns.org/Smart.php?id=Zeenews
+印度|Asianet,https://smart.pendy.dpdns.org/Smart.php?id=asianet_raj
+印度|Asianet News,https://smart.pendy.dpdns.org/Smart.php?id=asianetnews_raj
+DISCOVERY,https://smart.pendy.dpdns.org/Smart.php?id=discoveryworldtam_raj
+HISTORY,https://smart.pendy.dpdns.org/Smart.php?id=historytam_raj
+印度|NatGeo Tamil,https://smart.pendy.dpdns.org/Smart.php?id=natgeotamil_raj
+印度|Natgeo Wild Tamil,https://smart.pendy.dpdns.org/Smart.php?id=natgeowildtamil_raj
+DISCOVERY,https://smart.pendy.dpdns.org/Smart.php?id=discoverykidtamil_raj
+DISCOVERY,https://smart.pendy.dpdns.org/Smart.php?id=discoverytamil_raj
+印度|Sony Yay Tamil,https://smart.pendy.dpdns.org/Smart.php?id=sonyyaytam_raj
+印度|Sun TV India,https://smart.pendy.dpdns.org/Smart.php?id=suntv_raj
+印度|Starmaa HD,https://smart.pendy.dpdns.org/Smart.php?id=starmaa_raj
+印度|Starmaa Movies HD,https://smart.pendy.dpdns.org/Smart.php?id=starmaamovies_raj
+印度|Bollyone,https://smart.pendy.dpdns.org/Smart.php?id=Bollyone
+印度|Vijay Super,https://smart.pendy.dpdns.org/Smart.php?id=vijaysuper_raj
+印度|Vellithirai,https://smart.pendy.dpdns.org/Smart.php?id=Vellithirai
+泰国|Channel 3 Thailand,https://smart.pendy.dpdns.org/Smart.php?id=ch3_pat
+泰国|Channel 5 Thailand,https://smart.pendy.dpdns.org/Smart.php?id=ch5_pat
+泰国|Channel 7 Thailand,https://smart.pendy.dpdns.org/Smart.php?id=ch7_pat
+泰国|MCOT HD Thailand-1,https://smart.pendy.dpdns.org/Smart.php?id=mcot_pat
+泰国|PPTV Thailand1,https://smart.pendy.dpdns.org/Smart.php?id=pptv_pat
+泰国|Thai Thai,https://smart.pendy.dpdns.org/Smart.php?id=thaithai_pat
+泰国|Amarin,https://smart.pendy.dpdns.org/Smart.php?id=amarin_pat
+泰国|Ch 8,https://smart.pendy.dpdns.org/Smart.php?id=ch8_pat
+泰国|GmmOne,https://smart.pendy.dpdns.org/Smart.php?id=gmmone_pat
+泰国|Mono,https://smart.pendy.dpdns.org/Smart.php?id=mono_pat
+泰国|Thairath,https://smart.pendy.dpdns.org/Smart.php?id=thairath_pat
+泰国|tpbs,https://smart.pendy.dpdns.org/Smart.php?id=tpbs_pat
+泰国|Workpoint,https://smart.pendy.dpdns.org/Smart.php?id=workpoint_pat
+泰国|Gmm Channel,https://smart.pendy.dpdns.org/Smart.php?id=gmmchannel_pat
+泰国|Nation,https://smart.pendy.dpdns.org/Smart.php?id=nation_pat
+泰国|Tnn24,https://smart.pendy.dpdns.org/Smart.php?id=tnn24_pat
+泰国|Nbt,https://smart.pendy.dpdns.org/Smart.php?id=nbt_pat
+泰国|New,https://smart.pendy.dpdns.org/Smart.php?id=new_pat
+泰国|TPTV,https://smart.pendy.dpdns.org/Smart.php?id=tptv_pat
+英国|BBC 1,https://smart.pendy.dpdns.org/Smart.php?id=bbc1_antik
+英国|BBC 2,https://smart.pendy.dpdns.org/Smart.php?id=bbc2_antik
+英国|CBBC,https://smart.pendy.dpdns.org/Smart.php?id=cbbc_antik
+英国|More4,https://smart.pendy.dpdns.org/Smart.php?id=more4_antik
+英国|Freesports,https://smart.pendy.dpdns.org/Smart.php?id=freesports_antik
+英国|Pick TV,https://smart.pendy.dpdns.org/Smart.php?id=picktv_antik
+英国|itv 1,https://smart.pendy.dpdns.org/Smart.php?id=itv1_antik
+英国|itv 2,https://smart.pendy.dpdns.org/Smart.php?id=itv2_antik
+EURONEWS,https://smart.pendy.dpdns.org/Smart.php?id=euronews_antik
+英国|Channel 4,https://smart.pendy.dpdns.org/Smart.php?id=channel4_antik
+BBCWORLDNEWS,https://smart.pendy.dpdns.org/Smart.php?id=bbcworldnews_antik
+越南|ANTV,https://smart.pendy.dpdns.org/Smart.php?id=viet_antv
+越南|VTV 1,https://smart.pendy.dpdns.org/Smart.php?id=viet_vtv1
+越南|VTV 7,https://smart.pendy.dpdns.org/Smart.php?id=viet_vtv7
+越南|HTV 7,https://smart.pendy.dpdns.org/Smart.php?id=viet_htv7
+越南|HTV 9,https://smart.pendy.dpdns.org/Smart.php?id=viet_htv9
+越南|BPTV 2,https://smart.pendy.dpdns.org/Smart.php?id=viet_bptv2
+越南|BRT HD,https://smart.pendy.dpdns.org/Smart.php?id=viet_brt
+越南|Ca Mau TV,https://smart.pendy.dpdns.org/Smart.php?id=viet_camautv
+越南|Danang TV1 HD,https://smart.pendy.dpdns.org/Smart.php?id=viet_danangtv1
+越南|Danang TV2 HD,https://smart.pendy.dpdns.org/Smart.php?id=viet_danangtv2
+越南|HBTV HD,https://smart.pendy.dpdns.org/Smart.php?id=viet_hbtv
+越南|PTTH 1,https://smart.pendy.dpdns.org/Smart.php?id=viet_ptth1
+韩国|Arirang HD,https://smart.pendy.dpdns.org/Smart.php?id=arirang_korea
+韩国|Yonhap News,https://smart.pendy.dpdns.org/Smart.php?id=yonhapnews_korea
+韩国|CBS,https://smart.pendy.dpdns.org/Smart.php?id=cbs_korea
+韩国|EBS 1,https://smart.pendy.dpdns.org/Smart.php?id=ebs1_korea
+韩国|EBS2,https://smart.pendy.dpdns.org/Smart.php?id=ebs2_korea
+韩国|EBS Plus2,https://smart.pendy.dpdns.org/Smart.php?id=ebsplus2_korea
+韩国|SBS Plus,https://smart.pendy.dpdns.org/Smart.php?id=sbsplus_korea
+韩国|YTN,https://smart.pendy.dpdns.org/Smart.php?id=ytn_korea
+韩国|KBS World 24,https://smart.pendy.dpdns.org/Smart.php?id=kbsworld24_korea
+CI,https://smart.pendy.dpdns.org/Smart.php?id=ytnscience_korea
+韩国|YTN Korean,https://smart.pendy.dpdns.org/Smart.php?id=ytnkorean_korea
+韩国|YTN DMB,https://smart.pendy.dpdns.org/Smart.php?id=ytndmb_korea
+韩国|Apps TV,https://smart.pendy.dpdns.org/Smart.php?id=appongoogle_korea
+韩国|All the Kpop,https://smart.pendy.dpdns.org/Smart.php?id=allthekpop_korea
+韩国|J the Kpop,https://smart.pendy.dpdns.org/Smart.php?id=jthekpop_korea
+韩国|EBS Kids,https://smart.pendy.dpdns.org/Smart.php?id=ebskids_korea
+韩国|CGNTV,https://smart.pendy.dpdns.org/Smart.php?id=cgntv_korea
+NHK,https://smart.pendy.dpdns.org/Smart.php?id=nhkg_japan
+NHK,https://smart.pendy.dpdns.org/Smart.php?id=nhke_japan
+日本|テレビ朝日 Asahi TV,https://smart.pendy.dpdns.org/Smart.php?id=asahitv_japan
+日本|JET 綜合,https://smart.pendy.dpdns.org/Smart.php?id=jettv_japan
+日本|テレビ東京 Tokyo TV,https://smart.pendy.dpdns.org/Smart.php?id=tokyotv_japan
+日本|TOKYOMX,https://smart.pendy.dpdns.org/Smart.php?id=tokyomx_japan
+NHK,https://smart.pendy.dpdns.org/Smart.php?id=nhkbs1_japan
+NHK,https://smart.pendy.dpdns.org/Smart.php?id=nhkpremium_japan
+日本|BSジャパン 181,https://smart.pendy.dpdns.org/Smart.php?id=bs181_japan
+日本|BSフジ BS Fuji,https://smart.pendy.dpdns.org/Smart.php?id=bsfuji_japan
+日本|CNA Japan,https://smart.pendy.dpdns.org/Smart.php?id=cna_japan
+日本|BS-TBS,https://smart.pendy.dpdns.org/Smart.php?id=bstbs_japan
+NHK,https://smart.pendy.dpdns.org/Smart.php?id=nhkosaka_japan
+
+
+
 

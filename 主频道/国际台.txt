@@ -1,1 +1,211 @@
-﻿
+﻿DISCOVERY
+CI
+纪录频道|NatGeo HD
+FASHIONTV
+HISTORY
+BBCEARTH
+纪录频道|NatGeo Wild HD
+纪录频道|Animal Planet (Eng)
+纪录频道|TLC
+纪录频道|Foodnetwork Hd
+纪录频道|HGTV
+SKYNEWS
+新闻频道|ABC News
+新闻频道|CBS HD
+新闻频道|CBSN HD
+FRANCE24
+DW
+NHK
+FOX
+CNN
+新闻频道|CNBC
+新闻频道|CNA
+BBCWORLDNEWS
+新闻频道|Bloomberg News
+ALJAZEERA
+BABYTV
+CBEEBIES
+儿童频道|Kids TV
+儿童频道|Momo TV
+儿童频道|MiaoMi
+儿童频道|Cartoon Network
+NICKELODEON
+儿童频道|Nick Jr
+新加坡|Channel 5
+新加坡|Channel 8
+新加坡|Suria
+新加坡|Channel U
+新加坡|Vasantham
+新加坡|CNA backup
+新加坡|MeWatch Ch 5
+新加坡|MeWatch Ch 8
+新加坡|MeWatch Ch U
+新加坡|MeWatch Suria
+新加坡|MeWatch Vasantham
+新加坡|MeWatch CNA
+马来西亚|TV1
+马来西亚|TV1 backup
+马来西亚|TV2
+马来西亚|TV3
+马来西亚|TV3 SD
+马来西亚|NTV7
+马来西亚|TV8
+马来西亚|TV9
+马来西亚|Ria
+马来西亚|Ria-3
+马来西亚|Al-Hijrah
+马来西亚|Al-Hijrah backup
+马来西亚|Awani
+马来西亚|Bernama
+马来西亚|Prima
+马来西亚|Prima backup
+马来西亚|Prima backup 2
+马来西亚|Ceria
+MTV
+马来西亚|Mecca Live HD
+马来西亚|Madinah HD
+马来西亚|Oasis
+马来西亚|Siar
+马来西亚|Sensasi
+马来西亚|Aura
+马来西亚|Rania
+马来西亚|KBS World
+马来西亚|Boo
+马来西亚|Awesome TV
+马来西亚|Astro Sonypix
+马来西亚|Sony HD
+TVN
+马来西亚|AEC
+马来西亚|华丽台 HD （Wah Lai Toi）
+马来西亚|欢喜台 HD （Hua Hee Tai）
+马来西亚|Astro QJ
+马来西亚|TVB Jade
+马来西亚|TVB Asia
+马来西亚|TVB Entertainment
+马来西亚|TVB Classic
+马来西亚|AOD
+马来西亚|TVB 星河台 Xing He
+马来西亚|爱奇艺 iQiyi
+马来西亚|Goshop
+马来西亚|Celestial Movies HD
+马来西亚|Astro LOL
+马来西亚|Astro Rusi
+马来西亚|WION
+马来西亚|RTM Asean
+印度尼西亚|TVRI National
+印度尼西亚|RCTI
+印度尼西亚|Kompass TV
+印度尼西亚|Berita Satu
+印度尼西亚|Indosiar HD
+印度尼西亚|AnTV
+印度尼西亚|MNC TV
+印度尼西亚|Trans 7
+印度尼西亚|Transtv
+印度尼西亚|JTV
+印度尼西亚|Metro TV
+印度尼西亚|SCTV
+印度尼西亚|Tvone
+印度尼西亚|TVMU
+印度尼西亚|GTV
+印度尼西亚|RTV
+印度尼西亚|Jak TV
+印度尼西亚|iNews TV
+印度尼西亚|Daai TV
+印度尼西亚|Net TV
+印度尼西亚|EWTN
+印度尼西亚|AlQuran AlKareem
+印度尼西亚|Tawaf TV
+印度尼西亚|Vision Prime
+印度尼西亚|Music TV
+印度尼西亚|Lifestyle&amp;Fashion
+印度尼西亚|Entertain
+印度|Sun TV HD
+印度|Star Vijay
+印度|Colors Tamil
+印度|Sun Music
+印度|Astro Sunlife
+印度|Astro Vaanavil
+Z
+印度|News 18 Tamil
+印度|Adithya
+印度|Makkal TV
+印度|Astro KTV
+印度|Color HD
+印度|Starplus HD
+印度|Picture HD
+印度|Asianet
+印度|Asianet News
+印度|NatGeo Tamil
+印度|Natgeo Wild Tamil
+印度|Sony Yay Tamil
+印度|Sun TV India
+印度|Starmaa HD
+印度|Starmaa Movies HD
+印度|Bollyone
+印度|Vijay Super
+印度|Vellithirai
+泰国|Channel 3 Thailand
+泰国|Channel 5 Thailand
+泰国|Channel 7 Thailand
+泰国|MCOT HD Thailand-1
+泰国|PPTV Thailand1
+泰国|Thai Thai
+泰国|Amarin
+泰国|Ch 8
+泰国|GmmOne
+泰国|Mono
+泰国|Thairath
+泰国|tpbs
+泰国|Workpoint
+泰国|Gmm Channel
+泰国|Nation
+泰国|Tnn24
+泰国|Nbt
+泰国|New
+泰国|TPTV
+英国|BBC 1
+英国|BBC 2
+英国|CBBC
+英国|More4
+英国|Freesports
+英国|Pick TV
+英国|itv 1
+英国|itv 2
+EURONEWS
+英国|Channel 4
+越南|ANTV
+越南|VTV 1
+越南|VTV 7
+越南|HTV 7
+越南|HTV 9
+越南|BPTV 2
+越南|BRT HD
+越南|Ca Mau TV
+越南|Danang TV1 HD
+越南|Danang TV2 HD
+越南|HBTV HD
+越南|PTTH 1
+韩国|Arirang HD
+韩国|Yonhap News
+韩国|CBS
+韩国|EBS 1
+韩国|EBS2
+韩国|EBS Plus2
+韩国|SBS Plus
+韩国|YTN
+韩国|KBS World 24
+韩国|YTN Korean
+韩国|YTN DMB
+韩国|Apps TV
+韩国|All the Kpop
+韩国|J the Kpop
+韩国|EBS Kids
+韩国|CGNTV
+日本|テレビ朝日 Asahi TV
+日本|JET 綜合
+日本|テレビ東京 Tokyo TV
+日本|TOKYOMX
+日本|BSジャパン 181
+日本|BSフジ BS Fuji
+日本|CNA Japan
+日本|BS-TBS

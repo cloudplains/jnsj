@@ -1,4 +1,4 @@
-name: Sync External Releases
+﻿name: Sync External Releases
 
 on:
   workflow_dispatch:  # 允许手动触发
@@ -25,8 +25,12 @@ jobs:
     - name: Install dependencies
       run: pip install requests
 
-    - name: Create downloads directory
-      run: mkdir -p ./downloads
+    - name: Clean up old downloads
+      run: |
+        # 删除旧的下载文件
+        rm -rf ./downloads
+        # 创建新的下载目录
+        mkdir -p ./downloads
 
     - name: Create repositories list file
       run: |
@@ -75,6 +79,39 @@ jobs:
           fi
         done
 
+    - name: Delete old releases
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # 获取所有以 "synced-" 开头的标签
+        tags=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${{ github.repository }}/tags" | \
+          jq -r '.[] | select(.name | startswith("synced-")) | .name')
+        
+        echo "找到的同步标签:"
+        echo "$tags"
+        
+        # 保留最新的5个标签，删除其余的
+        count=0
+        echo "$tags" | while read tag; do
+          count=$((count+1))
+          if [ $count -gt 5 ]; then
+            echo "删除旧标签: $tag"
+            # 删除标签
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$tag"
+            # 删除对应的发布
+            release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/${{ github.repository }}/releases/tags/$tag" | \
+              jq -r '.id')
+            if [ "$release_id" != "null" ]; then
+              echo "删除发布 ID: $release_id"
+              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+                "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+            fi
+          fi
+        done
+
     - name: Create Release (only if files exist)
       id: create_release
       if: hashFiles('./downloads/**') != ''
@@ -103,6 +140,12 @@ jobs:
         allowUpdates: true
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Clean up downloaded files after upload
+      if: hashFiles('./downloads/**') != ''
+      run: |
+        echo "上传完成，清理下载的文件"
+        rm -rf ./downloads
 
     - name: Notify if no files downloaded
       if: hashFiles('./downloads/**') == ''

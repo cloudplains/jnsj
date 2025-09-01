@@ -21,7 +21,7 @@ jobs:
         python-version: '3.10'
 
     - name: Install dependencies
-      run: pip install requests
+      run: pip install requests jq
 
     - name: Clean up old downloads
       run: |
@@ -64,6 +64,38 @@ jobs:
             rm -f "$file"
           fi
         done
+
+    - name: Pre-clean potential conflicting tag
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        TAG_NAME="synced-${{ github.run_id }}-${{ github.run_attempt }}"
+        
+        # 检查标签是否存在
+        if curl -s -H "Authorization: token $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG_NAME" | grep -q "ref"; then
+          
+          echo "⚠️ 发现冲突标签: $TAG_NAME - 正在删除..."
+          
+          # 先删除关联的发布（如果存在）
+          release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME" | \
+            jq -r '.id')
+          
+          if [ "$release_id" != "null" ]; then
+            echo "删除关联发布 ID: $release_id"
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+          fi
+          
+          # 删除标签本身
+          curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG_NAME"
+            
+          echo "✅ 成功删除冲突标签"
+        else
+          echo "✅ 无冲突标签 - $TAG_NAME 可用"
+        fi
 
     - name: Delete old releases (keep last 5)
       env:
@@ -119,6 +151,9 @@ jobs:
         artifacts: "./downloads/**"
         tag: synced-${{ github.run_id }}-${{ github.run_attempt }}
         token: ${{ secrets.GITHUB_TOKEN }}
+        # 添加重试机制
+        artifactErrorsFailBuild: false
+        artifactRetentionDays: 1
 
     - name: Clean up downloaded files
       run: rm -rf ./downloads

@@ -87,12 +87,12 @@ jobs:
           "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG_NAME")
         
         if [[ "$response" != *"Not Found"* ]]; then
-          echo "⚠️ 发现冲突标签: $TAG_NAME - 正在删除..."
+          echo ⚠️ 发现冲突标签: $TAG_NAME - 正在删除..."
           
           # 删除关联的发布
-          release_response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME")
-          release_id=$(echo "$release_response" | jq -r '.id')
+          release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME" | \
+            jq -r '.id')
           
           if [ "$release_id" != "null" ]; then
             echo "删除关联发布 ID: $release_id"
@@ -110,6 +110,7 @@ jobs:
         fi
 
     - name: Create Release with Manual API Call
+      id: create_release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         UNIQUE_TAG: ${{ env.UNIQUE_TAG }}
@@ -135,6 +136,11 @@ jobs:
         # 检查是否创建成功
         if [[ $(echo "$response" | jq -r '.tag_name') == "$UNIQUE_TAG" ]]; then
           echo "✅ 成功创建发布: $UNIQUE_TAG"
+          # 设置输出变量：release_id 和 upload_url
+          release_id=$(echo "$response" | jq -r '.id')
+          upload_url=$(echo "$response" | jq -r '.upload_url' | cut -d'{' -f1)
+          echo "release_id=$release_id" >> $GITHUB_OUTPUT
+          echo "upload_url=$upload_url" >> $GITHUB_OUTPUT
         else
           echo "❌ 创建发布失败:"
           echo "$response"
@@ -142,14 +148,35 @@ jobs:
         fi
 
     - name: Upload Release Assets
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ fromJSON(steps.create_release.outputs.result).id }}/assets{?name,label}
-        asset_path: ./downloads/
-        asset_name: release-assets.zip
-        asset_content_type: application/zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        base_url=${{ steps.create_release.outputs.upload_url }}
+        echo "上传地址: $base_url"
+        
+        # 上传所有下载的文件
+        for file in $(find ./downloads -type f); do
+          filename=$(basename "$file")
+          echo "📤 正在上传: $filename"
+          
+          # 获取文件类型
+          content_type=$(file -b --mime-type "$file")
+          
+          # 上传文件
+          response=$(curl -s -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Content-Type: $content_type" \
+            --data-binary @"$file" \
+            "$base_url?name=$filename")
+          
+          # 检查上传状态
+          if [[ $(echo "$response" | jq -r '.state') == "uploaded" ]]; then
+            echo "✅ 上传成功"
+          else
+            echo "❌ 上传失败:"
+            echo "$response"
+          fi
+        done
 
     - name: Delete old releases (keep last 5)
       env:

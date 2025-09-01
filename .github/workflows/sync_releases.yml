@@ -87,7 +87,7 @@ jobs:
           "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG_NAME")
         
         if [[ "$response" != *"Not Found"* ]]; then
-          echo ⚠️ 发现冲突标签: $TAG_NAME - 正在删除..."
+          echo "⚠️ 发现冲突标签: $TAG_NAME - 正在删除..."
           
           # 删除关联的发布
           release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
@@ -115,21 +115,31 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         UNIQUE_TAG: ${{ env.UNIQUE_TAG }}
       run: |
-        # 使用直接API调用确保创建发布
-        release_data=$(cat <<EOF
-        {
-          "tag_name": "$UNIQUE_TAG",
-          "name": "Synced Releases ($UNIQUE_TAG)",
-          "body": "自动同步的外部 Release 资源\\n同步时间: $(date)\\n源仓库: \\n- Guovin/iptv-api\\n- nginx/nginx",
-          "draft": false,
-          "prerelease": false
-        }
-        EOF
-        )
+        # 获取当前时间
+        current_date=$(date)
         
+        # 使用jq安全创建JSON
+        release_data=$(jq -n \
+          --arg tag_name "$UNIQUE_TAG" \
+          --arg name "Synced Releases ($UNIQUE_TAG)" \
+          --arg body "自动同步的外部 Release 资源
+同步时间: $current_date
+源仓库:
+- Guovin/iptv-api
+- nginx/nginx" \
+          '{
+            tag_name: $tag_name,
+            name: $name,
+            body: $body,
+            draft: false,
+            prerelease: false
+          }')
+        
+        # 使用直接API调用确保创建发布
         response=$(curl -s -X POST \
           -H "Authorization: token $GITHUB_TOKEN" \
           -H "Accept: application/vnd.github.v3+json" \
+          -H "Content-Type: application/json" \
           -d "$release_data" \
           "https://api.github.com/repos/${{ github.repository }}/releases")
         

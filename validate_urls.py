@@ -57,9 +57,16 @@ def validate_txt_urls():
 def validate_json_urls():
     """验证jnsj.json中的URL"""
     try:
-        # 读取原始文件
-        with open('jnsj.json', 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        # 读取原始文件，处理可能的BOM
+        with open('jnsj.json', 'rb') as f:
+            content = f.read()
+            
+        # 检查并移除BOM
+        if content.startswith(b'\xef\xbb\xbf'):
+            content = content[3:]
+            
+        # 解析JSON
+        data = json.loads(content.decode('utf-8'))
         
         # 验证每个URL
         valid_urls = []
@@ -84,7 +91,7 @@ def validate_json_urls():
         data['last_updated'] = timestamp
         data['valid_count'] = len(valid_urls)
         
-        # 写回文件
+        # 写回文件（不包含BOM）
         with open('jnsj.json', 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             

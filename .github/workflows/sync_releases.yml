@@ -68,11 +68,12 @@ jobs:
     - name: Generate unique release tag
       id: set_tag
       run: |
-        # 使用时间戳确保唯一性
-        TIMESTAMP=$(date +%s)
-        UNIQUE_TAG="synced-${TIMESTAMP}-${{ github.run_id }}-${{ github.run_attempt }}"
+        # 生成基于时间戳的绝对唯一标签
+        TIMESTAMP=$(date +%Y%m%d%H%M%S)
+        RANDOM_SUFFIX=$(openssl rand -hex 4)
+        UNIQUE_TAG="synced-${TIMESTAMP}-${RANDOM_SUFFIX}"
         echo "UNIQUE_TAG=${UNIQUE_TAG}" >> $GITHUB_ENV
-        echo "使用唯一标签: ${UNIQUE_TAG}"
+        echo "使用绝对唯一标签: ${UNIQUE_TAG}"
 
     - name: Pre-clean potential conflicting tag
       env:
@@ -82,15 +83,16 @@ jobs:
         TAG_NAME=${{ env.UNIQUE_TAG }}
         
         # 检查标签是否存在
-        if curl -s -H "Authorization: token $GITHUB_TOKEN" \
-          "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG_NAME" | grep -q "ref"; then
-          
+        response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG_NAME")
+        
+        if [[ "$response" != *"Not Found"* ]]; then
           echo "⚠️ 发现冲突标签: $TAG_NAME - 正在删除..."
           
-          # 先删除关联的发布（如果存在）
-          release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME" | \
-            jq -r '.id')
+          # 删除关联的发布
+          release_response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME")
+          release_id=$(echo "$release_response" | jq -r '.id')
           
           if [ "$release_id" != "null" ]; then
             echo "删除关联发布 ID: $release_id"
@@ -107,9 +109,52 @@ jobs:
           echo "✅ 无冲突标签 - $TAG_NAME 可用"
         fi
 
+    - name: Create Release with Manual API Call
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        UNIQUE_TAG: ${{ env.UNIQUE_TAG }}
+      run: |
+        # 使用直接API调用确保创建发布
+        release_data=$(cat <<EOF
+        {
+          "tag_name": "$UNIQUE_TAG",
+          "name": "Synced Releases ($UNIQUE_TAG)",
+          "body": "自动同步的外部 Release 资源\\n同步时间: $(date)\\n源仓库: \\n- Guovin/iptv-api\\n- nginx/nginx",
+          "draft": false,
+          "prerelease": false
+        }
+        EOF
+        )
+        
+        response=$(curl -s -X POST \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d "$release_data" \
+          "https://api.github.com/repos/${{ github.repository }}/releases")
+        
+        # 检查是否创建成功
+        if [[ $(echo "$response" | jq -r '.tag_name') == "$UNIQUE_TAG" ]]; then
+          echo "✅ 成功创建发布: $UNIQUE_TAG"
+        else
+          echo "❌ 创建发布失败:"
+          echo "$response"
+          exit 1
+        fi
+
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ fromJSON(steps.create_release.outputs.result).id }}/assets{?name,label}
+        asset_path: ./downloads/
+        asset_name: release-assets.zip
+        asset_content_type: application/zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Delete old releases (keep last 5)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CURRENT_TAG: ${{ env.UNIQUE_TAG }}
       run: |
         # 获取所有同步标签并按时间排序
         tags=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
@@ -117,53 +162,26 @@ jobs:
           jq -r '.[] | select(.name | startswith("synced-")) | .name' | \
           sort -r)
         
-        # 保留最新的5个标签，删除其余的
+        # 保留最新的5个标签（排除当前标签），删除其余的
         count=0
         echo "$tags" | while read tag; do
-          count=$((count+1))
-          if [ $count -gt 5 ]; then
-            echo "删除旧标签: $tag"
-            # 删除标签和对应的发布
-            release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-              "https://api.github.com/repos/${{ github.repository }}/releases/tags/$tag" | \
-              jq -r '.id')
-            if [ "$release_id" != "null" ]; then
+          if [ "$tag" != "$CURRENT_TAG" ]; then
+            count=$((count+1))
+            if [ $count -gt 5 ]; then
+              echo "删除旧标签: $tag"
+              # 删除标签和对应的发布
+              release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+                "https://api.github.com/repos/${{ github.repository }}/releases/tags/$tag" | \
+                jq -r '.id')
+              if [ "$release_id" != "null" ]; then
+                curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+                  "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+              fi
               curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
-                "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+                "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$tag"
             fi
-            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
-              "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$tag"
           fi
         done
-
-    - name: Create Release
-      id: create_release
-      uses: ncipollo/release-action@v1
-      with:
-        tag: ${{ env.UNIQUE_TAG }}
-        name: "Synced Releases (${{ env.UNIQUE_TAG }})"
-        body: |
-          自动同步的外部 Release 资源
-          同步时间: ${{ github.run_created }}
-          源仓库: 
-          - Guovin/iptv-api
-          - nginx/nginx
-          工作流运行信息:
-          - ID: ${{ github.run_id }}
-          - 尝试: ${{ github.run_attempt }}
-        draft: false
-        prerelease: false
-        token: ${{ secrets.GITHUB_TOKEN }}
-        skipIfReleaseExists: true  # 添加关键参数
-
-    - name: Upload Release Assets
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "./downloads/**"
-        tag: ${{ env.UNIQUE_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        # 修复无效参数
-        artifactErrorsFailBuild: false
 
     - name: Clean up downloaded files
       run: rm -rf ./downloads

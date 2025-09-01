@@ -1,21 +1,20 @@
-﻿name: Sync External Releases
+﻿# sync_releases.yml
+name: Sync External Releases
 
 on:
   workflow_dispatch:  # 允许手动触发
   schedule:
-    - cron: '0 0 * * 0'  # 每周日 UTC 时间 0 点运行一次 (每周一次)
+    - cron: '0 0 * * 0'  # 每周日 UTC 时间 0 点运行一次
 
 jobs:
   sync-releases:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 允许创建发布和上传资源
+      contents: write
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0  # 获取所有历史记录和标签，避免标签找不到的问题
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -27,69 +26,50 @@ jobs:
 
     - name: Clean up old downloads
       run: |
-        # 删除旧的下载文件
         rm -rf ./downloads
-        # 创建新的下载目录
         mkdir -p ./downloads
 
     - name: Create repositories list file
       run: |
         echo '[{"url": "https://github.com/Guovin/iptv-api"}, {"url": "https://github.com/nginx/nginx"}]' > repos.json
-        cat repos.json
 
-    - name: Run sync script with multiple repositories
+    - name: Run sync script
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         python sync_releases.py --repo-list ./repos.json --dest-dir ./downloads
 
-    - name: List downloaded files with details
+    - name: List downloaded files
       run: |
         find ./downloads -type f -exec ls -la {} \;
-        echo "文件详情:"
-        find ./downloads -type f -exec sh -c 'echo "- $1: $(wc -c < "$1") 字节"' sh {} \;
 
     - name: Check if files are valid archives
       run: |
         for file in $(find ./downloads -type f -name "*.zip"); do
-          if [ -f "$file" ]; then
-            echo "检查 ZIP 文件: $file"
-            if unzip -tq "$file" >/dev/null 2>&1; then
-              echo "✓ $file 是有效的 ZIP 文件"
-            else
-              echo "✗ $file 不是有效的 ZIP 文件"
-              echo "文件内容开头:"
-              head -c 200 "$file" | cat -A
-              echo ""
-            fi
+          if unzip -tq "$file" >/dev/null 2>&1; then
+            echo "✓ $file 是有效的 ZIP 文件"
+          else
+            echo "✗ $file 不是有效的 ZIP 文件"
           fi
         done
         
         for file in $(find ./downloads -type f -name "*.tar.gz"); do
-          if [ -f "$file" ]; then
-            echo "检查 TAR.GZ 文件: $file"
-            if tar -tzf "$file" >/dev/null 2>&1; then
-              echo "✓ $file 是有效的 TAR.GZ 文件"
-            else
-              echo "✗ $file 不是有效的 TAR.GZ 文件"
-              echo "文件内容开头:"
-              head -c 200 "$file" | cat -A
-              echo ""
-            fi
+          if tar -tzf "$file" >/dev/null 2>&1; then
+            echo "✓ $file 是有效的 TAR.GZ 文件"
+          else
+            echo "✗ $file 不是有效的 TAR.GZ 文件"
           fi
         done
 
-    - name: Delete old releases
+    - name: Delete old releases (keep last 5)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # 获取所有以 "synced-" 开头的标签
+        # 获取所有同步标签并按时间排序
         tags=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
           "https://api.github.com/repos/${{ github.repository }}/tags" | \
-          jq -r '.[] | select(.name | startswith("synced-")) | .name')
-        
-        echo "找到的同步标签:"
-        echo "$tags"
+          jq -r '.[] | select(.name | startswith("synced-")) | .name' | \
+          sort -r)
         
         # 保留最新的5个标签，删除其余的
         count=0
@@ -97,23 +77,20 @@ jobs:
           count=$((count+1))
           if [ $count -gt 5 ]; then
             echo "删除旧标签: $tag"
-            # 删除标签
-            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
-              "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$tag"
-            # 删除对应的发布
+            # 删除标签和对应的发布
             release_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
               "https://api.github.com/repos/${{ github.repository }}/releases/tags/$tag" | \
               jq -r '.id')
             if [ "$release_id" != "null" ]; then
-              echo "删除发布 ID: $release_id"
               curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
                 "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
             fi
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$tag"
           fi
         done
 
-    - name: Create Release (only if files exist)
-      id: create_release
+    - name: Create Release
       if: hashFiles('./downloads/**') != ''
       uses: ncipollo/release-action@v1
       with:
@@ -127,28 +104,20 @@ jobs:
           - nginx/nginx
         draft: false
         prerelease: false
-        makeLatest: "false"
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload Release Assets (only if files exist)
+    - name: Upload Release Assets
       if: hashFiles('./downloads/**') != ''
       uses: ncipollo/release-action@v1
       with:
         artifacts: "./downloads/**"
-        artifactContentType: "application/octet-stream"
         tag: synced-${{ github.run_id }}
-        allowUpdates: true
-        replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Clean up downloaded files after upload
+    - name: Clean up downloaded files
       if: hashFiles('./downloads/**') != ''
-      run: |
-        echo "上传完成，清理下载的文件"
-        rm -rf ./downloads
+      run: rm -rf ./downloads
 
     - name: Notify if no files downloaded
       if: hashFiles('./downloads/**') == ''
-      run: |
-        echo "没有下载到有效的文件，请检查脚本输出以了解详情"
-        exit 1
+      run: echo "没有下载到有效的文件" && exit 1

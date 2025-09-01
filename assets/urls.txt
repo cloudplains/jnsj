@@ -9,7 +9,6 @@ https://3043.kstore.space/bhvip/bhzb.txt
 https://live.freetv.top/douyuyqk.m3u
 https://live.zhoujie218.top/tv/iptv4.txt
 https://tv.850930.xyz/pix.m3u
-https://jihulab.com/-/snippets/5265/raw/main/.txt
 https://raw.githubusercontent.com/cyalias/mytvs-github/refs/heads/main/mytv.txt
 https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8
 https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u
@@ -63,9 +62,7 @@ https://m3u.ibert.me/txt/ycl_iptv.txt
 https://m3u.ibert.me/txt/y_g.txt
 https://live.zbds.org/tv/iptv4.txt
 https://d.kstore.dev/download/12441/ds9.txt
-http://8.134.67.252/tv202303.txt
 http://47.120.41.246:8899/zb.txt#IPTV直播
-http://8.138.7.223/live.txt#熊猫直播源
 https://epg.pw/test_channels.m3u#中国大陆频道
 https://epg.pw/test_channels_hong_kong.m3u#中国香港频道
 https://epg.pw/test_channels_macau.m3u#中国澳门频道

@@ -34,8 +34,14 @@ jobs:
       run: |
         python sync_releases.py --repo-url https://github.com/Guovin/iptv-api --dest-dir ./downloads
 
+    # 修复后的部分
     - name: List downloaded files with details
-      run: ls -la ./downloads/ && echo "文件详情:" && for file in ./downloads/*; do echo "- $file: $(wc -c < "$file") 字节"; done
+      run: |
+        ls -la ./downloads/
+        echo "文件详情:"
+        for file in ./downloads/*; do
+          echo "- $file: $(wc -c < "$file") 字节"
+        done
 
     - name: Check if files are valid zip archives
       run: |
@@ -45,7 +51,7 @@ jobs:
             if unzip -tq "$file" >/dev/null 2>&1; then
               echo "✓ $file 是有效的 ZIP 文件"
             else
-              echo "✗ $file 不是有效的 ZIP 文件"
+              echo "✗✗ $file 不是有效的 ZIP 文件"
               echo "文件内容开头:"
               head -c 200 "$file" | cat -A
               echo ""

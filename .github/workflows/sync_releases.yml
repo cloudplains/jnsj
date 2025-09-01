@@ -120,10 +120,10 @@ jobs:
         
         # 创建多行字符串
         body_content="自动同步的外部 Release 资源
-同步时间: $current_date
-源仓库:
-- Guovin/iptv-api
-- nginx/nginx"
+        同步时间: $current_date
+        源仓库:
+        - Guovin/iptv-api
+        - nginx/nginx"
         
         # 使用jq安全创建JSON
         release_data=$(jq -n \

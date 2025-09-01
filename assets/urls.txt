@@ -1,4 +1,4 @@
-http://api.lmxsd.cn/2485.txt
+﻿http://api.lmxsd.cn/2485.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://gitee.com/qlysgzs/qlys/raw/master/qlyc_tv.txt
 https://ghfast.top/https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u
@@ -111,3 +111,4 @@ https://gitee.com/mytv-android/iptv-api/raw/master/output/result.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u
 https://raw.gitmirror.com/XiaoZhang5656/xiaozhang-5656.github.io/main/iptv-live.txt
+https://zb.pl10000.top/?token=1CD9FN

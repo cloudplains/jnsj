@@ -1,5 +1,5 @@
-# 更新时间: 2025-09-01 05:50:30
-# 有效URL数量: 110
+# 更新时间: 2025-09-01 06:04:14
+# 有效URL数量: 109
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://gitee.com/qlysgzs/qlys/raw/master/qlyc_tv.txt
@@ -8,7 +8,6 @@ https://ghfast.top/https://raw.githubusercontent.com/yuanzl77/IPTV/main/live.m3u
 https://live.hacks.tools/tv/iptv4.txt
 http://47.120.41.246:8899/zb.txt
 https://3043.kstore.space/bhvip/bhzb.txt
-https://live.freetv.top/douyuyqk.m3u
 https://live.zhoujie218.top/tv/iptv4.txt
 https://tv.850930.xyz/pix.m3u
 https://raw.githubusercontent.com/cyalias/mytvs-github/refs/heads/main/mytv.txt

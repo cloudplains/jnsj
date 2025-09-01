@@ -1,34 +1,74 @@
-﻿{
-"urls": [
-{"url": "http://www.饭太硬.com/tv", "name": "饭太硬"},
-{"url": "http://tvbox.王二小放牛娃.top", "name": "王二小"},
-{"url": "http://tv.laohu.cool/tvbox.json", "name": "老虎"},
-{"url": "https://tv.xn--yhqu5zs87a.top", "name": "📁莱斯📁"},
-{"url": "https://www.cloudplains.cn/XC.json", "name": "XC"},
-{"url": "https://www.cloudplains.cn/anguss.json", "name": "anguss"},
-{"url": "http://8.134.67.252/XC.json", "name": "XC-67252"},
-{"url": "http://8.134.67.252/anguss.json", "name": "anguss-67252"},
-{"url": "clan://localhost/TVBox/jsm.json", "name": "📁本地配置📁"},
-{"url": "http://o.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=欧歌", "name": "欧歌"},
-{"url": "http://hello.肥猫.com", "name": "肥猫"},
-{"url": "http://txt.kesug.com/users/%E7%82%B9%E6%92%AD%E6%8E%A5%E5%8F%A3.txt", "name": "kesug"},
-{"url": "http://影视仓接口.top", "name": "影视仓"},
-{"url": "http://home.jundie.top:81/top98.json", "name": "俊佬"},
-{"url": "https://700sjro44343.vicp.fun/eggp/qzku/tv.json", "name": "茄子库"},
-{"url": "http://ok321.top/ok", "name": "OK线路"},
-{"url": "https://play.iptv365.org/饭太硬/api.json", "name": "饭太硬"},
-{"url": "https://play.iptv365.org/小米/api.json", "name": "小米"},
-{"url": "https://play.iptv365.org/肥猫/api.json", "name": "肥猫"},
-{"url": "https://play.iptv365.org/菜妮丝/api.json", "name": "菜妮丝"},
-{"url": "https://play.iptv365.org/王二小/api.json", "name": "王二小"},
-{"url": "https://play.iptv365.org/摸鱼儿/api.json", "name": "摸鱼儿"},
-{"url": "https://play.iptv365.org/PG/api.json", "name": "PG"},
-{"url": "https://play.iptv365.org/潇洒/api.json", "name": "潇洒"},
-{"url": "https://play.iptv365.org/骚零/api.json", "name": "零零"},
-{"url": "http://宝盒接口.top", "name": "宝盒"},
-{"url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/", "name": "王二小"},
-{"url": "http://ok321.top/tv", "name": "OK"},
-{"url": "http://cdn.qiaoji8.com/tvbox.json", "name": "巧技"},
-{"url": "http://tv.nxog.top/m/", "name": "讴歌"}
-]
+{
+  "urls": [
+    {
+      "url": "http://www.饭太硬.com/tv",
+      "name": "饭太硬"
+    },
+    {
+      "url": "http://tvbox.王二小放牛娃.top",
+      "name": "王二小"
+    },
+    {
+      "url": "https://tv.xn--yhqu5zs87a.top",
+      "name": "📁莱斯📁"
+    },
+    {
+      "url": "https://www.cloudplains.cn/XC.json",
+      "name": "XC"
+    },
+    {
+      "url": "https://www.cloudplains.cn/anguss.json",
+      "name": "anguss"
+    },
+    {
+      "url": "http://8.134.67.252/XC.json",
+      "name": "XC-67252"
+    },
+    {
+      "url": "http://8.134.67.252/anguss.json",
+      "name": "anguss-67252"
+    },
+    {
+      "url": "clan://localhost/TVBox/jsm.json",
+      "name": "📁本地配置📁"
+    },
+    {
+      "url": "http://hello.肥猫.com",
+      "name": "肥猫"
+    },
+    {
+      "url": "http://影视仓接口.top",
+      "name": "影视仓"
+    },
+    {
+      "url": "http://home.jundie.top:81/top98.json",
+      "name": "俊佬"
+    },
+    {
+      "url": "https://700sjro44343.vicp.fun/eggp/qzku/tv.json",
+      "name": "茄子库"
+    },
+    {
+      "url": "http://ok321.top/ok",
+      "name": "OK线路"
+    },
+    {
+      "url": "http://宝盒接口.top",
+      "name": "宝盒"
+    },
+    {
+      "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/",
+      "name": "王二小"
+    },
+    {
+      "url": "http://ok321.top/tv",
+      "name": "OK"
+    },
+    {
+      "url": "http://cdn.qiaoji8.com/tvbox.json",
+      "name": "巧技"
+    }
+  ],
+  "last_updated": "2025-09-01 06:05:12",
+  "valid_count": 17
 }

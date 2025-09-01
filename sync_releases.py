@@ -93,10 +93,10 @@ def process_repository(repo_owner, repo_name, dest_dir):
         
         downloaded_files = []
         
-        # 处理 nginx 特殊情况
+        # 处理 nginx 特殊情况 - 下载 ZIP 文件而不是 TAR.GZ
         if repo_owner == "nginx" and repo_name == "nginx":
-            download_url = f"https://github.com/nginx/nginx/archive/refs/tags/{tag_name}.tar.gz"
-            asset_name = f"nginx-{tag_name.replace('release-', '')}.tar.gz"
+            download_url = f"https://github.com/nginx/nginx/archive/refs/tags/{tag_name}.zip"
+            asset_name = f"nginx-{tag_name.replace('release-', '')}.zip"
             
             repo_dir = os.path.join(dest_dir, f"{repo_owner}_{repo_name}")
             file_path, file_size = download_asset(download_url, repo_dir, asset_name)

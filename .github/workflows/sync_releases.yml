@@ -3,7 +3,7 @@ name: Sync External Releases
 on:
   workflow_dispatch:  # 允许手动触发
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 时间 0 点运行一次
+    - cron: '0 0 * * 0'  # 每周日 UTC 时间 0 点运行一次 (每周一次)
 
 jobs:
   sync-releases:
@@ -28,30 +28,46 @@ jobs:
     - name: Create downloads directory
       run: mkdir -p ./downloads
 
-    - name: Run sync script with debug info
+    - name: Create repositories list file
+      run: |
+        echo '[{"url": "https://github.com/Guovin/iptv-api"}, {"url": "https://github.com/nginx/nginx"}]' > repos.json
+        cat repos.json
+
+    - name: Run sync script with multiple repositories
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python sync_releases.py --repo-url https://github.com/Guovin/iptv-api --dest-dir ./downloads
+        python sync_releases.py --repo-list ./repos.json --dest-dir ./downloads
 
-    # 修复后的部分
     - name: List downloaded files with details
       run: |
-        ls -la ./downloads/
+        find ./downloads -type f -exec ls -la {} \;
         echo "文件详情:"
-        for file in ./downloads/*; do
-          echo "- $file: $(wc -c < "$file") 字节"
-        done
+        find ./downloads -type f -exec sh -c 'echo "- $1: $(wc -c < "$1") 字节"' sh {} \;
 
-    - name: Check if files are valid zip archives
+    - name: Check if files are valid archives
       run: |
-        for file in ./downloads/*.zip; do
+        for file in $(find ./downloads -type f -name "*.zip"); do
           if [ -f "$file" ]; then
-            echo "检查文件: $file"
+            echo "检查 ZIP 文件: $file"
             if unzip -tq "$file" >/dev/null 2>&1; then
               echo "✓ $file 是有效的 ZIP 文件"
             else
-              echo "✗✗ $file 不是有效的 ZIP 文件"
+              echo "✗ $file 不是有效的 ZIP 文件"
+              echo "文件内容开头:"
+              head -c 200 "$file" | cat -A
+              echo ""
+            fi
+          fi
+        done
+        
+        for file in $(find ./downloads -type f -name "*.tar.gz"); do
+          if [ -f "$file" ]; then
+            echo "检查 TAR.GZ 文件: $file"
+            if tar -tzf "$file" >/dev/null 2>&1; then
+              echo "✓ $file 是有效的 TAR.GZ 文件"
+            else
+              echo "✗ $file 不是有效的 TAR.GZ 文件"
               echo "文件内容开头:"
               head -c 200 "$file" | cat -A
               echo ""
@@ -61,7 +77,7 @@ jobs:
 
     - name: Create Release (only if files exist)
       id: create_release
-      if: hashFiles('./downloads/*.zip') != ''
+      if: hashFiles('./downloads/**') != ''
       uses: ncipollo/release-action@v1
       with:
         tag: synced-${{ github.run_id }}
@@ -69,25 +85,27 @@ jobs:
         body: |
           自动同步的外部 Release 资源
           同步时间: ${{ github.run_created }}
-          源仓库: Guovin/iptv-api
+          源仓库: 
+          - Guovin/iptv-api
+          - nginx/nginx
         draft: false
         prerelease: false
         makeLatest: "false"
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload Release Assets (only if files exist)
-      if: hashFiles('./downloads/*.zip') != ''
+      if: hashFiles('./downloads/**') != ''
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "./downloads/*.zip"
-        artifactContentType: "application/zip"
+        artifacts: "./downloads/**"
+        artifactContentType: "application/octet-stream"
         tag: synced-${{ github.run_id }}
         allowUpdates: true
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Notify if no files downloaded
-      if: hashFiles('./downloads/*.zip') == ''
+      if: hashFiles('./downloads/**') == ''
       run: |
-        echo "没有下载到有效的 ZIP 文件，请检查脚本输出以了解详情"
+        echo "没有下载到有效的文件，请检查脚本输出以了解详情"
         exit 1

@@ -65,11 +65,21 @@ jobs:
           fi
         done
 
+    - name: Generate unique release tag
+      id: set_tag
+      run: |
+        # 使用时间戳确保唯一性
+        TIMESTAMP=$(date +%s)
+        UNIQUE_TAG="synced-${TIMESTAMP}-${{ github.run_id }}-${{ github.run_attempt }}"
+        echo "UNIQUE_TAG=${UNIQUE_TAG}" >> $GITHUB_ENV
+        echo "使用唯一标签: ${UNIQUE_TAG}"
+
     - name: Pre-clean potential conflicting tag
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        TAG_NAME="synced-${{ github.run_id }}-${{ github.run_attempt }}"
+        # 获取上一步生成的标签
+        TAG_NAME=${{ env.UNIQUE_TAG }}
         
         # 检查标签是否存在
         if curl -s -H "Authorization: token $GITHUB_TOKEN" \
@@ -130,8 +140,8 @@ jobs:
       id: create_release
       uses: ncipollo/release-action@v1
       with:
-        tag: synced-${{ github.run_id }}-${{ github.run_attempt }}
-        name: Synced Releases (${{ github.run_id }}.${{ github.run_attempt }})
+        tag: ${{ env.UNIQUE_TAG }}
+        name: "Synced Releases (${{ env.UNIQUE_TAG }})"
         body: |
           自动同步的外部 Release 资源
           同步时间: ${{ github.run_created }}
@@ -144,16 +154,16 @@ jobs:
         draft: false
         prerelease: false
         token: ${{ secrets.GITHUB_TOKEN }}
+        skipIfReleaseExists: true  # 添加关键参数
 
     - name: Upload Release Assets
       uses: ncipollo/release-action@v1
       with:
         artifacts: "./downloads/**"
-        tag: synced-${{ github.run_id }}-${{ github.run_attempt }}
+        tag: ${{ env.UNIQUE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        # 添加重试机制
+        # 修复无效参数
         artifactErrorsFailBuild: false
-        artifactRetentionDays: 1
 
     - name: Clean up downloaded files
       run: rm -rf ./downloads

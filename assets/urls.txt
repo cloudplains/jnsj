@@ -1,4 +1,3 @@
-﻿http://api.lmxsd.cn/2485.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://gitee.com/qlysgzs/qlys/raw/master/qlyc_tv.txt
 https://ghfast.top/https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u

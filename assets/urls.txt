@@ -1,4 +1,4 @@
-﻿# 更新时间: 2025-09-01 06:04:14
+# 更新时间: 2025-09-03 18:15:37
 # 有效URL数量: 109
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
@@ -109,5 +109,4 @@ https://gitee.com/mytv-android/iptv-api/raw/master/output/result.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u
 https://raw.gitmirror.com/XiaoZhang5656/xiaozhang-5656.github.io/main/iptv-live.txt
-https://zb.pl10000.top/?token=1CD9FN
 https://php.946985.xyz/jackTV.m3u

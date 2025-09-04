@@ -1,4 +1,4 @@
-﻿import urllib.request
+﻿﻿import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -92,6 +92,7 @@ gj_lines = []  # 国际台
 zb_lines = []  # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
+ipv6_lines = []  # IPV6频道 - 新增
 
 other_lines = []  # 其他
 other_lines_url = []  # 为降低other文件大小，剔除重复url添加
@@ -283,6 +284,22 @@ def validate_stream_url(url, timeout=3):
     except Exception:
         return False
 
+# 检查是否为IPv6地址
+def is_ipv6_url(url):
+    """检查URL是否包含IPv6地址特征"""
+    # IPv6地址特征：包含冒号分隔的十六进制数字，可能包含方括号
+    ipv6_patterns = [
+        r'\[[0-9a-fA-F:]+:[0-9a-fA-F:]+\]',  # IPv6地址在方括号内
+        r'://\[[0-9a-fA-F:]+\]',  # 包含IPv6地址的URL
+        r'ipv6',  # 包含ipv6关键字
+        r'v6\.',  # 包含v6.子域名
+    ]
+    
+    for pattern in ipv6_patterns:
+        if re.search(pattern, url, re.IGNORECASE):
+            return True
+    return False
+
 # 分发直播源
 def process_channel_line(line):
     try:
@@ -313,6 +330,9 @@ def process_channel_line(line):
                     if (check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines) and
                         validate_stream_url(channel_address)):
                         ys_lines.append(line)
+                        # 如果是IPv6源，也添加到IPv6频道
+                        if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
+                            ipv6_lines.append(line)
                     else:
                         print(f"央视频道验证失败: {channel_name} - {channel_address}")
                 elif channel_name in ws_dictionary:
@@ -320,6 +340,9 @@ def process_channel_line(line):
                     if (check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines) and
                         validate_stream_url(channel_address)):
                         ws_lines.append(line)
+                        # 如果是IPv6源，也添加到IPv6频道
+                        if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
+                            ipv6_lines.append(line)
                     else:
                         print(f"卫视频道验证失败: {channel_name} - {channel_address}")
                 elif channel_name in dy_dictionary:
@@ -436,12 +459,14 @@ print(f"国际台: {len(gj_lines)} 行")
 print(f"直播中国: {len(zb_lines)} 行")
 print(f"广东频道: {len(gd_lines)} 行")
 print(f"海南频道: {len(hain_lines)} 行")
+print(f"IPV6频道: {len(ipv6_lines)} 行")  # 新增统计
 
 # 合并所有对象中的行文本（已移除other_lines）
 all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] + \
            ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
+           ["IPV6频道,#genre#"] + sort_data(ys_dictionary + ws_dictionary, ipv6_lines) + ['\n'] + \  # 新增IPV6频道
            ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
            ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] + \
            ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \

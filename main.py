@@ -1,4 +1,4 @@
-﻿﻿import urllib.request
+import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -25,7 +25,7 @@ print("脚本开始执行")
 def read_txt_to_array(file_name):
     try:
         # 先尝试 UTF-8 编码
-        with open(file_name, 'r', encoding='utf-8') as file:
+        with open(file_name, 'r', encoding='utf-8-sig') as file:  # 使用utf-8-sig自动处理BOM
             lines = file.readlines()
             lines = [line.strip() for line in lines]
             return lines
@@ -57,7 +57,7 @@ def read_txt_to_array(file_name):
 def read_blacklist_from_txt(file_path):
     try:
         # 先尝试 UTF-8 编码
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(file_path, 'r', encoding='utf-8-sig') as file:  # 使用utf-8-sig自动处理BOM
             lines = file.readlines()
     except UnicodeDecodeError:
         try:
@@ -203,7 +203,7 @@ def clean_channel_name(channel_name, removal_list):
 def load_corrections_name(filename):
     corrections = {}
     try:
-        with open(filename, 'r', encoding='utf-8') as f:
+        with open(filename, 'r', encoding='utf-8-sig') as f:  # 使用utf-8-sig自动处理BOM
             for line in f:
                 if not line.strip():
                     continue
@@ -466,7 +466,7 @@ all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] + \
            ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
-           ["IPV6频道,#genre#"] + sort_data(ys_dictionary + ws_dictionary, ipv6_lines) + ['\n'] + \  # 新增IPV6频道
+           ["IPV6频道,#genre#"] + sort_data(ys_dictionary + ws_dictionary, ipv6_lines) + ['\n'] + \
            ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
            ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] + \
            ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \

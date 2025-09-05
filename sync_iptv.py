@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
 """
-自动同步 IPTV 文件到 GitHub 仓库 - 修复版本
+基于 SSH 认证的 IPTV 文件同步脚本
 """
 
 import requests
 import os
-import json
 import hashlib
 import subprocess
 import shutil
 from datetime import datetime
-import argparse
 
 # 配置参数
 SOURCE_URL = "https://raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv4.txt"
 LOCAL_FILE_PATH = "iptv4.txt"
 REPO_DIR = "./jnsj_repo"
-GITHUB_REPO = "cloudplains/jnsj"
+GITHUB_REPO_SSH = "git@github.com:cloudplains/jnsj.git"  # 使用 SSH URL
 GITHUB_USERNAME = "github-actions[bot]"
 GITHUB_EMAIL = "github-actions[bot]@users.noreply.github.com"
 COMMIT_MSG = "自动更新 IPTV 文件 - {}"
@@ -48,17 +46,16 @@ def run_command(cmd, cwd=None):
         print(f"执行命令时发生异常: {e}")
         return False, str(e)
 
-def setup_git_repo(github_token):
-    """设置 Git 仓库"""
+def setup_git_repo():
+    """设置 Git 仓库使用 SSH"""
     # 如果目录已存在，先删除
     if os.path.exists(REPO_DIR):
         shutil.rmtree(REPO_DIR)
     
     os.makedirs(REPO_DIR)
     
-    # 克隆仓库
-    repo_url = f"https://{github_token}@github.com/{GITHUB_REPO}.git"
-    success, output = run_command(f"git clone {repo_url} .", cwd=REPO_DIR)
+    # 克隆仓库（使用 SSH）
+    success, output = run_command(f"git clone {GITHUB_REPO_SSH} .", cwd=REPO_DIR)
     if not success:
         return False
     
@@ -68,7 +65,7 @@ def setup_git_repo(github_token):
     
     return True
 
-def sync_file_to_github(github_token):
+def sync_file_to_github():
     """同步文件到 GitHub"""
     # 下载最新文件
     new_content = download_iptv_file()
@@ -76,7 +73,7 @@ def sync_file_to_github(github_token):
         return False
     
     # 设置 Git 仓库
-    if not setup_git_repo(github_token):
+    if not setup_git_repo():
         return False
     
     # 检查文件是否已存在
@@ -92,6 +89,7 @@ def sync_file_to_github(github_token):
         old_hash = get_file_hash(old_content)
         new_hash = get_file_hash(new_content)
         content_changed = (old_hash != new_hash)
+        print(f"文件变化检查: 旧哈希={old_hash}, 新哈希={new_hash}, 是否变化={content_changed}")
     
     # 如果没有变化，则不需要提交
     if not content_changed:
@@ -114,23 +112,23 @@ def sync_file_to_github(github_token):
     # 提交更改
     success, output = run_command(f'git commit -m "{commit_message}"', cwd=REPO_DIR)
     if not success and "nothing to commit" not in output:
+        print(f"提交失败: {output}")
         return False
     
     # 推送更改
     success, output = run_command("git push origin main", cwd=REPO_DIR)
     if not success:
+        print(f"推送失败: {output}")
         return False
     
     print("已成功推送更新到 GitHub")
     return True
 
 def main():
-    parser = argparse.ArgumentParser(description='同步 IPTV 文件到 GitHub 仓库')
-    parser.add_argument('--github-token', required=True, help='GitHub 访问令牌')
+    """主函数"""
+    print("开始同步 IPTV 文件...")
     
-    args = parser.parse_args()
-    
-    success = sync_file_to_github(args.github_token)
+    success = sync_file_to_github()
     if not success:
         print("同步失败")
         exit(1)

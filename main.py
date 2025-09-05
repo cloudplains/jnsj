@@ -463,17 +463,17 @@ print(f"海南频道: {len(hain_lines)} 行")
 print(f"IPV6频道: {len(ipv6_lines)} 行")  # 新增统计
 
 # 合并所有对象中的行文本（已移除other_lines）
-all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
-           ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] + \
-           ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
-           ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
-           ["IPV6频道,#genre#"] + ipv6_lines + ['\n'] + \  # 直接使用ipv6_lines，不排序
-           ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
-           ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] + \
-           ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \
-           ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines) + ['\n'] + \
-           ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] + \
-           ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n']
+all_lines = (["更新时间,#genre#"] + [version] + ['\n'] +
+           ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] +
+           ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] +
+           ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] +
+           ["IPV6频道,#genre#"] + ipv6_lines + ['\n'] +  # 直接使用ipv6_lines，不排序
+           ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] +
+           ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] +
+           ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] +
+           ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines) + ['\n'] +
+           ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] +
+           ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n'])
 
 # 修改输出文件名为 tv202303.txt
 output_file = "tv202303.txt"

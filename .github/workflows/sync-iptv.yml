@@ -1,4 +1,4 @@
-name: Sync IPTV File with SSH
+name: Sync IPTV File
 
 on:
   schedule:
@@ -6,42 +6,50 @@ on:
   workflow_dispatch:  # 允许手动触发
 
 jobs:
-  sync:
+  sync_iptv:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
-        
+        python-version: '3.10'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install requests
 
-    - name: Set up SSH
+    - name: Download IPTV file
       run: |
-        # 安装 SSH 客户端
-        which ssh-agent || (apt-get update -y && apt-get install openssh-client -y)
+        # 下载 IPTV 文件
+        curl -s -o iptv4.txt https://raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv4.txt
         
-        # 启动 ssh-agent
-        eval "$(ssh-agent -s)"
+        # 检查文件是否下载成功
+        if [ ! -s iptv4.txt ]; then
+          echo "文件下载失败或为空"
+          exit 1
+        fi
         
-        # 将私钥添加到 ssh-agent
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        
-        # 将 GitHub 添加到已知主机
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        
-        # 测试 SSH 连接
-        ssh -T git@github.com || true  # 即使返回非零退出码也继续
+        echo "文件下载成功，大小: $(wc -l < iptv4.txt) 行"
 
-    - name: Run sync script
+    - name: Commit changes
       run: |
-        python sync_iptv_ssh.py
+        git config --local user.email "actions@github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        # 检查文件是否有变化
+        if git diff --quiet -- iptv4.txt; then
+          echo "文件无变化，无需提交"
+        else
+          git add iptv4.txt
+          git commit -m "🔄 自动更新 IPTV 文件 $(date +'%Y-%m-%d %H:%M')"
+          git push origin main
+          echo "文件已更新并提交"
+        fi

@@ -1,6 +1,6 @@
 ﻿[file name]: validate_urls.py
 [file content begin]
-﻿import requests
+import requests
 import json
 from datetime import datetime
 import os
@@ -147,7 +147,7 @@ if __name__ == "__main__":
 
 [file name]: url.yml
 [file content begin]
-﻿name: Validate URLs
+name: Validate URLs
 
 on:
   schedule:

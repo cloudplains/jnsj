@@ -106,7 +106,7 @@ https://raw.githubusercontent.com/iptv-org/iptv/gh-pages/countries/cn.m3u
 https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
-https://www.cloudplains.cn/live.txt
+https://www.cloudplains.cn/assets/live.txt
 https://gitee.com/mytv-android/iptv-api/raw/master/output/result.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u

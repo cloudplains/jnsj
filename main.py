@@ -321,10 +321,14 @@ def process_channel_line(line):
             line = channel_name + "," + channel_address
 
             if len(channel_address) > 0 and channel_address not in combined_blacklist:
-                # 如果是IPv6源，添加到IPv6频道
+                # 如果是IPv6源，添加到IPv6频道（只保留CCTV和卫视频道）
                 if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
-                    ipv6_lines.append(line)
-                    print(f"添加到IPv6频道: {channel_name}, {channel_address}")
+                    # 只添加CCTV和卫视频道
+                    if channel_name.startswith('CCTV') or channel_name in ws_dictionary:
+                        ipv6_lines.append(line)
+                        print(f"添加到IPv6频道: {channel_name}, {channel_address}")
+                    else:
+                        print(f"IPv6频道跳过非CCTV/卫视: {channel_name}")
                 
                 # 特别处理直播中国分类 - 只保留明确的直播中国频道
                 if channel_name in zb_dictionary:

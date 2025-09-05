@@ -1,4 +1,4 @@
-name: Sync IPTV0905 File
+﻿name: Sync IPTV0905 File
 
 on:
   schedule:
@@ -7,17 +7,17 @@ on:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 镜像 :cite[1]:cite[2]
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
-      
+      uses: actions/checkout@v4  # 更新到最新稳定版 :cite[4]
+
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
-        
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -27,8 +27,9 @@ jobs:
       run: |
         python iptv0905.py
 
-    - name: Upload iptv0905.txt
-      uses: actions/upload-artifact@v3
+    - name: Upload iptv0905.txt artifact
+      uses: actions/upload-artifact@v4  # 更新到 v4 版本 :cite[4]:cite[9]
       with:
         name: iptv0905-result
         path: iptv0905.txt
+        retention-days: 7  # 可选：设置产物保留时间

@@ -1,4 +1,4 @@
-﻿[file name]: validate_urls.py
+[file name]: validate_urls.py
 [file content begin]
 import requests
 import json

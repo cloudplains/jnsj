@@ -25,7 +25,7 @@ print("脚本开始执行")
 def read_txt_to_array(file_name):
     try:
         # 先尝试 UTF-8 编码
-        with open(file_name, 'r', encoding='utf-8-sig') as file:  # 使用utf-8-sig自动处理BOM
+        with open(file_name, 'r', encoding='utf-8-sig') as file:
             lines = file.readlines()
             lines = [line.strip() for line in lines]
             return lines
@@ -57,7 +57,7 @@ def read_txt_to_array(file_name):
 def read_blacklist_from_txt(file_path):
     try:
         # 先尝试 UTF-8 编码
-        with open(file_path, 'r', encoding='utf-8-sig') as file:  # 使用utf-8-sig自动处理BOM
+        with open(file_path, 'r', encoding='utf-8-sig') as file:
             lines = file.readlines()
     except UnicodeDecodeError:
         try:
@@ -78,7 +78,7 @@ def read_blacklist_from_txt(file_path):
 
 print("正在读取黑名单...")
 blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
-black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')  # 文件名已更正
+black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
 combined_blacklist = set(blacklist_auto + black_list_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
 
@@ -100,7 +100,7 @@ other_lines_url = []  # 为降低other文件大小，剔除重复url添加
 print("正在读取频道字典...")
 # 读取文本
 # 主频道
-zh_dictionary = read_txt_to_array('主频道/综合频道.txt')  # 新增综合频道
+zh_dictionary = read_txt_to_array('主频道/综合频道.txt')
 ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
@@ -203,7 +203,7 @@ def clean_channel_name(channel_name, removal_list):
 def load_corrections_name(filename):
     corrections = {}
     try:
-        with open(filename, 'r', encoding='utf-8-sig') as f:  # 使用utf-8-sig自动处理BOM
+        with open(filename, 'r', encoding='utf-8-sig') as f:
             for line in f:
                 if not line.strip():
                     continue
@@ -293,6 +293,10 @@ def is_ipv6_url(url):
         r'://\[[0-9a-fA-F:]+\]',  # 包含IPv6地址的URL
         r'ipv6',  # 包含ipv6关键字
         r'v6\.',  # 包含v6.子域名
+        r':[0-9a-fA-F]{4}:[0-9a-fA-F]{4}:[0-9a-fA-F]{4}:[0-9a-fA-F]{4}',  # IPv6地址模式
+        r'240e:',  # 中国电信IPv6地址段
+        r'2408:',  # 中国联通IPv6地址段
+        r'2409:',  # 中国移动IPv6地址段
     ]
     
     for pattern in ipv6_patterns:
@@ -317,6 +321,11 @@ def process_channel_line(line):
             line = channel_name + "," + channel_address
 
             if len(channel_address) > 0 and channel_address not in combined_blacklist:
+                # 如果是IPv6源，添加到IPv6频道
+                if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
+                    ipv6_lines.append(line)
+                    print(f"添加到IPv6频道: {channel_name}, {channel_address}")
+                
                 # 特别处理直播中国分类 - 只保留明确的直播中国频道
                 if channel_name in zb_dictionary:
                     if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
@@ -330,9 +339,6 @@ def process_channel_line(line):
                     if (check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines) and
                         validate_stream_url(channel_address)):
                         ys_lines.append(line)
-                        # 如果是IPv6源，也添加到IPv6频道
-                        if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
-                            ipv6_lines.append(line)
                     else:
                         print(f"央视频道验证失败: {channel_name} - {channel_address}")
                 elif channel_name in ws_dictionary:
@@ -340,9 +346,6 @@ def process_channel_line(line):
                     if (check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines) and
                         validate_stream_url(channel_address)):
                         ws_lines.append(line)
-                        # 如果是IPv6源，也添加到IPv6频道
-                        if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
-                            ipv6_lines.append(line)
                     else:
                         print(f"卫视频道验证失败: {channel_name} - {channel_address}")
                 elif channel_name in dy_dictionary:
@@ -419,8 +422,6 @@ def process_url(url):
                                 valid_lines += 1
 
             print(f"有效行数: {valid_lines}")
-            # 注释掉这行，不再向other_lines添加换行符
-            # other_lines.append('\n')
 
     except Exception as e:
         print(f"处理URL时发生错误：{e}")
@@ -466,7 +467,7 @@ all_lines = ["更新时间,#genre#"] + [version] + ['\n'] + \
            ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] + \
            ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] + \
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] + \
-           ["IPV6频道,#genre#"] + sort_data(ys_dictionary + ws_dictionary, ipv6_lines) + ['\n'] + \
+           ["IPV6频道,#genre#"] + ipv6_lines + ['\n'] + \  # 直接使用ipv6_lines，不排序
            ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] + \
            ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] + \
            ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] + \
@@ -523,4 +524,4 @@ seconds = int(total_seconds % 60)
 
 print(f"执行时间: {minutes} 分 {seconds} 秒")
 print(f"blacklist行数: {len(combined_blacklist)}")
-print(f"{output_file}行数: {len(all_lines)}")  # 修复这里的打印错误
+print(f"{output_file}行数: {len(all_lines)}")

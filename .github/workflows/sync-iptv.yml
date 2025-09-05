@@ -1,4 +1,4 @@
-name: Sync IPTV File
+﻿name: Sync IPTV File
 
 on:
   schedule:
@@ -39,17 +39,23 @@ jobs:
         
         echo "文件下载成功，大小: $(wc -l < iptv4.txt) 行"
 
-    - name: Commit changes
+    - name: Always commit and push
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "github-actions[bot]"
         
-        # 检查文件是否有变化
-        if git diff --quiet -- iptv4.txt; then
-          echo "文件无变化，无需提交"
+        # 添加文件到暂存区
+        git add iptv4.txt
+        
+        # 检查是否有变化，如果没有变化则创建一个空提交
+        if git diff --staged --quiet; then
+          echo "文件无变化，创建空提交以记录同步时间"
+          git commit --allow-empty -m "🔄 IPTV 文件同步 - 内容无变化 $(date +'%Y-%m-%d %H:%M')"
         else
-          git add iptv4.txt
+          echo "文件有变化，提交更新"
           git commit -m "🔄 自动更新 IPTV 文件 $(date +'%Y-%m-%d %H:%M')"
-          git push origin main
-          echo "文件已更新并提交"
         fi
+        
+        # 推送更改
+        git push origin main
+        echo "同步完成，文件已保存到仓库"

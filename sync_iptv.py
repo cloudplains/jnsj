@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """
-自动同步 IPTV 文件到 GitHub 仓库
+自动同步 IPTV 文件到 GitHub 仓库 - 修复版本
 """
 
 import requests
 import os
 import json
 import hashlib
-from git import Repo
-from git.exc import GitCommandError
+import subprocess
+import shutil
+from datetime import datetime
 import argparse
 
 # 配置参数
@@ -16,6 +17,8 @@ SOURCE_URL = "https://raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/t
 LOCAL_FILE_PATH = "iptv4.txt"
 REPO_DIR = "./jnsj_repo"
 GITHUB_REPO = "cloudplains/jnsj"
+GITHUB_USERNAME = "github-actions[bot]"
+GITHUB_EMAIL = "github-actions[bot]@users.noreply.github.com"
 COMMIT_MSG = "自动更新 IPTV 文件 - {}"
 
 def get_file_hash(content):
@@ -32,28 +35,38 @@ def download_iptv_file():
         print(f"下载文件失败: {e}")
         return None
 
+def run_command(cmd, cwd=None):
+    """运行 shell 命令"""
+    try:
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd)
+        if result.returncode != 0:
+            print(f"命令执行失败: {cmd}")
+            print(f"错误输出: {result.stderr}")
+            return False, result.stderr
+        return True, result.stdout
+    except Exception as e:
+        print(f"执行命令时发生异常: {e}")
+        return False, str(e)
+
 def setup_git_repo(github_token):
     """设置 Git 仓库"""
-    if not os.path.exists(REPO_DIR):
-        os.makedirs(REPO_DIR)
-        try:
-            repo_url = f"https://{github_token}@github.com/{GITHUB_REPO}.git"
-            repo = Repo.clone_from(repo_url, REPO_DIR)
-            print("已克隆仓库")
-        except GitCommandError as e:
-            print(f"克隆仓库失败: {e}")
-            return None
-    else:
-        try:
-            repo = Repo(REPO_DIR)
-            origin = repo.remote(name='origin')
-            origin.pull()
-            print("已拉取最新更改")
-        except GitCommandError as e:
-            print(f"拉取最新更改失败: {e}")
-            return None
+    # 如果目录已存在，先删除
+    if os.path.exists(REPO_DIR):
+        shutil.rmtree(REPO_DIR)
     
-    return repo
+    os.makedirs(REPO_DIR)
+    
+    # 克隆仓库
+    repo_url = f"https://{github_token}@github.com/{GITHUB_REPO}.git"
+    success, output = run_command(f"git clone {repo_url} .", cwd=REPO_DIR)
+    if not success:
+        return False
+    
+    # 配置 Git 用户信息
+    run_command(f"git config user.name '{GITHUB_USERNAME}'", cwd=REPO_DIR)
+    run_command(f"git config user.email '{GITHUB_EMAIL}'", cwd=REPO_DIR)
+    
+    return True
 
 def sync_file_to_github(github_token):
     """同步文件到 GitHub"""
@@ -63,8 +76,7 @@ def sync_file_to_github(github_token):
         return False
     
     # 设置 Git 仓库
-    repo = setup_git_repo(github_token)
-    if repo is None:
+    if not setup_git_repo(github_token):
         return False
     
     # 检查文件是否已存在
@@ -91,16 +103,26 @@ def sync_file_to_github(github_token):
         f.write(new_content)
     
     # 提交更改
-    try:
-        repo.git.add(LOCAL_FILE_PATH)
-        repo.index.commit(COMMIT_MSG.format(os.environ.get('GITHUB_SHA', '自动更新')))
-        origin = repo.remote(name='origin')
-        origin.push()
-        print("已成功推送更新到 GitHub")
-        return True
-    except GitCommandError as e:
-        print(f"提交或推送更改失败: {e}")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    commit_message = COMMIT_MSG.format(timestamp)
+    
+    # 添加文件
+    success, output = run_command(f"git add {LOCAL_FILE_PATH}", cwd=REPO_DIR)
+    if not success:
         return False
+    
+    # 提交更改
+    success, output = run_command(f'git commit -m "{commit_message}"', cwd=REPO_DIR)
+    if not success and "nothing to commit" not in output:
+        return False
+    
+    # 推送更改
+    success, output = run_command("git push origin main", cwd=REPO_DIR)
+    if not success:
+        return False
+    
+    print("已成功推送更新到 GitHub")
+    return True
 
 def main():
     parser = argparse.ArgumentParser(description='同步 IPTV 文件到 GitHub 仓库')

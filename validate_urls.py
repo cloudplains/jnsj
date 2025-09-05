@@ -1,5 +1,4 @@
-[file name]: validate_urls.py
-[file content begin]
+# validate_urls.py
 import requests
 import json
 from datetime import datetime
@@ -143,50 +142,3 @@ if __name__ == "__main__":
     print("\n开始验证jnsj.json...")
     validate_json_urls()
     print("\nURL验证完成!")
-[file content end]
-
-[file name]: url.yml
-[file content begin]
-name: Validate URLs
-
-on:
-  schedule:
-    - cron: '0 18 * * *'  # 每天UTC时间0点运行（北京时间8点）
-  workflow_dispatch:  # 允许手动触发
-
-jobs:
-  validate_urls:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests
-
-    - name: Run URL validation script
-      run: python validate_urls.py
-
-    - name: Commit changes
-      run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "github-actions[bot]"
-        git add "assets/urls.txt" "assets/live.txt" "jnsj.json"
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m ":rocket: AutoValidate URLs $(date +'%Y%m%d_%H%M%S')"
-          git pull origin main --rebase
-          git push origin main
-        fi
-[file content end]

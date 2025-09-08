@@ -1,4 +1,4 @@
-name: Validate Live Sources
+﻿name: Validate Live Sources
 
 on:
   schedule:
@@ -15,6 +15,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        # 使用更深的提交历史以避免冲突
+        fetch-depth: 100
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -26,18 +29,22 @@ jobs:
         # 设置超时时间（2秒）和并发工作线程数（10个）
         python validate_live.py --timeout 2 --workers 10 --max-time 300
 
+    - name: Pull latest changes
+      run: |
+        # 拉取远程最新更改
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git pull origin main --rebase
+
     - name: Check for changes
       id: check_changes
       run: |
         git diff --quiet assets/live.txt || echo "changed=true" >> $GITHUB_OUTPUT
         git diff --quiet progress.json || echo "progress_changed=true" >> $GITHUB_OUTPUT
 
-    - name: Commit changes
+    - name: Commit and push changes
       if: steps.check_changes.outputs.changed == 'true' || steps.check_changes.outputs.progress_changed == 'true'
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
         git add assets/live.txt progress.json
         git commit -m "Auto-update: Partial validation of live sources $(date +'%Y-%m-%d %H:%M')"
         git push

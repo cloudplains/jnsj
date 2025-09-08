@@ -1,4 +1,4 @@
-{
+﻿{
   "urls": [
     {
       "url": "http://www.饭太硬.com/tv",
@@ -67,10 +67,6 @@
     {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
       "name": "南风线路"
-    },
-    {
-      "url": "https://gh-proxy.com/raw.githubusercontent.com/n3rddd/N3RD/master/JN/lempg.json",
-      "name": "雷蒙线路"
     },
     {
       "url": "https://gitee.com/yiwu369/6758/raw/master/%E9%9D%92%E9%BE%99/2.json",

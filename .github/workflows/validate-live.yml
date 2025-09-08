@@ -1,4 +1,4 @@
-name: Validate Live Sources
+﻿name: Validate Live Sources
 
 on:
   schedule:
@@ -10,27 +10,21 @@ on:
 jobs:
   validate-live:
     runs-on: ubuntu-latest
+    timeout-minutes: 360  # 设置6小时超时（最大允许值）
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        # 需要完全历史记录来比较更改
-        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
-    - name: Install dependencies (if any)
-      run: |
-        # 如果有任何依赖需要安装，可以在这里添加
-        # pip install requests
-        echo "No additional dependencies needed"
-
     - name: Run validation script
-      run: python validate_live.py
+      run: |
+        # 设置更短的超时时间（2秒）并启用并行处理
+        python validate_live.py --timeout 2 --workers 10
 
     - name: Check for changes
       id: check_changes

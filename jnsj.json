@@ -51,8 +51,124 @@
     {
       "url": "http://cdn.qiaoji8.com/tvbox.json",
       "name": "巧技"
+    },
+    {
+      "url": "https://12586.kstore.space/123.json",
+      "name": "匿名单仓"
+    },
+    {
+      "url": "https://9877.kstore.space/AnotherD/api.json",
+      "name": "潇洒单仓"
+    },
+    {
+      "url": "https://欧歌.v.nxog.top/nxog/ou1.php",
+      "name": "欧歌单仓"
+    },
+    {
+      "url": "https://o.nxog.top/nxog/ou1.php",
+      "name": "欧歌多仓"
+    },
+    {
+      "url": "http://mdxgh.top:5555/dc.json",
+      "name": "码点多仓"
+    },
+    {
+      "url": "https://qixing.myhkw.com/DC.txt",
+      "name": "天微多仓"
+    },
+    {
+      "url": "https://11256.kstore.space/%E5%85%8D%E8%B4%B9%E5%8B%BF%E4%BC%A0.json",
+      "name": "七星影仓"
+    },
+    {
+      "url": "https://d.kstore.dev/download/6375/%E7%88%B1%E6%A2%A6%E5%8D%95%E4%BB%93%E5%85%8D%E8%B4%B9%E6%8E%A5%E5%8F%A3%E7%A6%81%E6%AD%A2%E8%B4%A9%E5%8D%96.json",
+      "name": "爱梦单仓"
+    },
+    {
+      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
+      "name": "道长线路"
+    },
+    {
+      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
+      "name": "小苹果"
+    },
+    {
+      "url": "https://api.hgyx.vip/hgyx.json",
+      "name": "HG"
+    },
+    {
+      "url": "https://tv.菜妮丝.top",
+      "name": "菜妮丝"
+    },
+    {
+      "url": "https://cdn.gitmirror.com/bb/xduo/libs/master/index.json",
+      "name": "道长"
+    },
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
+      "name": "南风线路"
+    },
+    {
+      "url": "https://4708.kstore.space/svip/svip.json",
+      "name": "无辈线路"
+    },
+    {
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/n3rddd/N3RD/master/JN/lempg.json",
+      "name": "雷蒙线路"
+    },
+    {
+      "url": "https://play.iptv365.org/%E7%9F%AD%E5%89%A7%E9%A2%91%E9%81%93/api.json",
+      "name": "短剧线路"
+    },
+    {
+      "url": "http://154.40.47.87:999/TVbox/y1.json",
+      "name": "我不是肥猫线路"
+    },
+    {
+      "url": "https://gitee.com/yiwu369/6758/raw/master/%E9%9D%92%E9%BE%99/2.json",
+      "name": "青龙2"
+    },
+    {
+      "url": "https://gitee.com/yiwu369/6758/raw/master/%E7%99%BD%E8%99%8E/%E7%99%BD%E8%99%8E.json",
+      "name": "白虎"
+    },
+    {
+      "url": "https://git.acwing.com/999/tvbox/raw/main/%E9%AD%94%E7%9B%92.json",
+      "name": "魔盒"
+    },
+    {
+      "url": "https://gitee.com/blssss/jk/raw/api/bls.json",
+      "name": "玩偶单仓"
+    },
+    {
+      "url": "https://gitee.com/ltby1/blue-sky-education/raw/master/%E8%93%9D%E5%A4%A9%E7%99%BD%E4%BA%91%E6%99%BA%E6%95%99.json",
+      "name": "白云智教影线"
+    },
+    {
+      "url": "https://gitee.com/wxej/wxrj/raw/master/wx.json",
+      "name": "无邪仓"
+    },
+    {
+      "url": "https://gitee.com/kgysp/tv/raw/box/666.api",
+      "name": "坤哥影视"
+    },
+    {
+      "url": "https://agit.ai/leevi/apps/raw/branch/main/fast.json",
+      "name": "多仓接口2"
+    },
+    {
+      "url": "https://gitlab.com/duomv/apps/-/raw/main/fast.json",
+      "name": "多仓接口1"
+    },
+    {
+      "url": "https://yubox.xyz/dc.json",
+      "name": "多仓"
+    },
+    {
+      "url": "https://bitbucket.org/xduo/cool/raw/main/room.json",
+      "name": "推荐仓库①"
     }
   ],
   "last_updated": "2025-09-07 18:23:26",
-  "valid_count": 13
+  "valid_count": 45
 }

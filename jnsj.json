@@ -1,4 +1,4 @@
-{
+﻿{
   "urls": [
     {
       "url": "http://www.饭太硬.com/tv",
@@ -53,28 +53,8 @@
       "name": "巧技"
     },
     {
-      "url": "https://12586.kstore.space/123.json",
-      "name": "匿名单仓"
-    },
-    {
       "url": "https://9877.kstore.space/AnotherD/api.json",
       "name": "潇洒单仓"
-    },
-    {
-      "url": "http://mdxgh.top:5555/dc.json",
-      "name": "码点多仓"
-    },
-    {
-      "url": "https://qixing.myhkw.com/DC.txt",
-      "name": "天微多仓"
-    },
-    {
-      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
-      "name": "道长线路"
-    },
-    {
-      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
-      "name": "小苹果"
     },
     {
       "url": "https://api.hgyx.vip/hgyx.json",
@@ -93,36 +73,12 @@
       "name": "雷蒙线路"
     },
     {
-      "url": "http://154.40.47.87:999/TVbox/y1.json",
-      "name": "我不是肥猫线路"
-    },
-    {
       "url": "https://gitee.com/yiwu369/6758/raw/master/%E9%9D%92%E9%BE%99/2.json",
       "name": "青龙2"
     },
     {
-      "url": "https://gitee.com/yiwu369/6758/raw/master/%E7%99%BD%E8%99%8E/%E7%99%BD%E8%99%8E.json",
-      "name": "白虎"
-    },
-    {
-      "url": "https://gitee.com/blssss/jk/raw/api/bls.json",
-      "name": "玩偶单仓"
-    },
-    {
       "url": "https://gitee.com/ltby1/blue-sky-education/raw/master/%E8%93%9D%E5%A4%A9%E7%99%BD%E4%BA%91%E6%99%BA%E6%95%99.json",
       "name": "白云智教影线"
-    },
-    {
-      "url": "https://gitee.com/wxej/wxrj/raw/master/wx.json",
-      "name": "无邪仓"
-    },
-    {
-      "url": "https://gitee.com/kgysp/tv/raw/box/666.api",
-      "name": "坤哥影视"
-    },
-    {
-      "url": "https://bitbucket.org/xduo/cool/raw/main/room.json",
-      "name": "推荐仓库①"
     }
   ],
   "last_updated": "2025-09-08 06:28:40",

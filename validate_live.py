@@ -1,4 +1,4 @@
-﻿import urllib.request
+import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -8,6 +8,7 @@ import ssl
 import argparse
 import concurrent.futures
 import time
+import json
 
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -92,8 +93,17 @@ def process_line(line, timeout):
         return None
 
 # 处理直播源文件
-def process_live_file(input_file, output_file, timeout=2, workers=5):
+def process_live_file(input_file, output_file, progress_file, timeout=2, workers=5, max_time=300):
     print(f"开始处理直播源文件: {input_file}")
+    
+    # 读取进度文件
+    progress = {}
+    if os.path.exists(progress_file):
+        try:
+            with open(progress_file, 'r', encoding='utf-8') as f:
+                progress = json.load(f)
+        except Exception as e:
+            print(f"读取进度文件时出错: {e}")
     
     # 读取原始文件
     lines = read_txt_to_array(input_file)
@@ -106,26 +116,48 @@ def process_live_file(input_file, output_file, timeout=2, workers=5):
     beijing_time = utc_time + timedelta(hours=8)
     formatted_time = beijing_time.strftime("%Y-%m-%d %H:%M")
     
-    print(f"读取到 {len(lines)} 行，开始验证...")
+    # 读取已处理的源
+    valid_lines = []
+    if os.path.exists(output_file):
+        valid_lines = read_txt_to_array(output_file)
+        # 移除更新时间标记
+        if valid_lines and valid_lines[0].startswith('# 更新时间:'):
+            valid_lines = valid_lines[1:]
+    
+    # 确定开始处理的索引
+    last_processed_index = progress.get('last_processed_index', 0)
+    print(f"从索引 {last_processed_index} 开始处理，总行数: {len(lines)}")
+    
+    # 记录开始时间
+    start_time = time.time()
     
     # 使用多线程处理
-    valid_lines = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
-        # 提交所有任务
-        future_to_line = {
-            executor.submit(process_line, line, timeout): line 
-            for line in lines
-        }
-        
+        # 提交任务
+        future_to_index = {}
+        for i in range(last_processed_index, len(lines)):
+            # 检查是否超时
+            if time.time() - start_time > max_time * 60:  # max_time是分钟，转换为秒
+                print(f"达到最大运行时间 {max_time} 分钟，停止处理")
+                break
+                
+            future = executor.submit(process_line, lines[i], timeout)
+            future_to_index[future] = i
+            
         # 处理完成的任务
-        for future in concurrent.futures.as_completed(future_to_line):
+        for future in concurrent.futures.as_completed(future_to_index):
             try:
                 result = future.result()
                 if result:
                     valid_lines.append(result)
             except Exception as exc:
-                line = future_to_line[future]
-                print(f"处理行时发生异常: {line}, 错误: {exc}")
+                index = future_to_index[future]
+                print(f"处理行时发生异常: {lines[index]}, 错误: {exc}")
+    
+    # 更新最后处理的索引
+    last_processed_index = min(len(lines), future_to_index[future] + 1 if future_to_index else last_processed_index)
+    progress['last_processed_index'] = last_processed_index
+    progress['last_processed_time'] = formatted_time
     
     # 添加更新时间标记
     valid_lines.insert(0, f"# 更新时间: {formatted_time}")
@@ -136,9 +168,25 @@ def process_live_file(input_file, output_file, timeout=2, workers=5):
             for line in valid_lines:
                 f.write(line + '\n')
         print(f"已保存有效直播源到: {output_file}")
-        print(f"原始行数: {len(lines)}, 有效行数: {len(valid_lines)}")
+        print(f"原始行数: {len(lines)}, 已处理行数: {last_processed_index}, 有效行数: {len(valid_lines) - 1}")
     except Exception as e:
         print(f"保存文件时发生错误：{e}")
+    
+    # 保存进度
+    try:
+        with open(progress_file, 'w', encoding='utf-8') as f:
+            json.dump(progress, f, ensure_ascii=False, indent=2)
+        print(f"已保存进度到: {progress_file}")
+    except Exception as e:
+        print(f"保存进度文件时发生错误：{e}")
+    
+    # 检查是否处理完成
+    if last_processed_index >= len(lines):
+        print("所有直播源已处理完成，下次运行将从头开始")
+        # 重置进度
+        progress['last_processed_index'] = 0
+        with open(progress_file, 'w', encoding='utf-8') as f:
+            json.dump(progress, f, ensure_ascii=False, indent=2)
 
 # 主函数
 if __name__ == "__main__":
@@ -146,6 +194,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='验证直播源有效性')
     parser.add_argument('--timeout', type=float, default=2, help='验证超时时间（秒）')
     parser.add_argument('--workers', type=int, default=5, help='并发工作线程数')
+    parser.add_argument('--max-time', type=int, default=300, help='最大运行时间（分钟）')
     args = parser.parse_args()
     
     # 执行开始时间
@@ -154,9 +203,10 @@ if __name__ == "__main__":
     # 输入和输出文件
     input_file = "assets/live.txt"
     output_file = "assets/live.txt"  # 覆盖原文件
+    progress_file = "progress.json"  # 进度文件
     
     # 处理直播源文件
-    process_live_file(input_file, output_file, args.timeout, args.workers)
+    process_live_file(input_file, output_file, progress_file, args.timeout, args.workers, args.max_time)
     
     # 执行结束时间
     timeend = datetime.now()

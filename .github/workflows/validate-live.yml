@@ -1,16 +1,16 @@
-﻿name: Validate Live Sources
+name: Validate Live Sources
 
 on:
   schedule:
-    # 每周日凌晨2点运行（UTC时间，相当于北京时间上午10点）
-    - cron: '0 2 * * 0'
+    # 每天凌晨2点运行（UTC时间，相当于北京时间上午10点）
+    - cron: '0 2 * * *'
   # 也允许手动触发
   workflow_dispatch:
 
 jobs:
   validate-live:
     runs-on: ubuntu-latest
-    timeout-minutes: 360  # 设置6小时超时（最大允许值）
+    timeout-minutes: 300  # 设置5小时超时
     
     steps:
     - name: Checkout repository
@@ -23,19 +23,21 @@ jobs:
 
     - name: Run validation script
       run: |
-        # 设置更短的超时时间（2秒）并启用并行处理
-        python validate_live.py --timeout 2 --workers 10
+        # 设置超时时间（2秒）和并发工作线程数（10个）
+        python validate_live.py --timeout 2 --workers 10 --max-time 300
 
     - name: Check for changes
       id: check_changes
       run: |
         git diff --quiet assets/live.txt || echo "changed=true" >> $GITHUB_OUTPUT
+        git diff --quiet progress.json || echo "progress_changed=true" >> $GITHUB_OUTPUT
 
     - name: Commit changes
-      if: steps.check_changes.outputs.changed == 'true'
+      if: steps.check_changes.outputs.changed == 'true' || steps.check_changes.outputs.progress_changed == 'true'
       run: |
         git config --local user.email "action@github.com"
+        git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add assets/live.txt
-        git commit -m "Auto-update: Validate and update live sources $(date +'%Y-%m-%d %H:%M')"
+        git add assets/live.txt progress.json
+        git commit -m "Auto-update: Partial validation of live sources $(date +'%Y-%m-%d %H:%M')"
         git push

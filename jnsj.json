@@ -1,4 +1,4 @@
-{
+﻿{
   "urls": [
     {
       "url": "http://www.饭太硬.com/tv",
@@ -13,7 +13,7 @@
       "name": "📁莱斯📁"
     },
     {
-      "url": "clan://localhost/TVBox/jsm.json",
+      "url": "clan://localhost/tvbox/fty/fty.json",
       "name": "📁本地配置📁"
     },
     {

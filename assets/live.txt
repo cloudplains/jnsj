@@ -1,4 +1,4 @@
-﻿# 更新时间: 2025-09-09 13:33
+# 更新时间: 2025-09-09 13:52
 
 央视频道,#genre#
 CCTV+ 1 (720p),https://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL1.smil/playlist.m3u8
@@ -2485,7 +2485,6 @@ amc电影台,http://61.221.215.25:8800/hls/43/index.m3u8
 湖南电影,https://stream1.freetv.fun/hu-nan-dian-ying-6.m3u8
 湖南电影,https://stream1.freetv.fun/hu-nan-dian-ying-7.m3u8
 湖南电影,https://stream1.freetv.fun/hu-nan-dian-ying-8.m3u8
-
 电影频道|Astrol Kplus,https://smart.pendy.dpdns.org/Smart.php?id=Kplus
 电影频道|Celestial Classic,https://smart.pendy.dpdns.org/Smart.php?id=Celestial2
 电影频道|Celestial Movies HD,https://smart.pendy.dpdns.org/Smart.php?id=Celestialindo
@@ -3394,7 +3393,6 @@ CRI HIT FM (广州),https://satellitepull.cnr.cn/live/wxhitfm/playlist.m3u8
 海南自贸频道,http://112.66.75.118:8188/rtp/239.253.64.119:5140
 海南自贸频道,http://223.198.241.126:4000/rtp/239.253.64.119:5140
 海南音乐广播,https://satellitepull.cnr.cn/live/wxhainyygb/playlist.m3u8
-
 韓國娛樂台KMTV,http://xn--elt51t.azip.dpdns.org:5008/4gtv-4gtv016/index.m3u8
 韓國娛樂台KMTV,http://xn--elt51t.azip.dpdns.org:5008/li-4gtv-4gtv016/index.m3u8
 韩·Arirang,http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8
@@ -3482,3 +3480,4 @@ CRI HIT FM (广州),https://satellitepull.cnr.cn/live/wxhitfm/playlist.m3u8
 韩国|木浦MBC,http://vod.mpmbc.co.kr:1935/live/encoder-tv/playlist.m3u8
 韩国|江原岭东MBC,http://123.254.72.24:1935/tvlive/livestream2/playlist.m3u8
 韩国|济州MBC,https://wowza.jejumbc.com/live/tv_jejumbc/playlist.m3u8
+

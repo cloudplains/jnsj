@@ -17,31 +17,31 @@ ssl._create_default_https_context = ssl._create_unverified_context
 def categorize_channel(channel_name):
     channel_name_lower = channel_name.lower()
     
-    # 央视分类
-    if 'cctv' in channel_name_lower or '央视' in channel_name_lower:
+    # 央视分类 - 只保留CCTV和央视开头的
+    if channel_name_lower.startswith(('cctv', '央视')):
         return "央视频道"
     
-    # 卫视分类 - 只保留带有"卫视"字样的
-    elif '卫视' in channel_name_lower:
+    # 卫视分类 - 只保留明确带有"卫视"字样的
+    elif '卫视' in channel_name and not any(keyword in channel_name for keyword in ['广东', '海南', '广州', '深圳', '海口', '三亚']):
         return "卫视频道"
     
-    # 广东频道 - 只保留广东地市名
+    # 广东频道 - 只保留广东地市名，且不能是卫视
     elif any(city in channel_name for city in 
              ['广东', '广州', '深圳', '珠海', '汕头', '佛山', '韶关', '湛江', 
               '肇庆', '江门', '茂名', '惠州', '梅州', '汕尾', '河源', '阳江', 
               '清远', '东莞', '中山', '潮州', '揭阳', '云浮']):
         # 确保不是卫视
-        if '卫视' not in channel_name_lower:
+        if '卫视' not in channel_name:
             return "广东频道"
         else:
             return "卫视频道"
     
-    # 海南频道 - 只保留海南地市名
+    # 海南频道 - 只保留海南地市名，且不能是卫视
     elif any(city in channel_name for city in 
              ['海南', '海口', '三亚', '三沙', '儋州', '琼海', '文昌', '万宁', 
               '东方', '五指山', '乐东', '澄迈', '临高', '定安', '屯昌', '陵水']):
         # 确保不是卫视
-        if '卫视' not in channel_name_lower:
+        if '卫视' not in channel_name:
             return "海南频道"
         else:
             return "卫视频道"

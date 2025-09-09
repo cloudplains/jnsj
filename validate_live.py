@@ -15,15 +15,18 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 # 分类规则 - 根据频道名称关键词分类
 def categorize_channel(channel_name):
-    channel_name_lower = channel_name.lower()
-    
     # 央视分类 - 只保留CCTV和央视开头的
-    if channel_name_lower.startswith(('cctv', '央视')):
+    if channel_name.startswith(('CCTV', '央视')):
         return "央视频道"
     
     # 卫视分类 - 只保留明确带有"卫视"字样的
-    elif '卫视' in channel_name and not any(keyword in channel_name for keyword in ['广东', '海南', '广州', '深圳', '海口', '三亚']):
-        return "卫视频道"
+    elif '卫视' in channel_name:
+        # 确保不是广东或海南的卫视
+        if not any(keyword in channel_name for keyword in ['广东', '海南']):
+            return "卫视频道"
+        else:
+            # 广东卫视和海南卫视应该归类到卫视
+            return "卫视频道"
     
     # 广东频道 - 只保留广东地市名，且不能是卫视
     elif any(city in channel_name for city in 
@@ -47,12 +50,12 @@ def categorize_channel(channel_name):
             return "卫视频道"
     
     # 电影分类
-    elif any(movie_keyword in channel_name_lower for movie_keyword in 
+    elif any(movie_keyword in channel_name.lower() for movie_keyword in 
              ['电影', '影院', '影视频道', 'movie', 'cinema']):
         return "电影频道"
     
     # 国际分类
-    elif any(international_keyword in channel_name_lower for international_keyword in 
+    elif any(international_keyword in channel_name.lower() for international_keyword in 
              ['凤凰', '翡翠', '明珠', 'hbo', 'discovery', 'bbc', 'cnn', 'nhk', 'tvb']):
         return "国际频道"
     
@@ -229,35 +232,7 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
             categorized_results[category] = []
         categorized_results[category].append(f"{result['channel']},{result['url']}")
     
-    # 读取现有的有效源（如果有）
-    existing_categories = {}
-    if os.path.exists(output_file):
-        current_category = None
-        with open(output_file, 'r', encoding='utf-8') as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                if line.endswith(',#genre#'):
-                    current_category = line.replace(',#genre#', '')
-                    existing_categories[current_category] = []
-                elif current_category and ',' in line and '://' in line:
-                    existing_categories[current_category].append(line)
-    
-    # 合并现有结果和新结果
-    for category, channels in categorized_results.items():
-        if category not in existing_categories:
-            existing_categories[category] = []
-        
-        # 去重
-        existing_urls = {line.split(',')[1] for line in existing_categories[category]}
-        for channel in channels:
-            url = channel.split(',')[1]
-            if url not in existing_urls:
-                existing_categories[category].append(channel)
-                existing_urls.add(url)
-    
-    # 写入新文件
+    # 写入新文件 - 每次从头开始，不保留之前的分类结果
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(f"# 更新时间: {formatted_time}\n\n")
@@ -266,9 +241,9 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
             categories_order = ["央视频道", "卫视频道", "电影频道", "国际频道", "广东频道", "海南频道"]
             
             for category in categories_order:
-                if category in existing_categories and existing_categories[category]:
+                if category in categorized_results and categorized_results[category]:
                     f.write(f"{category},#genre#\n")
-                    for channel in sorted(existing_categories[category]):
+                    for channel in sorted(categorized_results[category]):
                         f.write(f"{channel}\n")
                     f.write("\n")
         
@@ -278,8 +253,8 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
         # 打印各分类统计
         print("\n各分类统计:")
         for category in categories_order:
-            if category in existing_categories:
-                count = len(existing_categories[category])
+            if category in categorized_results:
+                count = len(categorized_results[category])
                 print(f"{category}: {count} 个频道")
                 
     except Exception as e:

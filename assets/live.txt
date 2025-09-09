@@ -1,4 +1,4 @@
-﻿# 更新时间: 2025-09-09 09:39
+# 更新时间: 2025-09-09 10:36
 
 央视频道,#genre#
 CCTV - 移动传媒,http://newcntv.qcloudcdn.com/asp/hls/1200/0303000a/3/default/649e19038fa74514ab3f00febbcd6de0/1200.m3u8
@@ -713,7 +713,6 @@ CCTV风云音乐,http://live.nctv.top/6688/cqyx.php?token=&id=fyyy
 CCTV风云音乐,http://wmh.wmh.ink:6633/rtp/239.253.43.6:5146
 CCTV风云音乐,http://ymz.stkeyu.top:8303/rtp/239.253.43.6:5146
 
-
 卫视频道,#genre#
 三沙卫视,http://113.56.95.223:8889/rtp/228.0.0.174:7174
 三沙卫视,http://115.171.216.107:4000/rtp/225.1.8.78:4120
@@ -883,7 +882,6 @@ CCTV风云音乐,http://ymz.stkeyu.top:8303/rtp/239.253.43.6:5146
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-4.m3u8
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-5.m3u8
 人间卫视,https://stream1.freetv.fun/ren-jian-wei-shi-7.ctv
-
 兵团卫视,http://1.58.246.199:4001/rtp/229.58.190.178:5000
 兵团卫视,http://115.171.216.107:4000/rtp/225.1.8.167:4120
 兵团卫视,http://115.171.216.58:4000/rtp/225.1.8.167:4120
@@ -1072,7 +1070,6 @@ CCTV风云音乐,http://ymz.stkeyu.top:8303/rtp/239.253.43.6:5146
 吉林卫视,http://satellitepull.cnr.cn/live/wxjlws/playlist.m3u8
 吉林卫视,http://z.b.bkpcp.top/m.php?id=jlws
 吉林卫视,https://live.goodiptv.club/api/sxg.php?id=jlwsH265_4000
-
 喜剧电影,http://159.75.85.63:35455/douyu/323876
 喜剧电影,http://cfss.cc/cdn/dyu/323876.m3u8
 喜剧电影,https://111.67.193.2:35455/douyu/323876
@@ -1557,7 +1554,6 @@ CCTV风云音乐,http://ymz.stkeyu.top:8303/rtp/239.253.43.6:5146
 无锡生活,http://stream.thmz.com/wxtv4/playlist.m3u8
 无锡生活,http://stream.thmz.com/wxtv4/sd/live.m3u8
 无锡生活,http://stream.thmz.com/wxtv4/sd/live.m3u8?_upt=978cd8731706199708
-
 星空卫视,http://122.224.58.42:85/tsfile/live/1024_1.m3u8?key=txiptv&playlive=1&authid=0
 星空卫视,http://218.202.220.2:5000/nn_live.ts?id=STARTV
 星空卫视,http://iot-mqqt.111yao.cn:8080/live/diyp_xingkong.m3u8
@@ -1570,8 +1566,6 @@ CCTV风云音乐,http://ymz.stkeyu.top:8303/rtp/239.253.43.6:5146
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-14.m3u8
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-2.ctv
 星空卫视,https://stream1.freetv.fun/xing-kong-wei-shi-4.ctv
-
-
 江苏卫视,http://1.58.246.199:4001/rtp/229.58.190.37:5000
 江苏卫视,http://106.45.2.195:4000/rtp/239.121.4.115:8672
 江苏卫视,http://111.113.89.159:2000/rtp/239.121.4.115:8672
@@ -10591,8 +10585,6 @@ viu剧集,http://iptv.4666888.xyz/iptv.php?id=20070
 韩国|江原岭东MBC,http://123.254.72.24:1935/tvlive/livestream2/playlist.m3u8
 韩国|济州MBC,https://wowza.jejumbc.com/live/tv_jejumbc/playlist.m3u8
 韩国美女,https://txmov2.a.kwimgs.com/upic/2021/04/03/20/BMjAyMTA0MDMyMDU0MzZfMTE1MjQ3MDA5XzQ3MTYzMjMyNzQ3XzJfMw==_b_B51f045ff769a1d0d0c35c1e3bed6e970.mp4
-
-
 香港|HOY资讯台,https://smart.pendy.dpdns.org/Smart.php?id=hoycaijing_twn
 香港|RHK 31,https://smart.pendy.dpdns.org/Smart.php?id=rhk31_twn
 香港|RHK 32,https://smart.pendy.dpdns.org/Smart.php?id=rhk32_twn

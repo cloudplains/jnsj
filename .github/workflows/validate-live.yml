@@ -2,22 +2,17 @@
 
 on:
   schedule:
-    # 每天凌晨2点运行（UTC时间，相当于北京时间上午10点）
-    - cron: '0 2 * * *'
-  # 也允许手动触发
+    - cron: '0 2 * * *'  # 每天UTC时间2点运行
   workflow_dispatch:
 
 jobs:
   validate-live:
     runs-on: ubuntu-latest
-    timeout-minutes: 300  # 设置5小时超时
-    
+    timeout-minutes: 300  # 5小时超时
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        # 使用更深的提交历史以避免冲突
-        fetch-depth: 100
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -25,26 +20,28 @@ jobs:
         python-version: '3.10'
 
     - name: Run validation script
-      run: |
-        # 设置超时时间（2秒）和并发工作线程数（10个）
-        python validate_live.py --timeout 2 --workers 10 --max-time 300
+      run: python validate_live.py --timeout 2 --workers 10 --max-time 300
 
-    - name: Pull latest changes
+    - name: Stash local changes before pull
+      run: git stash  # 临时保存本地更改
+
+    - name: Pull latest changes with rebase
+      run: git pull --rebase origin main  # 假设你的默认分支是main
+
+    - name: Restore stashed changes
+      run: git stash pop  # 恢复暂存的更改，可能会遇到冲突需要解决
+
+    - name: Check for changes and commit
       run: |
-        # 拉取远程最新更改
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git pull origin main --rebase
+        # 检查是否有文件被修改
+        if git diff --exit-code --quiet; then
+          echo "没有检测到更改，无需提交。"
+        else
+          git add assets/live.txt progress.json
+          git commit -m "Auto-update: Partial validation of live sources $(date +'%Y-%m-%d %H:%M')"
+        fi
 
-    - name: Check for changes
-      id: check_changes
-      run: |
-        git diff --quiet assets/live.txt || echo "changed=true" >> $GITHUB_OUTPUT
-        git diff --quiet progress.json || echo "progress_changed=true" >> $GITHUB_OUTPUT
-
-    - name: Commit and push changes
-      if: steps.check_changes.outputs.changed == 'true' || steps.check_changes.outputs.progress_changed == 'true'
-      run: |
-        git add assets/live.txt progress.json
-        git commit -m "Auto-update: Partial validation of live sources $(date +'%Y-%m-%d %H:%M')"
-        git push
+    - name: Push changes
+      run: git push

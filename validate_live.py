@@ -1,4 +1,4 @@
-import urllib.request
+﻿import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -12,6 +12,38 @@ import json
 
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
+
+# 分类规则 - 根据频道名称关键词分类
+def categorize_channel(channel_name):
+    channel_name_lower = channel_name.lower()
+    
+    # 央视分类
+    if 'cctv' in channel_name_lower or '央视' in channel_name_lower:
+        return "央视频道"
+    
+    # 卫视分类
+    elif '卫视' in channel_name_lower:
+        return "卫视频道"
+    
+    # 地方台分类 - 只保留广东和海南
+    elif '广东' in channel_name_lower or '广州' in channel_name_lower or '深圳' in channel_name_lower:
+        return "广东频道"
+    elif '海南' in channel_name_lower or '海口' in channel_name_lower or '三亚' in channel_name_lower:
+        return "海南频道"
+    
+    # 电影分类
+    elif any(movie_keyword in channel_name_lower for movie_keyword in 
+             ['电影', '影院', '影视频道', 'movie', 'cinema']):
+        return "电影频道"
+    
+    # 国际分类
+    elif any(international_keyword in channel_name_lower for international_keyword in 
+             ['凤凰', '翡翠', '明珠', 'hbo', 'discovery', 'bbc', 'cnn', 'nhk', 'tvb']):
+        return "国际频道"
+    
+    # 默认分类
+    else:
+        return "其他频道"
 
 # 读取文本方法（支持多种编码）
 def read_txt_to_array(file_name):
@@ -84,12 +116,21 @@ def process_line(line, timeout):
         
         # 验证URL有效性
         if validate_stream_url(url, timeout):
-            return f"{channel_name},{url}"
+            category = categorize_channel(channel_name)
+            
+            # 跳过体育分类
+            if any(sports_keyword in channel_name.lower() for sports_keyword in 
+                  ['体育', 'sports', '足球', '篮球', '网球', '乒乓球']):
+                print(f"跳过体育频道: {channel_name} - {url}")
+                return None
+                
+            return {"category": category, "channel": channel_name, "url": url}
         else:
             print(f"无效: {channel_name} - {url}")
             return None
     else:
-        print(f"跳过不规则格式: {line}")
+        # 不属于节目源的行直接去掉
+        print(f"移除非节目源行: {line}")
         return None
 
 # 处理直播源文件
@@ -116,14 +157,6 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
     beijing_time = utc_time + timedelta(hours=8)
     formatted_time = beijing_time.strftime("%Y-%m-%d %H:%M")
     
-    # 读取已处理的源
-    valid_lines = []
-    if os.path.exists(output_file):
-        valid_lines = read_txt_to_array(output_file)
-        # 移除更新时间标记
-        if valid_lines and valid_lines[0].startswith('# 更新时间:'):
-            valid_lines = valid_lines[1:]
-    
     # 确定开始处理的索引
     last_processed_index = progress.get('last_processed_index', 0)
     print(f"从索引 {last_processed_index} 开始处理，总行数: {len(lines)}")
@@ -132,6 +165,7 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
     start_time = time.time()
     
     # 使用多线程处理
+    results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         # 提交任务
         future_to_index = {}
@@ -149,7 +183,7 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
             try:
                 result = future.result()
                 if result:
-                    valid_lines.append(result)
+                    results.append(result)
             except Exception as exc:
                 index = future_to_index[future]
                 print(f"处理行时发生异常: {lines[index]}, 错误: {exc}")
@@ -159,16 +193,67 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
     progress['last_processed_index'] = last_processed_index
     progress['last_processed_time'] = formatted_time
     
-    # 添加更新时间标记
-    valid_lines.insert(0, f"# 更新时间: {formatted_time}")
+    # 按分类组织结果
+    categorized_results = {}
+    for result in results:
+        category = result["category"]
+        if category not in categorized_results:
+            categorized_results[category] = []
+        categorized_results[category].append(f"{result['channel']},{result['url']}")
+    
+    # 读取现有的有效源（如果有）
+    existing_categories = {}
+    if os.path.exists(output_file):
+        current_category = None
+        with open(output_file, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                if line.endswith(',#genre#'):
+                    current_category = line.replace(',#genre#', '')
+                    existing_categories[current_category] = []
+                elif current_category and ',' in line and '://' in line:
+                    existing_categories[current_category].append(line)
+    
+    # 合并现有结果和新结果
+    for category, channels in categorized_results.items():
+        if category not in existing_categories:
+            existing_categories[category] = []
+        
+        # 去重
+        existing_urls = {line.split(',')[1] for line in existing_categories[category]}
+        for channel in channels:
+            url = channel.split(',')[1]
+            if url not in existing_urls:
+                existing_categories[category].append(channel)
+                existing_urls.add(url)
     
     # 写入新文件
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
-            for line in valid_lines:
-                f.write(line + '\n')
-        print(f"已保存有效直播源到: {output_file}")
-        print(f"原始行数: {len(lines)}, 已处理行数: {last_processed_index}, 有效行数: {len(valid_lines) - 1}")
+            f.write(f"# 更新时间: {formatted_time}\n\n")
+            
+            # 按固定顺序写入分类
+            categories_order = ["央视频道", "卫视频道", "电影频道", "国际频道", "广东频道", "海南频道", "其他频道"]
+            
+            for category in categories_order:
+                if category in existing_categories and existing_categories[category]:
+                    f.write(f"{category},#genre#\n")
+                    for channel in sorted(existing_categories[category]):
+                        f.write(f"{channel}\n")
+                    f.write("\n")
+        
+        print(f"已保存分类直播源到: {output_file}")
+        print(f"原始行数: {len(lines)}, 已处理行数: {last_processed_index}, 有效频道数: {len(results)}")
+        
+        # 打印各分类统计
+        print("\n各分类统计:")
+        for category in categories_order:
+            if category in existing_categories:
+                count = len(existing_categories[category])
+                print(f"{category}: {count} 个频道")
+                
     except Exception as e:
         print(f"保存文件时发生错误：{e}")
     

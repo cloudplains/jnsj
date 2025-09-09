@@ -21,15 +21,30 @@ def categorize_channel(channel_name):
     if 'cctv' in channel_name_lower or '央视' in channel_name_lower:
         return "央视频道"
     
-    # 卫视分类
+    # 卫视分类 - 只保留带有"卫视"字样的
     elif '卫视' in channel_name_lower:
         return "卫视频道"
     
-    # 地方台分类 - 只保留广东和海南
-    elif '广东' in channel_name_lower or '广州' in channel_name_lower or '深圳' in channel_name_lower:
-        return "广东频道"
-    elif '海南' in channel_name_lower or '海口' in channel_name_lower or '三亚' in channel_name_lower:
-        return "海南频道"
+    # 广东频道 - 只保留广东地市名
+    elif any(city in channel_name for city in 
+             ['广东', '广州', '深圳', '珠海', '汕头', '佛山', '韶关', '湛江', 
+              '肇庆', '江门', '茂名', '惠州', '梅州', '汕尾', '河源', '阳江', 
+              '清远', '东莞', '中山', '潮州', '揭阳', '云浮']):
+        # 确保不是卫视
+        if '卫视' not in channel_name_lower:
+            return "广东频道"
+        else:
+            return "卫视频道"
+    
+    # 海南频道 - 只保留海南地市名
+    elif any(city in channel_name for city in 
+             ['海南', '海口', '三亚', '三沙', '儋州', '琼海', '文昌', '万宁', 
+              '东方', '五指山', '乐东', '澄迈', '临高', '定安', '屯昌', '陵水']):
+        # 确保不是卫视
+        if '卫视' not in channel_name_lower:
+            return "海南频道"
+        else:
+            return "卫视频道"
     
     # 电影分类
     elif any(movie_keyword in channel_name_lower for movie_keyword in 
@@ -41,9 +56,9 @@ def categorize_channel(channel_name):
              ['凤凰', '翡翠', '明珠', 'hbo', 'discovery', 'bbc', 'cnn', 'nhk', 'tvb']):
         return "国际频道"
     
-    # 默认分类
+    # 默认不保留
     else:
-        return "其他频道"
+        return None
 
 # 读取文本方法（支持多种编码）
 def read_txt_to_array(file_name):
@@ -82,6 +97,10 @@ def validate_stream_url(url, timeout=2):
     """
     简化验证直播源是否可访问，只检查TCP连接
     """
+    # 跳过MP4后缀的URL
+    if url.lower().endswith('.mp4'):
+        return False
+        
     try:
         # 解析URL获取主机和端口
         parsed_url = urlparse(url)
@@ -114,17 +133,26 @@ def process_line(line, timeout):
         channel_name = parts[0].strip()
         url = parts[1].strip()
         
+        # 跳过MP4后缀的URL
+        if url.lower().endswith('.mp4'):
+            print(f"跳过MP4源: {channel_name} - {url}")
+            return None
+            
+        # 跳过体育分类
+        if any(sports_keyword in channel_name.lower() for sports_keyword in 
+              ['体育', 'sports', '足球', '篮球', '网球', '乒乓球']):
+            print(f"跳过体育频道: {channel_name} - {url}")
+            return None
+            
         # 验证URL有效性
         if validate_stream_url(url, timeout):
             category = categorize_channel(channel_name)
             
-            # 跳过体育分类
-            if any(sports_keyword in channel_name.lower() for sports_keyword in 
-                  ['体育', 'sports', '足球', '篮球', '网球', '乒乓球']):
-                print(f"跳过体育频道: {channel_name} - {url}")
+            if category:
+                return {"category": category, "channel": channel_name, "url": url}
+            else:
+                print(f"跳过杂源: {channel_name} - {url}")
                 return None
-                
-            return {"category": category, "channel": channel_name, "url": url}
         else:
             print(f"无效: {channel_name} - {url}")
             return None
@@ -235,7 +263,7 @@ def process_live_file(input_file, output_file, progress_file, timeout=2, workers
             f.write(f"# 更新时间: {formatted_time}\n\n")
             
             # 按固定顺序写入分类
-            categories_order = ["央视频道", "卫视频道", "电影频道", "国际频道", "广东频道", "海南频道", "其他频道"]
+            categories_order = ["央视频道", "卫视频道", "电影频道", "国际频道", "广东频道", "海南频道"]
             
             for category in categories_order:
                 if category in existing_categories and existing_categories[category]:

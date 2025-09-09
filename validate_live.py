@@ -49,10 +49,15 @@ def categorize_channel(channel_name):
         else:
             return "卫视频道"
     
-    # 电影分类
-    elif any(movie_keyword in channel_name.lower() for movie_keyword in 
-             ['电影', '影院', '影视频道', 'movie', 'cinema']):
-        return "电影频道"
+    # 电影分类 - 只保留正规电影频道，移除轮播和直播平台
+    elif any(movie_keyword in channel_name for movie_keyword in 
+             ['CCTV6', '央视电影', '电影频道']):
+        # 检查是否是轮播或直播平台
+        if not any(platform_keyword in channel_name for platform_keyword in 
+                  ['轮播', '循环', '斗鱼', '虎牙', '哔哩', 'B站', 'Bilibili']):
+            return "电影频道"
+        else:
+            return None
     
     # 国际分类
     elif any(international_keyword in channel_name.lower() for international_keyword in 
@@ -145,6 +150,12 @@ def process_line(line, timeout):
         if any(sports_keyword in channel_name.lower() for sports_keyword in 
               ['体育', 'sports', '足球', '篮球', '网球', '乒乓球']):
             print(f"跳过体育频道: {channel_name} - {url}")
+            return None
+            
+        # 跳过直播平台和轮播源
+        if any(platform_keyword in channel_name for platform_keyword in 
+              ['斗鱼', '虎牙', '哔哩', 'B站', 'Bilibili', '轮播', '循环']):
+            print(f"跳过直播平台/轮播源: {channel_name} - {url}")
             return None
             
         # 验证URL有效性

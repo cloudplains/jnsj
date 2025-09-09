@@ -1,4 +1,4 @@
-# 更新时间: 2025-09-09 10:36
+# 更新时间: 2025-09-09 10:57
 
 央视频道,#genre#
 CCTV - 移动传媒,http://newcntv.qcloudcdn.com/asp/hls/1200/0303000a/3/default/649e19038fa74514ab3f00febbcd6de0/1200.m3u8
@@ -10638,4 +10638,5 @@ viu剧集,http://iptv.4666888.xyz/iptv.php?id=20070
 马来西亚|华丽台 HD （Wah Lai Toi）,https://smart.pendy.dpdns.org/Smart.php?id=Wlt
 马来西亚|欢喜台 HD （Hua Hee Tai）,https://smart.pendy.dpdns.org/Smart.php?id=Huahee
 马来西亚|爱奇艺 iQiyi,https://smart.pendy.dpdns.org/Smart.php?id=Qiyi
+魏县综合新闻,http://111.226.232.90:10010/rtp/239.254.201.148:6211
 

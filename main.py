@@ -304,6 +304,55 @@ def is_ipv6_url(url):
             return True
     return False
 
+# 检查是否为广东或海南的IPv6源
+def is_guangdong_hainan_ipv6(url):
+    """检查是否为广东或海南的IPv6源"""
+    # 广东和海南的IPv6地址特征
+    gd_hn_patterns = [
+        r'240e:',  # 中国电信IPv6地址段（广东）
+        r'2408:8000:',  # 中国联通IPv6地址段（广东）
+        r'2409:8000:',  # 中国移动IPv6地址段（广东）
+        r'2409:8a00:',  # 中国移动IPv6地址段（海南）
+    ]
+    
+    for pattern in gd_hn_patterns:
+        if re.search(pattern, url, re.IGNORECASE):
+            return True
+    return False
+
+# 央视频道名称标准化
+def standardize_cctv_name(channel_name):
+    """将CCTV频道名称标准化为'CCTV数字+名称'格式"""
+    # CCTV频道名称映射
+    cctv_mapping = {
+        'CCTV1': 'CCTV1综合',
+        'CCTV2': 'CCTV2财经',
+        'CCTV3': 'CCTV3综艺',
+        'CCTV4': 'CCTV4中文国际',
+        'CCTV5': 'CCTV5体育',
+        'CCTV5+': 'CCTV5+体育赛事',
+        'CCTV6': 'CCTV6电影',
+        'CCTV7': 'CCTV7国防军事',
+        'CCTV8': 'CCTV8电视剧',
+        'CCTV9': 'CCTV9纪录',
+        'CCTV10': 'CCTV10科教',
+        'CCTV11': 'CCTV11戏曲',
+        'CCTV12': 'CCTV12社会与法',
+        'CCTV13': 'CCTV13新闻',
+        'CCTV14': 'CCTV14少儿',
+        'CCTV15': 'CCTV15音乐',
+        'CCTV16': 'CCTV16奥林匹克',
+        'CCTV17': 'CCTV17农业农村'
+    }
+    
+    # 尝试匹配标准名称
+    for short_name, full_name in cctv_mapping.items():
+        if channel_name.startswith(short_name):
+            return full_name
+    
+    # 如果不是已知的CCTV频道，保持原样
+    return channel_name
+
 # 分发直播源
 def process_channel_line(line):
     try:
@@ -317,18 +366,21 @@ def process_channel_line(line):
             channel_name = clean_channel_name(channel_name, removal_list)
             channel_name = correct_name_data(channel_name).strip()
 
+            # 对央视频道进行标准化处理
+            if channel_name.startswith('CCTV'):
+                channel_name = standardize_cctv_name(channel_name)
+
             channel_address = clean_url(parts[1]).strip()
             line = channel_name + "," + channel_address
 
             if len(channel_address) > 0 and channel_address not in combined_blacklist:
-                # 如果是IPv6源，添加到IPv6频道（只保留CCTV和卫视频道）
+                # 如果是IPv6源，添加到IPv6频道（只保留广东和海南的IPV6源）
                 if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
-                    # 只添加CCTV和卫视频道
-                    if channel_name.startswith('CCTV') or channel_name in ws_dictionary:
+                    if is_guangdong_hainan_ipv6(channel_address):
                         ipv6_lines.append(line)
                         print(f"添加到IPv6频道: {channel_name}, {channel_address}")
                     else:
-                        print(f"IPv6频道跳过非CCTV/卫视: {channel_name}")
+                        print(f"IPv6频道跳过非广东/海南源: {channel_name}")
                 
                 # 特别处理直播中国分类 - 只保留明确的直播中国频道
                 if channel_name in zb_dictionary:

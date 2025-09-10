@@ -190,8 +190,8 @@ removal_list = ["「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电�
 def clean_channel_name(channel_name, removal_list):
     for item in removal_list:
         channel_name = channel_name.replace(item, "")
-    channel_name = channel_name.replace("CCTV-", "CCTV")
-    channel_name = channel_name.replace("CCTV0", "CCTV")
+    # 保留CCTV-格式
+    channel_name = channel_name.replace("CCTV0", "CCTV-")
     channel_name = channel_name.replace("PLUS", "+")
     channel_name = channel_name.replace("NewTV-", "NewTV")
     channel_name = channel_name.replace("iHOT-", "iHOT")
@@ -322,27 +322,27 @@ def is_guangdong_hainan_ipv6(url):
 
 # 央视频道名称标准化
 def standardize_cctv_name(channel_name):
-    """将CCTV频道名称标准化为'CCTV数字+名称'格式"""
+    """将CCTV频道名称标准化为'CCTV-数字+名称'格式"""
     # CCTV频道名称映射
     cctv_mapping = {
-        'CCTV1': 'CCTV1综合',
-        'CCTV2': 'CCTV2财经',
-        'CCTV3': 'CCTV3综艺',
-        'CCTV4': 'CCTV4中文国际',
-        'CCTV5': 'CCTV5体育',
-        'CCTV5+': 'CCTV5+体育赛事',
-        'CCTV6': 'CCTV6电影',
-        'CCTV7': 'CCTV7国防军事',
-        'CCTV8': 'CCTV8电视剧',
-        'CCTV9': 'CCTV9纪录',
-        'CCTV10': 'CCTV10科教',
-        'CCTV11': 'CCTV11戏曲',
-        'CCTV12': 'CCTV12社会与法',
-        'CCTV13': 'CCTV13新闻',
-        'CCTV14': 'CCTV14少儿',
-        'CCTV15': 'CCTV15音乐',
-        'CCTV16': 'CCTV16奥林匹克',
-        'CCTV17': 'CCTV17农业农村'
+        'CCTV-1': 'CCTV-1综合',
+        'CCTV-2': 'CCTV-2财经',
+        'CCTV-3': 'CCTV-3综艺',
+        'CCTV-4': 'CCTV-4中文国际',
+        'CCTV-5': 'CCTV-5体育',
+        'CCTV-5+': 'CCTV-5+体育赛事',
+        'CCTV-6': 'CCTV-6电影',
+        'CCTV-7': 'CCTV-7国防军事',
+        'CCTV-8': 'CCTV-8电视剧',
+        'CCTV-9': 'CCTV-9纪录',
+        'CCTV-10': 'CCTV-10科教',
+        'CCTV-11': 'CCTV-11戏曲',
+        'CCTV-12': 'CCTV-12社会与法',
+        'CCTV-13': 'CCTV-13新闻',
+        'CCTV-14': 'CCTV-14少儿',
+        'CCTV-15': 'CCTV-15音乐',
+        'CCTV-16': 'CCTV-16奥林匹克',
+        'CCTV-17': 'CCTV-17农业农村'
     }
     
     # 尝试匹配标准名称

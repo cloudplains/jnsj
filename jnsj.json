@@ -1,4 +1,4 @@
-﻿{
+{
   "urls": [
     {
       "url": "http://www.饭太硬.com/tv",
@@ -60,7 +60,7 @@
       "url": "http://fty.xxooo.cf/tv",
       "name": "饭太硬"
     },
-      {
+    {
       "url": "https://gitee.com/blssss/jk/raw/api/bls.json",
       "name": "玩偶接口"
     },
@@ -73,6 +73,6 @@
       "name": "坤哥影视接口"
     }
   ],
-  "last_updated": "2025-09-10 02:17:53",
-  "valid_count": 42
+  "last_updated": "2025-09-10 18:27:34",
+  "valid_count": 18
 }

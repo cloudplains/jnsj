@@ -109,12 +109,8 @@ BBCWORLDNEWS
 ALJAZEERA
 BABYTV
 CBEEBIES
-儿童频道|Kids TV
-儿童频道|Momo TV
-儿童频道|MiaoMi
-儿童频道|Cartoon Network
+
 NICKELODEON
-儿童频道|Nick Jr
 新加坡|Channel 5
 新加坡|Channel 8
 新加坡|Suria

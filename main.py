@@ -87,12 +87,10 @@ zh_lines = []  # 综合频道
 ys_lines = []  # 央视频道
 ws_lines = []  # 卫视频道
 dy_lines = []  # 电影频道
-gat_lines = []  # 港澳台
 gj_lines = []  # 国际台
 zb_lines = []  # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
-ipv6_lines = []  # IPV6频道 - 新增
 
 other_lines = []  # 其他
 other_lines_url = []  # 为降低other文件大小，剔除重复url添加
@@ -104,7 +102,6 @@ zh_dictionary = read_txt_to_array('主频道/综合频道.txt')
 ys_dictionary = read_txt_to_array('主频道/央视频道.txt')
 ws_dictionary = read_txt_to_array('主频道/卫视频道.txt')
 dy_dictionary = read_txt_to_array('主频道/电影.txt')
-gat_dictionary = read_txt_to_array('主频道/港澳台.txt')
 gj_dictionary = read_txt_to_array('主频道/国际台.txt')
 zb_dictionary = read_txt_to_array('主频道/直播中国.txt')
 
@@ -284,42 +281,6 @@ def validate_stream_url(url, timeout=3):
     except Exception:
         return False
 
-# 检查是否为IPv6地址
-def is_ipv6_url(url):
-    """检查URL是否包含IPv6地址特征"""
-    # IPv6地址特征：包含冒号分隔的十六进制数字，可能包含方括号
-    ipv6_patterns = [
-        r'\[[0-9a-fA-F:]+:[0-9a-fA-F:]+\]',  # IPv6地址在方括号内
-        r'://\[[0-9a-fA-F:]+\]',  # 包含IPv6地址的URL
-        r'ipv6',  # 包含ipv6关键字
-        r'v6\.',  # 包含v6.子域名
-        r':[0-9a-fA-F]{4}:[0-9a-fA-F]{4}:[0-9a-fA-F]{4}:[0-9a-fA-F]{4}',  # IPv6地址模式
-        r'240e:',  # 中国电信IPv6地址段
-        r'2408:',  # 中国联通IPv6地址段
-        r'2409:',  # 中国移动IPv6地址段
-    ]
-    
-    for pattern in ipv6_patterns:
-        if re.search(pattern, url, re.IGNORECASE):
-            return True
-    return False
-
-# 检查是否为广东或海南的IPv6源
-def is_guangdong_hainan_ipv6(url):
-    """检查是否为广东或海南的IPv6源"""
-    # 广东和海南的IPv6地址特征
-    gd_hn_patterns = [
-        r'240e:',  # 中国电信IPv6地址段（广东）
-        r'2408:8000:',  # 中国联通IPv6地址段（广东）
-        r'2409:8000:',  # 中国移动IPv6地址段（广东）
-        r'2409:8a00:',  # 中国移动IPv6地址段（海南）
-    ]
-    
-    for pattern in gd_hn_patterns:
-        if re.search(pattern, url, re.IGNORECASE):
-            return True
-    return False
-
 # 央视频道名称标准化
 def standardize_cctv_name(channel_name):
     """将CCTV频道名称标准化为'CCTV-数字+名称'格式"""
@@ -374,14 +335,6 @@ def process_channel_line(line):
             line = channel_name + "," + channel_address
 
             if len(channel_address) > 0 and channel_address not in combined_blacklist:
-                # 如果是IPv6源，添加到IPv6频道（只保留广东和海南的IPV6源）
-                if is_ipv6_url(channel_address) and check_url_existence(ipv6_lines, channel_address) and not is_channel_full(channel_name, ipv6_lines):
-                    if is_guangdong_hainan_ipv6(channel_address):
-                        ipv6_lines.append(line)
-                        print(f"添加到IPv6频道: {channel_name}, {channel_address}")
-                    else:
-                        print(f"IPv6频道跳过非广东/海南源: {channel_name}")
-                
                 # 特别处理直播中国分类 - 只保留明确的直播中国频道
                 if channel_name in zb_dictionary:
                     if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
@@ -391,25 +344,18 @@ def process_channel_line(line):
                     if check_url_existence(zh_lines, channel_address) and not is_channel_full(channel_name, zh_lines):
                         zh_lines.append(line)
                 elif channel_name in ys_dictionary:
-                    # 对央视频道进行额外验证
-                    if (check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines) and
-                        validate_stream_url(channel_address)):
+                    # 对央视频道放宽验证条件
+                    if (check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines)):
                         ys_lines.append(line)
-                    else:
-                        print(f"央视频道验证失败: {channel_name} - {channel_address}")
+                        print(f"添加到央视频道: {channel_name}, {channel_address}")
                 elif channel_name in ws_dictionary:
-                    # 对卫视频道进行额外验证
-                    if (check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines) and
-                        validate_stream_url(channel_address)):
+                    # 对卫视频道放宽验证条件
+                    if (check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines)):
                         ws_lines.append(line)
-                    else:
-                        print(f"卫视频道验证失败: {channel_name} - {channel_address}")
+                        print(f"添加到卫视频道: {channel_name}, {channel_address}")
                 elif channel_name in dy_dictionary:
                     if check_url_existence(dy_lines, channel_address) and not is_channel_full(channel_name, dy_lines):
                         dy_lines.append(line)
-                elif channel_name in gat_dictionary:
-                    if check_url_existence(gat_lines, channel_address) and not is_channel_full(channel_name, gat_lines):
-                        gat_lines.append(line)
                 elif channel_name in gj_dictionary:
                     if check_url_existence(gj_lines, channel_address) and not is_channel_full(channel_name, gj_lines):
                         gj_lines.append(line)
@@ -511,20 +457,16 @@ print(f"综合频道: {len(zh_lines)} 行")
 print(f"央视频道: {len(ys_lines)} 行")
 print(f"卫视频道: {len(ws_lines)} 行")
 print(f"电影频道: {len(dy_lines)} 行")
-print(f"港澳台: {len(gat_lines)} 行")
 print(f"国际台: {len(gj_lines)} 行")
 print(f"直播中国: {len(zb_lines)} 行")
 print(f"广东频道: {len(gd_lines)} 行")
 print(f"海南频道: {len(hain_lines)} 行")
-print(f"IPV6频道: {len(ipv6_lines)} 行")  # 新增统计
 
-# 合并所有对象中的行文本（已移除other_lines）
+# 合并所有对象中的行文本（已移除IPV6频道和港澳台频道）
 all_lines = (["更新时间,#genre#"] + [version] + ['\n'] +
            ["综合频道,#genre#"] + sort_data(zh_dictionary, zh_lines) + ['\n'] +
            ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] +
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] +
-           ["IPV6频道,#genre#"] + ipv6_lines + ['\n'] +  # 直接使用ipv6_lines，不排序
-           ["港澳台,#genre#"] + sort_data(gat_dictionary, gat_lines) + ['\n'] +
            ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] +
            ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] +
            ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines) + ['\n'] +

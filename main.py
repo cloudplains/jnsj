@@ -96,7 +96,14 @@ def read_whitelist_from_txt(file_path):
                 print(f"读取白名单时出错: {e}")
                 return []
 
-    WhiteList = [line.strip() for line in lines if line.strip()]
+    # 从每行提取URL部分（逗号后的部分）
+    WhiteList = []
+    for line in lines:
+        if ',' in line:
+            url = line.split(',')[1].strip()
+            WhiteList.append(url)
+        else:
+            WhiteList.append(line.strip())
     return WhiteList
 
 print("正在读取黑名单...")
@@ -108,6 +115,8 @@ print(f"合并黑名单行数: {len(combined_blacklist)}")
 print("正在读取白名单...")
 whitelist = read_whitelist_from_txt('assets/whitelist-blacklist/whitelist.txt')
 print(f"白名单行数: {len(whitelist)}")
+for url in whitelist:
+    print(f"白名单URL: {url}")
 
 # 定义多个对象用于存储不同内容的行文本
 zh_lines = []  # 综合频道
@@ -261,6 +270,26 @@ def is_whitelisted_url(url, whitelist):
             return True
     return False
 
+# 检查是否为IPv6地址
+def is_ipv6_url(url):
+    """检查URL是否包含IPv6地址特征"""
+    # IPv6地址特征：包含冒号分隔的十六进制数字，可能包含方括号
+    ipv6_patterns = [
+        r'\[[0-9a-fA-F:]+:[0-9a-fA-F:]+\]',  # IPv6地址在方括号内
+        r'://\[[0-9a-fA-F:]+\]',  # 包含IPv6地址的URL
+        r'ipv6',  # 包含ipv6关键字
+        r'v6\.',  # 包含v6.子域名
+        r':[0-9a-fA-F]{4}:[0-9a-fA-F]{4}:[0-9a-fA-F]{4}:[0-9a-fA-F]{4}',  # IPv6地址模式
+        r'240e:',  # 中国电信IPv6地址段
+        r'2408:',  # 中国联通IPv6地址段
+        r'2409:',  # 中国移动IPv6地址段
+    ]
+    
+    for pattern in ipv6_patterns:
+        if re.search(pattern, url, re.IGNORECASE):
+            return True
+    return False
+
 # 直播源验证函数
 def validate_stream_url(url, timeout=3):
     """
@@ -320,24 +349,24 @@ def standardize_cctv_name(channel_name):
     """将CCTV频道名称标准化为'CCTV-数字+名称'格式"""
     # CCTV频道名称映射
     cctv_mapping = {
-        'CCTV-1': 'CCTV-1综合',
-        'CCTV-2': 'CCTV-2财经',
-        'CCTV-3': 'CCTV-3综艺',
-        'CCTV-4': 'CCTV-4中文国际',
-        'CCTV-5': 'CCTV-5体育',
-        'CCTV-5+': 'CCTV-5+体育赛事',
-        'CCTV-6': 'CCTV-6电影',
-        'CCTV-7': 'CCTV-7国防军事',
-        'CCTV-8': 'CCTV-8电视剧',
-        'CCTV-9': 'CCTV-9纪录',
-        'CCTV-10': 'CCTV-10科教',
-        'CCTV-11': 'CCTV-11戏曲',
-        'CCTV-12': 'CCTV-12社会与法',
-        'CCTV-13': 'CCTV-13新闻',
-        'CCTV-14': 'CCTV-14少儿',
-        'CCTV-15': 'CCTV-15音乐',
-        'CCTV-16': 'CCTV-16奥林匹克',
-        'CCTV-17': 'CCTV-17农业农村'
+        'CCTV1': 'CCTV-1综合',
+        'CCTV2': 'CCTV-2财经',
+        'CCTV3': 'CCTV-3综艺',
+        'CCTV4': 'CCTV-4中文国际',
+        'CCTV5': 'CCTV-5体育',
+        'CCTV5+': 'CCTV-5+体育赛事',
+        'CCTV6': 'CCTV-6电影',
+        'CCTV7': 'CCTV-7国防军事',
+        'CCTV8': 'CCTV-8电视剧',
+        'CCTV9': 'CCTV-9纪录',
+        'CCTV10': 'CCTV-10科教',
+        'CCTV11': 'CCTV-11戏曲',
+        'CCTV12': 'CCTV-12社会与法',
+        'CCTV13': 'CCTV-13新闻',
+        'CCTV14': 'CCTV-14少儿',
+        'CCTV15': 'CCTV-15音乐',
+        'CCTV16': 'CCTV-16奥林匹克',
+        'CCTV17': 'CCTV-17农业农村'
     }
     
     # 尝试匹配标准名称
@@ -367,6 +396,11 @@ def process_channel_line(line):
 
             channel_address = clean_url(parts[1]).strip()
             line = channel_name + "," + channel_address
+
+            # 检查是否为IPv6地址，如果是则跳过
+            if is_ipv6_url(channel_address):
+                print(f"跳过IPv6源: {channel_name}, {channel_address}")
+                return
 
             if len(channel_address) > 0 and channel_address not in combined_blacklist:
                 # 检查是否在白名单中

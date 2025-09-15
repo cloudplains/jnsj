@@ -1,4 +1,4 @@
-import urllib.request
+﻿import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -76,11 +76,38 @@ def read_blacklist_from_txt(file_path):
     BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
     return BlackList
 
+# 读取白名单（支持多种编码）
+def read_whitelist_from_txt(file_path):
+    try:
+        # 先尝试 UTF-8 编码
+        with open(file_path, 'r', encoding='utf-8-sig') as file:
+            lines = file.readlines()
+    except UnicodeDecodeError:
+        try:
+            # 如果 UTF-8 失败，尝试 GBK 编码
+            with open(file_path, 'r', encoding='gbk') as file:
+                lines = file.readlines()
+        except UnicodeDecodeError:
+            try:
+                # 如果 GBK 也失败，尝试 latin-1 编码
+                with open(file_path, 'r', encoding='latin-1') as file:
+                    lines = file.readlines()
+            except Exception as e:
+                print(f"读取白名单时出错: {e}")
+                return []
+
+    WhiteList = [line.strip() for line in lines if line.strip()]
+    return WhiteList
+
 print("正在读取黑名单...")
 blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_auto.txt')
 black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
 combined_blacklist = set(blacklist_auto + black_list_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
+
+print("正在读取白名单...")
+whitelist = read_whitelist_from_txt('assets/whitelist-blacklist/whitelist.txt')
+print(f"白名单行数: {len(whitelist)}")
 
 # 定义多个对象用于存储不同内容的行文本
 zh_lines = []  # 综合频道
@@ -227,6 +254,13 @@ def is_channel_full(channel_name, target_list):
     count = sum(1 for line in target_list if line.startswith(channel_name + ","))
     return count >= 10
 
+# 检查URL是否在白名单中
+def is_whitelisted_url(url, whitelist):
+    for pattern in whitelist:
+        if pattern in url:
+            return True
+    return False
+
 # 直播源验证函数
 def validate_stream_url(url, timeout=3):
     """
@@ -335,36 +369,45 @@ def process_channel_line(line):
             line = channel_name + "," + channel_address
 
             if len(channel_address) > 0 and channel_address not in combined_blacklist:
+                # 检查是否在白名单中
+                is_whitelisted = is_whitelisted_url(channel_address, whitelist)
+                
                 # 特别处理直播中国分类 - 只保留明确的直播中国频道
                 if channel_name in zb_dictionary:
-                    if check_url_existence(zb_lines, channel_address) and not is_channel_full(channel_name, zb_lines):
+                    if check_url_existence(zb_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, zb_lines)):
                         zb_lines.append(line)
+                        print(f"添加到直播中国: {channel_name}, {channel_address}")
                 # 新增综合频道处理（放在央视频道前面）
                 elif channel_name in zh_dictionary:
-                    if check_url_existence(zh_lines, channel_address) and not is_channel_full(channel_name, zh_lines):
+                    if check_url_existence(zh_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, zh_lines)):
                         zh_lines.append(line)
+                        print(f"添加到综合频道: {channel_name}, {channel_address}")
                 elif channel_name in ys_dictionary:
                     # 对央视频道放宽验证条件
-                    if (check_url_existence(ys_lines, channel_address) and not is_channel_full(channel_name, ys_lines)):
+                    if (check_url_existence(ys_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ys_lines))):
                         ys_lines.append(line)
                         print(f"添加到央视频道: {channel_name}, {channel_address}")
                 elif channel_name in ws_dictionary:
                     # 对卫视频道放宽验证条件
-                    if (check_url_existence(ws_lines, channel_address) and not is_channel_full(channel_name, ws_lines)):
+                    if (check_url_existence(ws_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ws_lines))):
                         ws_lines.append(line)
                         print(f"添加到卫视频道: {channel_name}, {channel_address}")
                 elif channel_name in dy_dictionary:
-                    if check_url_existence(dy_lines, channel_address) and not is_channel_full(channel_name, dy_lines):
+                    if check_url_existence(dy_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, dy_lines)):
                         dy_lines.append(line)
+                        print(f"添加到电影频道: {channel_name}, {channel_address}")
                 elif channel_name in gj_dictionary:
-                    if check_url_existence(gj_lines, channel_address) and not is_channel_full(channel_name, gj_lines):
+                    if check_url_existence(gj_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, gj_lines)):
                         gj_lines.append(line)
+                        print(f"添加到国际台: {channel_name}, {channel_address}")
                 elif channel_name in gd_dictionary:
-                    if check_url_existence(gd_lines, channel_address) and not is_channel_full(channel_name, gd_lines):
+                    if check_url_existence(gd_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, gd_lines)):
                         gd_lines.append(line)
+                        print(f"添加到广东频道: {channel_name}, {channel_address}")
                 elif channel_name in hain_dictionary:
-                    if check_url_existence(hain_lines, channel_address) and not is_channel_full(channel_name, hain_lines):
+                    if check_url_existence(hain_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, hain_lines)):
                         hain_lines.append(line)
+                        print(f"添加到海南频道: {channel_name}, {channel_address}")
     except Exception as e:
         print(f"处理频道行时出错: {e}, 行内容: {line}")
 

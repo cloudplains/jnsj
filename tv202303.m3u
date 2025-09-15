@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://epg.112114.xyz/pp.xml.gz"
-#EXTINF:-1 tvg-name="20250915 09:51" tvg-logo="https://epg.112114.xyz/logo/20250915 09:51.png" group-title="更新时间",20250915 09:51
+#EXTINF:-1 tvg-name="20250915 11:29" tvg-logo="https://epg.112114.xyz/logo/20250915 11:29.png" group-title="更新时间",20250915 11:29
 https://www.cloudplains.cn/tv202303.txt
 #EXTINF:-1 tvg-name="东莞生活资讯" tvg-logo="https://epg.112114.xyz/logo/东莞生活资讯.png" group-title="综合频道",东莞生活资讯
 https://stream.sun0769.com/dgrtv1/mp4tv2_800/index.m3u8
@@ -26039,36 +26039,6 @@ http://live-hls-web-aje.getaj.net/AJE/02.m3u8
 https://live.iill.top/youtube/gCNeDWCI0vo
 #EXTINF:-1 tvg-name="BABYTV" tvg-logo="https://epg.112114.xyz/logo/BABYTV.png" group-title="国际台",BABYTV
 https://hls-gateway.vpstv.net/streams/709633.m3u8
-#EXTINF:-1 tvg-name="新加坡|Suria" tvg-logo="https://epg.112114.xyz/logo/新加坡|Suria.png" group-title="国际台",新加坡|Suria
-http://free.cnlive.club/channel/1a7c7a05/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="新加坡|Vasantham" tvg-logo="https://epg.112114.xyz/logo/新加坡|Vasantham.png" group-title="国际台",新加坡|Vasantham
-http://free.cnlive.club/channel/n4a74f6e/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|TV1" tvg-logo="https://epg.112114.xyz/logo/马来西亚|TV1.png" group-title="国际台",马来西亚|TV1
-http://free.cnlive.club/channel/fa5521f/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|TV2" tvg-logo="https://epg.112114.xyz/logo/马来西亚|TV2.png" group-title="国际台",马来西亚|TV2
-http://free.cnlive.club/channel/fa55220/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|TV3" tvg-logo="https://epg.112114.xyz/logo/马来西亚|TV3.png" group-title="国际台",马来西亚|TV3
-http://free.cnlive.club/channel/fa55221/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|NTV7" tvg-logo="https://epg.112114.xyz/logo/马来西亚|NTV7.png" group-title="国际台",马来西亚|NTV7
-http://free.cnlive.club/channel/n1afdcb49/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|TV8" tvg-logo="https://epg.112114.xyz/logo/马来西亚|TV8.png" group-title="国际台",马来西亚|TV8
-http://free.cnlive.club/channel/fa55226/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|TV9" tvg-logo="https://epg.112114.xyz/logo/马来西亚|TV9.png" group-title="国际台",马来西亚|TV9
-http://free.cnlive.club/channel/fa55227/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Ria" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Ria.png" group-title="国际台",马来西亚|Ria
-http://free.cnlive.club/channel/fa54d1a/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Ria-3" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Ria-3.png" group-title="国际台",马来西亚|Ria-3
-http://free.cnlive.club/channel/n44798bc0/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Al-Hijrah" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Al-Hijrah.png" group-title="国际台",马来西亚|Al-Hijrah
-http://free.cnlive.club/channel/n3fbbd7fe/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Awani" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Awani.png" group-title="国际台",马来西亚|Awani
-http://free.cnlive.club/channel/n4562b60a/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Bernama" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Bernama.png" group-title="国际台",马来西亚|Bernama
-http://free.cnlive.club/channel/n606edc5a/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Prima" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Prima.png" group-title="国际台",马来西亚|Prima
-http://free.cnlive.club/channel/n44917d75/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Ceria" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Ceria.png" group-title="国际台",马来西亚|Ceria
-http://free.cnlive.club/channel/n454e7688/index.m3u8?q=1757899226191
 #EXTINF:-1 tvg-name="MTV" tvg-logo="https://epg.112114.xyz/logo/MTV.png" group-title="国际台",MTV
 https://hms.pfs.gdn/v1/broadcast/mtv/playlist.m3u8
 #EXTINF:-1 tvg-name="MTV" tvg-logo="https://epg.112114.xyz/logo/MTV.png" group-title="国际台",MTV
@@ -26079,18 +26049,6 @@ https://hls-gateway.vpstv.net/streams/605074.m3u8
 https://hls-gateway.vpstv.net/streams/709243.m3u8
 #EXTINF:-1 tvg-name="MTV" tvg-logo="https://epg.112114.xyz/logo/MTV.png" group-title="国际台",MTV
 https://hls-gateway.vpstv.net/streams/709451.m3u8
-#EXTINF:-1 tvg-name="马来西亚|Oasis" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Oasis.png" group-title="国际台",马来西亚|Oasis
-http://free.cnlive.club/channel/n44a72a25/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Siar" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Siar.png" group-title="国际台",马来西亚|Siar
-http://free.cnlive.club/channel/n1afb3509/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Sensasi" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Sensasi.png" group-title="国际台",马来西亚|Sensasi
-http://free.cnlive.club/channel/22a4fb90/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Aura" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Aura.png" group-title="国际台",马来西亚|Aura
-http://free.cnlive.club/channel/n1b0334ad/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Rania" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Rania.png" group-title="国际台",马来西亚|Rania
-http://free.cnlive.club/channel/n447cf679/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Boo" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Boo.png" group-title="国际台",马来西亚|Boo
-http://free.cnlive.club/channel/fa511d2/index.m3u8?q=1757899226191
 #EXTINF:-1 tvg-name="TVN" tvg-logo="https://epg.112114.xyz/logo/TVN.png" group-title="国际台",TVN
 https://s4.telset.ee/tvn/index.m3u8?filter.tracks=v1a1&token=tvn_token
 #EXTINF:-1 tvg-name="TVN" tvg-logo="https://epg.112114.xyz/logo/TVN.png" group-title="国际台",TVN
@@ -26101,88 +26059,6 @@ https://hls-gateway.vpstv.net/streams/709117.m3u8
 https://stream1.freetv.fun/tvn-3.m3u8
 #EXTINF:-1 tvg-name="TVN" tvg-logo="https://epg.112114.xyz/logo/TVN.png" group-title="国际台",TVN
 http://aktv.top/AKTV/live/aktv/tvn/AKTV.m3u8
-#EXTINF:-1 tvg-name="马来西亚|AEC" tvg-logo="https://epg.112114.xyz/logo/马来西亚|AEC.png" group-title="国际台",马来西亚|AEC
-http://free.cnlive.club/channel/fa508cf/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|AOD" tvg-logo="https://epg.112114.xyz/logo/马来西亚|AOD.png" group-title="国际台",马来西亚|AOD
-http://free.cnlive.club/channel/fa50a06/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|Goshop" tvg-logo="https://epg.112114.xyz/logo/马来西亚|Goshop.png" group-title="国际台",马来西亚|Goshop
-http://free.cnlive.club/channel/n5d1f9a32/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="马来西亚|WION" tvg-logo="https://epg.112114.xyz/logo/马来西亚|WION.png" group-title="国际台",马来西亚|WION
-http://free.cnlive.club/channel/n1af9ddff/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|RCTI" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|RCTI.png" group-title="国际台",印度尼西亚|RCTI
-http://free.cnlive.club/channel/71ca5f39/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|AnTV" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|AnTV.png" group-title="国际台",印度尼西亚|AnTV
-http://free.cnlive.club/channel/71c34662/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|Transtv" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|Transtv.png" group-title="国际台",印度尼西亚|Transtv
-http://free.cnlive.club/channel/n57f6d8a9/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|JTV" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|JTV.png" group-title="国际台",印度尼西亚|JTV
-http://free.cnlive.club/channel/2cf5e719/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|SCTV" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|SCTV.png" group-title="国际台",印度尼西亚|SCTV
-http://free.cnlive.club/channel/71cad3a5/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|Tvone" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|Tvone.png" group-title="国际台",印度尼西亚|Tvone
-http://free.cnlive.club/channel/n384aafef/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|TVMU" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|TVMU.png" group-title="国际台",印度尼西亚|TVMU
-http://free.cnlive.club/channel/71cb8e7d/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|GTV" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|GTV.png" group-title="国际台",印度尼西亚|GTV
-http://free.cnlive.club/channel/2cf5dbd6/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|RTV" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|RTV.png" group-title="国际台",印度尼西亚|RTV
-http://free.cnlive.club/channel/2cf60521/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|EWTN" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|EWTN.png" group-title="国际台",印度尼西亚|EWTN
-http://free.cnlive.club/channel/71c4c17f/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|Lifestyle&amp;Fashion" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|Lifestyle&amp;Fashion.png" group-title="国际台",印度尼西亚|Lifestyle&amp;Fashion
-http://free.cnlive.club/channel/n1e454f03/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度尼西亚|Entertain" tvg-logo="https://epg.112114.xyz/logo/印度尼西亚|Entertain.png" group-title="国际台",印度尼西亚|Entertain
-http://free.cnlive.club/channel/5881e817/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度|Adithya" tvg-logo="https://epg.112114.xyz/logo/印度|Adithya.png" group-title="国际台",印度|Adithya
-http://free.cnlive.club/channel/15b7234/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度|Asianet" tvg-logo="https://epg.112114.xyz/logo/印度|Asianet.png" group-title="国际台",印度|Asianet
-http://free.cnlive.club/channel/1aeb94a5/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度|Bollyone" tvg-logo="https://epg.112114.xyz/logo/印度|Bollyone.png" group-title="国际台",印度|Bollyone
-http://free.cnlive.club/channel/n23720e78/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="印度|Vellithirai" tvg-logo="https://epg.112114.xyz/logo/印度|Vellithirai.png" group-title="国际台",印度|Vellithirai
-http://free.cnlive.club/channel/n50eaf0f/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|Amarin" tvg-logo="https://epg.112114.xyz/logo/泰国|Amarin.png" group-title="国际台",泰国|Amarin
-http://free.cnlive.club/channel/3efe9239/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|GmmOne" tvg-logo="https://epg.112114.xyz/logo/泰国|GmmOne.png" group-title="国际台",泰国|GmmOne
-http://free.cnlive.club/channel/49409796/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|Mono" tvg-logo="https://epg.112114.xyz/logo/泰国|Mono.png" group-title="国际台",泰国|Mono
-http://free.cnlive.club/channel/7d4a379a/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|Thairath" tvg-logo="https://epg.112114.xyz/logo/泰国|Thairath.png" group-title="国际台",泰国|Thairath
-http://free.cnlive.club/channel/265f35b6/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|tpbs" tvg-logo="https://epg.112114.xyz/logo/泰国|tpbs.png" group-title="国际台",泰国|tpbs
-http://free.cnlive.club/channel/7d5bf464/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|Workpoint" tvg-logo="https://epg.112114.xyz/logo/泰国|Workpoint.png" group-title="国际台",泰国|Workpoint
-http://free.cnlive.club/channel/n3fe55138/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|Nation" tvg-logo="https://epg.112114.xyz/logo/泰国|Nation.png" group-title="国际台",泰国|Nation
-http://free.cnlive.club/channel/548cfa3e/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|Tnn24" tvg-logo="https://epg.112114.xyz/logo/泰国|Tnn24.png" group-title="国际台",泰国|Tnn24
-http://free.cnlive.club/channel/2c5ee49f/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|Nbt" tvg-logo="https://epg.112114.xyz/logo/泰国|Nbt.png" group-title="国际台",泰国|Nbt
-http://free.cnlive.club/channel/c4cb9a9/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|New" tvg-logo="https://epg.112114.xyz/logo/泰国|New.png" group-title="国际台",泰国|New
-http://free.cnlive.club/channel/c4cba09/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="泰国|TPTV" tvg-logo="https://epg.112114.xyz/logo/泰国|TPTV.png" group-title="国际台",泰国|TPTV
-http://free.cnlive.club/channel/7d4cee95/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="英国|CBBC" tvg-logo="https://epg.112114.xyz/logo/英国|CBBC.png" group-title="国际台",英国|CBBC
-http://free.cnlive.club/channel/7b42ceb8/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="英国|More4" tvg-logo="https://epg.112114.xyz/logo/英国|More4.png" group-title="国际台",英国|More4
-http://free.cnlive.club/channel/n1246df79/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="英国|Freesports" tvg-logo="https://epg.112114.xyz/logo/英国|Freesports.png" group-title="国际台",英国|Freesports
-http://free.cnlive.club/channel/7994d0e3/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="越南|ANTV" tvg-logo="https://epg.112114.xyz/logo/越南|ANTV.png" group-title="国际台",越南|ANTV
-http://free.cnlive.club/channel/n22a24afa/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="韩国|CBS" tvg-logo="https://epg.112114.xyz/logo/韩国|CBS.png" group-title="国际台",韩国|CBS
-http://free.cnlive.club/channel/60bd5504/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="韩国|EBS2" tvg-logo="https://epg.112114.xyz/logo/韩国|EBS2.png" group-title="国际台",韩国|EBS2
-http://free.cnlive.club/channel/n4911cb94/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="韩国|YTN" tvg-logo="https://epg.112114.xyz/logo/韩国|YTN.png" group-title="国际台",韩国|YTN
-http://free.cnlive.club/channel/60bda9c3/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="韩国|CGNTV" tvg-logo="https://epg.112114.xyz/logo/韩国|CGNTV.png" group-title="国际台",韩国|CGNTV
-http://free.cnlive.club/channel/26be619c/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="日本|TOKYOMX" tvg-logo="https://epg.112114.xyz/logo/日本|TOKYOMX.png" group-title="国际台",日本|TOKYOMX
-http://free.cnlive.club/channel/57b7ac54/index.m3u8?q=1757899226191
-#EXTINF:-1 tvg-name="日本|BS-TBS" tvg-logo="https://epg.112114.xyz/logo/日本|BS-TBS.png" group-title="国际台",日本|BS-TBS
-http://free.cnlive.club/channel/26584fe6/index.m3u8?q=1757899226191
 #EXTINF:-1 tvg-name="珠江频道" tvg-logo="https://epg.112114.xyz/logo/珠江频道.png" group-title="广东频道",珠江频道
 http://www.zzlag.top:9087/tsfile/live/1037_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="深圳都市频道" tvg-logo="https://epg.112114.xyz/logo/深圳都市频道.png" group-title="广东频道",深圳都市频道
@@ -27033,8 +26909,6 @@ http://jrlive.jrntv.com/live/_definst_/yingshis/chunklist_w1994429382.m3u8?zjian
 https://pixman.mytvsuper.com.mp/Smart.php?id=xingwei_movie
 #EXTINF:-1 tvg-name="台湾|美亚电影" tvg-logo="https://epg.112114.xyz/logo/台湾|美亚电影.png" group-title="电影频道",台湾|美亚电影
 https://pixman.mytvsuper.com.mp/Smart.php?id=meiyamovie_twn
-#EXTINF:-1 tvg-name="台湾|美亚电影" tvg-logo="https://epg.112114.xyz/logo/台湾|美亚电影.png" group-title="电影频道",台湾|美亚电影
-http://free.cnlive.club/channel/5824ef5e/index.m3u8?q=1757899226191
 #EXTINF:-1 tvg-name="周末影院" tvg-logo="https://epg.112114.xyz/logo/周末影院.png" group-title="电影频道",周末影院
 http://121.24.98.127:8090/r/baiducdnct.inter.iqiyi.com/tslive/c16_lb_fengxiaogang_1080p_t10/c16_lb_fengxiaogang_1080p_t10.m3u8
 #EXTINF:-1 tvg-name="喜剧电影" tvg-logo="https://epg.112114.xyz/logo/喜剧电影.png" group-title="电影频道",喜剧电影

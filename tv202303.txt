@@ -1,5 +1,5 @@
 更新时间,#genre#
-20250915 09:51,https://www.cloudplains.cn/tv202303.txt
+20250915 11:29,https://www.cloudplains.cn/tv202303.txt
 
 
 综合频道,#genre#
@@ -13049,78 +13049,16 @@ ALJAZEERA,http://live-hls-web-aje.getaj.net/AJE/01.m3u8
 ALJAZEERA,http://live-hls-web-aje.getaj.net/AJE/02.m3u8
 ALJAZEERA,https://live.iill.top/youtube/gCNeDWCI0vo
 BABYTV,https://hls-gateway.vpstv.net/streams/709633.m3u8
-新加坡|Suria,http://free.cnlive.club/channel/1a7c7a05/index.m3u8?q=1757899226191
-新加坡|Vasantham,http://free.cnlive.club/channel/n4a74f6e/index.m3u8?q=1757899226191
-马来西亚|TV1,http://free.cnlive.club/channel/fa5521f/index.m3u8?q=1757899226191
-马来西亚|TV2,http://free.cnlive.club/channel/fa55220/index.m3u8?q=1757899226191
-马来西亚|TV3,http://free.cnlive.club/channel/fa55221/index.m3u8?q=1757899226191
-马来西亚|NTV7,http://free.cnlive.club/channel/n1afdcb49/index.m3u8?q=1757899226191
-马来西亚|TV8,http://free.cnlive.club/channel/fa55226/index.m3u8?q=1757899226191
-马来西亚|TV9,http://free.cnlive.club/channel/fa55227/index.m3u8?q=1757899226191
-马来西亚|Ria,http://free.cnlive.club/channel/fa54d1a/index.m3u8?q=1757899226191
-马来西亚|Ria-3,http://free.cnlive.club/channel/n44798bc0/index.m3u8?q=1757899226191
-马来西亚|Al-Hijrah,http://free.cnlive.club/channel/n3fbbd7fe/index.m3u8?q=1757899226191
-马来西亚|Awani,http://free.cnlive.club/channel/n4562b60a/index.m3u8?q=1757899226191
-马来西亚|Bernama,http://free.cnlive.club/channel/n606edc5a/index.m3u8?q=1757899226191
-马来西亚|Prima,http://free.cnlive.club/channel/n44917d75/index.m3u8?q=1757899226191
-马来西亚|Ceria,http://free.cnlive.club/channel/n454e7688/index.m3u8?q=1757899226191
 MTV,https://hms.pfs.gdn/v1/broadcast/mtv/playlist.m3u8
 MTV,https://hls-gateway.vpstv.net/streams/708883.m3u8
 MTV,https://hls-gateway.vpstv.net/streams/605074.m3u8
 MTV,https://hls-gateway.vpstv.net/streams/709243.m3u8
 MTV,https://hls-gateway.vpstv.net/streams/709451.m3u8
-马来西亚|Oasis,http://free.cnlive.club/channel/n44a72a25/index.m3u8?q=1757899226191
-马来西亚|Siar,http://free.cnlive.club/channel/n1afb3509/index.m3u8?q=1757899226191
-马来西亚|Sensasi,http://free.cnlive.club/channel/22a4fb90/index.m3u8?q=1757899226191
-马来西亚|Aura,http://free.cnlive.club/channel/n1b0334ad/index.m3u8?q=1757899226191
-马来西亚|Rania,http://free.cnlive.club/channel/n447cf679/index.m3u8?q=1757899226191
-马来西亚|Boo,http://free.cnlive.club/channel/fa511d2/index.m3u8?q=1757899226191
 TVN,https://s4.telset.ee/tvn/index.m3u8?filter.tracks=v1a1&token=tvn_token
 TVN,https://bcovlive-a.akamaihd.net/628aecb4fccb4c52b4f9c8d5cc57fb73/us-west-2/6058004209001/playlist_dvr.m3u8
 TVN,https://hls-gateway.vpstv.net/streams/709117.m3u8
 TVN,https://stream1.freetv.fun/tvn-3.m3u8
 TVN,http://aktv.top/AKTV/live/aktv/tvn/AKTV.m3u8
-马来西亚|AEC,http://free.cnlive.club/channel/fa508cf/index.m3u8?q=1757899226191
-马来西亚|AOD,http://free.cnlive.club/channel/fa50a06/index.m3u8?q=1757899226191
-马来西亚|Goshop,http://free.cnlive.club/channel/n5d1f9a32/index.m3u8?q=1757899226191
-马来西亚|WION,http://free.cnlive.club/channel/n1af9ddff/index.m3u8?q=1757899226191
-印度尼西亚|RCTI,http://free.cnlive.club/channel/71ca5f39/index.m3u8?q=1757899226191
-印度尼西亚|AnTV,http://free.cnlive.club/channel/71c34662/index.m3u8?q=1757899226191
-印度尼西亚|Transtv,http://free.cnlive.club/channel/n57f6d8a9/index.m3u8?q=1757899226191
-印度尼西亚|JTV,http://free.cnlive.club/channel/2cf5e719/index.m3u8?q=1757899226191
-印度尼西亚|SCTV,http://free.cnlive.club/channel/71cad3a5/index.m3u8?q=1757899226191
-印度尼西亚|Tvone,http://free.cnlive.club/channel/n384aafef/index.m3u8?q=1757899226191
-印度尼西亚|TVMU,http://free.cnlive.club/channel/71cb8e7d/index.m3u8?q=1757899226191
-印度尼西亚|GTV,http://free.cnlive.club/channel/2cf5dbd6/index.m3u8?q=1757899226191
-印度尼西亚|RTV,http://free.cnlive.club/channel/2cf60521/index.m3u8?q=1757899226191
-印度尼西亚|EWTN,http://free.cnlive.club/channel/71c4c17f/index.m3u8?q=1757899226191
-印度尼西亚|Lifestyle&amp;Fashion,http://free.cnlive.club/channel/n1e454f03/index.m3u8?q=1757899226191
-印度尼西亚|Entertain,http://free.cnlive.club/channel/5881e817/index.m3u8?q=1757899226191
-印度|Adithya,http://free.cnlive.club/channel/15b7234/index.m3u8?q=1757899226191
-印度|Asianet,http://free.cnlive.club/channel/1aeb94a5/index.m3u8?q=1757899226191
-印度|Bollyone,http://free.cnlive.club/channel/n23720e78/index.m3u8?q=1757899226191
-印度|Vellithirai,http://free.cnlive.club/channel/n50eaf0f/index.m3u8?q=1757899226191
-泰国|Amarin,http://free.cnlive.club/channel/3efe9239/index.m3u8?q=1757899226191
-泰国|GmmOne,http://free.cnlive.club/channel/49409796/index.m3u8?q=1757899226191
-泰国|Mono,http://free.cnlive.club/channel/7d4a379a/index.m3u8?q=1757899226191
-泰国|Thairath,http://free.cnlive.club/channel/265f35b6/index.m3u8?q=1757899226191
-泰国|tpbs,http://free.cnlive.club/channel/7d5bf464/index.m3u8?q=1757899226191
-泰国|Workpoint,http://free.cnlive.club/channel/n3fe55138/index.m3u8?q=1757899226191
-泰国|Nation,http://free.cnlive.club/channel/548cfa3e/index.m3u8?q=1757899226191
-泰国|Tnn24,http://free.cnlive.club/channel/2c5ee49f/index.m3u8?q=1757899226191
-泰国|Nbt,http://free.cnlive.club/channel/c4cb9a9/index.m3u8?q=1757899226191
-泰国|New,http://free.cnlive.club/channel/c4cba09/index.m3u8?q=1757899226191
-泰国|TPTV,http://free.cnlive.club/channel/7d4cee95/index.m3u8?q=1757899226191
-英国|CBBC,http://free.cnlive.club/channel/7b42ceb8/index.m3u8?q=1757899226191
-英国|More4,http://free.cnlive.club/channel/n1246df79/index.m3u8?q=1757899226191
-英国|Freesports,http://free.cnlive.club/channel/7994d0e3/index.m3u8?q=1757899226191
-越南|ANTV,http://free.cnlive.club/channel/n22a24afa/index.m3u8?q=1757899226191
-韩国|CBS,http://free.cnlive.club/channel/60bd5504/index.m3u8?q=1757899226191
-韩国|EBS2,http://free.cnlive.club/channel/n4911cb94/index.m3u8?q=1757899226191
-韩国|YTN,http://free.cnlive.club/channel/60bda9c3/index.m3u8?q=1757899226191
-韩国|CGNTV,http://free.cnlive.club/channel/26be619c/index.m3u8?q=1757899226191
-日本|TOKYOMX,http://free.cnlive.club/channel/57b7ac54/index.m3u8?q=1757899226191
-日本|BS-TBS,http://free.cnlive.club/channel/26584fe6/index.m3u8?q=1757899226191
 
 
 广东频道,#genre#
@@ -13556,7 +13494,6 @@ PopC电影,http://iptv.4666888.xyz/iptv.php?id=20118
 句容影院,http://jrlive.jrntv.com/live/_definst_/yingshis/chunklist_w1994429382.m3u8?zjiangsd
 台湾|星卫电影,https://pixman.mytvsuper.com.mp/Smart.php?id=xingwei_movie
 台湾|美亚电影,https://pixman.mytvsuper.com.mp/Smart.php?id=meiyamovie_twn
-台湾|美亚电影,http://free.cnlive.club/channel/5824ef5e/index.m3u8?q=1757899226191
 周末影院,http://121.24.98.127:8090/r/baiducdnct.inter.iqiyi.com/tslive/c16_lb_fengxiaogang_1080p_t10/c16_lb_fengxiaogang_1080p_t10.m3u8
 喜剧电影,http://159.75.85.63:35455/douyu/9292492
 喜剧电影,http://11.xmyxc.cn/api/php/yy.php?id=1354930945

@@ -105,11 +105,24 @@ def read_whitelist_from_txt(file_path):
     # 从每行提取URL部分（逗号后的部分）
     WhiteList = []
     for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        # 跳过注释行或非URL行
+        if line.startswith('#') or not any(x in line for x in ['http://', 'https://', 'rtmp://', 'rtsp://']):
+            continue
+            
+        # 处理包含逗号的行
         if ',' in line:
-            url = line.split(',')[1].strip()
-            WhiteList.append(url)
+            # 获取最后一个逗号后的内容作为URL
+            url_part = line.split(',')[-1].strip()
+            if any(x in url_part for x in ['http://', 'https://', 'rtmp://', 'rtsp://']):
+                WhiteList.append(url_part)
         else:
-            WhiteList.append(line.strip())
+            # 整行就是URL
+            WhiteList.append(line)
+            
     return WhiteList
 
 print("正在读取黑名单...")
@@ -121,6 +134,7 @@ print(f"合并黑名单行数: {len(combined_blacklist)}")
 print("正在读取白名单...")
 whitelist = read_whitelist_from_txt('assets/whitelist-blacklist/whitelist.txt')
 print(f"白名单行数: {len(whitelist)}")
+print(f"白名单内容示例: {whitelist[:5]}")  # 打印前5个白名单项用于调试
 
 # 定义多个对象用于存储不同内容的行文本
 zh_lines = []  # 综合频道

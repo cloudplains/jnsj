@@ -8,6 +8,7 @@ import opencc
 import ssl
 import sys
 import socket
+import concurrent.futures
 
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -73,7 +74,12 @@ def read_blacklist_from_txt(file_path):
                 print(f"读取黑名单时出错: {e}")
                 return []
 
-    BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
+    BlackList = []
+    for line in lines:
+        if ',' in line:
+            BlackList.append(line.split(',')[1].strip())
+        else:
+            BlackList.append(line.strip())
     return BlackList
 
 # 读取白名单（支持多种编码）
@@ -115,8 +121,6 @@ print(f"合并黑名单行数: {len(combined_blacklist)}")
 print("正在读取白名单...")
 whitelist = read_whitelist_from_txt('assets/whitelist-blacklist/whitelist.txt')
 print(f"白名单行数: {len(whitelist)}")
-for url in whitelist:
-    print(f"白名单URL: {url}")
 
 # 定义多个对象用于存储不同内容的行文本
 zh_lines = []  # 综合频道
@@ -127,9 +131,6 @@ gj_lines = []  # 国际台
 zb_lines = []  # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
-
-other_lines = []  # 其他
-other_lines_url = []  # 为降低other文件大小，剔除重复url添加
 
 print("正在读取频道字典...")
 # 读取文本
@@ -344,6 +345,21 @@ def validate_stream_url(url, timeout=3):
     except Exception:
         return False
 
+# 使用线程池验证URL
+def validate_urls_concurrently(urls):
+    """并发验证URL列表"""
+    valid_urls = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        future_to_url = {executor.submit(validate_stream_url, url): url for url in urls}
+        for future in concurrent.futures.as_completed(future_to_url):
+            url = future_to_url[future]
+            try:
+                if future.result():
+                    valid_urls.append(url)
+            except Exception as e:
+                print(f"验证URL时出错 {url}: {e}")
+    return valid_urls
+
 # 央视频道名称标准化
 def standardize_cctv_name(channel_name):
     """将CCTV频道名称标准化为'CCTV-数字+名称'格式"""
@@ -366,7 +382,8 @@ def standardize_cctv_name(channel_name):
         'CCTV14': 'CCTV-14少儿',
         'CCTV15': 'CCTV-15音乐',
         'CCTV16': 'CCTV-16奥林匹克',
-        'CCTV17': 'CCTV-17农业农村'
+        'CCTV17': 'CCTV-17农业农村',
+        'CCTV4K': 'CCTV-4K超高清'
     }
     
     # 尝试匹配标准名称
@@ -402,7 +419,13 @@ def process_channel_line(line):
                 print(f"跳过IPv6源: {channel_name}, {channel_address}")
                 return
 
-            if len(channel_address) > 0 and channel_address not in combined_blacklist:
+            # 检查是否在黑名单中
+            is_blacklisted = any(black_url in channel_address for black_url in combined_blacklist)
+            if is_blacklisted:
+                print(f"跳过黑名单源: {channel_name}, {channel_address}")
+                return
+
+            if len(channel_address) > 0:
                 # 检查是否在白名单中
                 is_whitelisted = is_whitelisted_url(channel_address, whitelist)
                 
@@ -515,11 +538,63 @@ def sort_data(order, data):
     sorted_data = sorted(data, key=sort_key)
     return sorted_data
 
+# 验证所有收集到的URL
+def validate_all_urls():
+    """验证所有收集到的URL"""
+    print("\n开始验证所有收集到的URL...")
+    
+    # 收集所有URL
+    all_urls = []
+    url_sources = {
+        "综合频道": zh_lines,
+        "央视频道": ys_lines,
+        "卫视频道": ws_lines,
+        "电影频道": dy_lines,
+        "国际台": gj_lines,
+        "直播中国": zb_lines,
+        "广东频道": gd_lines,
+        "海南频道": hain_lines
+    }
+    
+    for category, lines in url_sources.items():
+        for line in lines:
+            if "," in line:
+                url = line.split(",")[1]
+                all_urls.append((category, line, url))
+    
+    print(f"总共需要验证 {len(all_urls)} 个URL")
+    
+    # 并发验证URL
+    url_to_validate = [url for _, _, url in all_urls]
+    valid_urls = validate_urls_concurrently(url_to_validate)
+    valid_urls_set = set(valid_urls)
+    
+    print(f"验证完成，有效URL数量: {len(valid_urls)}")
+    
+    # 清空所有列表，只保留有效的URL
+    for category in url_sources:
+        url_sources[category] = []
+    
+    # 重新添加有效的URL
+    for category, line, url in all_urls:
+        if url in valid_urls_set:
+            channel_name = line.split(",")[0]
+            
+            # 检查频道是否已满
+            if is_channel_full(channel_name, url_sources[category]):
+                print(f"频道 {channel_name} 已满，跳过: {url}")
+                continue
+                
+            url_sources[category].append(line)
+
 # 加入配置的url
 print("\n开始处理所有URL...")
 for url in urls:
     if url.startswith("http"):
         safe_process_url(url)
+
+# 验证所有收集到的URL
+validate_all_urls()
 
 # 获取当前的 UTC 时间
 utc_time = datetime.now(timezone.utc)

@@ -8,6 +8,8 @@ import opencc
 import ssl
 import sys
 import socket
+import time
+import concurrent.futures
 
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -290,12 +292,14 @@ def is_ipv6_url(url):
             return True
     return False
 
-# 直播源验证函数
+# 直播源验证函数 - 返回响应时间和是否成功
 def validate_stream_url(url, timeout=3):
     """
-    验证直播源是否可访问
+    验证直播源是否可访问，返回(是否成功, 响应时间)
     """
     try:
+        start_time = time.time()
+        
         # 解析URL获取主机和端口
         parsed_url = urlparse(url)
         host = parsed_url.hostname
@@ -308,7 +312,7 @@ def validate_stream_url(url, timeout=3):
         sock.close()
         
         if result != 0:
-            return False  # TCP连接失败
+            return False, None  # TCP连接失败
             
         # 对于HTTP/HTTPS协议，进行更详细的验证
         if url.startswith(('http://', 'https://')):
@@ -324,25 +328,27 @@ def validate_stream_url(url, timeout=3):
                 with urllib.request.urlopen(req, timeout=timeout) as response:
                     # 检查状态码
                     if response.getcode() not in [200, 206]:
-                        return False
+                        return False, None
                     
                     # 检查内容类型
                     content_type = response.headers.get('Content-Type', '')
                     if not any(x in content_type for x in ['video', 'audio', 'application/octet-stream', 'application/vnd.apple.mpegurl']):
-                        return False
+                        return False, None
                         
             except urllib.error.HTTPError as e:
                 # 对于部分HTTP错误，仍然可能是可用的流
                 if e.code in [200, 206, 301, 302, 307]:
-                    return True
-                return False
+                    end_time = time.time()
+                    return True, end_time - start_time
+                return False, None
             except Exception:
-                return False
+                return False, None
                 
-        return True
+        end_time = time.time()
+        return True, end_time - start_time
         
     except Exception:
-        return False
+        return False, None
 
 # 央视频道名称标准化
 def standardize_cctv_name(channel_name):
@@ -377,6 +383,69 @@ def standardize_cctv_name(channel_name):
     # 如果不是已知的CCTV频道，保持原样
     return channel_name
 
+# 频道源管理器 - 用于管理每个频道的源并选择最快的10个
+class ChannelSourceManager:
+    def __init__(self):
+        self.sources = {}  # 字典，键为频道名称，值为(响应时间, URL)列表
+        
+    def add_source(self, channel_name, url):
+        if channel_name not in self.sources:
+            self.sources[channel_name] = []
+        self.sources[channel_name].append((float('inf'), url))  # 初始响应时间为无穷大
+        
+    def validate_and_sort_sources(self, max_workers=20):
+        """验证所有源并排序，选择每个频道最快的10个有效源"""
+        print("开始验证所有源的有效性...")
+        
+        # 收集所有需要验证的URL
+        all_urls = []
+        url_to_channel = {}
+        
+        for channel_name, url_list in self.sources.items():
+            for _, url in url_list:
+                all_urls.append(url)
+                url_to_channel[url] = channel_name
+        
+        # 使用线程池并行验证URL
+        validated_results = {}
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_url = {executor.submit(validate_stream_url, url): url for url in all_urls}
+            for future in concurrent.futures.as_completed(future_to_url):
+                url = future_to_url[future]
+                try:
+                    is_valid, response_time = future.result()
+                    validated_results[url] = (is_valid, response_time)
+                except Exception as e:
+                    print(f"验证URL时发生错误 {url}: {e}")
+                    validated_results[url] = (False, None)
+        
+        # 更新每个频道的源列表
+        for channel_name in list(self.sources.keys()):
+            valid_sources = []
+            for response_time, url in self.sources[channel_name]:
+                if url in validated_results:
+                    is_valid, actual_response_time = validated_results[url]
+                    if is_valid and actual_response_time is not None:
+                        valid_sources.append((actual_response_time, url))
+            
+            # 按响应时间排序并选择最快的10个
+            valid_sources.sort(key=lambda x: x[0])
+            self.sources[channel_name] = valid_sources[:10]
+            
+            print(f"频道 {channel_name}: 找到 {len(valid_sources)} 个有效源，保留 {len(self.sources[channel_name])} 个最快源")
+    
+    def get_sorted_lines(self, channel_dictionary):
+        """获取排序后的频道行"""
+        result = []
+        for channel_name in channel_dictionary:
+            if channel_name in self.sources:
+                for response_time, url in self.sources[channel_name]:
+                    result.append(f"{channel_name},{url}")
+        return result
+
+# 创建全局的频道源管理器
+source_manager = ChannelSourceManager()
+
 # 分发直播源
 def process_channel_line(line):
     try:
@@ -409,38 +478,38 @@ def process_channel_line(line):
                 # 特别处理直播中国分类 - 只保留明确的直播中国频道
                 if channel_name in zb_dictionary:
                     if check_url_existence(zb_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, zb_lines)):
-                        zb_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到直播中国: {channel_name}, {channel_address}")
                 # 新增综合频道处理（放在央视频道前面）
                 elif channel_name in zh_dictionary:
                     if check_url_existence(zh_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, zh_lines)):
-                        zh_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到综合频道: {channel_name}, {channel_address}")
                 elif channel_name in ys_dictionary:
                     # 对央视频道放宽验证条件
                     if (check_url_existence(ys_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ys_lines))):
-                        ys_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到央视频道: {channel_name}, {channel_address}")
                 elif channel_name in ws_dictionary:
                     # 对卫视频道放宽验证条件
                     if (check_url_existence(ws_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ws_lines))):
-                        ws_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到卫视频道: {channel_name}, {channel_address}")
                 elif channel_name in dy_dictionary:
                     if check_url_existence(dy_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, dy_lines)):
-                        dy_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到电影频道: {channel_name}, {channel_address}")
                 elif channel_name in gj_dictionary:
                     if check_url_existence(gj_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, gj_lines)):
-                        gj_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到国际台: {channel_name}, {channel_address}")
                 elif channel_name in gd_dictionary:
                     if check_url_existence(gd_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, gd_lines)):
-                        gd_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到广东频道: {channel_name}, {channel_address}")
                 elif channel_name in hain_dictionary:
                     if check_url_existence(hain_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, hain_lines)):
-                        hain_lines.append(line)
+                        source_manager.add_source(channel_name, channel_address)
                         print(f"添加到海南频道: {channel_name}, {channel_address}")
     except Exception as e:
         print(f"处理频道行时出错: {e}, 行内容: {line}")
@@ -520,6 +589,19 @@ print("\n开始处理所有URL...")
 for url in urls:
     if url.startswith("http"):
         safe_process_url(url)
+
+# 验证所有源并选择最快的10个
+source_manager.validate_and_sort_sources()
+
+# 获取处理后的频道源
+zh_lines = source_manager.get_sorted_lines(zh_dictionary)
+ys_lines = source_manager.get_sorted_lines(ys_dictionary)
+ws_lines = source_manager.get_sorted_lines(ws_dictionary)
+dy_lines = source_manager.get_sorted_lines(dy_dictionary)
+gj_lines = source_manager.get_sorted_lines(gj_dictionary)
+zb_lines = source_manager.get_sorted_lines(zb_dictionary)
+gd_lines = source_manager.get_sorted_lines(gd_dictionary)
+hain_lines = source_manager.get_sorted_lines(hain_dictionary)
 
 # 获取当前的 UTC 时间
 utc_time = datetime.now(timezone.utc)

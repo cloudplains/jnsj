@@ -75,8 +75,15 @@ def read_blacklist_from_txt(file_path):
                 print(f"读取黑名单时出错: {e}")
                 return []
 
-    BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
-    return BlackList
+    # 提取URL部分（逗号后的部分）
+    blacklist = []
+    for line in lines:
+        if ',' in line:
+            url = line.split(',')[1].strip()
+            blacklist.append(url)
+        else:
+            blacklist.append(line.strip())
+    return blacklist
 
 # 读取白名单（支持多种编码）
 def read_whitelist_from_txt(file_path):
@@ -355,24 +362,24 @@ def standardize_cctv_name(channel_name):
     """将CCTV频道名称标准化为'CCTV-数字+名称'格式"""
     # CCTV频道名称映射
     cctv_mapping = {
-        'CCTV-1': 'CCTV-1综合',
-        'CCTV-2': 'CCTV-2财经',
-        'CCTV-3': 'CCTV-3综艺',
-        'CCTV-4': 'CCTV-4中文国际',
-        'CCTV-5': 'CCTV-5体育',
-        'CCTV-5+': 'CCTV-5+体育赛事',
-        'CCTV-6': 'CCTV-6电影',
-        'CCTV-7': 'CCTV-7国防军事',
-        'CCTV-8': 'CCTV-8电视剧',
-        'CCTV-9': 'CCTV-9纪录',
-        'CCTV-10': 'CCTV-10科教',
-        'CCTV-11': 'CCTV-11戏曲',
-        'CCTV-12': 'CCTV-12社会与法',
-        'CCTV-13': 'CCTV-13新闻',
-        'CCTV-14': 'CCTV-14少儿',
-        'CCTV-15': 'CCTV-15音乐',
-        'CCTV-16': 'CCTV-16奥林匹克',
-        'CCTV-17': 'CCTV-17农业农村'
+        'CCTV1': 'CCTV-1综合',
+        'CCTV2': 'CCTV-2财经',
+        'CCTV3': 'CCTV-3综艺',
+        'CCTV4': 'CCTV-4中文国际',
+        'CCTV5': 'CCTV-5体育',
+        'CCTV5+': 'CCTV-5+体育赛事',
+        'CCTV6': 'CCTV-6电影',
+        'CCTV7': 'CCTV-7国防军事',
+        'CCTV8': 'CCTV-8电视剧',
+        'CCTV9': 'CCTV-9纪录',
+        'CCTV10': 'CCTV-10科教',
+        'CCTV11': 'CCTV-11戏曲',
+        'CCTV12': 'CCTV-12社会与法',
+        'CCTV13': 'CCTV-13新闻',
+        'CCTV14': 'CCTV-14少儿',
+        'CCTV15': 'CCTV-15音乐',
+        'CCTV16': 'CCTV-16奥林匹克',
+        'CCTV17': 'CCTV-17农业农村'
     }
     
     # 尝试匹配标准名称
@@ -387,11 +394,25 @@ def standardize_cctv_name(channel_name):
 class ChannelSourceManager:
     def __init__(self):
         self.sources = {}  # 字典，键为频道名称，值为(响应时间, URL)列表
+        self.seen_urls = set()  # 用于跟踪所有已见过的URL，避免重复
         
     def add_source(self, channel_name, url):
+        # 检查URL是否在黑名单中
+        if url in combined_blacklist:
+            print(f"跳过黑名单URL: {channel_name}, {url}")
+            return False
+            
+        # 检查URL是否已经处理过
+        if url in self.seen_urls:
+            print(f"跳过重复URL: {channel_name}, {url}")
+            return False
+            
+        self.seen_urls.add(url)
+        
         if channel_name not in self.sources:
             self.sources[channel_name] = []
         self.sources[channel_name].append((float('inf'), url))  # 初始响应时间为无穷大
+        return True
         
     def validate_and_sort_sources(self, max_workers=20):
         """验证所有源并排序，选择每个频道最快的10个有效源"""
@@ -464,52 +485,50 @@ def process_channel_line(line):
                 channel_name = standardize_cctv_name(channel_name)
 
             channel_address = clean_url(parts[1]).strip()
-            line = channel_name + "," + channel_address
 
             # 检查是否为IPv6地址，如果是则跳过
             if is_ipv6_url(channel_address):
                 print(f"跳过IPv6源: {channel_name}, {channel_address}")
                 return
 
-            if len(channel_address) > 0 and channel_address not in combined_blacklist:
-                # 检查是否在白名单中
-                is_whitelisted = is_whitelisted_url(channel_address, whitelist)
-                
-                # 特别处理直播中国分类 - 只保留明确的直播中国频道
-                if channel_name in zb_dictionary:
-                    if check_url_existence(zb_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, zb_lines)):
-                        source_manager.add_source(channel_name, channel_address)
+            # 检查是否在白名单中
+            is_whitelisted = is_whitelisted_url(channel_address, whitelist)
+            
+            # 特别处理直播中国分类 - 只保留明确的直播中国频道
+            if channel_name in zb_dictionary:
+                if is_whitelisted or not is_channel_full(channel_name, zb_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到直播中国: {channel_name}, {channel_address}")
-                # 新增综合频道处理（放在央视频道前面）
-                elif channel_name in zh_dictionary:
-                    if check_url_existence(zh_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, zh_lines)):
-                        source_manager.add_source(channel_name, channel_address)
+            # 新增综合频道处理（放在央视频道前面）
+            elif channel_name in zh_dictionary:
+                if is_whitelisted or not is_channel_full(channel_name, zh_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到综合频道: {channel_name}, {channel_address}")
-                elif channel_name in ys_dictionary:
-                    # 对央视频道放宽验证条件
-                    if (check_url_existence(ys_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ys_lines))):
-                        source_manager.add_source(channel_name, channel_address)
+            elif channel_name in ys_dictionary:
+                # 对央视频道放宽验证条件
+                if is_whitelisted or not is_channel_full(channel_name, ys_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到央视频道: {channel_name}, {channel_address}")
-                elif channel_name in ws_dictionary:
-                    # 对卫视频道放宽验证条件
-                    if (check_url_existence(ws_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ws_lines))):
-                        source_manager.add_source(channel_name, channel_address)
+            elif channel_name in ws_dictionary:
+                # 对卫视频道放宽验证条件
+                if is_whitelisted or not is_channel_full(channel_name, ws_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到卫视频道: {channel_name}, {channel_address}")
-                elif channel_name in dy_dictionary:
-                    if check_url_existence(dy_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, dy_lines)):
-                        source_manager.add_source(channel_name, channel_address)
+            elif channel_name in dy_dictionary:
+                if is_whitelisted or not is_channel_full(channel_name, dy_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到电影频道: {channel_name}, {channel_address}")
-                elif channel_name in gj_dictionary:
-                    if check_url_existence(gj_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, gj_lines)):
-                        source_manager.add_source(channel_name, channel_address)
+            elif channel_name in gj_dictionary:
+                if is_whitelisted or not is_channel_full(channel_name, gj_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到国际台: {channel_name}, {channel_address}")
-                elif channel_name in gd_dictionary:
-                    if check_url_existence(gd_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, gd_lines)):
-                        source_manager.add_source(channel_name, channel_address)
+            elif channel_name in gd_dictionary:
+                if is_whitelisted or not is_channel_full(channel_name, gd_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到广东频道: {channel_name}, {channel_address}")
-                elif channel_name in hain_dictionary:
-                    if check_url_existence(hain_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, hain_lines)):
-                        source_manager.add_source(channel_name, channel_address)
+            elif channel_name in hain_dictionary:
+                if is_whitelisted or not is_channel_full(channel_name, hain_lines):
+                    if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到海南频道: {channel_name}, {channel_address}")
     except Exception as e:
         print(f"处理频道行时出错: {e}, 行内容: {line}")
@@ -663,7 +682,7 @@ def make_m3u(txt_file, m3u_file):
                 output_text += f"#EXTINF:-1 tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_name}\",{channel_name}\n"
                 output_text += f"{channel_url}\n"
 
-        with open(f"{m3u_file}", "w", encoding='utf-8') as file:
+        with open(f"{m3u_file}", "w', encoding='utf-8') as file:
             file.write(output_text)
         print(f"M3U文件 '{m3u_file}' 生成成功。")
     except Exception as e:

@@ -682,7 +682,7 @@ def make_m3u(txt_file, m3u_file):
                 output_text += f"#EXTINF:-1 tvg-name=\"{channel_name}\" tvg-logo=\"{logo_url}\" group-title=\"{group_name}\",{channel_name}\n"
                 output_text += f"{channel_url}\n"
 
-        with open(f"{m3u_file}", "w', encoding='utf-8') as file:
+        with open(f"{m3u_file}", "w", encoding='utf-8') as file:
             file.write(output_text)
         print(f"M3U文件 '{m3u_file}' 生成成功。")
     except Exception as e:

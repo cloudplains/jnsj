@@ -8,7 +8,6 @@ import opencc
 import ssl
 import sys
 import socket
-import concurrent.futures
 
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -74,12 +73,7 @@ def read_blacklist_from_txt(file_path):
                 print(f"读取黑名单时出错: {e}")
                 return []
 
-    BlackList = []
-    for line in lines:
-        if ',' in line:
-            BlackList.append(line.split(',')[1].strip())
-        else:
-            BlackList.append(line.strip())
+    BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
     return BlackList
 
 # 读取白名单（支持多种编码）
@@ -105,24 +99,11 @@ def read_whitelist_from_txt(file_path):
     # 从每行提取URL部分（逗号后的部分）
     WhiteList = []
     for line in lines:
-        line = line.strip()
-        if not line:
-            continue
-            
-        # 跳过注释行或非URL行
-        if line.startswith('#') or not any(x in line for x in ['http://', 'https://']):
-            continue
-            
-        # 处理包含逗号的行
         if ',' in line:
-            # 获取最后一个逗号后的内容作为URL
-            url_part = line.split(',')[-1].strip()
-            if any(x in url_part for x in ['http://', 'https://']):
-                WhiteList.append(url_part)
+            url = line.split(',')[1].strip()
+            WhiteList.append(url)
         else:
-            # 整行就是URL
-            WhiteList.append(line)
-            
+            WhiteList.append(line.strip())
     return WhiteList
 
 print("正在读取黑名单...")
@@ -134,7 +115,8 @@ print(f"合并黑名单行数: {len(combined_blacklist)}")
 print("正在读取白名单...")
 whitelist = read_whitelist_from_txt('assets/whitelist-blacklist/whitelist.txt')
 print(f"白名单行数: {len(whitelist)}")
-print(f"白名单内容示例: {whitelist[:5]}")  # 打印前5个白名单项用于调试
+for url in whitelist:
+    print(f"白名单URL: {url}")
 
 # 定义多个对象用于存储不同内容的行文本
 zh_lines = []  # 综合频道
@@ -145,6 +127,9 @@ gj_lines = []  # 国际台
 zb_lines = []  # 直播中国
 gd_lines = []  # 地方台-广东频道
 hain_lines = []  # 地方台-海南频道
+
+other_lines = []  # 其他
+other_lines_url = []  # 为降低other文件大小，剔除重复url添加
 
 print("正在读取频道字典...")
 # 读取文本
@@ -202,19 +187,17 @@ def convert_m3u_to_txt(m3u_content):
         if line.startswith("#EXTINF"):
             # 获取频道名称（假设频道名称在引号后）
             channel_name = line.split(',')[-1].strip()
-        # 处理 URL 行 - 只处理HTTP/HTTPS协议
-        elif line.startswith("http://") or line.startswith("https://"):
+        # 处理 URL 行
+        elif line.startswith("http") or line.startswith("rtmp") or line.startswith("p3p"):
             txt_lines.append(f"{channel_name},{line.strip()}")
 
         # 处理后缀名为m3u，但是内容为txt的文件
-        if "#genre#" not in line and "," in line and ("://" in line):
+        if "#genre#" not in line and "," in line and "://" in line:
             # 定义正则表达式，匹配频道名称,URL 的格式，并确保 URL 包含 "://"
             # xxxx,http://xxxxx.xx.xx
             pattern = r'^[^,]+,[^\s]+://[^\s]+$'
             if bool(re.match(pattern, line)):
-                # 只处理HTTP/HTTPS协议
-                if line.startswith(('http://', 'https://')):
-                    txt_lines.append(line)
+                txt_lines.append(line)
 
     # 将结果合并成一个字符串，以换行符分隔
     return '\n'.join(txt_lines)
@@ -307,33 +290,12 @@ def is_ipv6_url(url):
             return True
     return False
 
-# 检查是否为电信网络源
-def is_telecom_source(url):
-    """检查URL是否为电信网络源"""
-    telecom_patterns = [
-        r'\.chinanet\.',  # 中国电信域名
-        r'\.ctc\.',  # 中国电信缩写
-        r'\.telecom\.',  # 电信
-        r'189\.',  # 电信IP段
-        r'\.dx\.',  # 电信缩写
-        r'/dx/',  # 电信路径
-    ]
-    
-    for pattern in telecom_patterns:
-        if re.search(pattern, url, re.IGNORECASE):
-            return True
-    return False
-
 # 直播源验证函数
 def validate_stream_url(url, timeout=3):
     """
     验证直播源是否可访问
     """
     try:
-        # 只验证HTTP/HTTPS协议
-        if not url.startswith(('http://', 'https://')):
-            return False
-            
         # 解析URL获取主机和端口
         parsed_url = urlparse(url)
         host = parsed_url.hostname
@@ -349,77 +311,62 @@ def validate_stream_url(url, timeout=3):
             return False  # TCP连接失败
             
         # 对于HTTP/HTTPS协议，进行更详细的验证
-        try:
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                'Accept': '*/*',
-                'Connection': 'close',
-                'Range': 'bytes=0-1024'  # 只请求少量数据以验证
-            }
-            
-            req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=timeout) as response:
-                # 检查状态码
-                if response.getcode() not in [200, 206]:
-                    return False
+        if url.startswith(('http://', 'https://')):
+            try:
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'Accept': '*/*',
+                    'Connection': 'close',
+                    'Range': 'bytes=0-1024'  # 只请求少量数据以验证
+                }
                 
-                # 检查内容类型
-                content_type = response.headers.get('Content-Type', '')
-                if not any(x in content_type for x in ['video', 'audio', 'application/octet-stream', 'application/vnd.apple.mpegurl']):
-                    return False
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=timeout) as response:
+                    # 检查状态码
+                    if response.getcode() not in [200, 206]:
+                        return False
                     
-        except urllib.error.HTTPError as e:
-            # 对于部分HTTP错误，仍然可能是可用的流
-            if e.code in [200, 206, 301, 302, 307]:
-                return True
-            return False
-        except Exception:
-            return False
-            
+                    # 检查内容类型
+                    content_type = response.headers.get('Content-Type', '')
+                    if not any(x in content_type for x in ['video', 'audio', 'application/octet-stream', 'application/vnd.apple.mpegurl']):
+                        return False
+                        
+            except urllib.error.HTTPError as e:
+                # 对于部分HTTP错误，仍然可能是可用的流
+                if e.code in [200, 206, 301, 302, 307]:
+                    return True
+                return False
+            except Exception:
+                return False
+                
         return True
         
     except Exception:
         return False
-
-# 使用线程池验证URL
-def validate_urls_concurrently(urls):
-    """并发验证URL列表"""
-    valid_urls = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        future_to_url = {executor.submit(validate_stream_url, url): url for url in urls}
-        for future in concurrent.futures.as_completed(future_to_url):
-            url = future_to_url[future]
-            try:
-                if future.result():
-                    valid_urls.append(url)
-            except Exception as e:
-                print(f"验证URL时出错 {url}: {e}")
-    return valid_urls
 
 # 央视频道名称标准化
 def standardize_cctv_name(channel_name):
     """将CCTV频道名称标准化为'CCTV-数字+名称'格式"""
     # CCTV频道名称映射
     cctv_mapping = {
-        'CCTV1': 'CCTV-1综合',
-        'CCTV2': 'CCTV-2财经',
-        'CCTV3': 'CCTV-3综艺',
-        'CCTV4': 'CCTV-4中文国际',
-        'CCTV5': 'CCTV-5体育',
-        'CCTV5+': 'CCTV-5+体育赛事',
-        'CCTV6': 'CCTV-6电影',
-        'CCTV7': 'CCTV-7国防军事',
-        'CCTV8': 'CCTV-8电视剧',
-        'CCTV9': 'CCTV-9纪录',
-        'CCTV10': 'CCTV-10科教',
-        'CCTV11': 'CCTV-11戏曲',
-        'CCTV12': 'CCTV-12社会与法',
-        'CCTV13': 'CCTV-13新闻',
-        'CCTV14': 'CCTV-14少儿',
-        'CCTV15': 'CCTV-15音乐',
-        'CCTV16': 'CCTV-16奥林匹克',
-        'CCTV17': 'CCTV-17农业农村',
-        'CCTV4K': 'CCTV-4K超高清'
+        'CCTV-1': 'CCTV-1综合',
+        'CCTV-2': 'CCTV-2财经',
+        'CCTV-3': 'CCTV-3综艺',
+        'CCTV-4': 'CCTV-4中文国际',
+        'CCTV-5': 'CCTV-5体育',
+        'CCTV-5+': 'CCTV-5+体育赛事',
+        'CCTV-6': 'CCTV-6电影',
+        'CCTV-7': 'CCTV-7国防军事',
+        'CCTV-8': 'CCTV-8电视剧',
+        'CCTV-9': 'CCTV-9纪录',
+        'CCTV-10': 'CCTV-10科教',
+        'CCTV-11': 'CCTV-11戏曲',
+        'CCTV-12': 'CCTV-12社会与法',
+        'CCTV-13': 'CCTV-13新闻',
+        'CCTV-14': 'CCTV-14少儿',
+        'CCTV-15': 'CCTV-15音乐',
+        'CCTV-16': 'CCTV-16奥林匹克',
+        'CCTV-17': 'CCTV-17农业农村'
     }
     
     # 尝试匹配标准名称
@@ -448,12 +395,6 @@ def process_channel_line(line):
                 channel_name = standardize_cctv_name(channel_name)
 
             channel_address = clean_url(parts[1]).strip()
-            
-            # 只处理HTTP/HTTPS协议
-            if not (channel_address.startswith('http://') or channel_address.startswith('https://')):
-                print(f"跳过非HTTP/HTTPS协议: {channel_name}, {channel_address}")
-                return
-                
             line = channel_name + "," + channel_address
 
             # 检查是否为IPv6地址，如果是则跳过
@@ -461,13 +402,7 @@ def process_channel_line(line):
                 print(f"跳过IPv6源: {channel_name}, {channel_address}")
                 return
 
-            # 检查是否在黑名单中
-            is_blacklisted = any(black_url in channel_address for black_url in combined_blacklist)
-            if is_blacklisted:
-                print(f"跳过黑名单源: {channel_name}, {channel_address}")
-                return
-
-            if len(channel_address) > 0:
+            if len(channel_address) > 0 and channel_address not in combined_blacklist:
                 # 检查是否在白名单中
                 is_whitelisted = is_whitelisted_url(channel_address, whitelist)
                 
@@ -482,29 +417,15 @@ def process_channel_line(line):
                         zh_lines.append(line)
                         print(f"添加到综合频道: {channel_name}, {channel_address}")
                 elif channel_name in ys_dictionary:
-                    # 对央视频道优先选择电信源
-                    if is_telecom_source(channel_address):
-                        # 电信源优先添加，不受数量限制
-                        if check_url_existence(ys_lines, channel_address):
-                            ys_lines.append(line)
-                            print(f"添加到央视频道(电信源): {channel_name}, {channel_address}")
-                    else:
-                        # 非电信源按正常流程处理
-                        if (check_url_existence(ys_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ys_lines))):
-                            ys_lines.append(line)
-                            print(f"添加到央视频道: {channel_name}, {channel_address}")
+                    # 对央视频道放宽验证条件
+                    if (check_url_existence(ys_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ys_lines))):
+                        ys_lines.append(line)
+                        print(f"添加到央视频道: {channel_name}, {channel_address}")
                 elif channel_name in ws_dictionary:
-                    # 对卫视频道优先选择电信源
-                    if is_telecom_source(channel_address):
-                        # 电信源优先添加，不受数量限制
-                        if check_url_existence(ws_lines, channel_address):
-                            ws_lines.append(line)
-                            print(f"添加到卫视频道(电信源): {channel_name}, {channel_address}")
-                    else:
-                        # 非电信源按正常流程处理
-                        if (check_url_existence(ws_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ws_lines))):
-                            ws_lines.append(line)
-                            print(f"添加到卫视频道: {channel_name}, {channel_address}")
+                    # 对卫视频道放宽验证条件
+                    if (check_url_existence(ws_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, ws_lines))):
+                        ws_lines.append(line)
+                        print(f"添加到卫视频道: {channel_name}, {channel_address}")
                 elif channel_name in dy_dictionary:
                     if check_url_existence(dy_lines, channel_address) and (is_whitelisted or not is_channel_full(channel_name, dy_lines)):
                         dy_lines.append(line)
@@ -568,17 +489,13 @@ def process_url(url):
                         continue
                         
                     channel_name, channel_address = parts
-                    # 只处理HTTP/HTTPS协议
-                    if not (channel_address.startswith('http://') or channel_address.startswith('https://')):
-                        continue
-                        
                     if "#" not in channel_address:
                         process_channel_line(line)
                         valid_lines += 1
                     else:
                         url_list = channel_address.split('#')
                         for channel_url in url_list:
-                            if "://" in channel_url and (channel_url.startswith('http://') or channel_url.startswith('https://')):
+                            if "://" in channel_url:
                                 newline = f'{channel_name},{channel_url}'
                                 process_channel_line(newline)
                                 valid_lines += 1
@@ -598,63 +515,11 @@ def sort_data(order, data):
     sorted_data = sorted(data, key=sort_key)
     return sorted_data
 
-# 验证所有收集到的URL
-def validate_all_urls():
-    """验证所有收集到的URL"""
-    print("\n开始验证所有收集到的URL...")
-    
-    # 收集所有URL
-    all_urls = []
-    url_sources = {
-        "综合频道": zh_lines,
-        "央视频道": ys_lines,
-        "卫视频道": ws_lines,
-        "电影频道": dy_lines,
-        "国际台": gj_lines,
-        "直播中国": zb_lines,
-        "广东频道": gd_lines,
-        "海南频道": hain_lines
-    }
-    
-    for category, lines in url_sources.items():
-        for line in lines:
-            if "," in line:
-                url = line.split(",")[1]
-                all_urls.append((category, line, url))
-    
-    print(f"总共需要验证 {len(all_urls)} 个URL")
-    
-    # 并发验证URL
-    url_to_validate = [url for _, _, url in all_urls]
-    valid_urls = validate_urls_concurrently(url_to_validate)
-    valid_urls_set = set(valid_urls)
-    
-    print(f"验证完成，有效URL数量: {len(valid_urls)}")
-    
-    # 清空所有列表，只保留有效的URL
-    for category in url_sources:
-        url_sources[category] = []
-    
-    # 重新添加有效的URL
-    for category, line, url in all_urls:
-        if url in valid_urls_set:
-            channel_name = line.split(",")[0]
-            
-            # 检查频道是否已满
-            if is_channel_full(channel_name, url_sources[category]):
-                print(f"频道 {channel_name} 已满，跳过: {url}")
-                continue
-                
-            url_sources[category].append(line)
-
 # 加入配置的url
 print("\n开始处理所有URL...")
 for url in urls:
     if url.startswith("http"):
         safe_process_url(url)
-
-# 验证所有收集到的URL
-validate_all_urls()
 
 # 获取当前的 UTC 时间
 utc_time = datetime.now(timezone.utc)

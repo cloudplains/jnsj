@@ -164,6 +164,8 @@ hain_dictionary = read_txt_to_array('地方台/海南频道.txt')
 # 自定义源
 urls = read_txt_to_array('assets/urls.txt')
 print(f"读取到 {len(urls)} 个URL")
+for i, url in enumerate(urls):
+    print(f"  {i+1}. {url}")
 
 # 简繁转换
 def traditional_to_simplified(text: str) -> str:
@@ -463,6 +465,10 @@ class ChannelSourceManager:
                 try:
                     is_valid, response_time = future.result()
                     validated_results[url] = (is_valid, response_time)
+                    if is_valid:
+                        print(f"✓ 有效源: {url_to_channel[url]}, {url} (响应时间: {response_time:.2f}s)")
+                    else:
+                        print(f"✗ 无效源: {url_to_channel[url]}, {url}")
                 except Exception as e:
                     print(f"验证URL时发生错误 {url}: {e}")
                     validated_results[url] = (False, None)
@@ -557,6 +563,8 @@ def process_channel_line(line):
                 if is_whitelisted or not is_channel_full(channel_name, hain_lines):
                     if source_manager.add_source(channel_name, channel_address):
                         print(f"添加到海南频道: {channel_name}, {channel_address}")
+            else:
+                print(f"未分类频道: {channel_name}, {channel_address}")
     except Exception as e:
         print(f"处理频道行时出错: {e}, 行内容: {line}")
 
@@ -576,8 +584,8 @@ def process_url(url):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
         }
         req = urllib.request.Request(url, headers=headers)
-        # 修改超时时间为5秒
-        with urllib.request.urlopen(req, timeout=5) as response:
+        # 修改超时时间为10秒
+        with urllib.request.urlopen(req, timeout=10) as response:
             data = response.read()
             try:
                 text = data.decode('utf-8')

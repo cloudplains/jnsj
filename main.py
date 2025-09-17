@@ -43,8 +43,8 @@ def read_txt_to_array(file_name):
                 # 如果 GBK 也失败，尝试 latin-1 编码
                 with open(file_name, 'r', encoding='latin-1') as file:
                     lines = file.readlines()
-                    lines = [line.strip() for line in lines]
-                    return lines
+                lines = [line.strip() for line in lines]
+                return lines
             except Exception as e:
                 print(f"无法确定合适的编码格式进行解码文件: {file_name}, 错误: {e}")
                 return []
@@ -57,6 +57,7 @@ def read_txt_to_array(file_name):
 
 # 读取黑名单（支持多种编码）
 def read_blacklist_from_txt(file_path):
+    blacklist = []
     try:
         # 先尝试 UTF-8 编码
         with open(file_path, 'r', encoding='utf-8-sig') as file:
@@ -76,13 +77,13 @@ def read_blacklist_from_txt(file_path):
                 return []
 
     # 提取URL部分（逗号后的部分）
-    blacklist = []
     for line in lines:
+        line = line.strip()
         if ',' in line:
             url = line.split(',')[1].strip()
             blacklist.append(url)
         else:
-            blacklist.append(line.strip())
+            blacklist.append(line)
     return blacklist
 
 # 读取白名单（支持多种编码）
@@ -108,11 +109,12 @@ def read_whitelist_from_txt(file_path):
     # 从每行提取URL部分（逗号后的部分）
     WhiteList = []
     for line in lines:
+        line = line.strip()
         if ',' in line:
             url = line.split(',')[1].strip()
             WhiteList.append(url)
         else:
-            WhiteList.append(line.strip())
+            WhiteList.append(line)
     return WhiteList
 
 print("正在读取黑名单...")
@@ -120,6 +122,11 @@ blacklist_auto = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_a
 black_list_manual = read_blacklist_from_txt('assets/whitelist-blacklist/blacklist_manual.txt')
 combined_blacklist = set(blacklist_auto + black_list_manual)
 print(f"合并黑名单行数: {len(combined_blacklist)}")
+
+# 打印一些黑名单URL示例
+print("黑名单示例:")
+for i, url in enumerate(list(combined_blacklist)[:5]):
+    print(f"  {i+1}. {url}")
 
 print("正在读取白名单...")
 whitelist = read_whitelist_from_txt('assets/whitelist-blacklist/whitelist.txt')
@@ -299,6 +306,11 @@ def is_ipv6_url(url):
             return True
     return False
 
+# 检查是否为RTMP协议
+def is_rtmp_url(url):
+    """检查URL是否为RTMP协议"""
+    return url.startswith('rtmp://')
+
 # 直播源验证函数 - 返回响应时间和是否成功
 def validate_stream_url(url, timeout=3):
     """
@@ -357,10 +369,10 @@ def validate_stream_url(url, timeout=3):
     except Exception:
         return False, None
 
-# 央视频道名称标准化
+# 央视频道名称标准化 - 修改为使用CCTV1格式
 def standardize_cctv_name(channel_name):
     """将CCTV频道名称标准化为'CCTV-数字+名称'格式"""
-    # CCTV频道名称映射
+    # CCTV频道名称映射 - 使用CCTV1格式作为键
     cctv_mapping = {
         'CCTV1': 'CCTV-1综合',
         'CCTV2': 'CCTV-2财经',
@@ -384,11 +396,21 @@ def standardize_cctv_name(channel_name):
     
     # 尝试匹配标准名称
     for short_name, full_name in cctv_mapping.items():
-        if channel_name.startswith(short_name):
+        # 移除频道名称中的横线以便匹配
+        clean_name = channel_name.replace('-', '')
+        if clean_name.startswith(short_name):
             return full_name
     
     # 如果不是已知的CCTV频道，保持原样
     return channel_name
+
+# 检查URL是否在黑名单中（更严格的检查）
+def is_blacklisted_url(url, blacklist):
+    """检查URL是否在黑名单中，支持部分匹配"""
+    for pattern in blacklist:
+        if pattern in url:
+            return True
+    return False
 
 # 频道源管理器 - 用于管理每个频道的源并选择最快的10个
 class ChannelSourceManager:
@@ -397,9 +419,14 @@ class ChannelSourceManager:
         self.seen_urls = set()  # 用于跟踪所有已见过的URL，避免重复
         
     def add_source(self, channel_name, url):
-        # 检查URL是否在黑名单中
-        if url in combined_blacklist:
+        # 检查URL是否在黑名单中（使用更严格的检查）
+        if is_blacklisted_url(url, combined_blacklist):
             print(f"跳过黑名单URL: {channel_name}, {url}")
+            return False
+            
+        # 检查URL是否为RTMP协议
+        if is_rtmp_url(url):
+            print(f"跳过RTMP协议URL: {channel_name}, {url}")
             return False
             
         # 检查URL是否已经处理过

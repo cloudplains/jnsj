@@ -1,5 +1,5 @@
-# 更新时间: 2025-09-16 18:27:14
-# 有效URL数量: 116
+# 更新时间: 2025-09-17 18:26:27
+# 有效URL数量: 114
 
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
@@ -35,7 +35,6 @@ https://raw.githubusercontent.com/wwb521/live/refs/heads/main/tv.txt
 https://raw.githubusercontent.com/BurningC4/Chinese-IPTV/master/TV-IPV4.m3u
 https://raw.githubusercontent.com/xzw832/cmys/refs/heads/main/S_CCTV.txt
 https://raw.githubusercontent.com/xzw832/cmys/refs/heads/main/S_weishi.txt
-https://raw.githubusercontent.com/YueChan/Live/main/APTV.m3u
 https://raw.githubusercontent.com/MemoryCollection/IPTV/refs/heads/main/hotel.txt
 https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u
 https://raw.githubusercontent.com/mlzlzj/hnyuan/refs/heads/main/iptv_list.txt
@@ -105,7 +104,6 @@ https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv6.m3u#myIPTV
 https://raw.githubusercontent.com/vamoschuck/TV/main/M3U#茶客源
 https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u#YanG集合源，有部分IPv6
 https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u#YueChan直播源
-https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/APTV.m3u
 https://raw.githubusercontent.com/asdjkl6/tv/tv/.m3u/整套直播源/测试/整套直播源/kk.txt
 https://raw.githubusercontent.com/asdjkl6/tv/tv/.m3u/整套直播源/测试/整套直播源/l.txt
 https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u

@@ -339,7 +339,7 @@ def validate_stream_url(url, timeout=3):
         if url.startswith(('http://', 'https://')):
             try:
                 headers = {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.极速模式: 已启用
                     'Accept': '*/*',
                     'Connection': 'close',
                     'Range': 'bytes=0-1024'  # 只请求少量数据以验证
@@ -408,8 +408,9 @@ def standardize_cctv_name(channel_name):
 
 # 检查URL是否在黑名单中（更严格的检查）
 def is_blacklisted_url(url, blacklist):
-    """检查URL是否在黑名单中，支持域名精确匹配"""
+    """检查URL是否在黑名单中，支持精确匹配和部分匹配"""
     try:
+        # 解析URL获取域名部分
         parsed_url = urlparse(url)
         domain = parsed_url.netloc
         
@@ -417,18 +418,23 @@ def is_blacklisted_url(url, blacklist):
         if ':' in domain:
             domain = domain.split(':')[0]
             
+        # 检查是否直接匹配完整URL
+        if url in blacklist:
+            return True
+            
+        # 检查是否匹配域名
+        if domain in blacklist:
+            return True
+            
+        # 检查是否部分匹配（黑名单条目是URL的一部分）
         for pattern in blacklist:
-            # 如果黑名单条目是完整URL，提取域名
-            if '://' in pattern:
-                parsed_pattern = urlparse(pattern)
-                pattern_domain = parsed_pattern.netloc
-                if ':' in pattern_domain:
-                    pattern_domain = pattern_domain.split(':')[0]
-                if domain == pattern_domain:
-                    return True
-            # 如果黑名单条目已经是域名
+            # 如果黑名单条目是完整URL，检查是否包含
+            if '://' in pattern and pattern in url:
+                return True
+            # 如果黑名单条目是域名，检查是否匹配
             elif pattern in domain:
                 return True
+                
     except Exception as e:
         print(f"解析URL时出错: {e}")
         
@@ -547,6 +553,8 @@ def process_channel_line(line):
             # 检查是否在黑名单中（使用清理后的URL）
             if is_blacklisted_url(channel_address, combined_blacklist):
                 print(f"跳过黑名单URL: {channel_name}, {channel_address}")
+                # 添加调试信息
+                print(f"黑名单检查: URL={channel_address}, 黑名单={combined_blacklist}")
                 return
 
             # 检查是否在白名单中
@@ -706,7 +714,7 @@ all_lines = (["更新时间,#genre#"] + [version] + ['\n'] +
            ["央视频道,#genre#"] + sort_data(ys_dictionary, ys_lines) + ['\n'] +
            ["卫视频道,#genre#"] + sort_data(ws_dictionary, ws_lines) + ['\n'] +
            ["国际台,#genre#"] + sort_data(gj_dictionary, gj_lines) + ['\n'] +
-           ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['\n'] +
+           ["广东频道,#genre#"] + sort_data(gd_dictionary, gd_lines) + ['极速模式: 已启用
            ["海南频道,#genre#"] + sort_data(hain_dictionary, hain_lines) + ['\n'] +
            ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] +
            ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n'])
@@ -721,17 +729,17 @@ try:
     print(f"合并后的文本已保存到文件: {output_file}")
 
 except Exception as e:
-    print(f"保存文件时发生错误：{e}")
+    print(f"保存文件时发生错误：极速模式: 已启用
 
 def make_m3u(txt_file, m3u_file):
     try:
         output_text = '#EXTM3U x-tvg-url="https://epg.112114.xyz/pp.xml.gz"\n'
-        with open(txt_file, "r", encoding='utf-8') as file:
+        with open(txt_file, "极速模式: 已启用
             input_text = file.read()
 
         lines = input_text.strip().split("\n")
         group_name = ""
-        for line in lines:
+        for极速模式: 已启用
             parts = line.split(",")
             if len(parts) == 2 and "#genre#" in line:
                 group_name = parts[0]

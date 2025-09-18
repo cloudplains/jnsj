@@ -1,4 +1,4 @@
-﻿import urllib.request
+import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -10,6 +10,7 @@ import sys
 import socket
 import time
 import concurrent.futures
+import threading
 
 # 跳过SSL证书验证
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -414,11 +415,31 @@ def is_blacklisted_url(url, blacklist):
             return True
     return False
 
+# 将无效URL添加到黑名单
+def add_to_blacklist(url, reason="无效链接"):
+    """将URL添加到黑名单文件"""
+    try:
+        # 检查是否已经在黑名单中
+        if url in combined_blacklist:
+            return
+            
+        # 添加到内存中的黑名单
+        combined_blacklist.add(url)
+        
+        # 写入黑名单文件
+        with open('assets/whitelist-blacklist/blacklist_auto.txt', 'a', encoding='utf-8') as f:
+            f.write(f"{url}  # {reason} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        
+        print(f"已将无效URL添加到黑名单: {url} - {reason}")
+    except Exception as e:
+        print(f"添加URL到黑名单时出错: {e}")
+
 # 频道源管理器 - 用于管理每个频道的源并选择最快的10个
 class ChannelSourceManager:
     def __init__(self):
         self.sources = {}  # 字典，键为频道名称，值为(响应时间, URL)列表
         self.seen_urls = set()  # 用于跟踪所有已见过的URL，避免重复
+        self.lock = threading.Lock()  # 用于线程安全
         
     def add_source(self, channel_name, url):
         # 检查URL是否在黑名单中（使用更严格的检查）
@@ -438,9 +459,10 @@ class ChannelSourceManager:
             
         self.seen_urls.add(url)
         
-        if channel_name not in self.sources:
-            self.sources[channel_name] = []
-        self.sources[channel_name].append((float('inf'), url))  # 初始响应时间为无穷大
+        with self.lock:
+            if channel_name not in self.sources:
+                self.sources[channel_name] = []
+            self.sources[channel_name].append((float('inf'), url))  # 初始响应时间为无穷大
         return True
         
     def validate_and_sort_sources(self, max_workers=20):
@@ -469,9 +491,13 @@ class ChannelSourceManager:
                         print(f"✓ 有效源: {url_to_channel[url]}, {url} (响应时间: {response_time:.2f}s)")
                     else:
                         print(f"✗ 无效源: {url_to_channel[url]}, {url}")
+                        # 将无效URL添加到黑名单
+                        add_to_blacklist(url, "验证失败")
                 except Exception as e:
                     print(f"验证URL时发生错误 {url}: {e}")
                     validated_results[url] = (False, None)
+                    # 将错误URL添加到黑名单
+                    add_to_blacklist(url, f"验证错误: {e}")
         
         # 更新每个频道的源列表
         for channel_name in list(self.sources.keys()):

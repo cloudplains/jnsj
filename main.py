@@ -1,4 +1,4 @@
-﻿import urllib.request
+import urllib.request
 from urllib.parse import urlparse, quote
 import re
 import os
@@ -408,10 +408,30 @@ def standardize_cctv_name(channel_name):
 
 # 检查URL是否在黑名单中（更严格的检查）
 def is_blacklisted_url(url, blacklist):
-    """检查URL是否在黑名单中，支持部分匹配"""
-    for pattern in blacklist:
-        if pattern in url:
-            return True
+    """检查URL是否在黑名单中，支持域名精确匹配"""
+    try:
+        parsed_url = urlparse(url)
+        domain = parsed_url.netloc
+        
+        # 处理带端口的域名
+        if ':' in domain:
+            domain = domain.split(':')[0]
+            
+        for pattern in blacklist:
+            # 如果黑名单条目是完整URL，提取域名
+            if '://' in pattern:
+                parsed_pattern = urlparse(pattern)
+                pattern_domain = parsed_pattern.netloc
+                if ':' in pattern_domain:
+                    pattern_domain = pattern_domain.split(':')[0]
+                if domain == pattern_domain:
+                    return True
+            # 如果黑名单条目已经是域名
+            elif pattern in domain:
+                return True
+    except Exception as e:
+        print(f"解析URL时出错: {e}")
+        
     return False
 
 # 频道源管理器 - 用于管理每个频道的源并选择最快的10个
@@ -522,6 +542,11 @@ def process_channel_line(line):
             # 检查是否为IPv6地址，如果是则跳过
             if is_ipv6_url(channel_address):
                 print(f"跳过IPv6源: {channel_name}, {channel_address}")
+                return
+
+            # 检查是否在黑名单中（使用清理后的URL）
+            if is_blacklisted_url(channel_address, combined_blacklist):
+                print(f"跳过黑名单URL: {channel_name}, {channel_address}")
                 return
 
             # 检查是否在白名单中

@@ -6,7 +6,6 @@
 民视影剧
 民视综艺
 泰国ASTV-News1
-星空卫视
 亚洲新闻
 伊朗news
 印度TV9
@@ -78,33 +77,19 @@ TVB美亚电影
 TVB明珠
 Viu6
 VIUTV1
-澳亚卫视
 俄罗斯GITV
 菲律宾NDTV
 DISCOVERY
-CI
-纪录频道|NatGeo HD
 FASHIONTV
 HISTORY
 BBCEARTH
-纪录频道|NatGeo Wild HD
-纪录频道|Animal Planet (Eng)
-纪录频道|TLC
-纪录频道|Foodnetwork Hd
-纪录频道|HGTV
 SKYNEWS
-新闻频道|ABC News
-新闻频道|CBS HD
-新闻频道|CBSN HD
 FRANCE24
 DW
 NHK
 FOX
 CNN
-新闻频道|CNBC
-新闻频道|CNA
 BBCWORLDNEWS
-新闻频道|Bloomberg News
 ALJAZEERA
 BABYTV
 CBEEBIES

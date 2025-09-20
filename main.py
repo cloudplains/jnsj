@@ -417,7 +417,7 @@ def is_blacklisted_url(url, blacklist):
             return True
     return False
 
-# 从URL中提取频道ID并纠正频道名称
+# 从URL中提取频道ID并纠正频道名称 - 改进版本
 def correct_channel_name_from_url(channel_name, url):
     """从URL中提取频道ID并纠正频道名称"""
     try:
@@ -462,13 +462,91 @@ def correct_channel_name_from_url(channel_name, url):
                                 '14': 'CCTV-14少儿',
                                 '15': 'CCTV-15音乐',
                                 '16': 'CCTV-16奥林匹克',
-                                '17': 'CCTV-17农业农村'
+                                '17': 'CCTV-17农业农村',
+                                '18': 'CCTV-18农业农村',
+                                '19': 'CCTV-19国防军事',
+                                '20': 'CCTV-20国防军事'
                             }
                             
                             if cctv_num in cctv_mapping:
                                 corrected_name = cctv_mapping[cctv_num]
                                 print(f"纠正频道名称: {channel_name} -> {corrected_name} (基于URL ID: {id_value})")
                                 return corrected_name
+                    else:
+                        # 如果当前频道名称没有数字，但URL中有，也进行纠正
+                        cctv_mapping = {
+                            '1': 'CCTV-1综合',
+                            '2': 'CCTV-2财经',
+                            '3': 'CCTV-3综艺',
+                            '4': 'CCTV-4中文国际',
+                            '5': 'CCTV-5体育',
+                            '5+': 'CCTV-5+体育赛事',
+                            '6': 'CCTV-6电影',
+                            '7': 'CCTV-7国防军事',
+                            '8': 'CCTV-8电视剧',
+                            '9': 'CCTV-9纪录',
+                            '10': 'CCTV-10科教',
+                            '11': 'CCTV-11戏曲',
+                            '12': 'CCTV-12社会与法',
+                            '13': 'CCTV-13新闻',
+                            '14': 'CCTV-14少儿',
+                            '15': 'CCTV-15音乐',
+                            '16': 'CCTV-16奥林匹克',
+                            '17': 'CCTV-17农业农村',
+                            '18': 'CCTV-18农业农村',
+                            '19': 'CCTV-19国防军事',
+                            '20': 'CCTV-20国防军事'
+                        }
+                        
+                        if cctv_num in cctv_mapping:
+                            corrected_name = cctv_mapping[cctv_num]
+                            print(f"纠正频道名称: {channel_name} -> {corrected_name} (基于URL ID: {id_value})")
+                            return corrected_name
+        
+        # 检查URL路径中是否包含频道信息
+        path_parts = parsed_url.path.split('/')
+        for part in path_parts:
+            if 'cctv' in part.lower():
+                match = re.search(r'cctv(\d+)', part.lower())
+                if match:
+                    cctv_num = match.group(1)
+                    
+                    # 检查当前频道名称是否与URL路径中的ID匹配
+                    current_num_match = re.search(r'CCTV[-\s]*(\d+)', channel_name)
+                    if current_num_match:
+                        current_num = current_num_match.group(1)
+                        
+                        # 如果不匹配，则纠正
+                        if current_num != cctv_num:
+                            cctv_mapping = {
+                                '1': 'CCTV-1综合',
+                                '2': 'CCTV-2财经',
+                                '3': 'CCTV-3综艺',
+                                '4': 'CCTV-4中文国际',
+                                '5': 'CCTV-5体育',
+                                '5+': 'CCTV-5+体育赛事',
+                                '6': 'CCTV-6电影',
+                                '7': 'CCTV-7国防军事',
+                                '8': 'CCTV-8电视剧',
+                                '9': 'CCTV-9纪录',
+                                '10': 'CCTV-10科教',
+                                '11': 'CCTV-11戏曲',
+                                '12': 'CCTV-12社会与法',
+                                '13': 'CCTV-13新闻',
+                                '14': 'CCTV-14少儿',
+                                '15': 'CCTV-15音乐',
+                                '16': 'CCTV-16奥林匹克',
+                                '17': 'CCTV-17农业农村',
+                                '18': 'CCTV-18农业农村',
+                                '19': 'CCTV-19国防军事',
+                                '20': 'CCTV-20国防军事'
+                            }
+                            
+                            if cctv_num in cctv_mapping:
+                                corrected_name = cctv_mapping[cctv_num]
+                                print(f"纠正频道名称: {channel_name} -> {corrected_name} (基于URL路径: {part})")
+                                return corrected_name
+    
     except Exception as e:
         print(f"从URL提取频道ID时出错: {e}")
     

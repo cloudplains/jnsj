@@ -1,7 +1,7 @@
 ﻿# 更新时间: 2025-09-20 10:49
 
 央视频道,#genre#
-
+美亚电影台,http://php.jdshipin.com:8880/TVOD/iptv.php?id=meiya
 CCTV1,http://www.dsk.cc/php/bfgd.php?id=cctv1&m.m3u8
 CCTV2,http://www.dsk.cc/php/bfgd.php?id=cctv2&m.m3u8
 CCTV3,http://www.dsk.cc/php/bfgd.php?id=cctv3&m.m3u8

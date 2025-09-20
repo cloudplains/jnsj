@@ -423,7 +423,7 @@ class ChannelSourceManager:
         self.sources = {}  # 字典，键为频道名称，值为(响应时间, URL)列表
         self.seen_urls = set()  # 用于跟踪所有已见过的URL，避免重复
         
-    def add_source(self, channel_name, url):
+    def add_source(self, channel_name, url, skip_validation=False):
         # 检查URL是否在黑名单中（使用更严格的检查）
         if is_blacklisted_url(url, combined_blacklist):
             print(f"跳过黑名单URL: {channel_name}, {url}")
@@ -443,7 +443,13 @@ class ChannelSourceManager:
         
         if channel_name not in self.sources:
             self.sources[channel_name] = []
-        self.sources[channel_name].append((float('inf'), url))  # 初始响应时间为无穷大
+        
+        if skip_validation:
+            # 对于精选源，直接添加到列表最前面，响应时间设为0（最快）
+            self.sources[channel_name].insert(0, (0, url))
+        else:
+            self.sources[channel_name].append((float('inf'), url))  # 初始响应时间为无穷大
+        
         return True
         
     def validate_and_sort_sources(self, max_workers=20):
@@ -455,9 +461,11 @@ class ChannelSourceManager:
         url_to_channel = {}
         
         for channel_name, url_list in self.sources.items():
-            for _, url in url_list:
-                all_urls.append(url)
-                url_to_channel[url] = channel_name
+            for response_time, url in url_list:
+                # 只验证响应时间为无穷大的源（非精选源）
+                if response_time == float('inf'):
+                    all_urls.append(url)
+                    url_to_channel[url] = channel_name
         
         # 使用线程池并行验证URL
         validated_results = {}
@@ -480,7 +488,11 @@ class ChannelSourceManager:
         for channel_name in list(self.sources.keys()):
             valid_sources = []
             for response_time, url in self.sources[channel_name]:
-                if url in validated_results:
+                # 精选源直接保留
+                if response_time == 0:
+                    valid_sources.append((0, url))
+                # 其他源需要验证
+                elif url in validated_results:
                     is_valid, actual_response_time = validated_results[url]
                     if is_valid and actual_response_time is not None:
                         valid_sources.append((actual_response_time, url))
@@ -504,7 +516,7 @@ class ChannelSourceManager:
 source_manager = ChannelSourceManager()
 
 # 分发直播源
-def process_channel_line(line):
+def process_channel_line(line, skip_validation=False):
     try:
         if "#genre#" not in line and "#EXTINF:" not in line and "," in line and "://" in line:
             parts = line.split(',', 1)
@@ -533,38 +545,38 @@ def process_channel_line(line):
             # 特别处理直播中国分类 - 只保留明确的直播中国频道
             if channel_name in zb_dictionary:
                 if is_whitelisted or not is_channel_full(channel_name, zb_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到直播中国: {channel_name}, {channel_address}")
             # 新增综合频道处理（放在央视频道前面）
             elif channel_name in zh_dictionary:
                 if is_whitelisted or not is_channel_full(channel_name, zh_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到综合频道: {channel_name}, {channel_address}")
             elif channel_name in ys_dictionary:
                 # 对央视频道放宽验证条件
                 if is_whitelisted or not is_channel_full(channel_name, ys_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到央视频道: {channel_name}, {channel_address}")
             elif channel_name in ws_dictionary:
                 # 对卫视频道放宽验证条件
                 if is_whitelisted or not is_channel_full(channel_name, ws_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到卫视频道: {channel_name}, {channel_address}")
             elif channel_name in dy_dictionary:
                 if is_whitelisted or not is_channel_full(channel_name, dy_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到电影频道: {channel_name}, {channel_address}")
             elif channel_name in gj_dictionary:
                 if is_whitelisted or not is_channel_full(channel_name, gj_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到国际台: {channel_name}, {channel_address}")
             elif channel_name in gd_dictionary:
                 if is_whitelisted or not is_channel_full(channel_name, gd_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到广东频道: {channel_name}, {channel_address}")
             elif channel_name in hain_dictionary:
                 if is_whitelisted or not is_channel_full(channel_name, hain_lines):
-                    if source_manager.add_source(channel_name, channel_address):
+                    if source_manager.add_source(channel_name, channel_address, skip_validation):
                         print(f"添加到海南频道: {channel_name}, {channel_address}")
             else:
                 print(f"未分类频道: {channel_name}, {channel_address}")
@@ -631,6 +643,17 @@ def process_url(url):
     except Exception as e:
         print(f"处理URL时发生错误：{e}")
 
+# 处理精选源文件
+def process_me_file():
+    print("\n开始处理精选源文件 me.txt...")
+    me_lines = read_txt_to_array('assets/me.txt')
+    
+    for line in me_lines:
+        if line.strip() and "," in line and "://" in line:
+            # 直接处理每一行，跳过验证
+            process_channel_line(line, skip_validation=True)
+            print(f"添加精选源: {line}")
+
 def sort_data(order, data):
     order_dict = {name: i for i, name in enumerate(order)}
 
@@ -646,6 +669,9 @@ print("\n开始处理所有URL...")
 for url in urls:
     if url.startswith("http"):
         safe_process_url(url)
+
+# 处理精选源文件
+process_me_file()
 
 # 验证所有源并选择最快的10个
 source_manager.validate_and_sort_sources()

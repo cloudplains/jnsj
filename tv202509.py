@@ -42,7 +42,7 @@ def read_txt_to_array(file_name):
             try:
                 # 如果 GBK 也失败，尝试 latin-1 编码
                 with open(file_name, 'r', encoding='latin-1') as file:
-                    line = file.readlines()
+                    lines = file.readlines()
                 lines = [line.strip() for line in lines]
                 return lines
             except Exception as e:
@@ -776,7 +776,7 @@ utc_time = datetime.now(timezone.utc)
 beijing_time = utc_time + timedelta(hours=8)
 formatted_time = beijing_time.strftime("%Y%m%d %H:%M")
 # 修改链接指向新文件名
-version = formatted_time + ",https://www.cloudplains.cn/tv202303.txt"
+version = formatted_time + ",https://www.cloudplains.cn/tv202509.txt"
 
 # 打印统计信息
 print(f"\n统计信息:")
@@ -800,8 +800,8 @@ all_lines = (["更新时间,#genre#"] + [version] + ['\n'] +
            ["电影频道,#genre#"] + sort_data(dy_dictionary, dy_lines) + ['\n'] +
            ["直播中国,#genre#"] + sort_data(zb_dictionary, zb_lines) + ['\n'])
 
-# 修改输出文件名为 tv202303.txt
-output_file = "tv202303.txt"
+# 修改输出文件名为 tv202509.txt
+output_file = "tv202509.txt"
 
 try:
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -837,8 +837,8 @@ def make_m3u(txt_file, m3u_file):
     except Exception as e:
         print(f"生成M3U文件时发生错误: {e}")
 
-# 修改M3U文件名为 tv202303.m3u
-make_m3u(output_file, "tv202303.m3u")
+# 修改M3U文件名为 tv202509.m3u
+make_m3u(output_file, "tv202509.m3u")
 
 # 执行结束时间
 timeend = datetime.now()

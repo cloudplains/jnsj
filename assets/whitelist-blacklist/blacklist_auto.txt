@@ -8,3 +8,4 @@ http://fm1077.serv00.net
 http://112.27.235.94:8000
 http://112.27.235.94
 fm1077.serv00.net
+https://cdn.iptv8k.top

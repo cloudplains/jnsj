@@ -393,7 +393,10 @@ def standardize_cctv_name(channel_name):
         'CCTV14': 'CCTV-14少儿',
         'CCTV15': 'CCTV-15音乐',
         'CCTV16': 'CCTV-16奥林匹克',
-        'CCTV17': 'CCTV-17农业农村'
+        'CCTV17': 'CCTV-17农业农村',
+        'CCTV18': 'CCTV-18农业农村',
+        'CCTV19': 'CCTV-19国防军事',
+        'CCTV20': 'CCTV-20国防军事'
     }
     
     # 尝试匹配标准名称

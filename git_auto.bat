@@ -1,4 +1,3 @@
-batch
 @echo off
 echo Starting Git operations...
 

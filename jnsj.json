@@ -1,4 +1,4 @@
-﻿{
+{
   "urls": [
     {
       "url": "http://www.饭太硬.com/tv",
@@ -37,10 +37,6 @@
       "name": "巧技"
     },
     {
-      "url": "https://9877.kstore.space/AnotherD/api.json",
-      "name": "潇洒单仓"
-    },
-    {
       "url": "https://api.hgyx.vip/hgyx.json",
       "name": "HG"
     },
@@ -69,6 +65,7 @@
       "name": "坤哥影视接口"
     }
   ],
-  "last_updated": "2025-09-24 18:26:54",
-  "valid_count": 17
+  "last_updated": "2025-09-25 13:24:24",
+  "valid_count": 16,
+  "invalid_count": 1
 }

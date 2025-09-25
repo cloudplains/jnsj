@@ -1,4 +1,4 @@
-import requests
+﻿import requests
 import re
 import os
 from urllib.parse import urlparse
@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 class IPTVGenerator:
     def __init__(self):
         self.assets_dir = "assets"
-        self.urls_file = os.path.join(self.assets_dir, "urls.txt")
+        self.urls_file = os.path.join(self.assets_dir, "firsturls.txt")
         self.blacklist_file = os.path.join(self.assets_dir, "whitelist-blacklist", "blackhost_count.txt")
         self.sensitive_words_file = os.path.join(self.assets_dir, "sensitive_words.txt")
         self.output_file = os.path.join(self.assets_dir, "live.txt")
@@ -23,28 +23,23 @@ class IPTVGenerator:
         self.blacklist_hosts = set()
         self.sensitive_words = set()
         
-        # 央视频道名称映射
-        self.cctv_name_mapping = {
-            r'CCTV[\-\s]?1': 'CCTV-1综合',
-            r'CCTV[\-\s]?2': 'CCTV-2财经',
-            r'CCTV[\-\s]?3': 'CCTV-3综艺',
-            r'CCTV[\-\s]?4': 'CCTV-4中文国际',
-            r'CCTV[\-\s]?5': 'CCTV-5体育',
-            r'CCTV[\-\s]?5\+': 'CCTV-5+体育赛事',
-            r'CCTV[\-\s]?6': 'CCTV-6电影',
-            r'CCTV[\-\s]?7': 'CCTV-7国防军事',
-            r'CCTV[\-\s]?8': 'CCTV-8电视剧',
-            r'CCTV[\-\s]?9': 'CCTV-9纪录',
-            r'CCTV[\-\s]?10': 'CCTV-10科教',
-            r'CCTV[\-\s]?11': 'CCTV-11戏曲',
-            r'CCTV[\-\s]?12': 'CCTV-12社会与法',
-            r'CCTV[\-\s]?13': 'CCTV-13新闻',
-            r'CCTV[\-\s]?14': 'CCTV-14少儿',
-            r'CCTV[\-\s]?15': 'CCTV-15音乐',
-            r'CCTV[\-\s]?16': 'CCTV-16奥林匹克',
-            r'CCTV[\-\s]?17': 'CCTV-17农业农村'
+        # 频道分类规则
+        self.category_rules = {
+            '央视': [r'CCTV', r'央视'],
+            '卫视': [r'卫视', r'湖南', r'浙江', r'江苏', r'东方', r'北京', r'广东', r'深圳', r'山东', r'天津', r'湖北', r'四川', r'重庆', r'辽宁', r'吉林', r'黑龙江', r'安徽', r'福建', r'江西', r'河南', r'河北', r'山西', r'陕西', r'甘肃', r'青海', r'海南', r'广西', r'贵州', r'云南', r'内蒙古', r'宁夏', r'新疆', r'西藏'],
+            '地方台': [r'地方', r'城市', r'都市', r'县', r'区台', r'民生', r'公共', r'综合'],
+            '电影': [r'电影', r'影院', r'MOVIE', r'movie', r'Film', r'film'],
+            '体育': [r'体育', r'赛事', r'足球', r'篮球', r'NBA', r'CBA', r'英超', r'西甲', r'德甲', r'意甲', r'欧冠', r'奥运', r'高尔夫', r'网球', r'乒羽', r'搏击', r'赛车'],
+            '新闻': [r'新闻', r'NEWS', r'news'],
+            '少儿': [r'少儿', r'卡通', r'动漫', r'动画', r'儿童', r'卡通', r'动漫'],
+            '纪录片': [r'纪录', r'纪实', r'探索', r'国家地理', r'动物', r'自然', r'历史', r'文化'],
+            '综艺': [r'综艺', r'娱乐', r'音乐', r'MTV', r'演唱会', r'戏曲', r'歌舞'],
+            '财经': [r'财经', r'经济', r'证券', r'股票', r'财富', r'商业'],
+            '教育': [r'教育', r'科教', r'考试', r'学习', r'课堂', r'大学'],
+            '国际': [r'国际', r'海外', r'HBO', r'BBC', r'CNN', r'Discovery', r'National Geographic'],
+            '其他': []  # 默认分类
         }
-        
+    
     def load_blacklist(self):
         """加载黑名单主机"""
         if not os.path.exists(self.blacklist_file):
@@ -162,29 +157,26 @@ class IPTVGenerator:
             
         return False
     
-    def standardize_cctv_name(self, name):
-        """标准化央视频道名称"""
-        original_name = name
-        name = name.strip()
+    def categorize_channel(self, name):
+        """根据频道名称自动分类"""
+        if not name or name == "未知频道":
+            return "其他"
         
         # 检查是否应该过滤
         if self.should_filter_channel_name(name):
             return None
         
-        # 尝试匹配央视频道
-        for pattern, standard_name in self.cctv_name_mapping.items():
-            if re.search(pattern, name, re.IGNORECASE):
-                # 检查是否已经有后缀
-                if not any(suffix in name for suffix in ['综合', '财经', '综艺', '体育', '电影', '电视剧', '纪录', '科教', '戏曲', '社会与法', '新闻', '少儿', '音乐', '奥林匹克', '农业农村']):
-                    return standard_name
-                else:
-                    # 如果已经有后缀，只标准化前缀
-                    return re.sub(pattern, standard_name.split(' ')[0], name, flags=re.IGNORECASE)
+        # 按分类规则匹配
+        for category, patterns in self.category_rules.items():
+            for pattern in patterns:
+                if re.search(pattern, name, re.IGNORECASE):
+                    return category
         
-        return original_name
+        # 默认分类
+        return "其他"
     
     def extract_urls_from_file(self):
-        """从urls.txt文件中提取所有URL"""
+        """从firsturls.txt文件中提取所有URL"""
         urls_with_category = []
         
         try:
@@ -231,7 +223,7 @@ class IPTVGenerator:
             
         return urls_with_category
     
-    def parse_m3u_content(self, content, category):
+    def parse_m3u_content(self, content, source_category):
         """解析M3U格式内容"""
         channels = []
         lines = content.split('\n')
@@ -239,7 +231,7 @@ class IPTVGenerator:
         
         # 检查整个内容是否包含敏感词
         if self.contains_sensitive_words(content):
-            print(f"跳过包含敏感词的M3U内容，分类: {category}")
+            print(f"跳过包含敏感词的M3U内容，分类: {source_category}")
             return channels
         
         while i < len(lines):
@@ -256,33 +248,37 @@ class IPTVGenerator:
                         if match:
                             channel_name = match.group(1).strip()
                         
-                        # 标准化频道名称
-                        standardized_name = self.standardize_cctv_name(channel_name)
-                        if standardized_name is None:  # 被敏感词过滤
+                        # 使用原始名称，不进行标准化
+                        original_name = channel_name
+                        
+                        # 自动分类
+                        category = self.categorize_channel(original_name)
+                        if category is None:  # 被敏感词过滤
                             i += 2
                             continue
                         
                         # 过滤URL和频道名称
-                        if not self.should_filter_url(url_line) and not self.should_filter_channel_name(standardized_name):
+                        if not self.should_filter_url(url_line) and not self.should_filter_channel_name(original_name):
                             channels.append({
-                                'name': standardized_name,
+                                'name': original_name,
                                 'url': url_line,
                                 'category': category,
-                                'source': 'm3u'
+                                'source': 'm3u',
+                                'source_category': source_category
                             })
                         i += 1
             i += 1
             
         return channels
     
-    def parse_txt_content(self, content, category):
+    def parse_txt_content(self, content, source_category):
         """解析文本格式内容"""
         channels = []
         lines = content.split('\n')
         
         # 检查整个内容是否包含敏感词
         if self.contains_sensitive_words(content):
-            print(f"跳过包含敏感词的TXT内容，分类: {category}")
+            print(f"跳过包含敏感词的TXT内容，分类: {source_category}")
             return channels
         
         for line in lines:
@@ -296,18 +292,22 @@ class IPTVGenerator:
                 if len(parts) == 2:
                     name, url = parts[0].strip(), parts[1].strip()
                     if url.startswith(('http://', 'https://', 'rtmp://', 'rtsp://')):
-                        # 标准化频道名称
-                        standardized_name = self.standardize_cctv_name(name)
-                        if standardized_name is None:  # 被敏感词过滤
+                        # 使用原始名称，不进行标准化
+                        original_name = name
+                        
+                        # 自动分类
+                        category = self.categorize_channel(original_name)
+                        if category is None:  # 被敏感词过滤
                             continue
                         
                         # 过滤URL和频道名称
-                        if not self.should_filter_url(url) and not self.should_filter_channel_name(standardized_name):
+                        if not self.should_filter_url(url) and not self.should_filter_channel_name(original_name):
                             channels.append({
-                                'name': standardized_name,
+                                'name': original_name,
                                 'url': url,
                                 'category': category,
-                                'source': 'txt'
+                                'source': 'txt',
+                                'source_category': source_category
                             })
             elif 'http' in line:
                 # 尝试提取URL和名称
@@ -317,34 +317,42 @@ class IPTVGenerator:
                     if not name:
                         name = "未知频道"
                     
-                    # 标准化频道名称
-                    standardized_name = self.standardize_cctv_name(name)
-                    if standardized_name is None:  # 被敏感词过滤
+                    # 使用原始名称，不进行标准化
+                    original_name = name
+                    
+                    # 自动分类
+                    category = self.categorize_channel(original_name)
+                    if category is None:  # 被敏感词过滤
                         continue
                     
                     # 过滤URL和频道名称
-                    if not self.should_filter_url(url) and not self.should_filter_channel_name(standardized_name):
+                    if not self.should_filter_url(url) and not self.should_filter_channel_name(original_name):
                         channels.append({
-                            'name': standardized_name,
+                            'name': original_name,
                             'url': url,
                             'category': category,
-                            'source': 'txt'
+                            'source': 'txt',
+                            'source_category': source_category
                         })
                 else:
                     # 如果整行就是URL
                     if line.startswith(('http://', 'https://')):
                         # 过滤URL
                         if not self.should_filter_url(line):
-                            channels.append({
-                                'name': '未知频道',
-                                'url': line,
-                                'category': category,
-                                'source': 'txt'
-                            })
+                            # 自动分类为"其他"
+                            category = self.categorize_channel("未知频道")
+                            if category is not None:  # 未被敏感词过滤
+                                channels.append({
+                                    'name': '未知频道',
+                                    'url': line,
+                                    'category': category,
+                                    'source': 'txt',
+                                    'source_category': source_category
+                                })
         
         return channels
     
-    def fetch_url_content(self, url, category):
+    def fetch_url_content(self, url, source_category):
         """获取URL内容并解析"""
         if url in self.processed_urls:
             return []
@@ -360,9 +368,9 @@ class IPTVGenerator:
                 
                 # 根据内容类型解析
                 if content.strip().startswith('#EXTM3U'):
-                    return self.parse_m3u_content(content, category)
+                    return self.parse_m3u_content(content, source_category)
                 else:
-                    return self.parse_txt_content(content, category)
+                    return self.parse_txt_content(content, source_category)
             else:
                 print(f"请求失败 {url}: 状态码 {response.status_code}")
                 
@@ -405,7 +413,10 @@ class IPTVGenerator:
                 f.write(f"# 已过滤敏感词: {len(self.sensitive_words)}\n")
                 f.write(f"# 已过滤.mkv/.mp4文件\n\n")
                 
-                for category, channels in self.channels.items():
+                # 按分类排序输出
+                sorted_categories = sorted(self.channels.keys())
+                for category in sorted_categories:
+                    channels = self.channels[category]
                     f.write(f"# {category} - 共{len(channels)}个频道\n")
                     for channel in channels:
                         f.write(f"{channel['name']},{channel['url']}\n")
@@ -434,7 +445,7 @@ class IPTVGenerator:
         print(f"找到 {len(urls_with_category)} 个URL")
         
         if not urls_with_category:
-            print("没有找到有效的URL，请检查urls.txt文件格式")
+            print("没有找到有效的URL，请检查firsturls.txt文件格式")
             return
         
         # 使用多线程获取内容
@@ -453,13 +464,18 @@ class IPTVGenerator:
                         if self.add_channel(channel):
                             added_count += 1
                     if added_count > 0:
-                        print(f"从 {url} 添加了 {added_count} 个频道到分类 '{category}'")
+                        print(f"从 {url} 添加了 {added_count} 个频道到分类 '{channel['category']}' (原分类: {category})")
                 except Exception as e:
                     print(f"处理URL错误 {url}: {e}")
         
         # 生成最终文件
         total_channels = sum(len(channels) for channels in self.channels.values())
         print(f"\n总共获取到 {total_channels} 个唯一频道")
+        
+        # 显示分类统计
+        print("\n分类统计:")
+        for category, channels in sorted(self.channels.items()):
+            print(f"  {category}: {len(channels)} 个频道")
         
         self.generate_live_txt()
         print("完成!")
@@ -469,7 +485,7 @@ def main():
     if not os.path.exists("assets"):
         print("创建assets文件夹...")
         os.makedirs("assets")
-        print("请将urls.txt文件放入assets文件夹中")
+        print("请将firsturls.txt文件放入assets文件夹中")
         return
     
     # 运行生成器

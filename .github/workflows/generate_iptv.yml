@@ -60,29 +60,6 @@ jobs:
           echo "警告: assets/live.txt 文件未生成"
         fi
 
-    - name: Merge with existing live.txt (if needed)
-      if: steps.check_file.outputs.file_exists == 'true'
-      run: |
-        # 如果已有live.txt，则合并新旧结果
-        if [ -f "assets/live.txt" ]; then
-          # 备份原文件
-          cp assets/live.txt assets/live_backup_$(date +%Y%m%d_%H%M%S).txt
-          # 获取新生成的文件
-          if [ -f "assets/live.txt" ]; then
-            # 合并文件并去重，同时保留分类信息
-            echo "# IPTV直播源 - 自动生成" > assets/merged_temp.txt
-            echo "# 合并时间: $(date +'%Y-%m-%d %H:%M:%S')" >> assets/merged_temp.txt
-            # 提取所有非注释行并去重
-            grep -v '^#' assets/live.txt | sort -u >> assets/merged_temp.txt
-            mv assets/merged_temp.txt assets/live.txt
-            echo "文件合并完成"
-          else
-            echo "新生成的文件不存在，跳过合并"
-          fi
-        else
-          echo "首次运行，直接使用生成的文件"
-        fi
-
     - name: Commit and push changes
       if: steps.check_file.outputs.file_exists == 'true'
       run: |

@@ -50,7 +50,7 @@ jobs:
 
         # 节目源
         rm -f EPG.xml && wget https://epg.112114.xyz/pp.xml -O EPG.xml
-        echo "Auto Update IPTV(ipv6) in $DATE,基于Moexin/IPTV项目修改,国内直播源同步fanmingming/live" > README.md
+        echo "Auto Update IPTV(ipv6) in $DATE,基于Moexin/IPTV项目修改,国内直播源同步fanmingming/live" >ipv6.md
 
     - name: Clean
       run: |

@@ -285,42 +285,21 @@ def process_channel_line(line: str, source_manager: ChannelSourceManager, channe
     except Exception as e:
         print(f"处理频道行时出错: {e}")
 
-# 处理URL
-def process_url(url: str, source_manager: ChannelSourceManager, channel_dictionaries: Dict[str, List[str]]) -> None:
-    print(f"\n开始处理URL: {url}")
-    try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        req = urllib.request.Request(url, headers=headers)
-        
-        with urllib.request.urlopen(req, timeout=10) as response:
-            data = response.read()
-            encodings = ['utf-8', 'gbk', 'iso-8859-1']
-            text = None
-            
-            for encoding in encodings:
-                try:
-                    text = data.decode(encoding)
-                    break
-                except UnicodeDecodeError:
-                    continue
-            
-            if text is None:
-                print("无法确定合适的编码格式进行解码。")
-                return
-
-            text = process_m3u_content(text)
-            lines = text.split('\n')
-            
-            for line in lines:
-                if "#genre#" not in line and "," in line and "://" in line:
-                    process_channel_line(line, source_manager, channel_dictionaries)
-                    
-    except Exception as e:
-        print(f"处理URL时发生错误：{e}")
+# 处理直播源文件
+def process_live_file(source_manager: ChannelSourceManager, channel_dictionaries: Dict[str, List[str]]) -> None:
+    print("\n开始处理直播源文件 assets/live.txt...")
+    live_lines = read_txt_to_array('assets/live.txt')
+    
+    for line in live_lines:
+        # 跳过注释行和分类标题行
+        if line.startswith('#') or line.endswith('#genre#'):
+            continue
+        if line.strip() and "," in line and "://" in line:
+            process_channel_line(line, source_manager, channel_dictionaries, skip_validation=False)
 
 # 处理精选源文件
 def process_me_file(source_manager: ChannelSourceManager, channel_dictionaries: Dict[str, List[str]]) -> None:
-    print("\n开始处理精选源文件 me.txt...")
+    print("\n开始处理精选源文件 assets/me.txt...")
     me_lines = read_txt_to_array('assets/me.txt')
     
     for line in me_lines:
@@ -341,18 +320,11 @@ def main():
     print("正在读取频道字典...")
     channel_dictionaries = load_channel_dictionaries()
 
-    print("正在读取URL列表...")
-    urls = read_txt_to_array('assets/urls.txt')
-    print(f"读取到 {len(urls)} 个URL")
-
     # 创建频道源管理器，传入黑名单
     source_manager = ChannelSourceManager(blacklist=set(blacklist))
 
-    # 处理所有URL
-    print("\n开始处理所有URL...")
-    for url in urls:
-        if url.startswith("http"):
-            process_url(url, source_manager, channel_dictionaries)
+    # 处理直播源文件
+    process_live_file(source_manager, channel_dictionaries)
 
     # 处理精选源文件
     process_me_file(source_manager, channel_dictionaries)

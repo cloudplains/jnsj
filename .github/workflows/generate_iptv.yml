@@ -1,0 +1,99 @@
+name: Update generate_iptv Sources
+
+on:
+  schedule:
+    - cron: '0 16 * * *'  # 每天UTC时间16点运行（对应北京时间0点）
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  update-iptv:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300  # 5小时超时
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # 获取完整历史记录，便于后续git操作
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install aiohttp eventlet requests
+
+    - name: Create necessary directories
+      run: |
+        mkdir -p assets
+        mkdir -p assets/whitelist-blacklist
+        # 检查必要文件是否存在，如果不存在则创建空文件
+        if [ ! -f "assets/urls.txt" ]; then
+          echo "# IPTV源URL列表" > assets/urls.txt
+          echo "# 格式: URL#分类名称" >> assets/urls.txt
+        fi
+        if [ ! -f "assets/whitelist-blacklist/blackhost_count.txt" ]; then
+          touch assets/whitelist-blacklist/blackhost_count.txt
+        fi
+        if [ ! -f "assets/sensitive_words.txt" ]; then
+          touch assets/sensitive_words.txt
+        fi
+
+    - name: Run IPTV generator script
+      run: python generate_iptv.py
+      env:
+        # 设置环境变量，避免编码问题
+        PYTHONIOENCODING: utf-8
+        LANG: C.UTF-8
+
+    - name: Check if live.txt was generated
+      id: check_file
+      run: |
+        if [ -f "assets/live.txt" ]; then
+          echo "file_exists=true" >> $GITHUB_OUTPUT
+          echo "文件已生成，频道数量: $(grep -c 'http' assets/live.txt || echo 0)"
+        else
+          echo "file_exists=false" >> $GITHUB_OUTPUT
+          echo "警告: assets/live.txt 文件未生成"
+        fi
+
+    - name: Commit and push changes
+      if: steps.check_file.outputs.file_exists == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # 检查是否有变化
+        git add assets/live.txt
+        if git diff --staged --quiet; then
+          echo "没有变化需要提交"
+        else
+          git commit -m "Auto-update: IPTV直播源 $(date +'%Y-%m-%d %H:%M:%S')
+          
+          自动更新IPTV直播源列表"
+          git push
+          echo "更改已提交并推送"
+        fi
+
+    - name: Upload generated file as artifact
+      if: steps.check_file.outputs.file_exists == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: iptv-live-sources
+        path: assets/live.txt
+        retention-days: 7
+
+    - name: Send notification on failure
+      if: failure()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'IPTV更新失败通知',
+            body: 'IPTV直播源自动更新任务执行失败，请检查日志。\n\n工作流运行: ' + context.runId
+          })

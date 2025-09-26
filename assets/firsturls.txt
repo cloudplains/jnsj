@@ -1,11 +1,4 @@
-﻿<<<<<<< HEAD
-﻿# 更新时间: 2025-09-22 18:26:21
-# 有效URL数量: 125
-=======
-# 更新时间: 2025-09-24 18:26:13
-# 有效URL数量: 126
-http://be.is-best.net/i/8/5611948.txt
->>>>>>> 8a6aea86c62c52862d24b37e4ed4a91ab779f883
+﻿http://be.is-best.net/i/8/5611948.txt
 https://ghfast.top/raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/live.txt
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
@@ -129,6 +122,5 @@ https://raw.githubusercontent.com/iptv-org/iptv/gh-pages/countries/cn.m3u
 https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
-https://www.cloudplains.cn/qgzb.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://raw.gitmirror.com/XiaoZhang5656/xiaozhang-5656.github.io/main/iptv-live.txt

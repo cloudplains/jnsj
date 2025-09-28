@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # IPTV直播源 - 自动生成
 # 生成时间: 2025-09-28 08:39:19
 # 总频道数: 1247
@@ -1278,4 +1279,9 @@ CGTN纪录,http://39.134.67.108/PLTV/88888888/224/3221225509/1.m3u8
 北海经济科教,https://cdn.gdlive.gdmain.com/live/lnyxz495.m3u8?zguangxd
 江陵经济生活,http://jiangling-live21.cjyun.org/10090/s10090-jltv02.m3u8?auth_key=1672502399-0-0-e85888284622c2b687cad07f883626cc
 咸宁经济频道,http://xianning-live21.cjyun.org/10140/s10140-XNGG.m3u8?auth_key=1672502399-0-0-1ec275fddf5b7dce126a0cf1d1a97f85
+=======
+# 更新时间: 2025-09-27 18:24:09
+# 有效URL数量: 124
+# 无效URL数量: 0
+>>>>>>> 4f12d21de4a028dc880404dec8a97f70b544d66f
 

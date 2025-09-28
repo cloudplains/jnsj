@@ -1,0 +1,102 @@
+﻿name: combined-playlist
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 每天 UTC 时间 3:00 (北京时间 11:00)
+  workflow_dispatch:  # 允许手动触发
+  push:
+    branches: [ main ]
+    paths-ignore:  # 忽略自身和播放列表文件的更改，避免循环触发
+      - 'combined-playlist.m3u'
+      - '.github/workflows/combined-playlist.yml'
+
+jobs:
+  sync_iptv:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30  # 设置超时时间
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Run sync script
+      env:
+        GITHUB_ACTIONS: "true"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        python combined-playlist.py
+
+    - name: Notify on failure
+      if: failure()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'IPTV 同步失败',
+            body: 'IPTV 文件同步任务执行失败，请检查日志。'
+          })
+
+  validate_playlist:
+    runs-on: ubuntu-latest
+    needs: sync_iptv
+    if: always()  # 即使同步失败也运行验证
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Validate playlist format
+      run: |
+        if [ -f "combined-playlist.m3u" ]; then
+          echo "检查播放列表文件..."
+          # 检查文件是否以 #EXTM3U 开头
+          if head -1 combined-playlist.m3u | grep -q "^#EXTM3U"; then
+            echo "✅ 播放列表格式正确"
+            # 统计频道数量
+            channel_count=$(grep -c "^#EXTINF" combined-playlist.m3u || true)
+            echo "频道数量: $channel_count"
+            
+            # 检查文件大小
+            file_size=$(wc -c < combined-playlist.m3u)
+            echo "文件大小: $file_size bytes"
+            
+            # 检查行数
+            line_count=$(wc -l < combined-playlist.m3u)
+            echo "文件行数: $line_count"
+          else
+            echo "❌ 播放列表格式错误"
+            exit 1
+          fi
+        else
+          echo "❌ 播放列表文件不存在"
+          exit 1
+        fi
+
+    - name: Create validation report
+      if: always()
+      run: |
+        timestamp=$(date +"%Y-%m-%d %H:%M")
+        echo "验证时间: $timestamp" > validation-report.txt
+        if [ -f "combined-playlist.m3u" ]; then
+          echo "文件存在: 是" >> validation-report.txt
+          echo "文件大小: $(wc -c < combined-playlist.m3u) bytes" >> validation-report.txt
+          echo "频道数量: $(grep -c "^#EXTINF" combined-playlist.m3u || echo 0)" >> validation-report.txt
+        else
+          echo "文件存在: 否" >> validation-report.txt
+        fi
+        cat validation-report.txt

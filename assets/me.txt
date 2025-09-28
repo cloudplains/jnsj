@@ -9,12 +9,12 @@ CCTV1,http://parking.treasureislandresortsworld.com:1001/hls/17/index.m3u8
 CCTV13,http://parking.treasureislandresortsworld.com:1001/hls/18/index.m3u8
 CCTV2财经,http://parking.treasureislandresortsworld.com:1001/hls/312/index.m3u8
 CGTN,http://parking.treasureislandresortsworld.com:1001/hls/19/index.m3u8
-Channel V,http://parking.treasureislandresortsworld.com:1001/hls/311/index.m3u8
 CHC动作电影,http://58.19.180.108:9981/stream/channelid/1782708396?profile=pass
-CHC高清电影,http://58.19.180.108:9981/stream/channelid/473633391?profile=pass
 CHC华诚影视,http://120.76.248.139/live/bfgd/4200000289.m3u8
+CHC高清电影,http://58.19.180.108:9981/stream/channelid/473633391?profile=pass
 CNA,http://parking.treasureislandresortsworld.com:1001/hls/309/index.m3u8
 CNN USA,https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_3_1464000.m3u8
+Channel V,http://parking.treasureislandresortsworld.com:1001/hls/311/index.m3u8
 HBO Xtreme SD,http://livestreamcdn.net:1935/ExtremaTV/ExtremaTV/playlist.m3u8
 HOY TV,http://php.jdshipin.com/TVOD/iptv.php?id=hoytv
 HRT 1 (720p),https://webtvstream.bhtelecom.ba/hrt1.m3u8
@@ -22,24 +22,39 @@ NHK World Japan,https://cdn.skygo.mn/live/disk1/NHK_World_Premium/HLSv3-FTA/NHK_
 NHK World Premium 日本,https://cdn.skygo.mn/live/disk1/NHK_World_Premium/HLSv3-FTA/NHK_World_Premium.m3u8
 NOW新闻台,http://cdn.163189.xyz/163189/now, http://cdn.163189.xyz/163189/now
 PRO TV HD,https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_1660.m3u8
+RTHK31,http://rthktv31-live.akamaized.net/hls/live/2036818/RTHKTV31/master.m3u8
 TRT World,http://parking.treasureislandresortsworld.com:1001/hls/310/index.m3u8
 TVB Plus,http://php.jdshipin.com/TVOD/iptv.php?id=j2
 TVB千禧经典,http://php.jdshipin.com/TVOD/iptv.php?id=tvbc
 TVB新闻,http://parking.treasureislandresortsworld.com:1001/hls/313/index.m3u8
 TVB星河,http://php.jdshipin.com/TVOD/iptv.php?id=xinghe
 ViuTV,http://parking.treasureislandresortsworld.com:1001/hls/316/index.m3u8
-阿里郎电视台Arirang,http://amdlive-ch03.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8
+中天新闻,http://tlive24.uk/livehttpplay?channel_id=20163, https://k44991.kylintv.tv/live/cti_iphone.m3u8
+亚洲卫视,https://pull-hsbj.vzan.com/v/slowlive_821481626725612419.flv
+人间卫视,http://61.216.67.119:1935/bltvhd/bltv1/chunklist_w1266569526.m3u8
+半岛新闻,https://live-hls-web-aje.getaj.net/AJE/01.m3u8
+半岛电视台 英文,https://live-hls-v3-aje.getaj.net/AJE-V3/index.m3u8
+南宁影视娱乐,http://hls.nntv.cn/nnlive/YSYL_244.flv
+台湾Plus,https://bcovlive-a.akamaihd.net/rce33d845cb9e42dfa302c7ac345f7858/ap-northeast-1/6282251407001/playlist.m3u8
+天映经典,http://php.jdshipin.com/smt.php?id=Celestial2
+搜狐剧场,https://hdl-vip-ws.qf.56.com/live/lc_11730.flv
+无线新闻台,http://php.jdshipin.com/TVOD/iptv.php?id=wxxwt
+无线星河,http://php.jdshipin.com/smt.php?id=Xinhe
+日本UN WeTV,https://cdnapi.kaltura.com/p/2503451/sp/250345100/playManifest/entryId/1_gb6tjmle/protocol/https/format/applehttp/a.m3u8
+有线综合,http://php.jdshipin.com/TVOD/iptv.php?id=hoytv
+朝鲜中央台,http://119.77.96.184:1935/chn05/chn05/chunklist_w644291506.m3u8
+法国时尚,http://lb.streaming.sk/fashiontv/stream/chunklist_w1702070444.m3u8
+湖南卫视,http://parking.treasureislandresortsworld.com:1001/hls/305/index.m3u8
+澳视澳门,http://parking.treasureislandresortsworld.com:1001/hls/1/index.m3u8
+澳视葡文,http://parking.treasureislandresortsworld.com:1001/hls/2/index.m3u8
 澳门Macau,http://parking.treasureislandresortsworld.com:1001/hls/4/index.m3u8
 澳门体育,http://parking.treasureislandresortsworld.com:1001/hls/16/index.m3u8
 澳门资讯,http://parking.treasureislandresortsworld.com:1001/hls/3/index.m3u8
-澳视澳门,http://parking.treasureislandresortsworld.com:1001/hls/1/index.m3u8
-澳视葡文,http://parking.treasureislandresortsworld.com:1001/hls/2/index.m3u8
-半岛电视台 英文,https://live-hls-v3-aje.getaj.net/AJE-V3/index.m3u8
-半岛新闻,https://live-hls-web-aje.getaj.net/AJE/01.m3u8
-朝鲜中央台,http://119.77.96.184:1935/chn05/chn05/chunklist_w644291506.m3u8
-法国时尚,http://lb.streaming.sk/fashiontv/stream/chunklist_w1702070444.m3u8
+王晶电影,http://cfss.cc/cdn/hy/11602058.m3u8
 番薯111,http://61.216.67.119:1935/TWHG/E1/chunklist_w705811302.m3u8
-广东珠江频备,http://php.jdshipin.com/TVOD/iptv.php?id=gdzj
+莲花卫视,http://1033946631.cloudvdn.com/a.m3u8?domain=live-hdl.macaulotustv.com&player=1&streamid=lotustv:lotustv/macaulotustv&v3=1
+金鹰卡通,http://parking.treasureislandresortsworld.com:1001/hls/306/index.m3u8
+阿里郎电视台Arirang,http://amdlive-ch03.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8
 韩国KBS 1TV [Not 24/7],http://mytv.dothome.co.kr/ch/public/1.php
 韩国KBS 2TV [Not 24/7],http://mytv.dothome.co.kr/ch/public/3.php
 韩国KBS Joy (480p),http://mytv.dothome.co.kr/ch/catv/3.php
@@ -47,21 +62,5 @@ ViuTV,http://parking.treasureislandresortsworld.com:1001/hls/316/index.m3u8
 韩国KBS World,http://mytv.dothome.co.kr/ch/catv/7.php
 韩国MBN,http://mytv.dothome.co.kr/ch/catv/54.php
 韩国戲劇台KBS Drama,http://mytv.dothome.co.kr/ch/catv/2.php
-黑龙江朝鲜语,https://satellitepull.cnr.cn/live/wx32hljcygb/playlist.m3u8
-湖南卫视,http://parking.treasureislandresortsworld.com:1001/hls/305/index.m3u8
-金鹰卡通,http://parking.treasureislandresortsworld.com:1001/hls/306/index.m3u8
-莲花卫视,http://1033946631.cloudvdn.com/a.m3u8?domain=live-hdl.macaulotustv.com&player=1&streamid=lotustv:lotustv/macaulotustv&v3=1
-南宁影视娱乐,http://hls.nntv.cn/nnlive/YSYL_244.flv
-人间卫视,http://61.216.67.119:1935/bltvhd/bltv1/chunklist_w1266569526.m3u8
-日本UN WeTV,https://cdnapi.kaltura.com/p/2503451/sp/250345100/playManifest/entryId/1_gb6tjmle/protocol/https/format/applehttp/a.m3u8
-搜狐剧场,https://hdl-vip-ws.qf.56.com/live/lc_11730.flv
-台湾Plus,https://bcovlive-a.akamaihd.net/rce33d845cb9e42dfa302c7ac345f7858/ap-northeast-1/6282251407001/playlist.m3u8
-天映经典,http://php.jdshipin.com/smt.php?id=Celestial2
-王晶电影,http://cfss.cc/cdn/hy/11602058.m3u8
-无线翡翠,http://php.jdshipin.com/TVOD/iptv.php?id=fct3
-无线新闻台,http://php.jdshipin.com/TVOD/iptv.php?id=wxxwt
-无线星河,http://php.jdshipin.com/smt.php?id=Xinhe
 香港 RTHK32,http://rthktv32-live.akamaized.net/hls/live/2036819/RTHKTV32/master.m3u8
-亚洲卫视,https://pull-hsbj.vzan.com/v/slowlive_821481626725612419.flv
-有线综合,http://php.jdshipin.com/TVOD/iptv.php?id=hoytv
-中天新闻,http://tlive24.uk/livehttpplay?channel_id=20163, https://k44991.kylintv.tv/live/cti_iphone.m3u8
+黑龙江朝鲜语,https://satellitepull.cnr.cn/live/wx32hljcygb/playlist.m3u8

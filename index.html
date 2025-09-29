@@ -94,14 +94,14 @@
             bottom: 30px;
             left: 30px;
             padding: 0;
-            max-width: 600px; /* 增加最大宽度，让描述信息拉长一点 */
+            max-width: 600px;
             text-align: left;
-            line-height: 1.6; /* 增加行高，使文字更易读 */
+            line-height: 1.6;
             z-index: 2;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-            font-size: 1rem; /* 稍微增大字体 */
-            white-space: normal; /* 确保正常换行 */
-            word-wrap: break-word; /* 允许长单词换行 */
+            font-size: 1rem;
+            white-space: normal;
+            word-wrap: break-word;
         }
         
         .buttons {
@@ -148,16 +148,33 @@
             box-shadow: none;
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
+        /* 响应式设计 - 平板和手机 */
+        @media (max-width: 1024px) {
             .title {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 top: 15px;
             }
             
             .date {
                 top: 20px;
                 right: 20px;
+                font-size: 0.85rem;
+            }
+            
+            .info {
+                bottom: 25px;
+                left: 20px;
+                max-width: 500px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .date {
                 font-size: 0.8rem;
             }
             
@@ -165,31 +182,72 @@
                 bottom: 20px;
                 left: 20px;
                 right: 20px;
-                max-width: none; /* 移动端使用全宽 */
-                text-align: left;
-                font-size: 0.9rem; /* 移动端稍微减小字体 */
+                max-width: none;
+                font-size: 0.9rem;
             }
             
             .buttons {
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-                justify-content: center;
+                display: none; /* 在手机和平板设备上隐藏按钮 */
             }
             
-            button {
-                flex: 1;
-                min-width: 120px;
+            /* 添加移动端手势提示 */
+            .mobile-hint {
+                position: absolute;
+                bottom: 70px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 0.8rem;
+                opacity: 0.7;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+                z-index: 2;
+                animation: fadeInOut 3s ease-in-out infinite;
+            }
+            
+            @keyframes fadeInOut {
+                0%, 100% { opacity: 0.3; }
+                50% { opacity: 0.7; }
             }
         }
         
         @media (max-width: 480px) {
-            .buttons {
-                flex-direction: column;
+            .title {
+                font-size: 1.5rem;
+                top: 10px;
+            }
+            
+            .date {
+                top: 15px;
+                right: 15px;
+                font-size: 0.75rem;
             }
             
             .info {
-                bottom: 120px; /* 小屏幕避免与按钮重叠 */
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+            
+            .mobile-hint {
+                bottom: 50px;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* 超小屏幕设备 */
+        @media (max-width: 360px) {
+            .title {
+                font-size: 1.3rem;
+            }
+            
+            .date {
+                font-size: 0.7rem;
+            }
+            
+            .info {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -239,6 +297,8 @@
             刷新
         </button>
     </div>
+    
+    <div class="mobile-hint" id="mobileHint"></div>
 
     <script>
         // 使用代理解决跨域问题
@@ -251,6 +311,14 @@
             const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
             const dateString = now.toLocaleDateString('zh-CN', options);
             document.getElementById('dateInfo').textContent = dateString;
+        }
+        
+        // 检测移动设备并设置提示
+        function setMobileHint() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile || window.innerWidth <= 768) {
+                document.getElementById('mobileHint').textContent = '轻点图片显示/隐藏控制按钮';
+            }
         }
         
         async function fetchBingWallpaper() {
@@ -341,6 +409,7 @@
         // 页面加载时获取壁纸和设置日期
         document.addEventListener('DOMContentLoaded', function() {
             setCurrentDate();
+            setMobileHint();
             fetchBingWallpaper();
         });
         
@@ -366,21 +435,46 @@
             const buttons = document.querySelector('.buttons');
             const date = document.getElementById('dateInfo');
             const title = document.querySelector('.title');
+            const mobileHint = document.getElementById('mobileHint');
             
-            if (info.style.opacity === '0') {
-                // 显示UI元素
-                info.style.opacity = '1';
-                buttons.style.opacity = '1';
-                date.style.opacity = '1';
-                title.style.opacity = '1';
+            // 在移动设备上，点击图片可以切换按钮的显示/隐藏
+            if (window.innerWidth <= 768) {
+                if (buttons.style.display === 'flex') {
+                    buttons.style.display = 'none';
+                    mobileHint.style.display = 'block';
+                } else {
+                    buttons.style.display = 'flex';
+                    mobileHint.style.display = 'none';
+                    
+                    // 移动端按钮样式调整
+                    buttons.style.flexDirection = 'column';
+                    buttons.style.bottom = '20px';
+                    buttons.style.left = '20px';
+                    buttons.style.right = '20px';
+                    buttons.style.justifyContent = 'center';
+                    buttons.style.alignItems = 'center';
+                    buttons.style.gap = '10px';
+                }
             } else {
-                // 隐藏UI元素
-                info.style.opacity = '0';
-                buttons.style.opacity = '0';
-                date.style.opacity = '0';
-                title.style.opacity = '0';
+                // 桌面端保持原有的透明度切换
+                if (info.style.opacity === '0') {
+                    // 显示UI元素
+                    info.style.opacity = '1';
+                    buttons.style.opacity = '1';
+                    date.style.opacity = '1';
+                    title.style.opacity = '1';
+                } else {
+                    // 隐藏UI元素
+                    info.style.opacity = '0';
+                    buttons.style.opacity = '0';
+                    date.style.opacity = '0';
+                    title.style.opacity = '0';
+                }
             }
         });
+        
+        // 窗口大小改变时重新检测设备类型
+        window.addEventListener('resize', setMobileHint);
     </script>
 </body>
 </html>

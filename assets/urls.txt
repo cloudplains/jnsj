@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-﻿# 更新时间: 2025-09-26 18:25:09
-=======
-# 更新时间: 2025-09-27 18:24:09
->>>>>>> 4f12d21de4a028dc880404dec8a97f70b544d66f
-# 有效URL数量: 124
-# 无效URL数量: 0
+# 更新时间: 2025-09-28 18:24:46
+# 有效URL数量: 121
+# 无效URL数量: 8
 
 https://ghfast.top/raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/live.txt
 https://jihulab.com/237331946/2/-/raw/main/live.txt
@@ -36,7 +32,6 @@ https://ghfast.top/https://raw.githubusercontent.com/yuanzl77/IPTV/main/live.m3u
 https://live.hacks.tools/tv/iptv4.txt
 http://47.120.41.246:8899/zb.txt
 https://3043.kstore.space/bhvip/bhzb.txt
-https://live.zhoujie218.top/tv/iptv4.txt
 https://tv.850930.xyz/pix.m3u
 https://raw.githubusercontent.com/cyalias/mytvs-github/refs/heads/main/mytv.txt
 https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8
@@ -60,7 +55,6 @@ https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt
 https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt
 https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt
-https://raw.githubusercontent.com/vbskycn/iptv/master/tv/hd.txt
 https://raw.githubusercontent.com/junge3333/juds6/main/yszb1.txt
 https://raw.githubusercontent.com/zzmaze/iptv/main/itvlist.txt
 https://raw.githubusercontent.com/maitel2020/iptv-self-use/main/iptv.txt
@@ -113,8 +107,6 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u#IPTV
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u#IPTV默认源
 https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u#Kimentanm源，有部分IPv6
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.m3u#TV直播源
-https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.m3u#潇洒AI直播
-https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.txt#潇洒AI直播
 https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv4.m3u#myIPTVIPv4
 https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv6.m3u#myIPTVIPv6
 https://raw.githubusercontent.com/vamoschuck/TV/main/M3U#茶客源

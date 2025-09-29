@@ -380,6 +380,12 @@
                         // 显示图片信息（现在在左下角）
                         document.getElementById('info').innerHTML = 
                             `<strong>${imageInfo}</strong><br>${imageTitle}`;
+                        
+                        // 只在桌面端启用按钮
+                        if (window.innerWidth > 768) {
+                            document.getElementById('downloadBtn').disabled = false;
+                            document.getElementById('wallpaperBtn').disabled = false;
+                        }
                     };
                     
                     imgElement.onerror = function() {
@@ -395,6 +401,29 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'flex';
                 document.getElementById('errorMessage').textContent = error.message;
+            }
+        }
+
+        function downloadImage() {
+            const imgElement = document.getElementById('bingImage');
+            if (imgElement.src) {
+                const link = document.createElement('a');
+                link.href = imgElement.src;
+                link.download = 'bing-4k-wallpaper-' + new Date().toISOString().split('T')[0] + '.jpg';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // 显示下载成功提示
+                alert('4K壁纸下载成功！');
+            }
+        }
+
+        function setAsWallpaper() {
+            const imgElement = document.getElementById('bingImage');
+            if (imgElement.src) {
+                // 提供设置壁纸的指导
+                alert('由于浏览器安全限制，无法直接设置壁纸。\n\n请按照以下步骤操作：\n1. 右键点击图片选择"图片另存为"\n2. 保存图片到您的电脑\n3. 在系统设置中将其设置为桌面壁纸');
             }
         }
 
@@ -423,8 +452,31 @@
             }
         });
         
-        // 移除移动端的图片点击事件处理
-        // 在移动端，图片点击不再有任何功能
+        // 桌面端图片点击事件 - 切换UI元素显示/隐藏
+        document.getElementById('bingImage').addEventListener('click', function() {
+            // 只在桌面端执行此功能
+            if (window.innerWidth > 768) {
+                const info = document.getElementById('info');
+                const buttons = document.querySelector('.buttons');
+                const date = document.getElementById('dateInfo');
+                const title = document.querySelector('.title');
+                
+                // 桌面端保持原有的透明度切换
+                if (info.style.opacity === '0') {
+                    // 显示UI元素
+                    info.style.opacity = '1';
+                    buttons.style.opacity = '1';
+                    date.style.opacity = '1';
+                    title.style.opacity = '1';
+                } else {
+                    // 隐藏UI元素
+                    info.style.opacity = '0';
+                    buttons.style.opacity = '0';
+                    date.style.opacity = '0';
+                    title.style.opacity = '0';
+                }
+            }
+        });
     </script>
 </body>
 </html>

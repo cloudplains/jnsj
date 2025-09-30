@@ -3,6 +3,7 @@
 on:
   schedule:
     - cron: '0 16 * * *'  # 每天 UTC 时间 16:00 (北京时间 0:00)
+    - cron: '20 3 * * *'   # 新增：每天中国时间11点20分 (UTC时间3点20分)
   workflow_dispatch:  # 允许手动触发
   push:
     branches: [ main ]

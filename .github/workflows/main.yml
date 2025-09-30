@@ -1,8 +1,8 @@
-﻿name: Run Script
+﻿name: Main Script Runner
 
 on:
   schedule:
-    - cron: '0 20 * * *'  # 每天UTC时间0点运行（北京时间4点）
+    - cron: '0 21 * * *'  # 每天UTC时间21点运行（北京时间5点）
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
         repository: cloudplains/jnsj
@@ -78,7 +78,7 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m ":rocket: AutoUpdate $(date +'%Y%m%d') - 更新直播源和README"
+          git commit -m "🚀 AutoUpdate $(date +'%Y%m%d') - 更新直播源和README"
           git pull origin main --rebase
           git push origin main
         fi

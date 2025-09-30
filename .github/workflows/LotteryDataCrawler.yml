@@ -1,0 +1,46 @@
+name: Lottery Data Crawler
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天UTC时间0点运行（北京时间上午8点）
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  run-lottery-crawler:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 pandas openpyxl tqdm
+
+    - name: Run Lottery Data Crawler
+      run: python LotteryDataCrawler.py
+
+    - name: Commit Tools.xlsx if changed
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "github-actions[bot]"
+        git add Tools.xlsx
+        if git diff --staged --quiet; then
+          echo "No changes to Tools.xlsx"
+        else
+          git commit -m "📊 AutoUpdate Lottery Data $(date +'%Y-%m-%d %H:%M')"
+          git push
+        fi
+
+    - name: Show completion message
+      run: |
+        echo "🎯 Lottery data crawler completed successfully!"
+        echo "📁 Tools.xlsx has been updated in the repository root"

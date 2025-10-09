@@ -1,5 +1,5 @@
-# 更新时间: 2025-09-30 08:26:02
-# 有效URL数量: 118
+# 更新时间: 2025-10-08 16:20:48
+# 有效URL数量: 116
 # 无效URL数量: 0
 
 https://ghfast.top/raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/live.txt
@@ -82,8 +82,6 @@ https://d.kstore.dev/download/12441/ds9.txt
 http://47.120.41.246:8899/zb.txt#IPTV直播
 https://epg.pw/test_channels.m3u#中国大陆频道
 https://epg.pw/test_channels_hong_kong.m3u#中国香港频道
-https://epg.pw/test_channels_macau.m3u#中国澳门频道
-https://epg.pw/test_channels_malaysia.m3u#马来西亚频道
 https://epg.pw/test_channels_singapore.m3u#新加坡频道
 https://epg.pw/test_channels_taiwan.m3u#中国台湾频道
 https://gitee.com/xxy002/zhiboyuan/raw/master/dsy#（央视频道、卫视频道、港澳台、数字电视、动漫）

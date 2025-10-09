@@ -2,14 +2,16 @@
 
 on:
   schedule:
-    - cron: '0 16 * * *'  # 每天 UTC 时间 16:00 (北京时间 0:00)
-    - cron: '20 3 * * *'   # 新增：每天中国时间11点20分 (UTC时间3点20分)
+    - cron: '0 1 * * *'  # 每天 UTC 时间 1:00 (北京时间 9:00)
+    - cron: '0 3 * * *'   # 每天 UTC 时间 3:00 (北京时间 11:00)
+    - cron: '0 6 * * *'   # 每天 UTC 时间 6:00 (北京时间 14:00)
+    - cron: '0 10 * * *'  # 每天 UTC 时间 10:00 (北京时间 18:00)
   workflow_dispatch:  # 允许手动触发
   push:
     branches: [ main ]
     paths-ignore:  # 忽略自身和播放列表文件的更改，避免循环触发
       - 'combined-playlist.m3u'
-      - '.github/workflows/combined-playlist-and-validate.yml'
+      - '.github/workflows/Combined Playlist and Validate URLs.yml'
 
 jobs:
   sync_iptv:

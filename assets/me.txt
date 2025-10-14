@@ -3,5 +3,24 @@
 南城三元路立交,https://radio.sun0769.com/dgrtv1/out3.m3u8
 大雁塔,https://gcalic.v.myalicdn.com/gc/hkylxs01_1/index.m3u8
 
+凤凰中文,http://171.38.107.33:8181/tsfile/live/1083_1.m3u8?key=txiptv&playlive=1&authid=0
+凤凰资讯,http://171.38.107.33:8181/tsfile/live/1082_1.m3u8?key=txiptv&playlive=1&authid=0
+凤凰香港,http://171.38.107.33:8181/tsfile/live/1084_1.m3u8?key=txiptv&playlive=1&authid=0
+动作电影,http://171.38.107.33:8181/tsfile/live/1066_1.m3u8?key=txiptv&playlive=1&authid=0
+北流台,http://171.38.107.33:8181/tsfile/live/1078_1.m3u8?key=txiptv&playlive=1&authid=0
+娱乐1,http://171.38.107.33:8181/tsfile/live/1075_1.m3u8?key=txiptv&playlive=1&authid=0
+星空卫视,http://171.38.107.33:8181/tsfile/live/1085_1.m3u8?key=txiptv&playlive=1&authid=0
+有线电影,http://171.38.107.33:8181/tsfile/live/1081_1.m3u8?key=txiptv&playlive=1&authid=0
+有线电视娱乐2,http://171.38.107.33:8181/tsfile/live/1076_1.m3u8?key=txiptv&playlive=1&authid=0
+有线电视娱乐3,http://171.38.107.33:8181/tsfile/live/1080_1.m3u8?key=txiptv&playlive=1&authid=0
+本港台（珠江）,http://171.38.107.33:8181/tsfile/live/1073_1.m3u8?key=txiptv&playlive=1&authid=0
+爱上4K-g,http://171.38.107.33:8181/tsfile/live/1068_1.m3u8?key=txiptv&playlive=1&authid=0
+牛哥台,http://171.38.107.33:8181/tsfile/live/1074_1.m3u8?key=txiptv&playlive=1&authid=0
+玉林台,http://171.38.107.33:8181/tsfile/live/1077_1.m3u8?key=txiptv&playlive=1&authid=0
+珠江台-LT,http://171.38.107.33:8181/tsfile/live/1060_1.m3u8?key=txiptv&playlive=1&authid=0
+茂名公共-g,http://171.38.107.33:8181/tsfile/live/1071_1.m3u8?key=txiptv&playlive=1&authid=0
+茂名综合-g,http://171.38.107.33:8181/tsfile/live/1070_1.m3u8?key=txiptv&playlive=1&authid=0
+
+
 
 

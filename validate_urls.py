@@ -26,14 +26,17 @@ def validate_txt_urls():
     try:
         # 读取assets/urls.txt
         with open('assets/urls.txt', 'r') as f:
-            urls = [line.strip() for line in f.readlines() if line.strip()]
+            urls = [line.strip() for line in f.readlines() if line.strip() and not line.startswith('#')]
 
         valid_urls = []
+        invalid_urls = []
+        
         for url in urls:
             if is_url_valid(url):
                 valid_urls.append(url)
                 print(f'Valid: {url}')
             else:
+                invalid_urls.append(url)
                 print(f'Invalid: {url}')
             
             # 添加延迟，避免请求过于频繁
@@ -41,18 +44,62 @@ def validate_txt_urls():
 
         # 添加更新时间标记
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        header = f"# 更新时间: {timestamp}\n# 有效URL数量: {len(valid_urls)}\n\n"
+        header = f"# 更新时间: {timestamp}\n# 有效URL数量: {len(valid_urls)}\n# 无效URL数量: {len(invalid_urls)}\n\n"
         
         # 直接覆盖原文件
         with open('assets/urls.txt', 'w') as f:
             f.write(header)
             for url in valid_urls:
                 f.write(url + '\n')
-
-        print('assets/urls.txt has been updated with valid URLs.')
+        
+        print(f'assets/urls.txt 已更新，有效URL: {len(valid_urls)}，无效URL: {len(invalid_urls)}')
         
     except Exception as e:
         print(f"处理assets/urls.txt时出错: {e}")
+
+def validate_live_txt_urls():
+    """验证assets/live.txt中的URL并直接覆盖更新"""
+    try:
+        # 读取assets/live.txt
+        with open('assets/live.txt', 'r') as f:
+            lines = f.readlines()
+        
+        # 提取URL（跳过注释行）
+        urls = []
+        for line in lines:
+            line = line.strip()
+            if line and not line.startswith('#'):
+                urls.append(line)
+
+        valid_urls = []
+        invalid_urls = []
+        
+        print("开始验证live.txt中的URL...")
+        for url in urls:
+            if is_url_valid(url):
+                valid_urls.append(url)
+                print(f'Valid: {url}')
+            else:
+                invalid_urls.append(url)
+                print(f'Invalid: {url}')
+            
+            # 添加延迟，避免请求过于频繁
+            time.sleep(0.5)
+
+        # 添加更新时间标记
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        header = f"# 更新时间: {timestamp}\n# 有效URL数量: {len(valid_urls)}\n# 无效URL数量: {len(invalid_urls)}\n\n"
+        
+        # 直接覆盖原文件
+        with open('assets/live.txt', 'w') as f:
+            f.write(header)
+            for url in valid_urls:
+                f.write(url + '\n')
+
+        print(f'assets/live.txt 已更新，有效URL: {len(valid_urls)}，无效URL: {len(invalid_urls)}')
+        
+    except Exception as e:
+        print(f"处理assets/live.txt时出错: {e}")
 
 def validate_json_urls():
     """验证jnsj.json中的URL"""
@@ -70,6 +117,8 @@ def validate_json_urls():
         
         # 验证每个URL
         valid_urls = []
+        invalid_urls = []
+        
         for item in data.get('urls', []):
             url = item.get('url', '')
             name = item.get('name', '')
@@ -80,6 +129,7 @@ def validate_json_urls():
                 valid_urls.append(item)
                 print(f"√ {name} 有效")
             else:
+                invalid_urls.append(item)
                 print(f"× {name} 无效")
             
             # 添加延迟，避免请求过于频繁
@@ -90,12 +140,13 @@ def validate_json_urls():
         data['urls'] = valid_urls
         data['last_updated'] = timestamp
         data['valid_count'] = len(valid_urls)
+        data['invalid_count'] = len(invalid_urls)
         
         # 写回文件（不包含BOM）
         with open('jnsj.json', 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
-        print(f"jnsj.json 已更新，有效URL数量: {len(valid_urls)}")
+        print(f"jnsj.json 已更新，有效URL数量: {len(valid_urls)}，无效URL数量: {len(invalid_urls)}")
         
     except Exception as e:
         print(f"处理jnsj.json时出错: {e}")
@@ -103,6 +154,8 @@ def validate_json_urls():
 if __name__ == "__main__":
     print("开始验证URLs...")
     validate_txt_urls()
+    print("\n开始验证live.txt...")
+    validate_live_txt_urls()
     print("\n开始验证jnsj.json...")
     validate_json_urls()
     print("\nURL验证完成!")

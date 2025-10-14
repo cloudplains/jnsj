@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿{
-=======
 {
->>>>>>> 8a6aea86c62c52862d24b37e4ed4a91ab779f883
   "urls": [
     {
       "url": "http://www.饭太硬.com/tv",
@@ -28,29 +24,17 @@
       "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/",
       "name": "王二小"
     },
-<<<<<<< HEAD
- {
-      "url": "https://catbox.n13.club/jk/jsm.json",
-      "name": "JSM"
-    },
- {
-=======
     {
       "url": "https://catbox.n13.club/jk/jsm.json",
       "name": "JSM"
     },
     {
->>>>>>> 8a6aea86c62c52862d24b37e4ed4a91ab779f883
       "url": "http://肥猫.com",
       "name": "肥猫"
     },
     {
       "url": "http://cdn.qiaoji8.com/tvbox.json",
       "name": "巧技"
-    },
-    {
-      "url": "https://9877.kstore.space/AnotherD/api.json",
-      "name": "潇洒单仓"
     },
     {
       "url": "https://api.hgyx.vip/hgyx.json",
@@ -81,10 +65,7 @@
       "name": "坤哥影视接口"
     }
   ],
-<<<<<<< HEAD
-  "last_updated": "2025-09-22 18:26:50",
-=======
-  "last_updated": "2025-09-24 18:26:54",
->>>>>>> 8a6aea86c62c52862d24b37e4ed4a91ab779f883
-  "valid_count": 17
+  "last_updated": "2025-10-09 01:10:01",
+  "valid_count": 16,
+  "invalid_count": 0
 }

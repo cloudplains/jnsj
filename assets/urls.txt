@@ -1,12 +1,7 @@
-﻿<<<<<<< HEAD
-﻿# 更新时间: 2025-09-22 18:26:21
-# 有效URL数量: 125
-=======
-# 更新时间: 2025-09-24 18:26:13
-# 有效URL数量: 126
-http://be.is-best.net/i/8/5611948.txt
-https://www.cloudplains.cn/qgzb.txt
->>>>>>> 8a6aea86c62c52862d24b37e4ed4a91ab779f883
+# 更新时间: 2025-10-09 01:09:34
+# 有效URL数量: 116
+# 无效URL数量: 0
+
 https://ghfast.top/raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/live.txt
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
@@ -17,7 +12,6 @@ https://gitee.com/qlysgzs/qlys/raw/master/qlyc_tv.txt
 https://ghfast.top/https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u
 https://ghfast.top/https://raw.githubusercontent.com/yuanzl77/IPTV/main/live.m3u
 https://live.hacks.tools/tv/iptv4.txt
-http://rihou.cc:555/gggg.nzk
 https://zbds.org/tv/iptv4.txt
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
@@ -38,7 +32,6 @@ https://ghfast.top/https://raw.githubusercontent.com/yuanzl77/IPTV/main/live.m3u
 https://live.hacks.tools/tv/iptv4.txt
 http://47.120.41.246:8899/zb.txt
 https://3043.kstore.space/bhvip/bhzb.txt
-https://live.zhoujie218.top/tv/iptv4.txt
 https://tv.850930.xyz/pix.m3u
 https://raw.githubusercontent.com/cyalias/mytvs-github/refs/heads/main/mytv.txt
 https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8
@@ -62,7 +55,6 @@ https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt
 https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt
 https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt
-https://raw.githubusercontent.com/vbskycn/iptv/master/tv/hd.txt
 https://raw.githubusercontent.com/junge3333/juds6/main/yszb1.txt
 https://raw.githubusercontent.com/zzmaze/iptv/main/itvlist.txt
 https://raw.githubusercontent.com/maitel2020/iptv-self-use/main/iptv.txt
@@ -78,9 +70,6 @@ https://raw.githubusercontent.com/yuanzl77/IPTV/refs/heads/main/live.txt
 https://iptv-org.github.io/iptv/languages/zho.m3u
 https://iptv-org.github.io/iptv/countries/us.m3u
 https://iptv-org.github.io/iptv/countries/tw.m3u
-https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1715581924111/live1.txt
-https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1715581924675/live2.txt
-https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1716213337323/live3.txt
 https://fm1077.serv00.net/SmartTV.m3u
 https://live.zbds.top/tv/iptv4.txt
 https://live.zbds.top/tv/iptv6.txt
@@ -93,8 +82,6 @@ https://d.kstore.dev/download/12441/ds9.txt
 http://47.120.41.246:8899/zb.txt#IPTV直播
 https://epg.pw/test_channels.m3u#中国大陆频道
 https://epg.pw/test_channels_hong_kong.m3u#中国香港频道
-https://epg.pw/test_channels_macau.m3u#中国澳门频道
-https://epg.pw/test_channels_malaysia.m3u#马来西亚频道
 https://epg.pw/test_channels_singapore.m3u#新加坡频道
 https://epg.pw/test_channels_taiwan.m3u#中国台湾频道
 https://gitee.com/xxy002/zhiboyuan/raw/master/dsy#（央视频道、卫视频道、港澳台、数字电视、动漫）
@@ -115,8 +102,6 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u#IPTV
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u#IPTV默认源
 https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u#Kimentanm源，有部分IPv6
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.m3u#TV直播源
-https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.m3u#潇洒AI直播
-https://raw.githubusercontent.com/PizazzGY/TV/master/output/user_result.txt#潇洒AI直播
 https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv4.m3u#myIPTVIPv4
 https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv6.m3u#myIPTVIPv6
 https://raw.githubusercontent.com/vamoschuck/TV/main/M3U#茶客源
@@ -130,7 +115,6 @@ https://raw.githubusercontent.com/iptv-org/iptv/gh-pages/countries/cn.m3u
 https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
-https://www.cloudplains.cn/qgzb.txt
-https://www.cloudplains.cn/live.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://raw.gitmirror.com/XiaoZhang5656/xiaozhang-5656.github.io/main/iptv-live.txt
+https://www.cloudplains.cn/assets/tvurls.txt

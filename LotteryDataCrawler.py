@@ -715,6 +715,9 @@ class LotteryDataCrawler:
                         if len(numbers) != 5:
                             continue
                     
+                    # 格式化号码：用空格分开，不足5位补0
+                    formatted_numbers = ' '.join(numbers.zfill(5))
+                    
                     # 提取一等奖信息
                     first_prize_count = self.parse_prize_count(cols[4].get_text(strip=True))
                     
@@ -722,7 +725,7 @@ class LotteryDataCrawler:
                         '期号': period,
                         '开奖日期': date_text,
                         '销售金额': sales_amount,
-                        '开奖号码': numbers,
+                        '开奖号码': formatted_numbers,
                         '一等奖注数': first_prize_count
                     })
                     
@@ -779,11 +782,14 @@ class LotteryDataCrawler:
                         if len(numbers) != 3:
                             continue
                     
+                    # 格式化号码：用空格分开，不足3位补0
+                    formatted_numbers = ' '.join(numbers.zfill(3))
+                    
                     data.append({
                         '期号': period,
                         '开奖日期': date_text,
                         '销售金额': sales_amount,
-                        '开奖号码': numbers
+                        '开奖号码': formatted_numbers
                     })
                     
                 except Exception as e:

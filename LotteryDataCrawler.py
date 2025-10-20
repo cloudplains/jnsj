@@ -93,7 +93,7 @@ class LotteryDataCrawler:
             for col in ['期号', '前区1', '前区2', '前区3', '前区4', '前区5', '后区1', '后区2']:
                 df[col] = df[col].astype(str)
             
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y/%m/%d')
+            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
             
             return df
             
@@ -167,7 +167,7 @@ class LotteryDataCrawler:
             for col in ['期号', '前区1', '前区2', '前区3', '前区4', '前区5', '后区1', '后区2']:
                 df[col] = df[col].astype(str)
             
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y/%m/%d')
+            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
             
             return df
             
@@ -236,7 +236,7 @@ class LotteryDataCrawler:
             for col in ['期号', '前区1', '前区2', '前区3', '前区4', '前区5', '后区1', '后区2']:
                 all_data[col] = all_data[col].astype(str)
             
-            all_data['开奖日期'] = all_data['开奖日期'].dt.strftime('%Y/%m/%d')
+            all_data['开奖日期'] = all_data['开奖日期'].dt.strftime('%Y-%m-%d')
         
         return all_data
 
@@ -307,7 +307,7 @@ class LotteryDataCrawler:
             for col in ['期号', '前区1', '前区2', '前区3', '前区4', '前区5', '后区1', '后区2']:
                 df[col] = df[col].astype(str)
             
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y/%m/%d')
+            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
             
             return df
             
@@ -382,7 +382,7 @@ class LotteryDataCrawler:
             for col in ['期号', '红球1', '红球2', '红球3', '红球4', '红球5', '红球6', '蓝球']:
                 df[col] = df[col].astype(str)
             
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y/%m/%d')
+            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
             
             return df
             
@@ -456,7 +456,7 @@ class LotteryDataCrawler:
             for col in ['期号', '红球1', '红球2', '红球3', '红球4', '红球5', '红球6', '蓝球']:
                 df[col] = df[col].astype(str)
             
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y/%m/%d')
+            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
             
             return df
             
@@ -519,7 +519,7 @@ class LotteryDataCrawler:
             for col in ['期号', '红球1', '红球2', '红球3', '红球4', '红球5', '红球6', '蓝球']:
                 all_data[col] = all_data[col].astype(str)
             
-            all_data['开奖日期'] = all_data['开奖日期'].dt.strftime('%Y/%m/%d')
+            all_data['开奖日期'] = all_data['开奖日期'].dt.strftime('%Y-%m-%d')
         
         return all_data
 
@@ -590,7 +590,7 @@ class LotteryDataCrawler:
             for col in ['期号', '红球1', '红球2', '红球3', '红球4', '红球5', '红球6', '蓝球']:
                 df[col] = df[col].astype(str)
             
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y/%m/%d')
+            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
             
             return df
             
@@ -610,7 +610,6 @@ class LotteryDataCrawler:
         }
         
         try:
-            print(f"正在获取排列五{current_year}年数据...")
             response = self.session.get(base_url, params=params, timeout=15)
             response.encoding = 'gb2312'
             
@@ -623,14 +622,11 @@ class LotteryDataCrawler:
                     recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
                     return recent_df
                 else:
-                    print("解析排列五数据失败")
                     return None
             else:
-                print(f"获取排列五数据失败，状态码: {response.status_code}")
                 return None
                 
         except Exception as e:
-            print(f"获取排列五数据时出错: {e}")
             return None
     
     def get_3d_recent_data(self, count=30):
@@ -645,7 +641,6 @@ class LotteryDataCrawler:
         }
         
         try:
-            print(f"正在获取福彩3D{current_year}年数据...")
             response = self.session.get(base_url, params=params, timeout=15)
             response.encoding = 'gb2312'
             
@@ -658,14 +653,11 @@ class LotteryDataCrawler:
                     recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
                     return recent_df
                 else:
-                    print("解析福彩3D数据失败")
                     return None
             else:
-                print(f"获取福彩3D数据失败，状态码: {response.status_code}")
                 return None
                 
         except Exception as e:
-            print(f"获取福彩3D数据时出错: {e}")
             return None
     
     def parse_pl5_html(self, html_content):
@@ -677,7 +669,6 @@ class LotteryDataCrawler:
         # 查找开奖数据表格
         table = soup.find('table', class_='kjls')
         if not table:
-            print("未找到排列五开奖数据表格")
             return None
         
         data = []
@@ -704,19 +695,17 @@ class LotteryDataCrawler:
                     number_cell = cols[3]
                     number_link = number_cell.find('a')
                     if number_link:
-                        numbers = number_link.get_text(strip=True).replace(' ', '')
+                        numbers = number_link.get_text(strip=True)
                     else:
-                        numbers = number_cell.get_text(strip=True).replace(' ', '')
+                        numbers = number_cell.get_text(strip=True)
                     
-                    # 验证号码格式（应该是5位数字）
-                    if not re.match(r'^\d{5}$', numbers):
-                        # 尝试其他格式
-                        numbers = re.sub(r'[^\d]', '', numbers)
-                        if len(numbers) != 5:
-                            continue
+                    # 保留原始格式（带空格）
+                    numbers = numbers.strip()
                     
-                    # 格式化号码：用空格分开，不足5位补0
-                    formatted_numbers = ' '.join(numbers.zfill(5))
+                    # 验证号码格式（应该是5位数字，可能有空格）
+                    clean_numbers = numbers.replace(' ', '')
+                    if not re.match(r'^\d{5}$', clean_numbers):
+                        continue
                     
                     # 提取一等奖信息
                     first_prize_count = self.parse_prize_count(cols[4].get_text(strip=True))
@@ -725,12 +714,11 @@ class LotteryDataCrawler:
                         '期号': period,
                         '开奖日期': date_text,
                         '销售金额': sales_amount,
-                        '开奖号码': formatted_numbers,
+                        '开奖号码': numbers,  # 保留原始格式（带空格）
                         '一等奖注数': first_prize_count
                     })
                     
-                except Exception as e:
-                    print(f"解析排列五行数据时出错: {e}")
+                except Exception:
                     continue
         
         return pd.DataFrame(data) if data else None
@@ -744,7 +732,6 @@ class LotteryDataCrawler:
         # 查找开奖数据表格
         table = soup.find('table', class_='kjls')
         if not table:
-            print("未找到福彩3D开奖数据表格")
             return None
         
         data = []
@@ -771,29 +758,26 @@ class LotteryDataCrawler:
                     number_cell = cols[3]
                     number_link = number_cell.find('a')
                     if number_link:
-                        numbers = number_link.get_text(strip=True).replace(' ', '')
+                        numbers = number_link.get_text(strip=True)
                     else:
-                        numbers = number_cell.get_text(strip=True).replace(' ', '')
+                        numbers = number_cell.get_text(strip=True)
                     
-                    # 验证号码格式（应该是3位数字）
-                    if not re.match(r'^\d{3}$', numbers):
-                        # 尝试其他格式
-                        numbers = re.sub(r'[^\d]', '', numbers)
-                        if len(numbers) != 3:
-                            continue
+                    # 保留原始格式（带空格）
+                    numbers = numbers.strip()
                     
-                    # 格式化号码：用空格分开，不足3位补0
-                    formatted_numbers = ' '.join(numbers.zfill(3))
+                    # 验证号码格式（应该是3位数字，可能有空格）
+                    clean_numbers = numbers.replace(' ', '')
+                    if not re.match(r'^\d{3}$', clean_numbers):
+                        continue
                     
                     data.append({
                         '期号': period,
                         '开奖日期': date_text,
                         '销售金额': sales_amount,
-                        '开奖号码': formatted_numbers
+                        '开奖号码': numbers  # 保留原始格式（带空格）
                     })
                     
-                except Exception as e:
-                    print(f"解析福彩3D行数据时出错: {e}")
+                except Exception:
                     continue
         
         return pd.DataFrame(data) if data else None
@@ -829,7 +813,7 @@ def get_existing_data(filename='Tools.xlsx', sheet_name='dltall'):
         
         # 处理日期列，统一格式
         if '开奖日期' in existing_df.columns:
-            existing_df['开奖日期'] = pd.to_datetime(existing_df['开奖日期'], errors='coerce').dt.strftime('%Y/%m/%d')
+            existing_df['开奖日期'] = pd.to_datetime(existing_df['开奖日期'], errors='coerce').dt.strftime('%Y-%m-%d')
         
         if sheet_name == 'dltall':
             for col in ['期号', '前区1', '前区2', '前区3', '前区4', '前区5', '后区1', '后区2']:
@@ -841,8 +825,7 @@ def get_existing_data(filename='Tools.xlsx', sheet_name='dltall'):
                     existing_df[col] = existing_df[col].astype(str).apply(lambda x: x.zfill(2) if x.isdigit() and len(x) == 1 else x)
         
         return existing_df
-    except Exception as e:
-        print(f"读取现有数据时出错: {e}")
+    except Exception:
         return pd.DataFrame()
 
 def safe_save_to_excel(df, filename='Tools.xlsx', sheet_name='dltall'):
@@ -895,10 +878,7 @@ def safe_save_to_excel(df, filename='Tools.xlsx', sheet_name='dltall'):
         # 删除临时文件
         os.remove(temp_filename)
         
-        print(f"成功保存 {len(df)} 条数据到 {filename} 的 {sheet_name} 工作表")
-        
-    except Exception as e:
-        print(f"安全保存失败: {e}")
+    except Exception:
         # 回退到原始方法
         try:
             if os.path.exists(filename):
@@ -923,9 +903,8 @@ def safe_save_to_excel(df, filename='Tools.xlsx', sheet_name='dltall'):
                 # 文件不存在，创建新文件
                 with pd.ExcelWriter(filename, engine='openpyxl') as writer:
                     df.to_excel(writer, sheet_name=sheet_name, index=False)
-            print(f"使用备用方法保存 {len(df)} 条数据到 {filename} 的 {sheet_name} 工作表")
-        except Exception as e2:
-            print(f"备用保存方案也失败: {e2}")
+        except Exception:
+            pass
 
 def get_existing_dates(filename, sheet_name):
     """
@@ -944,8 +923,7 @@ def get_existing_dates(filename, sheet_name):
         
         # 返回所有开奖日期的集合
         return set(existing_df['开奖日期'].astype(str))
-    except Exception as e:
-        print(f"读取现有数据时出错: {e}")
+    except Exception:
         return set()
 
 def incremental_save_to_excel(new_df, filename='Tools.xlsx', sheet_name='pl5'):
@@ -963,7 +941,6 @@ def incremental_save_to_excel(new_df, filename='Tools.xlsx', sheet_name='pl5'):
                 new_rows.append(row)
         
         if not new_rows:
-            print(f"{sheet_name} 工作表没有新数据需要添加")
             return True
         
         # 创建新数据的DataFrame
@@ -1018,11 +995,9 @@ def incremental_save_to_excel(new_df, filename='Tools.xlsx', sheet_name='pl5'):
         workbook.save(filename)
         workbook.close()
         
-        print(f"已增量更新 {filename} 中的 {sheet_name} 工作表，新增 {len(new_data_df)} 条记录，共 {len(combined_df)} 条记录")
         return True
         
-    except Exception as e:
-        print(f"增量保存到Excel文件时出错: {e}")
+    except Exception:
         return False
 
 def format_pl5_dataframe(df):
@@ -1034,9 +1009,6 @@ def format_pl5_dataframe(df):
     
     # 只保留需要的列
     df = df[expected_columns].copy()
-    
-    # 格式化销售金额（添加千位分隔符）
-    df['销售金额'] = df['销售金额'].apply(lambda x: f"{x:,}" if x > 0 else "0")
     
     return df
 
@@ -1050,10 +1022,133 @@ def format_3d_dataframe(df):
     # 只保留需要的列
     df = df[expected_columns].copy()
     
-    # 格式化销售金额（添加千位分隔符）
-    df['销售金额'] = df['销售金额'].apply(lambda x: f"{x:,}" if x > 0 else "0")
-    
     return df
+
+def update_ev_sheet_with_lottery_data(filename='Tools.xlsx'):
+    """
+    将pl5和3D工作表的开奖数据自动写入EV工作表的相应列
+    只写入新数据，已存在的数据保持不变
+    """
+    try:
+        if not os.path.exists(filename):
+            print("文件不存在")
+            return False
+        
+        # 加载工作簿
+        workbook = load_workbook(filename)
+        
+        # 检查必要的工作表是否存在
+        required_sheets = ['pl5', '3D', 'EV']
+        for sheet in required_sheets:
+            if sheet not in workbook.sheetnames:
+                print(f"缺少必要的工作表: {sheet}")
+                workbook.close()
+                return False
+        
+        # 读取pl5数据
+        pl5_df = pd.read_excel(filename, sheet_name='pl5')
+        # 读取3D数据
+        d3_df = pd.read_excel(filename, sheet_name='3D')
+        # 读取EV工作表
+        ev_ws = workbook['EV']
+        
+        print(f"pl5数据行数: {len(pl5_df)}")
+        print(f"3D数据行数: {len(d3_df)}")
+        print(f"EV工作表行数: {ev_ws.max_row}")
+        
+        # 构建EV工作表的日期映射（日期 -> 行号）
+        date_to_row = {}
+        for row in range(2, ev_ws.max_row + 1):
+            date_cell = ev_ws.cell(row, 1).value  # A列是日期
+            if date_cell is None:
+                continue
+            
+            # 处理日期格式 - 统一转换为字符串格式进行比较
+            if isinstance(date_cell, datetime):
+                date_str = date_cell.strftime('%Y-%m-%d')
+            else:
+                # 尝试解析字符串日期
+                date_str = str(date_cell).strip()
+                # 移除时间部分
+                if ' ' in date_str:
+                    date_str = date_str.split(' ')[0]
+            
+            date_to_row[date_str] = row
+        
+        print(f"EV工作表日期映射数量: {len(date_to_row)}")
+        
+        # 更新pl5数据到EV工作表的B列
+        pl5_updated = 0
+        for _, row in pl5_df.iterrows():
+            date_str = str(row['开奖日期']).strip()
+            
+            if date_str in date_to_row:
+                ev_row = date_to_row[date_str]
+                
+                # 获取B列的列号
+                b_col = 2  # B列
+                
+                # 检查B列是否已有数据，如果没有则写入
+                cell_value = ev_ws.cell(ev_row, b_col).value
+                if cell_value is None or cell_value == '':
+                    # 获取开奖号码（保留原始格式，带空格）
+                    numbers = str(row['开奖号码']).strip()
+                    
+                    # 确保号码格式正确（5位数字，带空格分隔）
+                    clean_numbers = numbers.replace(' ', '')
+                    if len(clean_numbers) == 5:
+                        # 如果没有空格，添加空格分隔
+                        if ' ' not in numbers:
+                            numbers = ' '.join(clean_numbers)
+                        
+                        # 将带空格的5位数字写入B列
+                        ev_ws.cell(ev_row, b_col).value = numbers
+                        pl5_updated += 1
+                        print(f"更新PL5数据: 日期 {date_str}, 号码 {numbers}")
+        
+        # 更新3D数据到EV工作表的E列
+        d3_updated = 0
+        for _, row in d3_df.iterrows():
+            date_str = str(row['开奖日期']).strip()
+            
+            if date_str in date_to_row:
+                ev_row = date_to_row[date_str]
+                
+                # 获取E列的列号
+                e_col = 5  # E列
+                
+                # 检查E列是否已有数据，如果没有则写入
+                cell_value = ev_ws.cell(ev_row, e_col).value
+                if cell_value is None or cell_value == '':
+                    # 获取开奖号码（保留原始格式，带空格）
+                    numbers = str(row['开奖号码']).strip()
+                    
+                    # 确保号码格式正确（3位数字，带空格分隔）
+                    clean_numbers = numbers.replace(' ', '')
+                    if len(clean_numbers) == 3:
+                        # 如果没有空格，添加空格分隔
+                        if ' ' not in numbers:
+                            numbers = ' '.join(clean_numbers)
+                        
+                        # 将带空格的3位数字写入E列
+                        ev_ws.cell(ev_row, e_col).value = numbers
+                        d3_updated += 1
+                        print(f"更新3D数据: 日期 {date_str}, 号码 {numbers}")
+        
+        # 保存工作簿
+        workbook.save(filename)
+        workbook.close()
+        
+        print(f"PL5更新了 {pl5_updated} 条数据")
+        print(f"3D更新了 {d3_updated} 条数据")
+        
+        return True
+        
+    except Exception as e:
+        print(f"更新EV工作表时出错: {str(e)}")
+        if 'workbook' in locals():
+            workbook.close()
+        return False
 
 # 更新函数
 def update_dlt_data(crawler):
@@ -1069,7 +1164,6 @@ def update_dlt_data(crawler):
             
         if all_data is not None and len(all_data) > 0:
             safe_save_to_excel(all_data, 'Tools.xlsx', 'dltall')
-            print(f"大乐透已保存 {len(all_data)} 条数据")
         return
     
     latest_period = existing_df['期号'].max()
@@ -1082,12 +1176,11 @@ def update_dlt_data(crawler):
     new_data = latest_data[~latest_data['期号'].isin(existing_df['期号'])]
     
     if new_data.empty:
-        print("大乐透数据已是最新")
         return
     
     # 修复日期格式问题
     if '开奖日期' in existing_df.columns:
-        existing_df['开奖日期'] = pd.to_datetime(existing_df['开奖日期'], errors='coerce').dt.strftime('%Y/%m/%d')
+        existing_df['开奖日期'] = pd.to_datetime(existing_df['开奖日期'], errors='coerce').dt.strftime('%Y-%m-%d')
     
     combined_data = pd.concat([existing_df, new_data], ignore_index=True)
     
@@ -1096,10 +1189,9 @@ def update_dlt_data(crawler):
     combined_data = combined_data.sort_values(by='开奖日期', ascending=True)
     combined_data = combined_data.reset_index(drop=True)
     
-    combined_data['开奖日期'] = combined_data['开奖日期'].dt.strftime('%Y/%m/%d')
+    combined_data['开奖日期'] = combined_data['开奖日期'].dt.strftime('%Y-%m-%d')
     
     safe_save_to_excel(combined_data, 'Tools.xlsx', 'dltall')
-    print(f"大乐透已更新 {len(new_data)} 条数据，现在共有 {len(combined_data)} 条数据")
 
 def update_ssq_data(crawler):
     """
@@ -1114,7 +1206,6 @@ def update_ssq_data(crawler):
             
         if all_data is not None and len(all_data) > 0:
             safe_save_to_excel(all_data, 'Tools.xlsx', 'ssq')
-            print(f"双色球已保存 {len(all_data)} 条数据")
         return
     
     latest_period = existing_df['期号'].max()
@@ -1127,14 +1218,13 @@ def update_ssq_data(crawler):
     new_data = latest_data[~latest_data['期号'].isin(existing_df['期号'])]
     
     if new_data.empty:
-        print("双色球数据已是最新")
         return
     
     # 修复日期格式问题
     # 首先确保现有数据的日期格式一致
     if '开奖日期' in existing_df.columns:
         # 将现有数据的日期转换为统一格式
-        existing_df['开奖日期'] = pd.to_datetime(existing_df['开奖日期'], errors='coerce').dt.strftime('%Y/%m/%d')
+        existing_df['开奖日期'] = pd.to_datetime(existing_df['开奖日期'], errors='coerce').dt.strftime('%Y-%m-%d')
     
     # 合并数据
     combined_data = pd.concat([existing_df, new_data], ignore_index=True)
@@ -1146,60 +1236,35 @@ def update_ssq_data(crawler):
     combined_data = combined_data.reset_index(drop=True)
     
     # 统一格式化为字符串
-    combined_data['开奖日期'] = combined_data['开奖日期'].dt.strftime('%Y/%m/%d')
+    combined_data['开奖日期'] = combined_data['开奖日期'].dt.strftime('%Y-%m-%d')
     
     safe_save_to_excel(combined_data, 'Tools.xlsx', 'ssq')
-    print(f"双色球已更新 {len(new_data)} 条数据，现在共有 {len(combined_data)} 条数据")
 
 def update_pl5_data(crawler):
     """
     更新排列五数据
     """
-    print("正在获取排列五最近30期开奖数据...")
     pl5_df = crawler.get_pl5_recent_data(30)
     
     if pl5_df is not None and len(pl5_df) > 0:
-        print(f"成功获取排列五 {len(pl5_df)} 期开奖数据")
-        
         # 格式化数据
         pl5_formatted = format_pl5_dataframe(pl5_df)
         
-        # 显示数据预览
-        print("\n排列五数据预览:")
-        print(pl5_formatted.head(5))
-        
         # 增量保存到Excel文件
-        if incremental_save_to_excel(pl5_formatted, 'Tools.xlsx', 'pl5'):
-            print(f"排列五数据已成功增量保存到 Tools.xlsx 文件的 pl5 工作表中")
-        else:
-            print("保存排列五数据失败")
-    else:
-        print("未能获取到排列五数据")
+        incremental_save_to_excel(pl5_formatted, 'Tools.xlsx', 'pl5')
 
 def update_3d_data(crawler):
     """
     更新福彩3D数据
     """
-    print("正在获取福彩3D最近30期开奖数据...")
     d3_df = crawler.get_3d_recent_data(30)
     
     if d3_df is not None and len(d3_df) > 0:
-        print(f"成功获取福彩3D {len(d3_df)} 期开奖数据")
-        
         # 格式化数据
         d3_formatted = format_3d_dataframe(d3_df)
         
-        # 显示数据预览
-        print("\n福彩3D数据预览:")
-        print(d3_formatted.head(5))
-        
         # 增量保存到Excel文件
-        if incremental_save_to_excel(d3_formatted, 'Tools.xlsx', '3D'):
-            print(f"福彩3D数据已成功增量保存到 Tools.xlsx 文件的 3D 工作表中")
-        else:
-            print("保存福彩3D数据失败")
-    else:
-        print("未能获取到福彩3D数据")
+        incremental_save_to_excel(d3_formatted, 'Tools.xlsx', '3D')
 
 def main():
     """
@@ -1227,11 +1292,20 @@ def main():
     print("正在更新福彩3D数据...")
     update_3d_data(crawler)
     
+    # 将pl5和3D数据更新到EV工作表
+    print("正在将PL5和3D数据更新到EV工作表...")
+    success = update_ev_sheet_with_lottery_data('Tools.xlsx')
+    
+    if success:
+        print("EV工作表更新成功!")
+    else:
+        print("EV工作表更新失败!")
+    
     # 显示保存路径
     file_path = os.path.abspath('Tools.xlsx')
-    print(f"\n文件保存路径: {file_path}")
+    print(f"文件保存路径: {file_path}")
     
-    print("\n所有数据更新完成!")
+    print("所有数据更新完成!")
 
 if __name__ == "__main__":
     main()

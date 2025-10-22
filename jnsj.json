@@ -1,10 +1,6 @@
 {
   "urls": [
     {
-      "url": "http://www.饭太硬.com/tv",
-      "name": "饭太硬"
-    },
-    {
       "url": "http://tvbox.王二小放牛娃.top",
       "name": "王二小"
     },
@@ -66,8 +62,8 @@
     }
   ],
   "last_updated": "2025-10-16 10:16:56",
-  "valid_count": 16,
+  "valid_count": 15,
   "invalid_count": 0,
-  "last_validated": "2025-10-21 06:09:36",
-  "original_count": 16
+  "last_validated": "2025-10-22 02:45:54",
+  "original_count": 15
 }

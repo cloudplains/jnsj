@@ -1,8 +1,7 @@
-# 更新时间: 2025-10-28 10:16:24
-# 有效URL数量: 110
-# 无效URL数量: 0
+# 更新时间: 2025-10-29 02:49:41
+# 有效URL数量: 108
+# 无效URL数量: 2
 
-https://gitee.com/jin-xueling/lingl/raw/master/hu.txt
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
 http://west.shaonv.me/tvbox/live.txt
@@ -75,7 +74,6 @@ https://live.zbds.org/tv/iptv4.txt
 https://d.kstore.dev/download/12441/ds9.txt
 http://47.120.41.246:8899/zb.txt#IPTV直播
 https://epg.pw/test_channels.m3u#中国大陆频道
-https://epg.pw/test_channels_hong_kong.m3u#中国香港频道
 https://epg.pw/test_channels_singapore.m3u#新加坡频道
 https://epg.pw/test_channels_taiwan.m3u#中国台湾频道
 https://gitee.com/xxy002/zhiboyuan/raw/master/dsy#（央视频道、卫视频道、港澳台、数字电视、动漫）

@@ -25,10 +25,6 @@
       "name": "JSM"
     },
     {
-      "url": "http://肥猫.com",
-      "name": "肥猫"
-    },
-    {
       "url": "http://cdn.qiaoji8.com/tvbox.json",
       "name": "巧技"
     },
@@ -62,8 +58,8 @@
     }
   ],
   "last_updated": "2025-10-16 10:16:56",
-  "valid_count": 15,
+  "valid_count": 14,
   "invalid_count": 0,
-  "last_validated": "2025-10-25 02:28:42",
-  "original_count": 15
+  "last_validated": "2025-11-07 02:46:01",
+  "original_count": 14
 }

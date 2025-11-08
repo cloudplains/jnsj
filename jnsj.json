@@ -1,10 +1,6 @@
 {
   "urls": [
     {
-      "url": "http://tvbox.王二小放牛娃.top",
-      "name": "王二小"
-    },
-    {
       "url": "https://tv.xn--yhqu5zs87a.top",
       "name": "📁莱斯📁"
     },
@@ -58,8 +54,8 @@
     }
   ],
   "last_updated": "2025-10-16 10:16:56",
-  "valid_count": 14,
-  "invalid_count": 0,
-  "last_validated": "2025-11-08 02:27:55",
+  "valid_count": 13,
+  "invalid_count": 1,
+  "last_validated": "2025-11-08 10:14:50",
   "original_count": 14
 }

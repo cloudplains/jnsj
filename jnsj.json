@@ -25,10 +25,6 @@
       "name": "巧技"
     },
     {
-      "url": "https://api.hgyx.vip/hgyx.json",
-      "name": "HG"
-    },
-    {
       "url": "https://tv.菜妮丝.top",
       "name": "菜妮丝"
     },
@@ -54,8 +50,8 @@
     }
   ],
   "last_updated": "2025-10-16 10:16:56",
-  "valid_count": 13,
-  "invalid_count": 0,
-  "last_validated": "2025-11-10 02:52:43",
+  "valid_count": 12,
+  "invalid_count": 1,
+  "last_validated": "2025-11-10 10:18:06",
   "original_count": 13
 }

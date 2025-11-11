@@ -1,4 +1,4 @@
-name: Test
+﻿name: Test
 
 on:
   schedule:
@@ -219,10 +219,12 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git pull --rebase
+          # 更新README.md中的commit记录
           sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
+          # 直接添加并提交，如果失败也无所谓
           git add --all
-          git commit -m "${{ env.commit }}"
-          git push -u -f origin master
+          git commit -m "${{ env.commit }}" || echo "No changes to commit"
+          git push -u -f origin master || echo "Push failed, but continuing"
 
   telegram-bot-api:
     name: Telegram Bot API

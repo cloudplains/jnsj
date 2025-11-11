@@ -1,10 +1,6 @@
 {
   "urls": [
     {
-      "url": "http://tvbox.王二小放牛娃.top",
-      "name": "王二小"
-    },
-    {
       "url": "https://tv.xn--yhqu5zs87a.top",
       "name": "📁莱斯📁"
     },
@@ -27,10 +23,6 @@
     {
       "url": "http://cdn.qiaoji8.com/tvbox.json",
       "name": "巧技"
-    },
-    {
-      "url": "https://api.hgyx.vip/hgyx.json",
-      "name": "HG"
     },
     {
       "url": "https://tv.菜妮丝.top",
@@ -58,8 +50,8 @@
     }
   ],
   "last_updated": "2025-10-16 10:16:56",
-  "valid_count": 14,
-  "invalid_count": 0,
-  "last_validated": "2025-11-07 02:46:01",
-  "original_count": 14
+  "valid_count": 12,
+  "invalid_count": 1,
+  "last_validated": "2025-11-10 10:18:06",
+  "original_count": 13
 }

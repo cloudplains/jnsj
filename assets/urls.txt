@@ -1,6 +1,6 @@
-# 更新时间: 2025-11-16 10:14:19
-# 有效URL数量: 107
-# 无效URL数量: 0
+# 更新时间: 2025-11-17 02:49:13
+# 有效URL数量: 106
+# 无效URL数量: 1
 
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
@@ -63,7 +63,6 @@ https://raw.githubusercontent.com/yuanzl77/IPTV/refs/heads/main/live.txt
 https://iptv-org.github.io/iptv/languages/zho.m3u
 https://iptv-org.github.io/iptv/countries/us.m3u
 https://iptv-org.github.io/iptv/countries/tw.m3u
-https://fm1077.serv00.net/SmartTV.m3u
 https://live.zbds.top/tv/iptv4.txt
 https://live.zbds.top/tv/iptv6.txt
 https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt

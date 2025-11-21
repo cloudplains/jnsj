@@ -13,10 +13,6 @@
       "name": "OK线路"
     },
     {
-      "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/",
-      "name": "王二小"
-    },
-    {
       "url": "https://catbox.n13.club/jk/jsm.json",
       "name": "JSM"
     },
@@ -50,8 +46,8 @@
     }
   ],
   "last_updated": "2025-10-16 10:16:56",
-  "valid_count": 12,
-  "invalid_count": 0,
-  "last_validated": "2025-11-20 10:16:48",
+  "valid_count": 11,
+  "invalid_count": 1,
+  "last_validated": "2025-11-21 02:45:41",
   "original_count": 12
 }

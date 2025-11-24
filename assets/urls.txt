@@ -1,6 +1,6 @@
-# 更新时间: 2025-11-24 02:56:48
-# 有效URL数量: 106
-# 无效URL数量: 0
+# 更新时间: 2025-11-24 05:35:41
+# 有效URL数量: 105
+# 无效URL数量: 1
 
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
@@ -107,4 +107,3 @@ https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://raw.gitmirror.com/XiaoZhang5656/xiaozhang-5656.github.io/main/iptv-live.txt
-https://www.cloudplains.cn/assets/live.txt

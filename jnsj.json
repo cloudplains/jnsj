@@ -53,40 +53,12 @@
       "name": "肥猫接口2"
     },
     {
-      "url": "https://6296.kstore.vip/facat.json",
-      "name": "肥猫接口3"
-    },
-    {
-      "url": "http://我不是.摸鱼儿.com",
-      "name": "摸鱼接口"
-    },
-    {
-      "url": "http://我不是.摸鱼儿.xyz",
-      "name": "摸鱼接口2"
-    },
-    {
-      "url": "https://qixing.myhkw.com/%E8%87%AA%E7%94%A8%E6%B5%8B%E8%AF%95.txt",
-      "name": "天微七星接口"
-    },
-    {
-      "url": "https://7337.kstore.space/twvip/%E8%87%AA%E7%94%A8%E6%B5%8B%E8%AF%95.json",
-      "name": "天微七星接口2"
-    },
-    {
       "url": "http://ztha.top/TVBox/GYCK.json",
       "name": "TH挺好接口"
     },
     {
       "url": "http://ztha.top/TVBox/thdjk.json",
       "name": "TH挺好接口2"
-    },
-    {
-      "url": "http://ztha.top/TVBox/FLCK.json",
-      "name": "TH挺好接口3"
-    },
-    {
-      "url": "https://raw.gitmirror.com/ZTHA000/tvbox/main/gyck.json",
-      "name": "TH挺好接口4"
     },
     {
       "url": "http://mdxgh.top:5555/mdxgho.json",
@@ -99,18 +71,6 @@
     {
       "url": "http://mdxgh.top:5555/md.json",
       "name": "码点单线3"
-    },
-    {
-      "url": "http://www.饭太硬.net/tv",
-      "name": "饭太硬接口"
-    },
-    {
-      "url": "http://www.饭太硬.com/tv",
-      "name": "饭太硬接口2"
-    },
-    {
-      "url": "http://www.饭太硬.xyz/tv",
-      "name": "饭太硬接口3"
     },
     {
       "url": "http://fty.xxooo.cf/tv",
@@ -137,18 +97,6 @@
       "name": "王二小接口"
     },
     {
-      "url": "http://ttkx.cc:55/天天开心",
-      "name": "开心单线"
-    },
-    {
-      "url": "http://rihou.cc:55/天天开心",
-      "name": "日后单线"
-    },
-    {
-      "url": "http://kxrj.site:55/开心软件",
-      "name": "天天开心"
-    },
-    {
       "url": "http://home.jundie.top:81/top98.json",
       "name": "俊哥接口"
     },
@@ -161,16 +109,8 @@
       "name": "艾丝沐"
     },
     {
-      "url": "https://fmbox.cc",
-      "name": "星辰接口"
-    },
-    {
       "url": "https://9877.kstore.space/AnotherD/api.json",
       "name": "潇洒单线"
-    },
-    {
-      "url": "http://miqk.cc/小米/DEMO.json",
-      "name": "小米接口"
     },
     {
       "url": "https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json",
@@ -179,10 +119,6 @@
     {
       "url": "https://gitee.com/kgysp/tv/raw/box/666.api",
       "name": "坤哥接口"
-    },
-    {
-      "url": "https://4708.kstore.space/ck.json",
-      "name": "拾光接口"
     },
     {
       "url": "https://700sjro44343.vicp.fun/eggp/qzku/tv.json",
@@ -194,8 +130,8 @@
     }
   ],
   "last_updated": "2025-11-21 10:30:00",
-  "valid_count": 0,
-  "invalid_count": 0,
-  "last_validated": "2025-11-21 10:30:00",
+  "valid_count": 32,
+  "invalid_count": 16,
+  "last_validated": "2025-12-01 08:00:53",
   "original_count": 48
 }

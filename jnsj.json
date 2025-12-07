@@ -49,10 +49,6 @@
       "name": "肥猫接口"
     },
     {
-      "url": "http://hello.肥猫.com",
-      "name": "肥猫接口2"
-    },
-    {
       "url": "http://ztha.top/TVBox/GYCK.json",
       "name": "TH挺好接口"
     },
@@ -130,8 +126,8 @@
     }
   ],
   "last_updated": "2025-11-21 10:30:00",
-  "valid_count": 32,
-  "invalid_count": 0,
-  "last_validated": "2025-12-06 10:15:26",
+  "valid_count": 31,
+  "invalid_count": 1,
+  "last_validated": "2025-12-07 03:01:48",
   "original_count": 32
 }

@@ -57,10 +57,6 @@
       "name": "TH挺好接口2"
     },
     {
-      "url": "http://www.饭太硬.com/tv",
-      "name": "饭太硬接口"
-    },
-    {
       "url": "http://fty.xxooo.cf/tv",
       "name": "饭太硬接口4"
     },
@@ -114,8 +110,8 @@
     }
   ],
   "last_updated": "2025-11-21 10:30:00",
-  "valid_count": 28,
-  "invalid_count": 3,
-  "last_validated": "2025-12-08 02:55:24",
-  "original_count": 31
+  "valid_count": 27,
+  "invalid_count": 1,
+  "last_validated": "2025-12-08 03:10:27",
+  "original_count": 28
 }

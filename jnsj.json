@@ -57,14 +57,6 @@
       "name": "TH挺好接口2"
     },
     {
-      "url": "http://mdxgh.top:5555/mdxgho.json",
-      "name": "码点单线"
-    },
-    {
-      "url": "http://mdxgh.top:5555/mdxgh.json",
-      "name": "码点单线2"
-    },
-    {
       "url": "http://www.饭太硬.com/tv",
       "name": "饭太硬接口"
     },
@@ -75,10 +67,6 @@
     {
       "url": "https://gitee.com/xxoooo/fan/raw/master/in.bmp",
       "name": "饭太硬接口5"
-    },
-    {
-      "url": "http://mitvbox.xyz/%E5%B0%8F%E7%B1%B3/DEMO.json",
-      "name": "小米"
     },
     {
       "url": "https://d.kstore.dev/download/10759/api/xiqu.json",
@@ -126,8 +114,8 @@
     }
   ],
   "last_updated": "2025-11-21 10:30:00",
-  "valid_count": 31,
-  "invalid_count": 0,
-  "last_validated": "2025-12-07 10:14:44",
+  "valid_count": 28,
+  "invalid_count": 3,
+  "last_validated": "2025-12-08 02:55:24",
   "original_count": 31
 }

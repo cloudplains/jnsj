@@ -137,10 +137,6 @@
       "name": "蓝天"
     },
     {
-      "url": "http://tvbox.王二小放牛娃.top",
-      "name": "牛二(中文top)"
-    },
-    {
       "url": "https://9280.kstore.space/wex.json",
       "name": "牛二(凯速)"
     },
@@ -210,8 +206,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 52,
-  "invalid_count": 30,
-  "last_validated": "2025-12-12 06:58:47",
-  "original_count": 82
+  "valid_count": 51,
+  "invalid_count": 1,
+  "last_validated": "2025-12-12 10:18:48",
+  "original_count": 52
 }

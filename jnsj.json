@@ -8,6 +8,18 @@
       "url": "http://ok321.top/ok",
       "name": "OK线路"
     },
+ {
+      "url": "https://www.252035.xyz/z/FongMi.json",
+      "name": "FongMi.json"
+    },
+ {
+      "url": "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json",
+      "name": "fish2018"
+    },
+ {
+      "url": "https://www.252035.xyz/p/jsm.json",
+      "name": "jsm0"
+    },
     {
       "url": "https://catbox.n13.club/jk/jsm.json",
       "name": "JSM"
@@ -312,6 +324,11 @@
   "last_updated": "2025-12-12",
   "valid_count": 86,
   "invalid_count": 0,
+<<<<<<< HEAD
   "last_validated": "2025-12-11 10:18:18",
   "original_count": 86
+=======
+  "last_validated": "2025-12-12 02:22:50",
+  "original_count": 27
+>>>>>>> 4a07fa4fba324cf3ef3372250e663bc89c760a53
 }

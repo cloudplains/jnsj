@@ -15,3 +15,6 @@ git add . && git commit -m "new" && git pull origin main && git push origin main
 
 git config --global user.email "anguss@163.com"
 git config --global user.name "cloudplains"
+
+
+./gif.sh

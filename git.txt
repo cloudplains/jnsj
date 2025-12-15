@@ -1,0 +1,17 @@
+git clone https://https://github.com/cloudplains/jnsj.git
+
+
+
+最简单的操作流程
+bash
+# 进入项目文件夹后执行这两条命令：
+git add . && git commit -m "new"
+git pull origin main && git push origin main
+
+
+
+
+git add . && git commit -m "new" && git pull origin main && git push origin main
+
+git config --global user.email "anguss@163.com"
+git config --global user.name "jnsj8685886"

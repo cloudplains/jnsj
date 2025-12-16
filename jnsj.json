@@ -65,10 +65,6 @@
       "name": "TH挺好接口2"
     },
     {
-      "url": "http://fty.xxooo.cf/tv",
-      "name": "饭太硬接口4"
-    },
-    {
       "url": "https://gitee.com/xxoooo/fan/raw/master/in.bmp",
       "name": "饭太硬接口5"
     },
@@ -198,8 +194,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 51,
+  "valid_count": 48,
   "invalid_count": 0,
-  "last_validated": "2025-12-15 03:05:18",
-  "original_count": 51
+  "last_validated": "2025-12-16 02:58:50",
+  "original_count": 48
 }

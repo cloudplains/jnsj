@@ -387,7 +387,7 @@ def main():
     all_m3u_lines.append('')
 
     # 创建TXT文件内容
-    all_txt_lines = ["更新时间,#genre#", f"{formatted_time},https://cloudplains.cn/tv202303.txt", ""]
+    all_txt_lines = ["更新时间,#genre#", f"{formatted_time},https://jnsj.cloudplains.dpdns.org/tv202303.txt", ""]
 
     # 获取处理后的频道源并添加到M3U和TXT文件
     total_count = 0

@@ -1,6 +1,6 @@
-# 更新时间: 2025-12-16 07:43:13
-# 有效URL数量: 102
-# 无效URL数量: 0
+# 更新时间: 2025-12-16 08:01:04
+# 有效URL数量: 101
+# 无效URL数量: 1
 
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://jnsj.cloudplains.dpdns.org/assets/live.txt
@@ -40,7 +40,6 @@ https://raw.githubusercontent.com/xzw832/cmys/refs/heads/main/S_weishi.txt
 https://raw.githubusercontent.com/MemoryCollection/IPTV/refs/heads/main/hotel.txt
 https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u
 https://raw.githubusercontent.com/mlzlzj/hnyuan/refs/heads/main/iptv_list.txt
-https://raw.githubusercontent.com/altn2025/iptv/main/iptv.m3u
 https://raw.githubusercontent.com/BP3388/BP001.github.io/main/tivi.list
 https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt
 https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt

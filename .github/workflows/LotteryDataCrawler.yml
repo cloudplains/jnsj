@@ -1,9 +1,9 @@
-﻿name: Lottery Data Crawler
+name: Lottery Data Crawler
 
 on:
   schedule:
-    - cron: '0 4 * * *'  # 每天UTC时间3点运行（北京时间上午12点）
-    - cron: '0 6 * * *'  # 每天UTC时间5点运行（北京时间上午14点）
+    - cron: '0 4 * * *'  # 每天UTC时间4点运行（北京时间中午12点）
+    - cron: '0 16 * * *' # 每天UTC时间16点运行（北京时间午夜24点）
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests beautifulsoup4 pandas openpyxl tqdm
+        pip install requests beautifulsoup4 pandas openpyxl tqdm lxml
 
     - name: Run Lottery Data Crawler
       run: python LotteryDataCrawler.py

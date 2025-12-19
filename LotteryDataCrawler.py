@@ -11,21 +11,40 @@ from tqdm import tqdm
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.worksheet.filters import FilterColumn, Filters
+import json
 
 class LotteryDataCrawler:
     def __init__(self):
         self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
             'Accept-Encoding': 'gzip, deflate, br',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
+            'Cache-Control': 'max-age=0',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
         }
         self.session = requests.Session()
         self.session.headers.update(self.headers)
+        
+        # 添加重试机制
+        from requests.adapters import HTTPAdapter
+        from requests.packages.urllib3.util.retry import Retry
+        
+        retry_strategy = Retry(
+            total=3,
+            backoff_factor=1,
+            status_forcelist=[429, 500, 502, 503, 504],
+        )
+        adapter = HTTPAdapter(max_retries=retry_strategy)
+        self.session.mount("http://", adapter)
+        self.session.mount("https://", adapter)
 
-    # 大乐透函数
+    # 大乐透函数（保持不变）
     def get_dlt_history_data_all(self):
         """
         获取所有大乐透历史开奖数据
@@ -314,7 +333,7 @@ class LotteryDataCrawler:
         except Exception:
             return None
 
-    # 双色球函数
+    # 双色球函数（保持不变）
     def get_ssq_history_data_all(self):
         """
         获取所有双色球历史开奖数据
@@ -597,68 +616,240 @@ class LotteryDataCrawler:
         except Exception:
             return None
 
-    # 排列五和福彩3D函数
+    # 排列五和福彩3D函数（更新版）
     def get_pl5_recent_data(self, count=30):
         """
-        获取排列五最近N期数据
+        获取排列五最近N期数据 - 改进版
         """
-        base_url = "https://kaijiang.78500.cn/p5/"
-        current_year = datetime.now().year
-        params = {
-            'action': 'years',
-            'year': current_year
-        }
+        print(f"开始获取排列五最近 {count} 期数据...")
         
-        try:
-            response = self.session.get(base_url, params=params, timeout=15)
-            response.encoding = 'gb2312'
-            
-            if response.status_code == 200:
-                df = self.parse_pl5_html(response.text)
+        # 尝试多个URL
+        urls = [
+            "https://kaijiang.78500.cn/p5/",
+            "https://www.78500.cn/p5/",
+            "https://datachart.500.com/pl5/"
+        ]
+        
+        for i, url in enumerate(urls):
+            try:
+                print(f"尝试连接 {url} (尝试 {i+1}/{len(urls)})...")
+                response = self.session.get(url, timeout=20)
+                print(f"响应状态码: {response.status_code}")
+                
+                # 尝试多种编码
+                encodings = ['utf-8', 'gb2312', 'gbk', 'gb18030']
+                content = None
+                
+                for encoding in encodings:
+                    try:
+                        response.encoding = encoding
+                        content = response.text
+                        print(f"使用编码 {encoding} 成功")
+                        break
+                    except UnicodeDecodeError:
+                        continue
+                
+                if content is None:
+                    print("所有编码尝试失败")
+                    continue
+                
+                # 尝试解析
+                df = self.parse_pl5_html(content)
                 if df is not None and len(df) > 0:
+                    print(f"成功获取到 {len(df)} 条排列五数据")
                     # 取最近count期数据
                     recent_df = df.head(count).copy()
                     # 按时间顺序排列（从早到晚）
                     recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
                     return recent_df
                 else:
-                    return None
-            else:
-                return None
-                
-        except Exception as e:
-            return None
-    
+                    print("解析数据为空")
+                    
+            except Exception as e:
+                print(f"尝试 {url} 失败: {str(e)}")
+                continue
+        
+        # 如果所有URL都失败，尝试备用方法
+        print("主网站获取失败，尝试备用数据源...")
+        return self.get_pl5_backup_data(count)
+
     def get_3d_recent_data(self, count=30):
         """
-        获取福彩3D最近N期数据
+        获取福彩3D最近N期数据 - 改进版
         """
-        base_url = "https://kaijiang.78500.cn/3d/"
-        current_year = datetime.now().year
-        params = {
-            'action': 'years',
-            'year': current_year
-        }
+        print(f"开始获取福彩3D最近 {count} 期数据...")
         
-        try:
-            response = self.session.get(base_url, params=params, timeout=15)
-            response.encoding = 'gb2312'
-            
-            if response.status_code == 200:
-                df = self.parse_3d_html(response.text)
+        # 尝试多个URL
+        urls = [
+            "https://kaijiang.78500.cn/3d/",
+            "https://www.78500.cn/3d/",
+            "https://datachart.500.com/3d/"
+        ]
+        
+        for i, url in enumerate(urls):
+            try:
+                print(f"尝试连接 {url} (尝试 {i+1}/{len(urls)})...")
+                response = self.session.get(url, timeout=20)
+                print(f"响应状态码: {response.status_code}")
+                
+                # 尝试多种编码
+                encodings = ['utf-8', 'gb2312', 'gbk', 'gb18030']
+                content = None
+                
+                for encoding in encodings:
+                    try:
+                        response.encoding = encoding
+                        content = response.text
+                        print(f"使用编码 {encoding} 成功")
+                        break
+                    except UnicodeDecodeError:
+                        continue
+                
+                if content is None:
+                    print("所有编码尝试失败")
+                    continue
+                
+                df = self.parse_3d_html(content)
                 if df is not None and len(df) > 0:
+                    print(f"成功获取到 {len(df)} 条福彩3D数据")
                     # 取最近count期数据
                     recent_df = df.head(count).copy()
                     # 按时间顺序排列（从早到晚）
                     recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
                     return recent_df
                 else:
-                    return None
-            else:
-                return None
-                
+                    print("解析数据为空")
+                    
+            except Exception as e:
+                print(f"尝试 {url} 失败: {str(e)}")
+                continue
+        
+        # 如果所有URL都失败，尝试备用方法
+        print("主网站获取失败，尝试备用数据源...")
+        return self.get_3d_backup_data(count)
+    
+    def get_pl5_backup_data(self, count=30):
+        """
+        获取排列五备用数据源
+        """
+        print("尝试从备用数据源获取排列五数据...")
+        try:
+            # 尝试从中国福彩网获取
+            url = "https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice"
+            params = {
+                'name': 'pl5',
+                'issueCount': str(count),
+                'issueStart': '',
+                'issueEnd': '',
+                'dayStart': '',
+                'dayEnd': ''
+            }
+            
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'application/json, text/javascript, */*; q=0.01',
+                'X-Requested-With': 'XMLHttpRequest',
+                'Referer': 'https://www.cwl.gov.cn/'
+            }
+            
+            response = requests.get(url, params=params, headers=headers, timeout=30, verify=False)
+            print(f"备用数据源响应状态码: {response.status_code}")
+            
+            if response.status_code == 200:
+                try:
+                    data = response.json()
+                    print(f"备用数据源返回数据: {data}")
+                    
+                    if data.get('state') == 0:
+                        results = data.get('result', [])
+                        data_list = []
+                        for item in results:
+                            numbers = item.get('red', '')
+                            if numbers:
+                                # 将号码格式化为带空格的格式
+                                formatted_numbers = ' '.join(list(numbers))
+                            else:
+                                formatted_numbers = ''
+                                
+                            data_list.append({
+                                '期号': item.get('code', ''),
+                                '开奖日期': item.get('date', '').split(' ')[0] if item.get('date') else '',
+                                '开奖号码': formatted_numbers,
+                                '销售金额': item.get('sales', 0),
+                                '一等奖注数': 0
+                            })
+                        
+                        if data_list:
+                            print(f"从备用数据源获取到 {len(data_list)} 条排列五数据")
+                            df = pd.DataFrame(data_list)
+                            return df
+                except Exception as e:
+                    print(f"解析备用数据源JSON失败: {str(e)}")
         except Exception as e:
-            return None
+            print(f"备用数据源获取失败: {str(e)}")
+        
+        return None
+    
+    def get_3d_backup_data(self, count=30):
+        """
+        获取福彩3D备用数据源
+        """
+        print("尝试从备用数据源获取福彩3D数据...")
+        try:
+            # 尝试从中国福彩网获取
+            url = "https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice"
+            params = {
+                'name': '3d',
+                'issueCount': str(count),
+                'issueStart': '',
+                'issueEnd': '',
+                'dayStart': '',
+                'dayEnd': ''
+            }
+            
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'application/json, text/javascript, */*; q=0.01',
+                'X-Requested-With': 'XMLHttpRequest',
+                'Referer': 'https://www.cwl.gov.cn/'
+            }
+            
+            response = requests.get(url, params=params, headers=headers, timeout=30, verify=False)
+            print(f"备用数据源响应状态码: {response.status_code}")
+            
+            if response.status_code == 200:
+                try:
+                    data = response.json()
+                    print(f"备用数据源返回数据: {data}")
+                    
+                    if data.get('state') == 0:
+                        results = data.get('result', [])
+                        data_list = []
+                        for item in results:
+                            numbers = item.get('red', '')
+                            if numbers:
+                                # 将号码格式化为带空格的格式
+                                formatted_numbers = ' '.join(list(numbers))
+                            else:
+                                formatted_numbers = ''
+                                
+                            data_list.append({
+                                '期号': item.get('code', ''),
+                                '开奖日期': item.get('date', '').split(' ')[0] if item.get('date') else '',
+                                '开奖号码': formatted_numbers,
+                                '销售金额': item.get('sales', 0)
+                            })
+                        
+                        if data_list:
+                            print(f"从备用数据源获取到 {len(data_list)} 条福彩3D数据")
+                            df = pd.DataFrame(data_list)
+                            return df
+                except Exception as e:
+                    print(f"解析备用数据源JSON失败: {str(e)}")
+        except Exception as e:
+            print(f"备用数据源获取失败: {str(e)}")
+        
+        return None
     
     def parse_pl5_html(self, html_content):
         """
@@ -666,60 +857,69 @@ class LotteryDataCrawler:
         """
         soup = BeautifulSoup(html_content, 'html.parser')
         
-        # 查找开奖数据表格
-        table = soup.find('table', class_='kjls')
-        if not table:
-            return None
+        # 尝试不同的表格选择器
+        tables = soup.find_all('table')
         
         data = []
-        # 跳过表头行（前两行）
-        rows = table.find_all('tr')[2:]
         
-        for row in rows:
-            cols = row.find_all('td')
-            if len(cols) >= 7:  # 确保有足够的列数
-                try:
-                    # 提取期号
-                    period = cols[0].get_text(strip=True)
-                    if not period.isdigit():
+        for table in tables:
+            # 查找包含开奖数据的行
+            rows = table.find_all('tr')
+            for row in rows:
+                cols = row.find_all('td')
+                if len(cols) >= 4:  # 至少有期号、日期、销售金额、开奖号码
+                    try:
+                        # 提取期号
+                        period = cols[0].get_text(strip=True)
+                        if not period or not any(char.isdigit() for char in period):
+                            continue
+                        
+                        # 提取开奖日期
+                        date_text = cols[1].get_text(strip=True) if len(cols) > 1 else ''
+                        
+                        # 提取销售金额
+                        sales_text = cols[2].get_text(strip=True) if len(cols) > 2 else '0'
+                        sales_amount = self.parse_sales_amount(sales_text)
+                        
+                        # 提取开奖号码
+                        number_cell = cols[3] if len(cols) > 3 else None
+                        if number_cell:
+                            # 尝试从链接获取
+                            number_link = number_cell.find('a')
+                            if number_link:
+                                numbers = number_link.get_text(strip=True)
+                            else:
+                                numbers = number_cell.get_text(strip=True)
+                        else:
+                            numbers = ''
+                        
+                        # 清理号码格式
+                        numbers = re.sub(r'\s+', ' ', numbers.strip())
+                        clean_numbers = numbers.replace(' ', '')
+                        
+                        # 验证号码格式（应该是5位数字）
+                        if not re.match(r'^\d{5}$', clean_numbers):
+                            continue
+                        
+                        # 格式化号码（带空格）
+                        if ' ' not in numbers and len(clean_numbers) == 5:
+                            numbers = ' '.join(clean_numbers)
+                        
+                        # 提取一等奖信息（如果存在）
+                        first_prize_count = 0
+                        if len(cols) > 4:
+                            first_prize_count = self.parse_prize_count(cols[4].get_text(strip=True))
+                        
+                        data.append({
+                            '期号': period,
+                            '开奖日期': date_text,
+                            '销售金额': sales_amount,
+                            '开奖号码': numbers,
+                            '一等奖注数': first_prize_count
+                        })
+                        
+                    except Exception as e:
                         continue
-                    
-                    # 提取开奖日期
-                    date_text = cols[1].get_text(strip=True)
-                    
-                    # 提取销售金额
-                    sales_text = cols[2].get_text(strip=True)
-                    sales_amount = self.parse_sales_amount(sales_text)
-                    
-                    # 提取开奖号码
-                    number_cell = cols[3]
-                    number_link = number_cell.find('a')
-                    if number_link:
-                        numbers = number_link.get_text(strip=True)
-                    else:
-                        numbers = number_cell.get_text(strip=True)
-                    
-                    # 保留原始格式（带空格）
-                    numbers = numbers.strip()
-                    
-                    # 验证号码格式（应该是5位数字，可能有空格）
-                    clean_numbers = numbers.replace(' ', '')
-                    if not re.match(r'^\d{5}$', clean_numbers):
-                        continue
-                    
-                    # 提取一等奖信息
-                    first_prize_count = self.parse_prize_count(cols[4].get_text(strip=True))
-                    
-                    data.append({
-                        '期号': period,
-                        '开奖日期': date_text,
-                        '销售金额': sales_amount,
-                        '开奖号码': numbers,  # 保留原始格式（带空格）
-                        '一等奖注数': first_prize_count
-                    })
-                    
-                except Exception:
-                    continue
         
         return pd.DataFrame(data) if data else None
     
@@ -729,78 +929,87 @@ class LotteryDataCrawler:
         """
         soup = BeautifulSoup(html_content, 'html.parser')
         
-        # 查找开奖数据表格
-        table = soup.find('table', class_='kjls')
-        if not table:
-            return None
+        # 尝试不同的表格选择器
+        tables = soup.find_all('table')
         
         data = []
-        # 跳过表头行（前两行）
-        rows = table.find_all('tr')[2:]
         
-        for row in rows:
-            cols = row.find_all('td')
-            if len(cols) >= 9:  # 福彩3D有更多列
-                try:
-                    # 提取期号
-                    period = cols[0].get_text(strip=True)
-                    if not period.isdigit():
+        for table in tables:
+            # 查找包含开奖数据的行
+            rows = table.find_all('tr')
+            for row in rows:
+                cols = row.find_all('td')
+                if len(cols) >= 4:  # 至少有期号、日期、销售金额、开奖号码
+                    try:
+                        # 提取期号
+                        period = cols[0].get_text(strip=True)
+                        if not period or not any(char.isdigit() for char in period):
+                            continue
+                        
+                        # 提取开奖日期
+                        date_text = cols[1].get_text(strip=True) if len(cols) > 1 else ''
+                        
+                        # 提取销售金额
+                        sales_text = cols[2].get_text(strip=True) if len(cols) > 2 else '0'
+                        sales_amount = self.parse_sales_amount(sales_text)
+                        
+                        # 提取开奖号码
+                        number_cell = cols[3] if len(cols) > 3 else None
+                        if number_cell:
+                            # 尝试从链接获取
+                            number_link = number_cell.find('a')
+                            if number_link:
+                                numbers = number_link.get_text(strip=True)
+                            else:
+                                numbers = number_cell.get_text(strip=True)
+                        else:
+                            numbers = ''
+                        
+                        # 清理号码格式
+                        numbers = re.sub(r'\s+', ' ', numbers.strip())
+                        clean_numbers = numbers.replace(' ', '')
+                        
+                        # 验证号码格式（应该是3位数字）
+                        if not re.match(r'^\d{3}$', clean_numbers):
+                            continue
+                        
+                        # 格式化号码（带空格）
+                        if ' ' not in numbers and len(clean_numbers) == 3:
+                            numbers = ' '.join(clean_numbers)
+                        
+                        data.append({
+                            '期号': period,
+                            '开奖日期': date_text,
+                            '销售金额': sales_amount,
+                            '开奖号码': numbers
+                        })
+                        
+                    except Exception as e:
                         continue
-                    
-                    # 提取开奖日期
-                    date_text = cols[1].get_text(strip=True)
-                    
-                    # 提取销售金额
-                    sales_text = cols[2].get_text(strip=True)
-                    sales_amount = self.parse_sales_amount(sales_text)
-                    
-                    # 提取开奖号码
-                    number_cell = cols[3]
-                    number_link = number_cell.find('a')
-                    if number_link:
-                        numbers = number_link.get_text(strip=True)
-                    else:
-                        numbers = number_cell.get_text(strip=True)
-                    
-                    # 保留原始格式（带空格）
-                    numbers = numbers.strip()
-                    
-                    # 验证号码格式（应该是3位数字，可能有空格）
-                    clean_numbers = numbers.replace(' ', '')
-                    if not re.match(r'^\d{3}$', clean_numbers):
-                        continue
-                    
-                    data.append({
-                        '期号': period,
-                        '开奖日期': date_text,
-                        '销售金额': sales_amount,
-                        '开奖号码': numbers  # 保留原始格式（带空格）
-                    })
-                    
-                except Exception:
-                    continue
         
         return pd.DataFrame(data) if data else None
     
     def parse_sales_amount(self, text):
         """解析销售金额"""
-        if text in ['', '-', '0']:
+        if not text or text in ['', '-', '0', 'N/A']:
             return 0
         try:
-            return int(text.replace(',', ''))
+            # 移除逗号和单位
+            text = text.replace(',', '').replace('元', '').replace('¥', '').strip()
+            return int(float(text))
         except:
             return 0
     
     def parse_prize_count(self, text):
         """解析奖注数"""
-        if text in ['', '-']:
+        if not text or text in ['', '-']:
             return 0
         try:
-            return int(text)
+            return int(text.replace(',', ''))
         except:
             return 0
 
-# 通用函数
+# 通用函数（保持不变）
 def get_existing_data(filename='Tools.xlsx', sheet_name='dltall'):
     """
     从Excel文件中读取现有的开奖数据
@@ -1004,11 +1213,15 @@ def format_pl5_dataframe(df):
     """
     格式化排列五数据框
     """
+    if df is None or len(df) == 0:
+        return pd.DataFrame()
+    
     # 确保列顺序正确
     expected_columns = ['期号', '开奖日期', '销售金额', '开奖号码', '一等奖注数']
     
     # 只保留需要的列
-    df = df[expected_columns].copy()
+    available_columns = [col for col in expected_columns if col in df.columns]
+    df = df[available_columns].copy()
     
     return df
 
@@ -1016,11 +1229,15 @@ def format_3d_dataframe(df):
     """
     格式化福彩3D数据框
     """
+    if df is None or len(df) == 0:
+        return pd.DataFrame()
+    
     # 确保列顺序正确
     expected_columns = ['期号', '开奖日期', '销售金额', '开奖号码']
     
     # 只保留需要的列
-    df = df[expected_columns].copy()
+    available_columns = [col for col in expected_columns if col in df.columns]
+    df = df[available_columns].copy()
     
     return df
 
@@ -1244,68 +1461,91 @@ def update_pl5_data(crawler):
     """
     更新排列五数据
     """
+    print("\n" + "="*50)
+    print("开始更新排列五数据...")
+    
     pl5_df = crawler.get_pl5_recent_data(30)
     
     if pl5_df is not None and len(pl5_df) > 0:
+        print(f"成功获取 {len(pl5_df)} 条排列五数据")
         # 格式化数据
         pl5_formatted = format_pl5_dataframe(pl5_df)
         
         # 增量保存到Excel文件
-        incremental_save_to_excel(pl5_formatted, 'Tools.xlsx', 'pl5')
+        success = incremental_save_to_excel(pl5_formatted, 'Tools.xlsx', 'pl5')
+        if success:
+            print("排列五数据保存成功!")
+        else:
+            print("排列五数据保存失败!")
+    else:
+        print("未获取到排列五数据")
 
 def update_3d_data(crawler):
     """
     更新福彩3D数据
     """
+    print("\n" + "="*50)
+    print("开始更新福彩3D数据...")
+    
     d3_df = crawler.get_3d_recent_data(30)
     
     if d3_df is not None and len(d3_df) > 0:
+        print(f"成功获取 {len(d3_df)} 条福彩3D数据")
         # 格式化数据
         d3_formatted = format_3d_dataframe(d3_df)
         
         # 增量保存到Excel文件
-        incremental_save_to_excel(d3_formatted, 'Tools.xlsx', '3D')
+        success = incremental_save_to_excel(d3_formatted, 'Tools.xlsx', '3D')
+        if success:
+            print("福彩3D数据保存成功!")
+        else:
+            print("福彩3D数据保存失败!")
+    else:
+        print("未获取到福彩3D数据")
 
 def main():
     """
     主函数 - 更新所有彩票数据
     """
-    print("彩票开奖数据获取工具 - 完整版")
+    print("彩票开奖数据获取工具 - 增强版")
     print("=" * 50)
     
     # 创建爬虫实例
     crawler = LotteryDataCrawler()
     
-    # 更新大乐透数据
-    print("正在更新大乐透数据...")
-    update_dlt_data(crawler)
-    
-    # 更新双色球数据
-    print("正在更新双色球数据...")
-    update_ssq_data(crawler)
-    
-    # 更新排列五数据
-    print("正在更新排列五数据...")
-    update_pl5_data(crawler)
-    
-    # 更新福彩3D数据
-    print("正在更新福彩3D数据...")
-    update_3d_data(crawler)
-    
-    # 将pl5和3D数据更新到EV工作表
-    print("正在将PL5和3D数据更新到EV工作表...")
-    success = update_ev_sheet_with_lottery_data('Tools.xlsx')
-    
-    if success:
-        print("EV工作表更新成功!")
-    else:
-        print("EV工作表更新失败!")
+    try:
+        # 更新大乐透数据
+        print("\n正在更新大乐透数据...")
+        update_dlt_data(crawler)
+        
+        # 更新双色球数据
+        print("\n正在更新双色球数据...")
+        update_ssq_data(crawler)
+        
+        # 更新排列五数据
+        update_pl5_data(crawler)
+        
+        # 更新福彩3D数据
+        update_3d_data(crawler)
+        
+        # 将pl5和3D数据更新到EV工作表
+        print("\n" + "="*50)
+        print("正在将PL5和3D数据更新到EV工作表...")
+        success = update_ev_sheet_with_lottery_data('Tools.xlsx')
+        
+        if success:
+            print("EV工作表更新成功!")
+        else:
+            print("EV工作表更新失败!")
+        
+    except Exception as e:
+        print(f"运行过程中出现错误: {str(e)}")
     
     # 显示保存路径
     file_path = os.path.abspath('Tools.xlsx')
-    print(f"文件保存路径: {file_path}")
+    print(f"\n文件保存路径: {file_path}")
     
-    print("所有数据更新完成!")
+    print("\n所有数据更新完成!")
 
 if __name__ == "__main__":
     main()

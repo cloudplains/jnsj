@@ -25,14 +25,6 @@
       "name": "南风线路"
     },
     {
-      "url": "https://gitee.com/yiwu369/6758/raw/master/%E9%9D%92%E9%BE%99/2.json",
-      "name": "青龙2"
-    },
-    {
-      "url": "https://gitee.com/blssss/jk/raw/api/bls.json",
-      "name": "玩偶接口"
-    },
-    {
       "url": "http://pandown.pro/tvbox/tvbox.json",
       "name": "巧儿接口"
     },
@@ -53,10 +45,6 @@
       "name": "TH挺好接口2"
     },
     {
-      "url": "https://gitee.com/xxoooo/fan/raw/master/in.bmp",
-      "name": "饭太硬接口5"
-    },
-    {
       "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/",
       "name": "王二小接口"
     },
@@ -75,10 +63,6 @@
     {
       "url": "https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json",
       "name": "香雅情接口"
-    },
-    {
-      "url": "https://gitee.com/kgysp/tv/raw/box/666.api",
-      "name": "坤哥接口"
     },
     {
       "url": "https://700sjro44343.vicp.fun/eggp/qzku/tv.json",
@@ -105,10 +89,6 @@
       "name": "肥猫(新)"
     },
     {
-      "url": "https://gitee.com/lukei7/lib/raw/Luck/%E8%87%AA%E5%BB%BA.json",
-      "name": "蓝天"
-    },
-    {
       "url": "https://9280.kstore.space/wex.json",
       "name": "牛二(凯速)"
     },
@@ -131,10 +111,6 @@
     {
       "url": "http://z.qiqiv.cn/123",
       "name": "奇奇单仓"
-    },
-    {
-      "url": "https://gitee.com/yiwu369/6758/raw/master/%E9%9D%92%E9%BE%99/1.json",
-      "name": "青龙1"
     },
     {
       "url": "http://fmys.top/fmys.json",
@@ -170,8 +146,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 42,
-  "invalid_count": 0,
-  "last_validated": "2025-12-19 14:46:42",
+  "valid_count": 36,
+  "invalid_count": 6,
+  "last_validated": "2025-12-20 02:49:23",
   "original_count": 42
 }

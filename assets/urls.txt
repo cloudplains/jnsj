@@ -1,6 +1,6 @@
-# 更新时间: 2025-12-23 02:59:04
-# 有效URL数量: 93
-# 无效URL数量: 2
+# 更新时间: 2025-12-23 05:22:06
+# 有效URL数量: 92
+# 无效URL数量: 1
 
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://jnsj.cloudplains.dpdns.org/assets/live.txt
@@ -62,7 +62,6 @@ https://m3u.ibert.me/txt/y_g.txt
 https://live.zbds.org/tv/iptv4.txt
 https://d.kstore.dev/download/12441/ds9.txt
 https://epg.pw/test_channels.m3u#中国大陆频道
-https://epg.pw/test_channels_taiwan.m3u#中国台湾频道
 https://iptv-org.github.io/iptv/countries/tw.m3u#中国台湾频道
 https://iptv-org.github.io/iptv/index.m3u#世界各地免费电视频道
 https://live.fanmingming.cn/tv/m3u/ipv6.m3u#范明明直播源国内镜像加速地址

@@ -101,10 +101,6 @@
       "name": "神秘的哥哥们"
     },
     {
-      "url": "https://6492.kstore.space/xnf/xnf.json",
-      "name": "环宇轩单线"
-    },
-    {
       "url": "http://z.qiqiv.cn/123",
       "name": "奇奇单仓"
     },
@@ -142,8 +138,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 35,
-  "invalid_count": 0,
-  "last_validated": "2025-12-25 10:17:23",
+  "valid_count": 34,
+  "invalid_count": 1,
+  "last_validated": "2025-12-26 02:58:21",
   "original_count": 35
 }

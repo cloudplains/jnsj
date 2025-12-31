@@ -46,9 +46,9 @@ jobs:
         这是一个自动更新的 IPTV 直播源项目，主要面向 IPv4 网络环境。
         
         ## 文件列表
-        - **直播源文件**: [tv202303.txt](https://www.cloudplains.cn/tv202303.txt)
-        - **节目信息文件**: [jnsj.json](https://www.cloudplains.cn/jnsj.json)
-        - **M3U播放列表**: [tv202303.m3u](https://www.cloudplains.cn/tv202303.m3u)
+        - **直播源文件**: [tv202303.txt](https://jnsj.cloudplains.dpdns.org/tv202303.txt)
+        - **节目信息文件**: [jnsj.json](https://jnsj.cloudplains.dpdns.org/jnsj.json)
+        - **M3U播放列表**: [tv202303.m3u](jnsj.cloudplains.dpdns.org/tv202303.m3u)
         
         ## 使用说明
         1. 下载对应的文件到本地播放器

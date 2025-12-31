@@ -1,0 +1,84 @@
+﻿name: Main Script Runner
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # 每天UTC时间21点运行（北京时间5点）
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  run_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        repository: cloudplains/jnsj
+        token: ${{ secrets.GITHUB_TOKEN }}
+        ssh-strict: true
+        persist-credentials: true
+        clean: true
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install opencc-python-reimplemented
+
+    - name: Run main.py
+      run: python main.py
+
+    - name: Update README.md
+      run: |
+        # 获取当前日期
+        CURRENT_DATE=$(date +'%Y年%m月%d日 %H:%M')
+        
+        # 更新 README.md 文件内容
+        cat > README.md << EOF
+        # IPTV 直播源 (IPv4)
+        
+        ## 项目说明
+        这是一个自动更新的 IPTV 直播源项目，主要面向 IPv4 网络环境。
+        
+        ## 文件列表
+        - **直播源文件**: [tv202303.txt](https://www.cloudplains.cn/tv202303.txt)
+        - **节目信息文件**: [jnsj.json](https://www.cloudplains.cn/jnsj.json)
+        - **M3U播放列表**: [tv202303.m3u](https://www.cloudplains.cn/tv202303.m3u)
+        
+        ## 使用说明
+        1. 下载对应的文件到本地播放器
+        2. 在支持 M3U 格式的播放器中打开
+        
+        ## 自动更新
+        本项目每天自动更新，确保直播源的时效性。
+        
+        **最后更新时间**: $CURRENT_DATE
+        
+        ## 注意事项
+        - 请遵守相关法律法规，合理使用直播源
+        - 本项目仅提供技术演示，不保证所有频道的可用性
+        - 如有问题，请通过 GitHub Issues 反馈
+        
+        ---
+        *自动生成于 $CURRENT_DATE*
+        EOF
+        
+        echo "README.md 已更新"
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "github-actions[bot]"
+        git add tv202303.txt tv202303.m3u README.md
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🚀 AutoUpdate $(date +'%Y%m%d') - 更新直播源和README"
+          git pull origin main --rebase
+          git push origin main
+        fi

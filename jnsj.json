@@ -41,10 +41,6 @@
       "name": "TH挺好接口2"
     },
     {
-      "url": "http://home.jundie.top:81/top98.json",
-      "name": "俊哥接口"
-    },
-    {
       "url": "http://tv.aisimu.cn/tv/all.json",
       "name": "艾丝沐"
     },
@@ -130,8 +126,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 32,
-  "invalid_count": 0,
-  "last_validated": "2026-01-03 09:09:00",
+  "valid_count": 31,
+  "invalid_count": 1,
+  "last_validated": "2026-01-03 10:16:02",
   "original_count": 32
 }

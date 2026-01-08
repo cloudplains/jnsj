@@ -1,4 +1,4 @@
-﻿import pandas as pd
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
@@ -8,7 +8,7 @@ from io import BytesIO
 import os
 import webbrowser
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 import random
 import warnings
 
@@ -20,6 +20,7 @@ class LotteryAnalyzer:
         self.file_path = file_path
         self.dlt_df = None
         self.ssq_df = None
+        self.pl5_df = None  # 新增排列五数据
         
         # 设置中文字体
         self._setup_chinese_font()
@@ -35,7 +36,11 @@ class LotteryAnalyzer:
         self.ssq_blue_cols = ['蓝球']
         self.ssq_red_range = (1, 33)
         self.ssq_blue_range = (1, 16)
-    
+        
+        # 排列五配置
+        self.pl5_cols = ['万位', '千位', '百位', '十位', '个位']  # 假设列名
+        self.pl5_range = (0, 9)  # 每个位置都是0-9
+        
     def _setup_chinese_font(self):
         """设置中文字体"""
         try:
@@ -61,7 +66,7 @@ class LotteryAnalyzer:
             # 检查文件是否存在
             if not os.path.exists(self.file_path):
                 print(f"✗ 文件不存在：{self.file_path}")
-                return {'dlt': False, 'ssq': False}
+                return {'dlt': False, 'ssq': False, 'pl5': False}
             
             # 读取Excel文件
             excel_file = pd.ExcelFile(self.file_path)
@@ -106,11 +111,49 @@ class LotteryAnalyzer:
                 print("✗ 双色球工作表不存在")
                 results['ssq'] = False
             
+            # 验证排列五数据
+            if "pl5" in available_sheets:
+                self.pl5_df = excel_file.parse("pl5")
+                print("✓ 排列五数据验证通过")
+                print(f"  数据行数：{len(self.pl5_df)}")
+                print(f"  列名：{self.pl5_df.columns.tolist()}")
+                
+                # 检查列名并尝试转换
+                try:
+                    # 先检查是否有各个位置的列
+                    has_position_columns = False
+                    for col in self.pl5_cols:
+                        if col in self.pl5_df.columns:
+                            has_position_columns = True
+                            self.pl5_df[col] = pd.to_numeric(self.pl5_df[col], errors='coerce').fillna(0).astype(int)
+                    
+                    # 如果没有单独的列，尝试从"开奖号码"列解析
+                    if not has_position_columns and '开奖号码' in self.pl5_df.columns:
+                        print("   从'开奖号码'列解析数据...")
+                        # 清理开奖号码列：移除空格，只保留数字
+                        self.pl5_df['开奖号码_clean'] = self.pl5_df['开奖号码'].astype(str).str.replace(r'\s+', '', regex=True)
+                        # 确保是5位数字
+                        self.pl5_df['开奖号码_clean'] = self.pl5_df['开奖号码_clean'].str.zfill(5)
+                        # 提取每个位置的数字
+                        for i, col in enumerate(self.pl5_cols):
+                            self.pl5_df[col] = self.pl5_df['开奖号码_clean'].str[i].astype(int)
+                        
+                        print(f"   前5行数据：{self.pl5_df[self.pl5_cols].head().values.tolist()}")
+                    
+                    results['pl5'] = True
+                except Exception as e:
+                    print(f"✗ 排列五数据转换失败：{str(e)}")
+                    print(f"  数据示例：{self.pl5_df.head(3).to_dict() if len(self.pl5_df) > 0 else '空数据'}")
+                    results['pl5'] = False
+            else:
+                print("✗ 排列五工作表不存在")
+                results['pl5'] = False
+            
             return results
             
         except Exception as e:
             print(f"✗ 读取文件失败：{str(e)}")
-            return {'dlt': False, 'ssq': False}
+            return {'dlt': False, 'ssq': False, 'pl5': False}
     
     def get_latest_draw_info(self):
         """获取最新开奖信息"""
@@ -146,6 +189,37 @@ class LotteryAnalyzer:
                 'date': ssq_date,
                 'red_numbers': ssq_red,
                 'blue_number': ssq_blue[0] if ssq_blue else '未知'
+            }
+        
+        # 获取排列五最新开奖信息
+        if self.pl5_df is not None and len(self.pl5_df) > 0:
+            latest_pl5 = self.pl5_df.iloc[-1]
+            # 假设数据中有期号列
+            pl5_period = latest_pl5.get('期号', f"第{len(self.pl5_df)}期")
+            pl5_date = latest_pl5.get('开奖日期', '未知日期')
+            
+            # 获取各个位置的数字
+            pl5_numbers = []
+            for col in self.pl5_cols:
+                if col in latest_pl5 and not pd.isna(latest_pl5[col]):
+                    try:
+                        pl5_numbers.append(int(latest_pl5[col]))
+                    except (ValueError, TypeError):
+                        # 如果转换失败，尝试从开奖号码字符串中提取
+                        if '开奖号码' in latest_pl5 and not pd.isna(latest_pl5['开奖号码']):
+                            num_str = str(latest_pl5['开奖号码']).replace(' ', '').strip()
+                            if len(num_str) >= 5 and num_str.isdigit():
+                                pl5_numbers = [int(d) for d in num_str[:5]]
+                                break
+            
+            # 如果pl5_numbers为空或长度不足，使用默认值
+            if len(pl5_numbers) < 5:
+                pl5_numbers = [0] * 5
+            
+            latest_info['pl5'] = {
+                'period': pl5_period,
+                'date': pl5_date,
+                'numbers': pl5_numbers[:5]  # 只取前5位
             }
         
         return latest_info
@@ -246,6 +320,69 @@ class LotteryAnalyzer:
             'blue_even': blue_even,
             'red_intervals': red_intervals.value_counts(),
             'blue_intervals': blue_intervals.value_counts()
+        }
+    
+    def analyze_pl5(self):
+        """分析排列五数据"""
+        if self.pl5_df is None:
+            return None
+            
+        print("\n=== 排列五数据分析 ===")
+        
+        # 检查是否有数据
+        if len(self.pl5_df) == 0:
+            print("   警告：排列五数据为空")
+            return None
+        
+        # 存储每位数字的频率
+        position_freq = {}
+        position_numbers = {}
+        
+        for i, col in enumerate(self.pl5_cols):
+            if col in self.pl5_df.columns:
+                # 确保数据类型正确
+                numbers = pd.to_numeric(self.pl5_df[col], errors='coerce').fillna(0).astype(int)
+                position_numbers[col] = numbers
+                freq = numbers.value_counts().sort_index()
+                position_freq[col] = freq
+                if len(freq) > 0:
+                    print(f"   {col}热门数字：{freq.head(3).index.tolist()}")
+                else:
+                    print(f"   {col}：无有效数据")
+        
+        # 如果没有数据，返回空结果
+        if not position_numbers:
+            print("   警告：未找到有效的排列五位置数据")
+            return None
+        
+        # 奇偶统计
+        odd_even_stats = {}
+        for col, numbers in position_numbers.items():
+            odd = (numbers % 2 == 1).sum()
+            even = (numbers % 2 == 0).sum()
+            odd_even_stats[col] = {'odd': odd, 'even': even}
+        
+        # 大小统计 (0-4为小，5-9为大)
+        size_stats = {}
+        for col, numbers in position_numbers.items():
+            small = ((numbers >= 0) & (numbers <= 4)).sum()
+            big = ((numbers >= 5) & (numbers <= 9)).sum()
+            size_stats[col] = {'small': small, 'big': big}
+        
+        # 质合统计
+        prime_stats = {}
+        primes = {2, 3, 5, 7}  # 0-9中的质数
+        for col, numbers in position_numbers.items():
+            prime = numbers.isin(primes).sum()
+            composite = len(numbers) - prime
+            prime_stats[col] = {'prime': prime, 'composite': composite}
+        
+        return {
+            'position_numbers': position_numbers,
+            'position_freq': position_freq,
+            'odd_even_stats': odd_even_stats,
+            'size_stats': size_stats,
+            'prime_stats': prime_stats
         }
     
     def recommend_dlt_numbers(self):
@@ -381,75 +518,240 @@ class LotteryAnalyzer:
         
         return red_numbers, blue_number
     
-    def generate_plots(self, dlt_analysis, ssq_analysis):
+    def recommend_pl5_numbers(self):
+        """推荐排列五号码"""
+        if self.pl5_df is None:
+            return None
+            
+        print("\n=== 排列五号码推荐 ===")
+        
+        # 检查是否有数据
+        if len(self.pl5_df) == 0:
+            print("   警告：排列五数据为空")
+            return None
+        
+        # 获取最近15期数据
+        recent_data = self.pl5_df.tail(15)
+        
+        # 为每个位置推荐数字
+        recommended_numbers = []
+        recommendation_strategy = []
+        
+        for i, col in enumerate(self.pl5_cols):
+            if col not in recent_data.columns:
+                # 如果没有单独的列，尝试从开奖号码提取
+                if '开奖号码' in recent_data.columns:
+                    recent_data[col] = recent_data['开奖号码'].astype(str).str.zfill(5).str[i]
+            
+            if col in recent_data.columns:
+                numbers = recent_data[col].astype(int)
+                freq = numbers.value_counts()
+                
+                # 分析奇偶、大小分布
+                odd_count = (numbers % 2 == 1).sum()
+                even_count = (numbers % 2 == 0).sum()
+                small_count = (numbers <= 4).sum()
+                big_count = (numbers >= 5).sum()
+                
+                # 推荐策略：基于热号、冷号、奇偶、大小平衡
+                # 1. 考虑热号（最近15期出现次数最多的）
+                hot_numbers = freq.head(3).index.tolist()
+                
+                # 2. 考虑冷号（最近15期出现次数最少的或未出现的）
+                cold_numbers = [num for num in range(0, 10) if num not in freq.index]
+                if len(cold_numbers) < 2:
+                    cold_numbers = freq.tail(3).index.tolist()
+                
+                # 3. 根据奇偶平衡推荐
+                if odd_count > even_count:
+                    # 最近奇数多，这次推荐偶数
+                    parity_preference = [num for num in range(0, 10) if num % 2 == 0]
+                else:
+                    # 最近偶数多，这次推荐奇数
+                    parity_preference = [num for num in range(0, 10) if num % 2 == 1]
+                
+                # 4. 根据大小平衡推荐
+                if small_count > big_count:
+                    # 最近小数多，这次推荐大数
+                    size_preference = [num for num in range(5, 10)]
+                else:
+                    # 最近大数多，这次推荐小数
+                    size_preference = [num for num in range(0, 5)]
+                
+                # 综合推荐：优先选择同时满足多个条件的数字
+                preferred_numbers = []
+                
+                # 首先找同时满足奇偶和大小偏好的热号
+                for num in hot_numbers:
+                    if num in parity_preference and num in size_preference:
+                        preferred_numbers.append(num)
+                
+                # 如果找不到，放宽条件
+                if not preferred_numbers:
+                    for num in hot_numbers:
+                        if num in parity_preference or num in size_preference:
+                            preferred_numbers.append(num)
+                
+                # 如果还是没有，从冷号中找满足条件的
+                if not preferred_numbers:
+                    for num in cold_numbers:
+                        if num in parity_preference and num in size_preference:
+                            preferred_numbers.append(num)
+                
+                # 如果还是没有，随机选择
+                if not preferred_numbers:
+                    if hot_numbers:
+                        preferred_numbers = hot_numbers
+                    else:
+                        preferred_numbers = list(range(0, 10))
+                
+                # 从符合条件的数字中随机选择一个
+                recommended_num = random.choice(preferred_numbers)
+                recommended_numbers.append(recommended_num)
+                
+                # 记录推荐策略
+                strategy_desc = f"{col}:"
+                if recommended_num in hot_numbers:
+                    strategy_desc += "热号"
+                elif recommended_num in cold_numbers:
+                    strategy_desc += "冷号"
+                
+                if recommended_num % 2 == 1:
+                    strategy_desc += "+奇数"
+                else:
+                    strategy_desc += "+偶数"
+                
+                if recommended_num <= 4:
+                    strategy_desc += "+小数"
+                else:
+                    strategy_desc += "+大数"
+                
+                recommendation_strategy.append(strategy_desc)
+        
+        print(f"🎯 推荐号码：{''.join(map(str, recommended_numbers))}")
+        print(f"   策略：{' | '.join(recommendation_strategy)}")
+        print(f"   分析期数：最近15期")
+        
+        return recommended_numbers
+    
+    def generate_plots(self, dlt_analysis, ssq_analysis, pl5_analysis=None):
         """生成可视化图表"""
         # 设置图表字体
         plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
         plt.rcParams['axes.unicode_minus'] = False
-        
-        fig = plt.figure(figsize=(20, 16))
-        fig.patch.set_facecolor('#F8F9FA')
-        
-        # 配色方案
-        colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe']
-        
+
+        # 计算需要的子图数量
+        num_plots = 0
         if dlt_analysis:
-            # 大乐透图表
-            ax1 = plt.subplot(2, 3, 1)
+            num_plots += 3  # 前区、后区、奇偶
+        if ssq_analysis:
+            num_plots += 3  # 红球、蓝球、奇偶
+        if pl5_analysis and 'position_freq' in pl5_analysis:
+            num_plots += len(pl5_analysis['position_freq'])  # 每个位置一个图
+
+        if num_plots == 0:
+            # 如果没有数据可画，返回空图
+            fig, ax = plt.subplots(figsize=(8, 6))
+            ax.text(0.5, 0.5, '无有效数据可供绘图', ha='center', va='center', fontsize=14)
+            ax.axis('off')
+            buffer = BytesIO()
+            plt.savefig(buffer, format='png', dpi=100, bbox_inches='tight', facecolor='#F8F9FA')
+            buffer.seek(0)
+            img_base64 = base64.b64encode(buffer.getvalue()).decode()
+            plt.close()
+            return img_base64
+
+        # 动态确定布局：每行最多6个图
+        cols = min(6, num_plots)
+        rows = (num_plots + cols - 1) // cols  # 向上取整
+
+        fig, axes = plt.subplots(rows, cols, figsize=(5 * cols, 4 * rows))
+        fig.patch.set_facecolor('#F8F9FA')
+
+        # 扁平化 axes 便于顺序访问
+        if num_plots == 1:
+            axes = [axes]
+        else:
+            axes = axes.flatten()
+
+        colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe']
+        ax_index = 0
+
+        # 大乐透图表
+        if dlt_analysis:
             front_freq = dlt_analysis['front_freq']
-            ax1.bar(front_freq.index, front_freq.values, color=colors[0], alpha=0.7)
-            ax1.set_title('大乐透前区频率分布', fontsize=12, fontweight='bold')
-            ax1.grid(alpha=0.2)
-            
-            ax2 = plt.subplot(2, 3, 2)
+            axes[ax_index].bar(front_freq.index, front_freq.values, color=colors[0], alpha=0.7)
+            axes[ax_index].set_title('大乐透前区频率分布', fontsize=10, fontweight='bold')
+            axes[ax_index].grid(alpha=0.2)
+            ax_index += 1
+
             back_freq = dlt_analysis['back_freq']
-            ax2.bar(back_freq.index, back_freq.values, color=colors[1], alpha=0.7)
-            ax2.set_title('大乐透后区频率分布', fontsize=12, fontweight='bold')
-            ax2.grid(alpha=0.2)
-            
-            ax3 = plt.subplot(2, 3, 3)
+            axes[ax_index].bar(back_freq.index, back_freq.values, color=colors[1], alpha=0.7)
+            axes[ax_index].set_title('大乐透后区频率分布', fontsize=10, fontweight='bold')
+            axes[ax_index].grid(alpha=0.2)
+            ax_index += 1
+
             front_odd = dlt_analysis['front_odd']
             front_even = dlt_analysis['front_even']
-            ax3.pie([front_odd, front_even], labels=['奇数', '偶数'], colors=[colors[2], colors[3]], autopct='%1.1f%%')
-            ax3.set_title('大乐透前区奇偶分布', fontsize=12, fontweight='bold')
-        
+            axes[ax_index].pie([front_odd, front_even], labels=['奇数', '偶数'], colors=[colors[2], colors[3]], autopct='%1.1f%%')
+            axes[ax_index].set_title('大乐透前区奇偶分布', fontsize=10, fontweight='bold')
+            ax_index += 1
+
+        # 双色球图表
         if ssq_analysis:
-            # 双色球图表
-            ax4 = plt.subplot(2, 3, 4)
             red_freq = ssq_analysis['red_freq']
-            ax4.bar(red_freq.index, red_freq.values, color=colors[0], alpha=0.7)
-            ax4.set_title('双色球红球频率分布', fontsize=12, fontweight='bold')
-            ax4.grid(alpha=0.2)
-            
-            ax5 = plt.subplot(2, 3, 5)
+            axes[ax_index].bar(red_freq.index, red_freq.values, color=colors[0], alpha=0.7)
+            axes[ax_index].set_title('双色球红球频率分布', fontsize=10, fontweight='bold')
+            axes[ax_index].grid(alpha=0.2)
+            ax_index += 1
+
             blue_freq = ssq_analysis['blue_freq']
-            ax5.bar(blue_freq.index, blue_freq.values, color=colors[1], alpha=0.7)
-            ax5.set_title('双色球蓝球频率分布', fontsize=12, fontweight='bold')
-            ax5.grid(alpha=0.2)
-            
-            ax6 = plt.subplot(2, 3, 6)
+            axes[ax_index].bar(blue_freq.index, blue_freq.values, color=colors[1], alpha=0.7)
+            axes[ax_index].set_title('双色球蓝球频率分布', fontsize=10, fontweight='bold')
+            axes[ax_index].grid(alpha=0.2)
+            ax_index += 1
+
             red_odd = ssq_analysis['red_odd']
             red_even = ssq_analysis['red_even']
-            ax6.pie([red_odd, red_even], labels=['奇数', '偶数'], colors=[colors[2], colors[3]], autopct='%1.1f%%')
-            ax6.set_title('双色球红球奇偶分布', fontsize=12, fontweight='bold')
-        
+            axes[ax_index].pie([red_odd, red_even], labels=['奇数', '偶数'], colors=[colors[2], colors[3]], autopct='%1.1f%%')
+            axes[ax_index].set_title('双色球红球奇偶分布', fontsize=10, fontweight='bold')
+            ax_index += 1
+
+        # 排列五图表
+        if pl5_analysis and 'position_freq' in pl5_analysis:
+            position_freq = pl5_analysis['position_freq']
+            for pos_name, freq in position_freq.items():
+                if ax_index >= len(axes):
+                    break  # 防止超出
+                axes[ax_index].bar(freq.index, freq.values, color=colors[ax_index % len(colors)], alpha=0.7)
+                axes[ax_index].set_title(f'排列五{pos_name}频率分布', fontsize=9, fontweight='bold')
+                axes[ax_index].set_xlabel('数字')
+                axes[ax_index].set_ylabel('出现次数')
+                axes[ax_index].grid(alpha=0.2)
+                axes[ax_index].set_xticks(range(0, 10))
+                ax_index += 1
+
+        # 隐藏未使用的子图
+        for i in range(ax_index, len(axes)):
+            axes[i].axis('off')
+
         plt.tight_layout()
-        
+
         # 转换为base64
         buffer = BytesIO()
         plt.savefig(buffer, format='png', dpi=100, bbox_inches='tight', facecolor='#F8F9FA')
         buffer.seek(0)
         img_base64 = base64.b64encode(buffer.getvalue()).decode()
         plt.close()
-        
         return img_base64
     
-    def generate_report(self, validation_results, dlt_analysis, ssq_analysis, dlt_recommendation, ssq_recommendation):
+    def generate_report(self, validation_results, dlt_analysis, ssq_analysis, pl5_analysis, 
+                       dlt_recommendation, ssq_recommendation, pl5_recommendation):
         """生成HTML报告"""
         print("\n=== 生成分析报告 ===")
         
         # 生成图表
-        plot_base64 = self.generate_plots(dlt_analysis, ssq_analysis)
+        plot_base64 = self.generate_plots(dlt_analysis, ssq_analysis, pl5_analysis)
         
         # 获取最新开奖信息
         latest_info = self.get_latest_draw_info()
@@ -457,7 +759,9 @@ class LotteryAnalyzer:
         # 生成HTML内容
         html_content = self._create_html_content(
             plot_base64, validation_results,
-            dlt_analysis, ssq_analysis, dlt_recommendation, ssq_recommendation, latest_info
+            dlt_analysis, ssq_analysis, pl5_analysis,
+            dlt_recommendation, ssq_recommendation, pl5_recommendation, 
+            latest_info
         )
         
         # 保存报告 - 使用固定文件名
@@ -471,12 +775,14 @@ class LotteryAnalyzer:
         return report_path
     
     def _create_html_content(self, plot_base64, validation_results, 
-                           dlt_analysis, ssq_analysis, dlt_recommendation, ssq_recommendation, latest_info):
+                           dlt_analysis, ssq_analysis, pl5_analysis,
+                           dlt_recommendation, ssq_recommendation, pl5_recommendation, latest_info):
         """创建HTML内容 - 优化移动端显示"""
         
         # 获取统计数据
         dlt_periods = len(self.dlt_df) if self.dlt_df is not None else 0
         ssq_periods = len(self.ssq_df) if self.ssq_df is not None else 0
+        pl5_periods = len(self.pl5_df) if self.pl5_df is not None else 0
         
         # 大乐透推荐号码
         dlt_front_nums, dlt_back_nums = dlt_recommendation if dlt_recommendation else ([], [])
@@ -484,17 +790,30 @@ class LotteryAnalyzer:
         # 双色球推荐号码
         ssq_red_nums, ssq_blue_num = ssq_recommendation if ssq_recommendation else ([], "")
         
+        # 排列五推荐号码
+        pl5_nums = pl5_recommendation if pl5_recommendation else []
+        
         # 最新开奖信息
         dlt_latest = latest_info.get('dlt', {})
         ssq_latest = latest_info.get('ssq', {})
+        pl5_latest = latest_info.get('pl5', {})
         
-        html_content = f"""
-<!DOCTYPE html>
+        # 获取昨天日期（用于显示）
+        yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        
+        # 处理数据可能为空的情况
+        dlt_hottest = dlt_analysis["front_freq"].index[0] if dlt_analysis and len(dlt_analysis["front_freq"]) > 0 else "N/A"
+        dlt_back_hottest = dlt_analysis["back_freq"].index[0] if dlt_analysis and len(dlt_analysis["back_freq"]) > 0 else "N/A"
+        ssq_red_hottest = ssq_analysis["red_freq"].index[0] if ssq_analysis and len(ssq_analysis["red_freq"]) > 0 else "N/A"
+        ssq_blue_hottest = ssq_analysis["blue_freq"].index[0] if ssq_analysis and len(ssq_analysis["blue_freq"]) > 0 else "N/A"
+        
+        # 创建HTML内容，使用双重花括号转义
+        html_template = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>彩票数据分析报告</title>
+    <title>彩票数据分析报告（大乐透+双色球+排列五）</title>
     <style>
         * {{
             box-sizing: border-box;
@@ -579,6 +898,10 @@ class LotteryAnalyzer:
             border-left-color: #f5576c;
         }}
         
+        .pl5-card {{
+            border-left-color: #4facfe;
+        }}
+        
         .recommendation {{
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -595,6 +918,14 @@ class LotteryAnalyzer:
             margin: 12px 0;
         }}
         
+        .yesterday-draw {{
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 18px;
+            margin: 12px 0;
+        }}
+        
         .numbers {{
             font-size: 1.3rem;
             font-weight: bold;
@@ -602,6 +933,15 @@ class LotteryAnalyzer:
             text-align: center;
             letter-spacing: 2px;
             line-height: 1.8;
+        }}
+        
+        .pl5-numbers {{
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: center;
+            letter-spacing: 5px;
+            color: #ff6b6b;
         }}
         
         .chart-container {{
@@ -722,6 +1062,11 @@ class LotteryAnalyzer:
             .numbers {{
                 font-size: 1.8rem;
             }}
+            
+            .pl5-numbers {{
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }}
         }}
         
         /* 超小屏幕手机优化 */
@@ -739,6 +1084,11 @@ class LotteryAnalyzer:
                 letter-spacing: 1px;
             }}
             
+            .pl5-numbers {{
+                font-size: 1.5rem;
+                letter-spacing: 3px;
+            }}
+            
             .stat-card {{
                 padding: 12px 8px;
             }}
@@ -753,44 +1103,18 @@ class LotteryAnalyzer:
     <div class="container">
         <!-- 页眉 -->
         <div class="header">
-            <h1>数据分析报告</h1>
-            <p>基于历史数据的智能分析与号码推荐</p>
-            <div class="update-time">最后更新：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</div>
+            <h1>三彩票数据分析报告</h1>
+            <p>基于历史数据的智能分析与号码推荐（大乐透+双色球+排列五）</p>
+            <div class="update-time">最后更新：{update_time}</div>
         </div>
         
         <!-- 最新开奖信息 -->
         <div class="section">
             <div class="section-title">📅 最新开奖信息</div>
             <div class="lottery-grid">
-                {"".join(f'''
-                <div class="lottery-card dlt-card">
-                    <h3>🏀 大乐透最新开奖</h3>
-                    <div class="latest-draw">
-                        <div style="text-align: center; margin-bottom: 10px;">
-                            <strong>{dlt_latest.get('period', '最新期')}</strong> | {dlt_latest.get('date', '最新开奖')}
-                        </div>
-                        <div class="numbers">
-                            前区：{' '.join(map(str, dlt_latest.get('front_numbers', [])))}<br>
-                            后区：{' '.join(map(str, dlt_latest.get('back_numbers', [])))}
-                        </div>
-                    </div>
-                </div>
-                ''' if dlt_latest else '<div class="lottery-card"><p>大乐透最新开奖信息不可用</p></div>')}
-                
-                {"".join(f'''
-                <div class="lottery-card ssq-card">
-                    <h3>🔴 双色球最新开奖</h3>
-                    <div class="latest-draw">
-                        <div style="text-align: center; margin-bottom: 10px;">
-                            <strong>{ssq_latest.get('period', '最新期')}</strong> | {ssq_latest.get('date', '最新开奖')}
-                        </div>
-                        <div class="numbers">
-                            红球：{' '.join(map(str, ssq_latest.get('red_numbers', [])))}<br>
-                            蓝球：{ssq_latest.get('blue_number', '')}
-                        </div>
-                    </div>
-                </div>
-                ''' if ssq_latest else '<div class="lottery-card"><p>双色球最新开奖信息不可用</p></div>')}
+                {dlt_latest_html}
+                {ssq_latest_html}
+                {pl5_latest_html}
             </div>
         </div>
         
@@ -809,18 +1133,14 @@ class LotteryAnalyzer:
                     <div>历史数据</div>
                 </div>
                 <div class="stat-card">
-                    <div>分析类型</div>
-                    <div class="stat-value">{2 if validation_results.get('dlt') and validation_results.get('ssq') else 1}</div>
-                    <div>彩票种类</div>
+                    <div>排列五期数</div>
+                    <div class="stat-value">{pl5_periods}</div>
+                    <div>历史数据</div>
                 </div>
                 <div class="stat-card">
-                    <div>数据状态</div>
-                    <div class="stat-value">{
-        "完整" if validation_results.get('dlt') and validation_results.get('ssq') 
-        else "部分" if validation_results.get('dlt') or validation_results.get('ssq') 
-        else "异常"
-    }</div>
-                    <div>验证结果</div>
+                    <div>分析类型</div>
+                    <div class="stat-value">{analysis_types}</div>
+                    <div>彩票种类</div>
                 </div>
             </div>
         </div>
@@ -829,47 +1149,9 @@ class LotteryAnalyzer:
         <div class="section">
             <div class="section-title">🎯 智能号码推荐</div>
             <div class="lottery-grid">
-                {"".join(f'''
-                <div class="lottery-card dlt-card">
-                    <h3>🏀 大乐透推荐</h3>
-                    <div class="recommendation">
-                        <div class="numbers">
-                            前区：{' '.join(map(str, dlt_front_nums))}<br>
-                            后区：{' '.join(map(str, dlt_back_nums))}
-                        </div>
-                    </div>
-                    <div class="strategy-info">
-                        <h4>推荐策略：</h4>
-                        <ul>
-                            <li>基于<b>最近15期</b>数据分析</li>
-                            <li>前区：<b>2个热门号码 + 2个冷门号码 + 1个随机号码</b></li>
-                            <li>后区：<b>1个热门号码 + 1个随机号码</b></li>
-                            <li>结合热冷平衡，提高覆盖范围</li>
-                        </ul>
-                    </div>
-                </div>
-                ''' if dlt_recommendation else '<div class="lottery-card"><p>大乐透数据不可用</p></div>')}
-                
-                {"".join(f'''
-                <div class="lottery-card ssq-card">
-                    <h3>🔴 双色球推荐</h3>
-                    <div class="recommendation">
-                        <div class="numbers">
-                            红球：{' '.join(map(str, ssq_red_nums))}<br>
-                            蓝球：{ssq_blue_num}
-                        </div>
-                    </div>
-                    <div class="strategy-info">
-                        <h4>推荐策略：</h4>
-                        <ul>
-                            <li>基于<b>最近15期</b>数据分析</li>
-                            <li>红球：<b>2个热门号码 + 2个温门号码 + 2个冷门号码</b></li>
-                            <li>蓝球：<b>热门号码</b>优先</li>
-                            <li>平衡热冷分布，优化号码组合</li>
-                        </ul>
-                    </div>
-                </div>
-                ''' if ssq_recommendation else '<div class="lottery-card"><p>双色球数据不可用</p></div>')}
+                {dlt_recommendation_html}
+                {ssq_recommendation_html}
+                {pl5_recommendation_html}
             </div>
         </div>
         
@@ -880,7 +1162,7 @@ class LotteryAnalyzer:
                 <img src="data:image/png;base64,{plot_base64}" alt="彩票分析图表">
             </div>
             <p style="text-align: center; margin-top: 10px; color: #666; font-size: 0.9rem;">
-                上图展示了大乐透和双色球的号码频率分布以及奇偶分布情况，帮助理解历史号码的出现规律。
+                上图展示了大乐透、双色球和排列五的号码频率分布以及奇偶分布情况，帮助理解历史号码的出现规律。
             </p>
         </div>
         
@@ -888,62 +1170,10 @@ class LotteryAnalyzer:
         <div class="section">
             <div class="section-title">🔍 核心发现</div>
             <div class="lottery-grid">
-                {"".join(f'''
-                <div class="lottery-card">
-                    <h3>大乐透分析结果</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div>前区最热</div>
-                            <div class="stat-value">{dlt_analysis["front_freq"].index[0] if len(dlt_analysis["front_freq"]) > 0 else "N/A"}</div>
-                            <div>号码</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>后区最热</div>
-                            <div class="stat-value">{dlt_analysis["back_freq"].index[0] if len(dlt_analysis["back_freq"]) > 0 else "N/A"}</div>
-                            <div>号码</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>前区奇偶</div>
-                            <div class="stat-value">{dlt_analysis["front_odd"]}/{dlt_analysis["front_even"]}</div>
-                            <div>奇数/偶数</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>数据期数</div>
-                            <div class="stat-value">{dlt_periods}</div>
-                            <div>分析基础</div>
-                        </div>
-                    </div>
-                </div>
-                ''' if dlt_analysis else '<div class="lottery-card"><p>大乐透分析不可用</p></div>')}
-                
-                {"".join(f'''
-                <div class="lottery-card">
-                    <h3>双色球分析结果</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div>红球最热</div>
-                            <div class="stat-value">{ssq_analysis["red_freq"].index[0] if len(ssq_analysis["red_freq"]) > 0 else "N/A"}</div>
-                            <div>号码</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>蓝球最热</div>
-                            <div class="stat-value">{ssq_analysis["blue_freq"].index[0] if len(ssq_analysis["blue_freq"]) > 0 else "N/A"}</div>
-                            <div>号码</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>红球奇偶</div>
-                            <div class="stat-value">{ssq_analysis["red_odd"]}/{ssq_analysis["red_even"]}</div>
-                            <div>奇数/偶数</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>数据期数</div>
-                            <div class="stat-value">{ssq_periods}</div>
-                            <div>分析基础</div>
-                        </div>
-                    </div>
-                </div>
-                ''' if ssq_analysis else '<div class="lottery-card"><p>双色球分析不可用</p></div>')}
+                {dlt_analysis_html}
+                {ssq_analysis_html}
             </div>
+            {pl5_analysis_html}
         </div>
         
         <!-- 温馨提示 -->
@@ -968,11 +1198,21 @@ class LotteryAnalyzer:
                         <li>分析基于<b>最近15期</b>历史数据</li>
                     </ul>
                 </div>
+                <div class="lottery-card">
+                    <h3>排列五规则</h3>
+                    <ul>
+                        <li>每位号码：0-9，共5位</li>
+                        <li>每天开奖（除休市外）</li>
+                        <li>分析基于<b>最近15期</b>历史数据</li>
+                        <li>考虑奇偶、大小、热冷号平衡</li>
+                    </ul>
+                </div>
             </div>
             <div class="recommendation" style="margin-top: 15px;">
                 <h3 style="margin-bottom: 10px;">🎯 购彩建议</h3>
                 <ul>
                     <li>本推荐基于<b>最近15期数据的热冷平衡策略</b>，更加科学合理</li>
+                    <li>排列五推荐考虑每个位置的独立趋势与整体平衡</li>
                     <li>彩票中奖号码是随机产生的，本推荐仅基于历史数据统计分析</li>
                     <li>请理性购彩，量力而行，享受游戏乐趣</li>
                     <li>建议结合个人幸运号码进行适当调整</li>
@@ -983,15 +1223,281 @@ class LotteryAnalyzer:
         
         <!-- 页脚 -->
         <div class="footer">
-            <p>数据来源：本地Excel文件 | 分析方法：热冷平衡分析 | 版本：双彩票分析系统 v2.0</p>
+            <p>数据来源：本地Excel文件 | 分析方法：热冷平衡分析 | 版本：三彩票分析系统 v3.0</p>
             <p>温馨提示：请理性购彩，未成年人不得购买彩票</p>
-            <div class="footer-time">报告生成时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</div>
+            <div class="footer-time">报告生成时间：{current_time}</div>
         </div>
     </div>
 </body>
-</html>
-"""
+</html>'''
+        
+        # 准备HTML模板变量
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        update_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        analysis_types = sum([1 for v in validation_results.values() if v])
+        
+        # 大乐透最新开奖信息HTML
+        if dlt_latest:
+            dlt_latest_html = f'''
+            <div class="lottery-card dlt-card">
+                <h3>🏀 大乐透最新开奖</h3>
+                <div class="latest-draw">
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <strong>{dlt_latest.get('period', '最新期')}</strong> | {dlt_latest.get('date', '最新开奖')}
+                    </div>
+                    <div class="numbers">
+                        前区：{' '.join(map(str, dlt_latest.get('front_numbers', []))) if dlt_latest.get('front_numbers') else '暂无数据'}<br>
+                        后区：{' '.join(map(str, dlt_latest.get('back_numbers', []))) if dlt_latest.get('back_numbers') else '暂无数据'}
+                    </div>
+                </div>
+            </div>
+            '''
+        else:
+            dlt_latest_html = '<div class="lottery-card"><p>大乐透最新开奖信息不可用</p></div>'
+        
+        # 双色球最新开奖信息HTML
+        if ssq_latest:
+            ssq_latest_html = f'''
+            <div class="lottery-card ssq-card">
+                <h3>🔴 双色球最新开奖</h3>
+                <div class="latest-draw">
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <strong>{ssq_latest.get('period', '最新期')}</strong> | {ssq_latest.get('date', '最新开奖')}
+                    </div>
+                    <div class="numbers">
+                        红球：{' '.join(map(str, ssq_latest.get('red_numbers', []))) if ssq_latest.get('red_numbers') else '暂无数据'}<br>
+                        蓝球：{ssq_latest.get('blue_number', '暂无数据')}
+                    </div>
+                </div>
+            </div>
+            '''
+        else:
+            ssq_latest_html = '<div class="lottery-card"><p>双色球最新开奖信息不可用</p></div>'
+        
+        # 排列五最新开奖信息HTML
+        if pl5_latest:
+            pl5_numbers = pl5_latest.get('numbers', [])
+            pl5_latest_html = f'''
+            <div class="lottery-card pl5-card">
+                <h3>🔢 排列五最新开奖</h3>
+                <div class="latest-draw">
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <strong>{pl5_latest.get('period', '最新期')}</strong> | {pl5_latest.get('date', '最新开奖')}
+                    </div>
+                    <div class="pl5-numbers">
+                        {''.join(map(str, pl5_numbers)) if pl5_numbers else '暂无数据'}
+                    </div>
+                    <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
+                        {'万位：' + str(pl5_numbers[0]) + ' | ' if len(pl5_numbers) > 0 else ''}
+                        {'千位：' + str(pl5_numbers[1]) + ' | ' if len(pl5_numbers) > 1 else ''}
+                        {'百位：' + str(pl5_numbers[2]) + '<br>' if len(pl5_numbers) > 2 else ''}
+                        {'十位：' + str(pl5_numbers[3]) + ' | ' if len(pl5_numbers) > 3 else ''}
+                        {'个位：' + str(pl5_numbers[4]) if len(pl5_numbers) > 4 else ''}
+                    </div>
+                </div>
+            </div>
+            '''
+        else:
+            pl5_latest_html = '<div class="lottery-card"><p>排列五最新开奖信息不可用</p></div>'
+        
+        # 大乐透推荐HTML
+        if dlt_recommendation:
+            dlt_recommendation_html = f'''
+            <div class="lottery-card dlt-card">
+                <h3>🏀 大乐透推荐</h3>
+                <div class="recommendation">
+                    <div class="numbers">
+                        前区：{' '.join(map(str, dlt_front_nums)) if dlt_front_nums else '暂无数据'}<br>
+                        后区：{' '.join(map(str, dlt_back_nums)) if dlt_back_nums else '暂无数据'}
+                    </div>
+                </div>
+                <div class="strategy-info">
+                    <h4>推荐策略：</h4>
+                    <ul>
+                        <li>基于<b>最近15期</b>数据分析</li>
+                        <li>前区：<b>2个热门号码 + 2个冷门号码 + 1个随机号码</b></li>
+                        <li>后区：<b>1个热门号码 + 1个随机号码</b></li>
+                        <li>结合热冷平衡，提高覆盖范围</li>
+                    </ul>
+                </div>
+            </div>
+            '''
+        else:
+            dlt_recommendation_html = '<div class="lottery-card"><p>大乐透数据不可用</p></div>'
+        
+        # 双色球推荐HTML
+        if ssq_recommendation:
+            ssq_recommendation_html = f'''
+            <div class="lottery-card ssq-card">
+                <h3>🔴 双色球推荐</h3>
+                <div class="recommendation">
+                    <div class="numbers">
+                        红球：{' '.join(map(str, ssq_red_nums)) if ssq_red_nums else '暂无数据'}<br>
+                        蓝球：{ssq_blue_num if ssq_blue_num else '暂无数据'}
+                    </div>
+                </div>
+                <div class="strategy-info">
+                    <h4>推荐策略：</h4>
+                    <ul>
+                        <li>基于<b>最近15期</b>数据分析</li>
+                        <li>红球：<b>2个热门号码 + 2个温门号码 + 2个冷门号码</b></li>
+                        <li>蓝球：<b>热门号码</b>优先</li>
+                        <li>平衡热冷分布，优化号码组合</li>
+                    </ul>
+                </div>
+            </div>
+            '''
+        else:
+            ssq_recommendation_html = '<div class="lottery-card"><p>双色球数据不可用</p></div>'
+        
+        # 排列五推荐HTML
+        if pl5_recommendation:
+            pl5_recommendation_html = f'''
+            <div class="lottery-card pl5-card">
+                <h3>🔢 排列五推荐</h3>
+                <div class="recommendation">
+                    <div class="pl5-numbers">
+                        {''.join(map(str, pl5_nums)) if pl5_nums else '暂无数据'}
+                    </div>
+                </div>
+                <div class="strategy-info">
+                    <h4>推荐策略：</h4>
+                    <ul>
+                        <li>基于<b>最近15期</b>数据分析</li>
+                        <li>每个位置独立分析热号、冷号</li>
+                        <li>考虑<b>奇偶平衡</b>和<b>大小平衡</b></li>
+                        <li>优先选择满足多个条件的数字</li>
+                        <li>综合热冷号与趋势分析</li>
+                    </ul>
+                </div>
+            </div>
+            '''
+        else:
+            pl5_recommendation_html = '<div class="lottery-card"><p>排列五数据不可用</p></div>'
+        
+        # 大乐透分析HTML
+        if dlt_analysis:
+            dlt_analysis_html = f'''
+            <div class="lottery-card">
+                <h3>大乐透分析结果</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div>前区最热</div>
+                        <div class="stat-value">{dlt_hottest}</div>
+                        <div>号码</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>后区最热</div>
+                        <div class="stat-value">{dlt_back_hottest}</div>
+                        <div>号码</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>前区奇偶</div>
+                        <div class="stat-value">{dlt_analysis["front_odd"]}/{dlt_analysis["front_even"]}</div>
+                        <div>奇数/偶数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>数据期数</div>
+                        <div class="stat-value">{dlt_periods}</div>
+                        <div>分析基础</div>
+                    </div>
+                </div>
+            </div>
+            '''
+        else:
+            dlt_analysis_html = '<div class="lottery-card"><p>大乐透分析不可用</p></div>'
+        
+        # 双色球分析HTML
+        if ssq_analysis:
+            ssq_analysis_html = f'''
+            <div class="lottery-card">
+                <h3>双色球分析结果</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div>红球最热</div>
+                        <div class="stat-value">{ssq_red_hottest}</div>
+                        <div>号码</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>蓝球最热</div>
+                        <div class="stat-value">{ssq_blue_hottest}</div>
+                        <div>号码</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>红球奇偶</div>
+                        <div class="stat-value">{ssq_analysis["red_odd"]}/{ssq_analysis["red_even"]}</div>
+                        <div>奇数/偶数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>数据期数</div>
+                        <div class="stat-value">{ssq_periods}</div>
+                        <div>分析基础</div>
+                    </div>
+                </div>
+            </div>
+            '''
+        else:
+            ssq_analysis_html = '<div class="lottery-card"><p>双色球分析不可用</p></div>'
+        
+        # 排列五分析HTML - 修复了这里的Series布尔判断问题
+        if pl5_analysis and "position_freq" in pl5_analysis:
+            position_stat_html = ''
+            position_names = list(pl5_analysis.get("position_freq", {}).keys())
+            for i, pos_name in enumerate(position_names[:4]):  # 最多显示4个位置
+                if i < len(position_names):
+                    # 安全地获取最热数字
+                    freq_series = pl5_analysis["position_freq"][pos_name]
+                    if not freq_series.empty:
+                        hottest_num = freq_series.idxmax()
+                    else:
+                        hottest_num = "N/A"
+                        
+                    position_stat_html += f'''
+                    <div class="stat-card">
+                        <div>{pos_name}最热</div>
+                        <div class="stat-value">{hottest_num}</div>
+                        <div>数字</div>
+                    </div>
+                    '''
+            
+            pl5_analysis_html = f'''
+            <div class="lottery-grid" style="margin-top: 15px;">
+                <div class="lottery-card">
+                    <h3>排列五分析结果</h3>
+                    <div class="stats-grid">
+                        {position_stat_html}
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem;">
+                        <p><b>分析说明：</b>排列五每个位置独立分析，考虑热号、冷号、奇偶分布、大小分布等多维度因素，推荐综合最优组合。</p>
+                    </div>
+                </div>
+            </div>
+            '''
+        else:
+            pl5_analysis_html = ''
+        
+        # 格式化最终HTML
+        html_content = html_template.format(
+            update_time=update_time,
+            dlt_latest_html=dlt_latest_html,
+            ssq_latest_html=ssq_latest_html,
+            pl5_latest_html=pl5_latest_html,
+            dlt_periods=dlt_periods,
+            ssq_periods=ssq_periods,
+            pl5_periods=pl5_periods,
+            analysis_types=analysis_types,
+            dlt_recommendation_html=dlt_recommendation_html,
+            ssq_recommendation_html=ssq_recommendation_html,
+            pl5_recommendation_html=pl5_recommendation_html,
+            plot_base64=plot_base64,
+            dlt_analysis_html=dlt_analysis_html,
+            ssq_analysis_html=ssq_analysis_html,
+            pl5_analysis_html=pl5_analysis_html,
+            current_time=current_time
+        )
+        
         return html_content
+
 
 def main():
     """主函数"""
@@ -1002,8 +1508,8 @@ def main():
     file_path = os.path.join(script_dir, "Tools.xlsx")
     
     print("=" * 60)
-    print("          双彩票数据分析系统")
-    print("         (大乐透 + 双色球)")
+    print("          三彩票数据分析系统")
+    print("       (大乐透 + 双色球 + 排列五)")
     print("=" * 60)
     print(f"数据文件路径：{file_path}")
     
@@ -1021,6 +1527,7 @@ def main():
     # 2. 数据分析
     dlt_analysis = None
     ssq_analysis = None
+    pl5_analysis = None
     
     if validation_results.get('dlt'):
         dlt_analysis = analyzer.analyze_dlt()
@@ -1028,9 +1535,13 @@ def main():
     if validation_results.get('ssq'):
         ssq_analysis = analyzer.analyze_ssq()
     
+    if validation_results.get('pl5'):
+        pl5_analysis = analyzer.analyze_pl5()
+    
     # 3. 号码推荐
     dlt_recommendation = None
     ssq_recommendation = None
+    pl5_recommendation = None
     
     if validation_results.get('dlt'):
         dlt_recommendation = analyzer.recommend_dlt_numbers()
@@ -1038,10 +1549,13 @@ def main():
     if validation_results.get('ssq'):
         ssq_recommendation = analyzer.recommend_ssq_numbers()
     
+    if validation_results.get('pl5'):
+        pl5_recommendation = analyzer.recommend_pl5_numbers()
+    
     # 4. 生成报告
     report_path = analyzer.generate_report(
-        validation_results, dlt_analysis, ssq_analysis, 
-        dlt_recommendation, ssq_recommendation
+        validation_results, dlt_analysis, ssq_analysis, pl5_analysis,
+        dlt_recommendation, ssq_recommendation, pl5_recommendation
     )
     
     print("\n" + "=" * 60)
@@ -1049,6 +1563,5 @@ def main():
     print(f"          报告文件：{report_path}")
     print("=" * 60)
     
-
 if __name__ == "__main__":
     main()

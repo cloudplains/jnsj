@@ -41,10 +41,6 @@
       "name": "TH挺好接口2"
     },
     {
-      "url": "http://home.jundie.top:81/top98.json",
-      "name": "俊哥接口"
-    },
-    {
       "url": "http://tv.aisimu.cn/tv/all.json",
       "name": "艾丝沐"
     },
@@ -83,10 +79,6 @@
     {
       "url": "https://chuanshuo.77blog.cn/tv.json",
       "name": "传说"
-    },
-    {
-      "url": "https://upld.zone.id/uploads/q9iq9e5iq/tvboxlvse.json",
-      "name": "科技长青"
     },
     {
       "url": "https://play.iptv365.org/tvbox.txt",
@@ -130,8 +122,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 32,
+  "valid_count": 30,
   "invalid_count": 0,
-  "last_validated": "2026-01-03 09:03:56",
-  "original_count": 32
+  "last_validated": "2026-01-08 03:02:03",
+  "original_count": 30
 }

@@ -1265,7 +1265,7 @@ class LotteryAnalyzer:
                         <strong>{ssq_latest.get('period', '最新期')}</strong> | {ssq_latest.get('date', '最新开奖')}
                     </div>
                     <div class="numbers">
-                        红球：{' '.join(map(str, ssq_latest.get('red_numbers', []))) if ssq_latest.get('red_numbers') else '暂无数据'}<br>
+                        红球：{' '.join(map(str, ssq_latest.get('red_numbers', []))) if ssq_latest.get('red_numbers') else '暂无数据'}
                         蓝球：{ssq_latest.get('blue_number', '暂无数据')}
                     </div>
                 </div>

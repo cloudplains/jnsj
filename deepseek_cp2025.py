@@ -892,56 +892,70 @@ class LotteryAnalyzer:
         
         .dlt-card {{
             border-left-color: #667eea;
+            min-height: 320px;  /* 统一卡片高度 */
+            display: flex;
+            flex-direction: column;
         }}
         
         .ssq-card {{
             border-left-color: #f5576c;
+            min-height: 320px;  /* 统一卡片高度 */
+            display: flex;
+            flex-direction: column;
         }}
         
         .pl5-card {{
             border-left-color: #4facfe;
+            min-height: 320px;  /* 统一卡片高度 */
+            display: flex;
+            flex-direction: column;
         }}
         
         .recommendation {{
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 12px;
-            padding: 20px;
-            margin: 15px 0;
+            padding: 15px 12px;
+            margin: 12px 0;
+            flex-grow: 1;  /* 让推荐区域占据剩余空间 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }}
         
         .latest-draw {{
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             border-radius: 12px;
-            padding: 18px;
-            margin: 12px 0;
-        }}
-        
-        .yesterday-draw {{
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 18px;
-            margin: 12px 0;
+            padding: 15px 12px;
+            margin: 10px 0;
+            min-height: 150px;  /* 统一高度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }}
         
         .numbers {{
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin: 12px 0;
+            margin: 8px 0;
             text-align: center;
-            letter-spacing: 2px;
-            line-height: 1.8;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            white-space: nowrap;  /* 防止换行 */
+            overflow: hidden;
+            text-overflow: ellipsis;
         }}
         
         .pl5-numbers {{
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            margin: 15px 0;
+            margin: 10px 0;
             text-align: center;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             color: #ff6b6b;
+            line-height: 1.2;
+            white-space: nowrap;  /* 防止换行 */
         }}
         
         .chart-container {{
@@ -961,42 +975,47 @@ class LotteryAnalyzer:
         
         .stats-grid {{
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 15px 0;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 10px 0;
         }}
         
         .stat-card {{
             background: #f8f9fa;
-            padding: 15px 10px;
-            border-radius: 10px;
+            padding: 10px 5px;
+            border-radius: 8px;
             text-align: center;
             border-left: 3px solid #667eea;
         }}
         
         .stat-value {{
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #667eea;
-            margin: 5px 0;
+            margin: 3px 0;
         }}
         
         .strategy-info {{
             background: #f0f8ff;
             border-radius: 10px;
-            padding: 15px;
-            margin: 12px 0;
+            padding: 12px;
+            margin: 10px 0;
             border-left: 3px solid #4facfe;
+            font-size: 0.85rem;
+        }}
+        
+        .strategy-info h4 {{
+            margin-bottom: 6px;
             font-size: 0.9rem;
         }}
         
         .strategy-info ul {{
             padding-left: 18px;
-            margin-top: 8px;
+            margin-top: 6px;
         }}
         
         .strategy-info li {{
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }}
         
         .update-time {{
@@ -1060,12 +1079,12 @@ class LotteryAnalyzer:
             }}
             
             .numbers {{
-                font-size: 1.8rem;
+                font-size: 1.4rem;
             }}
             
             .pl5-numbers {{
-                font-size: 2.5rem;
-                letter-spacing: 8px;
+                font-size: 2.2rem;
+                letter-spacing: 5px;
             }}
         }}
         
@@ -1080,13 +1099,13 @@ class LotteryAnalyzer:
             }}
             
             .numbers {{
-                font-size: 1.1rem;
+                font-size: 1rem;
                 letter-spacing: 1px;
             }}
             
             .pl5-numbers {{
-                font-size: 1.5rem;
-                letter-spacing: 3px;
+                font-size: 1.4rem;
+                letter-spacing: 2px;
             }}
             
             .stat-card {{
@@ -1095,6 +1114,11 @@ class LotteryAnalyzer:
             
             .stat-value {{
                 font-size: 1.1rem;
+            }}
+            
+            .strategy-info {{
+                padding: 10px;
+                font-size: 0.8rem;
             }}
         }}
     </style>
@@ -1265,7 +1289,7 @@ class LotteryAnalyzer:
                         <strong>{ssq_latest.get('period', '最新期')}</strong> | {ssq_latest.get('date', '最新开奖')}
                     </div>
                     <div class="numbers">
-                        红球：{' '.join(map(str, ssq_latest.get('red_numbers', []))) if ssq_latest.get('red_numbers') else '暂无数据'}
+                        红球：{' '.join(map(str, ssq_latest.get('red_numbers', []))) if ssq_latest.get('red_numbers') else '暂无数据'}<br>
                         蓝球：{ssq_latest.get('blue_number', '暂无数据')}
                     </div>
                 </div>
@@ -1287,12 +1311,12 @@ class LotteryAnalyzer:
                     <div class="pl5-numbers">
                         {''.join(map(str, pl5_numbers)) if pl5_numbers else '暂无数据'}
                     </div>
-                    <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
-                        {'万位：' + str(pl5_numbers[0]) + ' | ' if len(pl5_numbers) > 0 else ''}
-                        {'千位：' + str(pl5_numbers[1]) + ' | ' if len(pl5_numbers) > 1 else ''}
-                        {'百位：' + str(pl5_numbers[2]) + '<br>' if len(pl5_numbers) > 2 else ''}
-                        {'十位：' + str(pl5_numbers[3]) + ' | ' if len(pl5_numbers) > 3 else ''}
-                        {'个位：' + str(pl5_numbers[4]) if len(pl5_numbers) > 4 else ''}
+                    <div style="text-align: center; margin-top: 10px; font-size: 0.85rem;">
+                        位置：{'万' + str(pl5_numbers[0]) if len(pl5_numbers) > 0 else ''}
+                        {' | 千' + str(pl5_numbers[1]) if len(pl5_numbers) > 1 else ''}
+                        {' | 百' + str(pl5_numbers[2]) if len(pl5_numbers) > 2 else ''}
+                        {' | 十' + str(pl5_numbers[3]) if len(pl5_numbers) > 3 else ''}
+                        {' | 个' + str(pl5_numbers[4]) if len(pl5_numbers) > 4 else ''}
                     </div>
                 </div>
             </div>
@@ -1439,32 +1463,39 @@ class LotteryAnalyzer:
         else:
             ssq_analysis_html = '<div class="lottery-card"><p>双色球分析不可用</p></div>'
         
-        # 排列五分析HTML - 修复了这里的Series布尔判断问题
+                # 排列五分析HTML
         if pl5_analysis and "position_freq" in pl5_analysis:
             position_stat_html = ''
             position_names = list(pl5_analysis.get("position_freq", {}).keys())
-            for i, pos_name in enumerate(position_names[:4]):  # 最多显示4个位置
-                if i < len(position_names):
+            
+            # 确保显示所有5个位置
+            all_positions = ['万位', '千位', '百位', '十位', '个位']
+            
+            for pos_name in all_positions:
+                if pos_name in position_names:
                     # 安全地获取最热数字
                     freq_series = pl5_analysis["position_freq"][pos_name]
                     if not freq_series.empty:
                         hottest_num = freq_series.idxmax()
                     else:
                         hottest_num = "N/A"
+                else:
+                    # 如果该位置数据不存在，显示N/A
+                    hottest_num = "N/A"
                         
-                    position_stat_html += f'''
-                    <div class="stat-card">
-                        <div>{pos_name}最热</div>
-                        <div class="stat-value">{hottest_num}</div>
-                        <div>数字</div>
-                    </div>
-                    '''
+                position_stat_html += f'''
+                <div class="stat-card" style="padding: 10px 5px;">
+                    <div style="font-size: 0.8rem;">{pos_name}最热</div>
+                    <div class="stat-value" style="font-size: 1.1rem;">{hottest_num}</div>
+                    <div style="font-size: 0.7rem;">数字</div>
+                </div>
+                '''
             
             pl5_analysis_html = f'''
             <div class="lottery-grid" style="margin-top: 15px;">
                 <div class="lottery-card">
                     <h3>排列五分析结果</h3>
-                    <div class="stats-grid">
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0;">
                         {position_stat_html}
                     </div>
                     <div style="margin-top: 15px; font-size: 0.9rem;">

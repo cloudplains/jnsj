@@ -82,56 +82,70 @@
         
         .dlt-card {
             border-left-color: #667eea;
+            min-height: 320px;  /* 统一卡片高度 */
+            display: flex;
+            flex-direction: column;
         }
         
         .ssq-card {
             border-left-color: #f5576c;
+            min-height: 320px;  /* 统一卡片高度 */
+            display: flex;
+            flex-direction: column;
         }
         
         .pl5-card {
             border-left-color: #4facfe;
+            min-height: 320px;  /* 统一卡片高度 */
+            display: flex;
+            flex-direction: column;
         }
         
         .recommendation {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 12px;
-            padding: 20px;
-            margin: 15px 0;
+            padding: 15px 12px;
+            margin: 12px 0;
+            flex-grow: 1;  /* 让推荐区域占据剩余空间 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .latest-draw {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             border-radius: 12px;
-            padding: 18px;
-            margin: 12px 0;
-        }
-        
-        .yesterday-draw {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 18px;
-            margin: 12px 0;
+            padding: 15px 12px;
+            margin: 10px 0;
+            min-height: 150px;  /* 统一高度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .numbers {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin: 12px 0;
+            margin: 8px 0;
             text-align: center;
-            letter-spacing: 2px;
-            line-height: 1.8;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            white-space: nowrap;  /* 防止换行 */
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .pl5-numbers {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            margin: 15px 0;
+            margin: 10px 0;
             text-align: center;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             color: #ff6b6b;
+            line-height: 1.2;
+            white-space: nowrap;  /* 防止换行 */
         }
         
         .chart-container {
@@ -151,42 +165,47 @@
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 15px 0;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 10px 0;
         }
         
         .stat-card {
             background: #f8f9fa;
-            padding: 15px 10px;
-            border-radius: 10px;
+            padding: 10px 5px;
+            border-radius: 8px;
             text-align: center;
             border-left: 3px solid #667eea;
         }
         
         .stat-value {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #667eea;
-            margin: 5px 0;
+            margin: 3px 0;
         }
         
         .strategy-info {
             background: #f0f8ff;
             border-radius: 10px;
-            padding: 15px;
-            margin: 12px 0;
+            padding: 12px;
+            margin: 10px 0;
             border-left: 3px solid #4facfe;
+            font-size: 0.85rem;
+        }
+        
+        .strategy-info h4 {
+            margin-bottom: 6px;
             font-size: 0.9rem;
         }
         
         .strategy-info ul {
             padding-left: 18px;
-            margin-top: 8px;
+            margin-top: 6px;
         }
         
         .strategy-info li {
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         
         .update-time {
@@ -250,12 +269,12 @@
             }
             
             .numbers {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
             }
             
             .pl5-numbers {
-                font-size: 2.5rem;
-                letter-spacing: 8px;
+                font-size: 2.2rem;
+                letter-spacing: 5px;
             }
         }
         
@@ -270,13 +289,13 @@
             }
             
             .numbers {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 letter-spacing: 1px;
             }
             
             .pl5-numbers {
-                font-size: 1.5rem;
-                letter-spacing: 3px;
+                font-size: 1.4rem;
+                letter-spacing: 2px;
             }
             
             .stat-card {
@@ -285,6 +304,11 @@
             
             .stat-value {
                 font-size: 1.1rem;
+            }
+            
+            .strategy-info {
+                padding: 10px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -295,7 +319,7 @@
         <div class="header">
             <h1>三彩票数据分析报告</h1>
             <p>基于历史数据的智能分析与号码推荐（大乐透+双色球+排列五）</p>
-            <div class="update-time">最后更新：2026-01-09 03:05:56</div>
+            <div class="update-time">最后更新：2026-01-09 07:46:20</div>
         </div>
         
         <!-- 最新开奖信息 -->
@@ -324,7 +348,7 @@
                         <strong>26004</strong> | 2026-01-08
                     </div>
                     <div class="numbers">
-                        红球：3 7 8 9 18 32
+                        红球：3 7 8 9 18 32<br>
                         蓝球：10
                     </div>
                 </div>
@@ -340,12 +364,12 @@
                     <div class="pl5-numbers">
                         50963
                     </div>
-                    <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
-                        万位：5 | 
-                        千位：0 | 
-                        百位：9<br>
-                        十位：6 | 
-                        个位：3
+                    <div style="text-align: center; margin-top: 10px; font-size: 0.85rem;">
+                        位置：万5
+                         | 千0
+                         | 百9
+                         | 十6
+                         | 个3
                     </div>
                 </div>
             </div>
@@ -389,8 +413,8 @@
                 <h3>🏀 大乐透推荐</h3>
                 <div class="recommendation">
                     <div class="numbers">
-                        前区：12 13 14 17 18<br>
-                        后区：5 8
+                        前区：4 12 15 17 32<br>
+                        后区：2 5
                     </div>
                 </div>
                 <div class="strategy-info">
@@ -409,8 +433,8 @@
                 <h3>🔴 双色球推荐</h3>
                 <div class="recommendation">
                     <div class="numbers">
-                        红球：6 12 17 23 24 26<br>
-                        蓝球：10
+                        红球：6 10 13 14 28 32<br>
+                        蓝球：8
                     </div>
                 </div>
                 <div class="strategy-info">
@@ -429,7 +453,7 @@
                 <h3>🔢 排列五推荐</h3>
                 <div class="recommendation">
                     <div class="pl5-numbers">
-                        02623
+                        02123
                     </div>
                 </div>
                 <div class="strategy-info">
@@ -521,32 +545,38 @@
             <div class="lottery-grid" style="margin-top: 15px;">
                 <div class="lottery-card">
                     <h3>排列五分析结果</h3>
-                    <div class="stats-grid">
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0;">
                         
-                    <div class="stat-card">
-                        <div>万位最热</div>
-                        <div class="stat-value">5</div>
-                        <div>数字</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div>千位最热</div>
-                        <div class="stat-value">1</div>
-                        <div>数字</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div>百位最热</div>
-                        <div class="stat-value">8</div>
-                        <div>数字</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div>十位最热</div>
-                        <div class="stat-value">5</div>
-                        <div>数字</div>
-                    </div>
-                    
+                <div class="stat-card" style="padding: 10px 5px;">
+                    <div style="font-size: 0.8rem;">万位最热</div>
+                    <div class="stat-value" style="font-size: 1.1rem;">5</div>
+                    <div style="font-size: 0.7rem;">数字</div>
+                </div>
+                
+                <div class="stat-card" style="padding: 10px 5px;">
+                    <div style="font-size: 0.8rem;">千位最热</div>
+                    <div class="stat-value" style="font-size: 1.1rem;">1</div>
+                    <div style="font-size: 0.7rem;">数字</div>
+                </div>
+                
+                <div class="stat-card" style="padding: 10px 5px;">
+                    <div style="font-size: 0.8rem;">百位最热</div>
+                    <div class="stat-value" style="font-size: 1.1rem;">8</div>
+                    <div style="font-size: 0.7rem;">数字</div>
+                </div>
+                
+                <div class="stat-card" style="padding: 10px 5px;">
+                    <div style="font-size: 0.8rem;">十位最热</div>
+                    <div class="stat-value" style="font-size: 1.1rem;">5</div>
+                    <div style="font-size: 0.7rem;">数字</div>
+                </div>
+                
+                <div class="stat-card" style="padding: 10px 5px;">
+                    <div style="font-size: 0.8rem;">个位最热</div>
+                    <div class="stat-value" style="font-size: 1.1rem;">3</div>
+                    <div style="font-size: 0.7rem;">数字</div>
+                </div>
+                
                     </div>
                     <div style="margin-top: 15px; font-size: 0.9rem;">
                         <p><b>分析说明：</b>排列五每个位置独立分析，考虑热号、冷号、奇偶分布、大小分布等多维度因素，推荐综合最优组合。</p>
@@ -605,7 +635,7 @@
         <div class="footer">
             <p>数据来源：本地Excel文件 | 分析方法：热冷平衡分析 | 版本：三彩票分析系统 v3.0</p>
             <p>温馨提示：请理性购彩，未成年人不得购买彩票</p>
-            <div class="footer-time">报告生成时间：2026-01-09 03:05:56</div>
+            <div class="footer-time">报告生成时间：2026-01-09 07:46:20</div>
         </div>
     </div>
 </body>

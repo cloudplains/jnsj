@@ -231,12 +231,52 @@ class LotteryAnalyzer:
             
         print("\n=== 大乐透数据分析 ===")
         
+        # 获取最近15期数据进行分析
+        recent_15_data = self.dlt_df.tail(15)
+        
+        # 获取所有数据进行分析
         front_numbers = pd.concat([self.dlt_df[col] for col in self.dlt_front_cols])
         back_numbers = pd.concat([self.dlt_df[col] for col in self.dlt_back_cols])
         
-        # 频率统计
+        # 最近15期数据分析
+        recent_front_numbers = pd.concat([recent_15_data[col] for col in self.dlt_front_cols])
+        recent_back_numbers = pd.concat([recent_15_data[col] for col in self.dlt_back_cols])
+        
+        # 频率统计（全部数据）
         front_freq = front_numbers.value_counts().sort_index()
         back_freq = back_numbers.value_counts().sort_index()
+        
+        # 频率统计（最近15期）
+        recent_front_freq = recent_front_numbers.value_counts()
+        recent_back_freq = recent_back_numbers.value_counts()
+        
+        # 获取热门号码（最近15期出现次数最多的1-2个）
+        recent_front_hot = recent_front_freq.head(2).index.tolist()
+        recent_back_hot = recent_back_freq.head(1).index.tolist()  # 后区只取1个热门
+        
+        # 获取冷门号码（最近15期出现次数最少或未出现的）
+        # 前区冷门：最近15期出现0次或1次的号码
+        recent_front_cold = []
+        for num in range(self.dlt_front_range[0], self.dlt_front_range[1] + 1):
+            if num not in recent_front_freq.index or recent_front_freq[num] <= 1:
+                recent_front_cold.append(num)
+        # 如果冷门号码太多，取出现次数最少的5个
+        if len(recent_front_cold) > 10:
+            recent_front_cold = recent_front_freq.tail(5).index.tolist()
+        
+        # 后区冷门：最近15期出现次数最少的1-2个号码
+        if len(recent_back_freq) > 0:
+            # 找出出现次数最少的2个号码
+            recent_back_cold = recent_back_freq.tail(2).index.tolist()
+        else:
+            # 如果没有频率数据，随机选择2个不热门的
+            all_back_numbers = list(range(self.dlt_back_range[0], self.dlt_back_range[1] + 1))
+            if recent_back_hot:
+                # 排除热门号码
+                available = [num for num in all_back_numbers if num not in recent_back_hot]
+                recent_back_cold = random.sample(available, min(2, len(available)))
+            else:
+                recent_back_cold = random.sample(all_back_numbers, min(2, len(all_back_numbers)))
         
         # 奇偶统计
         front_odd = (front_numbers % 2 == 1).sum()
@@ -256,8 +296,10 @@ class LotteryAnalyzer:
         front_intervals = front_numbers.apply(dlt_front_interval)
         back_intervals = back_numbers.apply(dlt_back_interval)
         
-        print(f"   前区热门号码：{front_freq.head(3).index.tolist()}")
-        print(f"   后区热门号码：{back_freq.head(3).index.tolist()}")
+        print(f"   前区热门号码(最近15期)：{recent_front_hot}")
+        print(f"   前区冷门号码(最近15期)：{recent_front_cold[:5]}...")  # 只显示前5个
+        print(f"   后区热门号码(最近15期)：{recent_back_hot}")
+        print(f"   后区冷门号码(最近15期)：{recent_back_cold}")
         print(f"   前区奇偶比：{front_odd}/{front_even} ({front_odd/len(front_numbers):.1%}:{front_even/len(front_numbers):.1%})")
         
         return {
@@ -265,6 +307,12 @@ class LotteryAnalyzer:
             'back_numbers': back_numbers,
             'front_freq': front_freq,
             'back_freq': back_freq,
+            'recent_front_freq': recent_front_freq,
+            'recent_back_freq': recent_back_freq,
+            'recent_front_hot': recent_front_hot,
+            'recent_front_cold': recent_front_cold[:5],  # 只返回前5个冷门
+            'recent_back_hot': recent_back_hot,
+            'recent_back_cold': recent_back_cold[:3],    # 只返回前3个冷门
             'front_odd': front_odd,
             'front_even': front_even,
             'back_odd': back_odd,
@@ -280,12 +328,52 @@ class LotteryAnalyzer:
             
         print("\n=== 双色球数据分析 ===")
         
+        # 获取最近15期数据进行分析
+        recent_15_data = self.ssq_df.tail(15)
+        
+        # 获取所有数据进行分析
         red_numbers = pd.concat([self.ssq_df[col] for col in self.ssq_red_cols])
         blue_numbers = pd.concat([self.ssq_df[col] for col in self.ssq_blue_cols])
         
-        # 频率统计
+        # 最近15期数据分析
+        recent_red_numbers = pd.concat([recent_15_data[col] for col in self.ssq_red_cols])
+        recent_blue_numbers = pd.concat([recent_15_data[col] for col in self.ssq_blue_cols])
+        
+        # 频率统计（全部数据）
         red_freq = red_numbers.value_counts().sort_index()
         blue_freq = blue_numbers.value_counts().sort_index()
+        
+        # 频率统计（最近15期）
+        recent_red_freq = recent_red_numbers.value_counts()
+        recent_blue_freq = recent_blue_numbers.value_counts()
+        
+        # 获取热门号码（最近15期出现次数最多的）
+        recent_red_hot = recent_red_freq.head(2).index.tolist()
+        recent_blue_hot = recent_blue_freq.head(1).index.tolist()
+        
+        # 获取冷门号码（最近15期出现次数最少或未出现的）
+        # 红球冷门：最近15期出现0次或1次的号码
+        recent_red_cold = []
+        for num in range(self.ssq_red_range[0], self.ssq_red_range[1] + 1):
+            if num not in recent_red_freq.index or recent_red_freq[num] <= 1:
+                recent_red_cold.append(num)
+        # 如果冷门号码太多，取出现次数最少的5个
+        if len(recent_red_cold) > 10:
+            recent_red_cold = recent_red_freq.tail(5).index.tolist()
+        
+        # 蓝球冷门：最近15期出现次数最少的1-2个号码
+        if len(recent_blue_freq) > 0:
+            # 找出出现次数最少的2个号码
+            recent_blue_cold = recent_blue_freq.tail(2).index.tolist()
+        else:
+            # 如果没有频率数据，随机选择2个不热门的
+            all_blue_numbers = list(range(self.ssq_blue_range[0], self.ssq_blue_range[1] + 1))
+            if recent_blue_hot:
+                # 排除热门号码
+                available = [num for num in all_blue_numbers if num not in recent_blue_hot]
+                recent_blue_cold = random.sample(available, min(2, len(available)))
+            else:
+                recent_blue_cold = random.sample(all_blue_numbers, min(2, len(all_blue_numbers)))
         
         # 奇偶统计
         red_odd = (red_numbers % 2 == 1).sum()
@@ -305,8 +393,10 @@ class LotteryAnalyzer:
         red_intervals = red_numbers.apply(ssq_red_interval)
         blue_intervals = blue_numbers.apply(ssq_blue_interval)
         
-        print(f"   红球热门号码：{red_freq.head(3).index.tolist()}")
-        print(f"   蓝球热门号码：{blue_freq.head(3).index.tolist()}")
+        print(f"   红球热门号码(最近15期)：{recent_red_hot}")
+        print(f"   红球冷门号码(最近15期)：{recent_red_cold[:5]}...")  # 只显示前5个
+        print(f"   蓝球热门号码(最近15期)：{recent_blue_hot}")
+        print(f"   蓝球冷门号码(最近15期)：{recent_blue_cold}")
         print(f"   红球奇偶比：{red_odd}/{red_even} ({red_odd/len(red_numbers):.1%}:{red_even/len(red_numbers):.1%})")
         
         return {
@@ -314,6 +404,12 @@ class LotteryAnalyzer:
             'blue_numbers': blue_numbers,
             'red_freq': red_freq,
             'blue_freq': blue_freq,
+            'recent_red_freq': recent_red_freq,
+            'recent_blue_freq': recent_blue_freq,
+            'recent_red_hot': recent_red_hot,
+            'recent_red_cold': recent_red_cold[:5],  # 只返回前5个冷门
+            'recent_blue_hot': recent_blue_hot,
+            'recent_blue_cold': recent_blue_cold[:3],  # 只返回前3个冷门
             'red_odd': red_odd,
             'red_even': red_even,
             'blue_odd': blue_odd,
@@ -334,9 +430,17 @@ class LotteryAnalyzer:
             print("   警告：排列五数据为空")
             return None
         
+        # 获取最近15期数据进行分析
+        recent_15_data = self.pl5_df.tail(15)
+        
         # 存储每位数字的频率
         position_freq = {}
         position_numbers = {}
+        recent_position_freq = {}
+        
+        # 存储每个位置的热门和冷门号码
+        position_hot = {}
+        position_cold = {}
         
         for i, col in enumerate(self.pl5_cols):
             if col in self.pl5_df.columns:
@@ -345,10 +449,29 @@ class LotteryAnalyzer:
                 position_numbers[col] = numbers
                 freq = numbers.value_counts().sort_index()
                 position_freq[col] = freq
-                if len(freq) > 0:
-                    print(f"   {col}热门数字：{freq.head(3).index.tolist()}")
-                else:
-                    print(f"   {col}：无有效数据")
+                
+                # 最近15期数据
+                recent_numbers = pd.to_numeric(recent_15_data[col], errors='coerce').fillna(0).astype(int)
+                recent_freq = recent_numbers.value_counts()
+                recent_position_freq[col] = recent_freq
+                
+                # 获取热门和冷门号码（基于最近15期）
+                # 热门号码：出现次数最多的前2个
+                recent_hot = recent_freq.head(2).index.tolist() if len(recent_freq) > 0 else []
+                position_hot[col] = recent_hot
+                
+                # 冷门号码：最近15期出现次数最少或未出现的
+                recent_cold = []
+                for num in range(0, 10):
+                    if num not in recent_freq.index or recent_freq[num] <= 1:
+                        recent_cold.append(num)
+                # 如果冷门号码太多，取出现次数最少的3个
+                if len(recent_cold) > 5:
+                    recent_cold = recent_freq.tail(3).index.tolist() if len(recent_freq) >= 3 else recent_cold[:3]
+                position_cold[col] = recent_cold
+                
+                print(f"   {col}热门数字(最近15期)：{recent_hot}")
+                print(f"   {col}冷门数字(最近15期)：{recent_cold}")
         
         # 如果没有数据，返回空结果
         if not position_numbers:
@@ -380,6 +503,9 @@ class LotteryAnalyzer:
         return {
             'position_numbers': position_numbers,
             'position_freq': position_freq,
+            'recent_position_freq': recent_position_freq,
+            'position_hot': position_hot,
+            'position_cold': position_cold,
             'odd_even_stats': odd_even_stats,
             'size_stats': size_stats,
             'prime_stats': prime_stats
@@ -634,124 +760,13 @@ class LotteryAnalyzer:
         
         return recommended_numbers
     
-    def generate_plots(self, dlt_analysis, ssq_analysis, pl5_analysis=None):
-        """生成可视化图表"""
-        # 设置图表字体
-        plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
-        plt.rcParams['axes.unicode_minus'] = False
-
-        # 计算需要的子图数量
-        num_plots = 0
-        if dlt_analysis:
-            num_plots += 3  # 前区、后区、奇偶
-        if ssq_analysis:
-            num_plots += 3  # 红球、蓝球、奇偶
-        if pl5_analysis and 'position_freq' in pl5_analysis:
-            num_plots += len(pl5_analysis['position_freq'])  # 每个位置一个图
-
-        if num_plots == 0:
-            # 如果没有数据可画，返回空图
-            fig, ax = plt.subplots(figsize=(8, 6))
-            ax.text(0.5, 0.5, '无有效数据可供绘图', ha='center', va='center', fontsize=14)
-            ax.axis('off')
-            buffer = BytesIO()
-            plt.savefig(buffer, format='png', dpi=100, bbox_inches='tight', facecolor='#F8F9FA')
-            buffer.seek(0)
-            img_base64 = base64.b64encode(buffer.getvalue()).decode()
-            plt.close()
-            return img_base64
-
-        # 动态确定布局：每行最多6个图
-        cols = min(6, num_plots)
-        rows = (num_plots + cols - 1) // cols  # 向上取整
-
-        fig, axes = plt.subplots(rows, cols, figsize=(5 * cols, 4 * rows))
-        fig.patch.set_facecolor('#F8F9FA')
-
-        # 扁平化 axes 便于顺序访问
-        if num_plots == 1:
-            axes = [axes]
-        else:
-            axes = axes.flatten()
-
-        colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe']
-        ax_index = 0
-
-        # 大乐透图表
-        if dlt_analysis:
-            front_freq = dlt_analysis['front_freq']
-            axes[ax_index].bar(front_freq.index, front_freq.values, color=colors[0], alpha=0.7)
-            axes[ax_index].set_title('大乐透前区频率分布', fontsize=10, fontweight='bold')
-            axes[ax_index].grid(alpha=0.2)
-            ax_index += 1
-
-            back_freq = dlt_analysis['back_freq']
-            axes[ax_index].bar(back_freq.index, back_freq.values, color=colors[1], alpha=0.7)
-            axes[ax_index].set_title('大乐透后区频率分布', fontsize=10, fontweight='bold')
-            axes[ax_index].grid(alpha=0.2)
-            ax_index += 1
-
-            front_odd = dlt_analysis['front_odd']
-            front_even = dlt_analysis['front_even']
-            axes[ax_index].pie([front_odd, front_even], labels=['奇数', '偶数'], colors=[colors[2], colors[3]], autopct='%1.1f%%')
-            axes[ax_index].set_title('大乐透前区奇偶分布', fontsize=10, fontweight='bold')
-            ax_index += 1
-
-        # 双色球图表
-        if ssq_analysis:
-            red_freq = ssq_analysis['red_freq']
-            axes[ax_index].bar(red_freq.index, red_freq.values, color=colors[0], alpha=0.7)
-            axes[ax_index].set_title('双色球红球频率分布', fontsize=10, fontweight='bold')
-            axes[ax_index].grid(alpha=0.2)
-            ax_index += 1
-
-            blue_freq = ssq_analysis['blue_freq']
-            axes[ax_index].bar(blue_freq.index, blue_freq.values, color=colors[1], alpha=0.7)
-            axes[ax_index].set_title('双色球蓝球频率分布', fontsize=10, fontweight='bold')
-            axes[ax_index].grid(alpha=0.2)
-            ax_index += 1
-
-            red_odd = ssq_analysis['red_odd']
-            red_even = ssq_analysis['red_even']
-            axes[ax_index].pie([red_odd, red_even], labels=['奇数', '偶数'], colors=[colors[2], colors[3]], autopct='%1.1f%%')
-            axes[ax_index].set_title('双色球红球奇偶分布', fontsize=10, fontweight='bold')
-            ax_index += 1
-
-        # 排列五图表
-        if pl5_analysis and 'position_freq' in pl5_analysis:
-            position_freq = pl5_analysis['position_freq']
-            for pos_name, freq in position_freq.items():
-                if ax_index >= len(axes):
-                    break  # 防止超出
-                axes[ax_index].bar(freq.index, freq.values, color=colors[ax_index % len(colors)], alpha=0.7)
-                axes[ax_index].set_title(f'排列五{pos_name}频率分布', fontsize=9, fontweight='bold')
-                axes[ax_index].set_xlabel('数字')
-                axes[ax_index].set_ylabel('出现次数')
-                axes[ax_index].grid(alpha=0.2)
-                axes[ax_index].set_xticks(range(0, 10))
-                ax_index += 1
-
-        # 隐藏未使用的子图
-        for i in range(ax_index, len(axes)):
-            axes[i].axis('off')
-
-        plt.tight_layout()
-
-        # 转换为base64
-        buffer = BytesIO()
-        plt.savefig(buffer, format='png', dpi=100, bbox_inches='tight', facecolor='#F8F9FA')
-        buffer.seek(0)
-        img_base64 = base64.b64encode(buffer.getvalue()).decode()
-        plt.close()
-        return img_base64
-    
     def generate_report(self, validation_results, dlt_analysis, ssq_analysis, pl5_analysis, 
                        dlt_recommendation, ssq_recommendation, pl5_recommendation):
         """生成HTML报告"""
         print("\n=== 生成分析报告 ===")
         
-        # 生成图表
-        plot_base64 = self.generate_plots(dlt_analysis, ssq_analysis, pl5_analysis)
+        # 不需要生成图表
+        plot_base64 = ""
         
         # 获取最新开奖信息
         latest_info = self.get_latest_draw_info()
@@ -779,6 +794,13 @@ class LotteryAnalyzer:
                            dlt_recommendation, ssq_recommendation, pl5_recommendation, latest_info):
         """创建HTML内容 - 优化移动端显示"""
         
+        # 内部安全获取第一个元素的函数
+        def safe_first(lst, default="N/A"):
+            """安全获取列表的第一个元素"""
+            if lst and len(lst) > 0:
+                return lst[0]
+            return default
+        
         # 获取统计数据
         dlt_periods = len(self.dlt_df) if self.dlt_df is not None else 0
         ssq_periods = len(self.ssq_df) if self.ssq_df is not None else 0
@@ -801,11 +823,25 @@ class LotteryAnalyzer:
         # 获取昨天日期（用于显示）
         yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
         
-        # 处理数据可能为空的情况
-        dlt_hottest = dlt_analysis["front_freq"].index[0] if dlt_analysis and len(dlt_analysis["front_freq"]) > 0 else "N/A"
-        dlt_back_hottest = dlt_analysis["back_freq"].index[0] if dlt_analysis and len(dlt_analysis["back_freq"]) > 0 else "N/A"
-        ssq_red_hottest = ssq_analysis["red_freq"].index[0] if ssq_analysis and len(ssq_analysis["red_freq"]) > 0 else "N/A"
-        ssq_blue_hottest = ssq_analysis["blue_freq"].index[0] if ssq_analysis and len(ssq_analysis["blue_freq"]) > 0 else "N/A"
+        # 处理数据可能为空的情况 - 使用安全函数
+        dlt_hottest = safe_first(dlt_analysis.get('recent_front_hot', [])) if dlt_analysis else "N/A"
+        dlt_coldest = safe_first(dlt_analysis.get('recent_front_cold', [])) if dlt_analysis else "N/A"
+        dlt_back_hottest = safe_first(dlt_analysis.get('recent_back_hot', [])) if dlt_analysis else "N/A"
+        dlt_back_coldest = safe_first(dlt_analysis.get('recent_back_cold', [])) if dlt_analysis else "N/A"
+        
+        ssq_red_hottest = safe_first(ssq_analysis.get('recent_red_hot', [])) if ssq_analysis else "N/A"
+        ssq_red_coldest = safe_first(ssq_analysis.get('recent_red_cold', [])) if ssq_analysis else "N/A"
+        ssq_blue_hottest = safe_first(ssq_analysis.get('recent_blue_hot', [])) if ssq_analysis else "N/A"
+        ssq_blue_coldest = safe_first(ssq_analysis.get('recent_blue_cold', [])) if ssq_analysis else "N/A"
+        
+        # 排列五热门冷门信息
+        pl5_hot_info = {}
+        pl5_cold_info = {}
+        if pl5_analysis and 'position_hot' in pl5_analysis:
+            for pos, hot_list in pl5_analysis.get('position_hot', {}).items():
+                pl5_hot_info[pos] = '、'.join(map(str, hot_list[:2])) if hot_list else "N/A"
+            for pos, cold_list in pl5_analysis.get('position_cold', {}).items():
+                pl5_cold_info[pos] = '、'.join(map(str, cold_list[:2])) if cold_list else "N/A"
         
         # 创建HTML内容，使用双重花括号转义
         html_template = '''<!DOCTYPE html>
@@ -958,41 +994,36 @@ class LotteryAnalyzer:
             white-space: nowrap;  /* 防止换行 */
         }}
         
-        .chart-container {{
-            background-color: rgba(255,255,255,0.9);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-            text-align: center;
-            overflow: hidden;
-        }}
-        
-        .chart-container img {{
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }}
-        
         .stats-grid {{
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            margin: 10px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
         }}
         
         .stat-card {{
             background: #f8f9fa;
-            padding: 10px 5px;
-            border-radius: 8px;
+            padding: 15px 10px;
+            border-radius: 10px;
             text-align: center;
             border-left: 3px solid #667eea;
         }}
         
+        .hot-number {{
+            color: #ff6b6b;
+            font-weight: bold;
+        }}
+        
+        .cold-number {{
+            color: #4facfe;
+            font-weight: bold;
+        }}
+        
         .stat-value {{
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #667eea;
-            margin: 3px 0;
+            margin: 5px 0;
         }}
         
         .strategy-info {{
@@ -1016,6 +1047,20 @@ class LotteryAnalyzer:
         
         .strategy-info li {{
             margin-bottom: 4px;
+        }}
+        
+        .analysis-insight {{
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }}
+        
+        .analysis-title {{
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #667eea;
         }}
         
         .update-time {{
@@ -1179,25 +1224,39 @@ class LotteryAnalyzer:
             </div>
         </div>
         
-        <!-- 数据分析图表 -->
-        <div class="section">
-            <div class="section-title">📈 数据分析图表</div>
-            <div class="chart-container">
-                <img src="data:image/png;base64,{plot_base64}" alt="彩票分析图表">
-            </div>
-            <p style="text-align: center; margin-top: 10px; color: #666; font-size: 0.9rem;">
-                上图展示了大乐透、双色球和排列五的号码频率分布以及奇偶分布情况，帮助理解历史号码的出现规律。
-            </p>
-        </div>
-        
         <!-- 核心发现 -->
         <div class="section">
-            <div class="section-title">🔍 核心发现</div>
+            <div class="section-title">🔍 核心发现（基于最近15期数据）</div>
             <div class="lottery-grid">
-                {dlt_analysis_html}
-                {ssq_analysis_html}
+                <div class="lottery-card">
+                    <div class="analysis-title">🏀 大乐透热门与冷门号码</div>
+                    <div class="analysis-insight">
+                        <p><strong>前区热门号码：</strong><span class="hot-number">{dlt_front_hot_numbers}</span></p>
+                        <p><strong>前区冷门号码：</strong><span class="cold-number">{dlt_front_cold_numbers}</span></p>
+                        <p><strong>后区热门号码：</strong><span class="hot-number">{dlt_back_hot_numbers}</span></p>
+                        <p><strong>后区冷门号码：</strong><span class="cold-number">{dlt_back_cold_numbers}</span></p>
+                    </div>
+                </div>
+                <div class="lottery-card">
+                    <div class="analysis-title">🔴 双色球热门与冷门号码</div>
+                    <div class="analysis-insight">
+                        <p><strong>红球热门号码：</strong><span class="hot-number">{ssq_red_hot_numbers}</span></p>
+                        <p><strong>红球冷门号码：</strong><span class="cold-number">{ssq_red_cold_numbers}</span></p>
+                        <p><strong>蓝球热门号码：</strong><span class="hot-number">{ssq_blue_hot_numbers}</span></p>
+                        <p><strong>蓝球冷门号码：</strong><span class="cold-number">{ssq_blue_cold_numbers}</span></p>
+                    </div>
+                </div>
+                <div class="lottery-card">
+                    <div class="analysis-title">🔢 排列五热门与冷门号码</div>
+                    <div class="analysis-insight">
+                        <p><strong>万位热门数字：</strong><span class="hot-number">{pl5_wan_hot}</span> | <strong>冷门：</strong><span class="cold-number">{pl5_wan_cold}</span></p>
+                        <p><strong>千位热门数字：</strong><span class="hot-number">{pl5_qian_hot}</span> | <strong>冷门：</strong><span class="cold-number">{pl5_qian_cold}</span></p>
+                        <p><strong>百位热门数字：</strong><span class="hot-number">{pl5_bai_hot}</span> | <strong>冷门：</strong><span class="cold-number">{pl5_bai_cold}</span></p>
+                        <p><strong>十位热门数字：</strong><span class="hot-number">{pl5_shi_hot}</span> | <strong>冷门：</strong><span class="cold-number">{pl5_shi_cold}</span></p>
+                        <p><strong>个位热门数字：</strong><span class="hot-number">{pl5_ge_hot}</span> | <strong>冷门：</strong><span class="cold-number">{pl5_ge_cold}</span></p>
+                    </div>
+                </div>
             </div>
-            {pl5_analysis_html}
         </div>
         
         <!-- 温馨提示 -->
@@ -1237,18 +1296,13 @@ class LotteryAnalyzer:
                 <ul>
                     <li>本推荐基于<b>最近15期数据的热冷平衡策略</b>，更加科学合理</li>
                     <li>排列五推荐考虑每个位置的独立趋势与整体平衡</li>
-                    <li>彩票中奖号码是随机产生的，本推荐仅基于历史数据统计分析</li>
-                    <li>请理性购彩，量力而行，享受游戏乐趣</li>
-                    <li>建议结合个人幸运号码进行适当调整</li>
-                    <li>数据分析结果仅供参考，不保证中奖</li>
                 </ul>
             </div>
         </div>
         
         <!-- 页脚 -->
         <div class="footer">
-            <p>数据来源：本地Excel文件 | 分析方法：热冷平衡分析 | 版本：三彩票分析系统 v3.0</p>
-            <p>温馨提示：请理性购彩，未成年人不得购买彩票</p>
+            <p>数据来源：本地Excel文件 | 分析方法：热冷平衡分析 | 版本：彩票分析系统 v3.0</p>
             <div class="footer-time">报告生成时间：{current_time}</div>
         </div>
     </div>
@@ -1399,113 +1453,53 @@ class LotteryAnalyzer:
         else:
             pl5_recommendation_html = '<div class="lottery-card"><p>排列五数据不可用</p></div>'
         
-        # 大乐透分析HTML
+        # 大乐透热门冷门号码 - 显示多个而不是单个
         if dlt_analysis:
-            dlt_analysis_html = f'''
-            <div class="lottery-card">
-                <h3>大乐透分析结果</h3>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div>前区最热</div>
-                        <div class="stat-value">{dlt_hottest}</div>
-                        <div>号码</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>后区最热</div>
-                        <div class="stat-value">{dlt_back_hottest}</div>
-                        <div>号码</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>前区奇偶</div>
-                        <div class="stat-value">{dlt_analysis["front_odd"]}/{dlt_analysis["front_even"]}</div>
-                        <div>奇数/偶数</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>数据期数</div>
-                        <div class="stat-value">{dlt_periods}</div>
-                        <div>分析基础</div>
-                    </div>
-                </div>
-            </div>
-            '''
+            dlt_front_hot_list = dlt_analysis.get('recent_front_hot', [])
+            dlt_front_cold_list = dlt_analysis.get('recent_front_cold', [])
+            dlt_back_hot_list = dlt_analysis.get('recent_back_hot', [])
+            dlt_back_cold_list = dlt_analysis.get('recent_back_cold', [])
+            
+            # 显示多个号码，用顿号分隔
+            dlt_front_hot_numbers = '、'.join(map(str, dlt_front_hot_list[:3])) if dlt_front_hot_list else "N/A"
+            dlt_front_cold_numbers = '、'.join(map(str, dlt_front_cold_list[:3])) if dlt_front_cold_list else "N/A"
+            dlt_back_hot_numbers = '、'.join(map(str, dlt_back_hot_list[:2])) if dlt_back_hot_list else "N/A"
+            dlt_back_cold_numbers = '、'.join(map(str, dlt_back_cold_list[:2])) if dlt_back_cold_list else "N/A"
         else:
-            dlt_analysis_html = '<div class="lottery-card"><p>大乐透分析不可用</p></div>'
+            dlt_front_hot_numbers = "N/A"
+            dlt_front_cold_numbers = "N/A"
+            dlt_back_hot_numbers = "N/A"
+            dlt_back_cold_numbers = "N/A"
         
-        # 双色球分析HTML
+        # 双色球热门冷门号码 - 显示多个而不是单个
         if ssq_analysis:
-            ssq_analysis_html = f'''
-            <div class="lottery-card">
-                <h3>双色球分析结果</h3>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div>红球最热</div>
-                        <div class="stat-value">{ssq_red_hottest}</div>
-                        <div>号码</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>蓝球最热</div>
-                        <div class="stat-value">{ssq_blue_hottest}</div>
-                        <div>号码</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>红球奇偶</div>
-                        <div class="stat-value">{ssq_analysis["red_odd"]}/{ssq_analysis["red_even"]}</div>
-                        <div>奇数/偶数</div>
-                    </div>
-                    <div class="stat-card">
-                        <div>数据期数</div>
-                        <div class="stat-value">{ssq_periods}</div>
-                        <div>分析基础</div>
-                    </div>
-                </div>
-            </div>
-            '''
+            ssq_red_hot_list = ssq_analysis.get('recent_red_hot', [])
+            ssq_red_cold_list = ssq_analysis.get('recent_red_cold', [])
+            ssq_blue_hot_list = ssq_analysis.get('recent_blue_hot', [])
+            ssq_blue_cold_list = ssq_analysis.get('recent_blue_cold', [])
+            
+            # 显示多个号码，用顿号分隔
+            ssq_red_hot_numbers = '、'.join(map(str, ssq_red_hot_list[:3])) if ssq_red_hot_list else "N/A"
+            ssq_red_cold_numbers = '、'.join(map(str, ssq_red_cold_list[:3])) if ssq_red_cold_list else "N/A"
+            ssq_blue_hot_numbers = '、'.join(map(str, ssq_blue_hot_list[:2])) if ssq_blue_hot_list else "N/A"
+            ssq_blue_cold_numbers = '、'.join(map(str, ssq_blue_cold_list[:2])) if ssq_blue_cold_list else "N/A"
         else:
-            ssq_analysis_html = '<div class="lottery-card"><p>双色球分析不可用</p></div>'
+            ssq_red_hot_numbers = "N/A"
+            ssq_red_cold_numbers = "N/A"
+            ssq_blue_hot_numbers = "N/A"
+            ssq_blue_cold_numbers = "N/A"
         
-                # 排列五分析HTML
-        if pl5_analysis and "position_freq" in pl5_analysis:
-            position_stat_html = ''
-            position_names = list(pl5_analysis.get("position_freq", {}).keys())
-            
-            # 确保显示所有5个位置
-            all_positions = ['万位', '千位', '百位', '十位', '个位']
-            
-            for pos_name in all_positions:
-                if pos_name in position_names:
-                    # 安全地获取最热数字
-                    freq_series = pl5_analysis["position_freq"][pos_name]
-                    if not freq_series.empty:
-                        hottest_num = freq_series.idxmax()
-                    else:
-                        hottest_num = "N/A"
-                else:
-                    # 如果该位置数据不存在，显示N/A
-                    hottest_num = "N/A"
-                        
-                position_stat_html += f'''
-                <div class="stat-card" style="padding: 10px 5px;">
-                    <div style="font-size: 0.8rem;">{pos_name}最热</div>
-                    <div class="stat-value" style="font-size: 1.1rem;">{hottest_num}</div>
-                    <div style="font-size: 0.7rem;">数字</div>
-                </div>
-                '''
-            
-            pl5_analysis_html = f'''
-            <div class="lottery-grid" style="margin-top: 15px;">
-                <div class="lottery-card">
-                    <h3>排列五分析结果</h3>
-                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0;">
-                        {position_stat_html}
-                    </div>
-                    <div style="margin-top: 15px; font-size: 0.9rem;">
-                        <p><b>分析说明：</b>排列五每个位置独立分析，考虑热号、冷号、奇偶分布、大小分布等多维度因素，推荐综合最优组合。</p>
-                    </div>
-                </div>
-            </div>
-            '''
-        else:
-            pl5_analysis_html = ''
+        # 排列五热门冷门号码
+        pl5_wan_hot = pl5_hot_info.get('万位', 'N/A')
+        pl5_wan_cold = pl5_cold_info.get('万位', 'N/A')
+        pl5_qian_hot = pl5_hot_info.get('千位', 'N/A')
+        pl5_qian_cold = pl5_cold_info.get('千位', 'N/A')
+        pl5_bai_hot = pl5_hot_info.get('百位', 'N/A')
+        pl5_bai_cold = pl5_cold_info.get('百位', 'N/A')
+        pl5_shi_hot = pl5_hot_info.get('十位', 'N/A')
+        pl5_shi_cold = pl5_cold_info.get('十位', 'N/A')
+        pl5_ge_hot = pl5_hot_info.get('个位', 'N/A')
+        pl5_ge_cold = pl5_cold_info.get('个位', 'N/A')
         
         # 格式化最终HTML
         html_content = html_template.format(
@@ -1520,10 +1514,24 @@ class LotteryAnalyzer:
             dlt_recommendation_html=dlt_recommendation_html,
             ssq_recommendation_html=ssq_recommendation_html,
             pl5_recommendation_html=pl5_recommendation_html,
-            plot_base64=plot_base64,
-            dlt_analysis_html=dlt_analysis_html,
-            ssq_analysis_html=ssq_analysis_html,
-            pl5_analysis_html=pl5_analysis_html,
+            dlt_front_hot_numbers=dlt_front_hot_numbers,
+            dlt_front_cold_numbers=dlt_front_cold_numbers,
+            dlt_back_hot_numbers=dlt_back_hot_numbers,
+            dlt_back_cold_numbers=dlt_back_cold_numbers,
+            ssq_red_hot_numbers=ssq_red_hot_numbers,
+            ssq_red_cold_numbers=ssq_red_cold_numbers,
+            ssq_blue_hot_numbers=ssq_blue_hot_numbers,
+            ssq_blue_cold_numbers=ssq_blue_cold_numbers,
+            pl5_wan_hot=pl5_wan_hot,
+            pl5_wan_cold=pl5_wan_cold,
+            pl5_qian_hot=pl5_qian_hot,
+            pl5_qian_cold=pl5_qian_cold,
+            pl5_bai_hot=pl5_bai_hot,
+            pl5_bai_cold=pl5_bai_cold,
+            pl5_shi_hot=pl5_shi_hot,
+            pl5_shi_cold=pl5_shi_cold,
+            pl5_ge_hot=pl5_ge_hot,
+            pl5_ge_cold=pl5_ge_cold,
             current_time=current_time
         )
         
@@ -1539,21 +1547,20 @@ def main():
     file_path = os.path.join(script_dir, "Tools.xlsx")
     
     print("=" * 60)
-    print("          三彩票数据分析系统")
+    print("          彩票数据分析系统")
     print("       (大乐透 + 双色球 + 排列五)")
     print("=" * 60)
     print(f"数据文件路径：{file_path}")
     
     # 创建分析器实例
     analyzer = LotteryAnalyzer(file_path)
-    
+
     # 1. 数据验证
     validation_results = analyzer.validate_data()
     
     if not any(validation_results.values()):
         print("没有可用的彩票数据，程序退出")
-        input("程序执行完毕，按任意键退出...")
-        return
+        return  # 直接返回，程序结束
     
     # 2. 数据分析
     dlt_analysis = None
@@ -1593,6 +1600,7 @@ def main():
     print("          分析完成！")
     print(f"          报告文件：{report_path}")
     print("=" * 60)
+   
     
 if __name__ == "__main__":
     main()

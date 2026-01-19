@@ -81,10 +81,6 @@
       "name": "神秘的哥哥们"
     },
     {
-      "url": "http://z.qiqiv.cn/123",
-      "name": "奇奇单仓"
-    },
-    {
       "url": "http://fmys.top/fmys.json",
       "name": "驸马"
     },
@@ -118,8 +114,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 29,
+  "valid_count": 28,
   "invalid_count": 0,
-  "last_validated": "2026-01-14 03:08:50",
-  "original_count": 29
+  "last_validated": "2026-01-19 03:10:54",
+  "original_count": 28
 }

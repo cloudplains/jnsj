@@ -1,4 +1,9 @@
-验证时间: 2026-01-19 10:22
-文件存在: 是
-文件大小: 7367417 bytes
-频道数量: 21426
+验证时间: 2026-01-20 01:10
+验证脚本: validate_urls.py
+验证的文件:
+- assets/urls.txt
+- jnsj.json
+
+文件状态:
+assets/urls.txt 行数: 93
+jnsj.json 文件大小: 2711 bytes

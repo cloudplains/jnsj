@@ -125,10 +125,6 @@
       "name": "科技长青"
     },
     {
-      "url": "https://6492.kstore.space/xnf/xnf.json",
-      "name": "环宇轩单线"
-    },
-    {
       "url": "https://xmbjm.github.io/ck.json",
       "name": "拾光趣乐屋"
     },
@@ -162,8 +158,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 40,
-  "invalid_count": 23,
-  "last_validated": "2026-01-20 06:19:09",
-  "original_count": 63
+  "valid_count": 39,
+  "invalid_count": 1,
+  "last_validated": "2026-01-20 10:32:44",
+  "original_count": 40
 }

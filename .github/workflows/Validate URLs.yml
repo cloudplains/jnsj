@@ -1,0 +1,85 @@
+﻿name: Validate URLs Only
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # 每天 UTC 时间 1:00 (北京时间 9:00)
+    - cron: '0 10 * * *'  # 每天 UTC 时间 10:00 (北京时间 18:00)
+  workflow_dispatch:  # 允许手动触发
+  push:
+    branches: [ main ]
+    paths-ignore:  # 忽略自身文件的更改，避免循环触发
+      - '.github/workflows/Validate URLs Only.yml'
+
+jobs:
+  validate_urls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Run URL validation script
+      run: python validate_urls.py
+
+    - name: Create validation report
+      if: always()
+      run: |
+        timestamp=$(date +"%Y-%m-%d %H:%M")
+        echo "验证时间: $timestamp" > validation-report.txt
+        echo "验证脚本: validate_urls.py" >> validation-report.txt
+        echo "验证的文件:" >> validation-report.txt
+        echo "- assets/urls.txt" >> validation-report.txt
+        echo "- jnsj.json" >> validation-report.txt
+        
+        # 统计文件变化
+        echo "" >> validation-report.txt
+        echo "文件状态:" >> validation-report.txt
+        
+        if [ -f "assets/urls.txt" ]; then
+          echo "assets/urls.txt 行数: $(wc -l < assets/urls.txt)" >> validation-report.txt
+        fi
+        
+        if [ -f "jnsj.json" ]; then
+          echo "jnsj.json 文件大小: $(wc -c < jnsj.json) bytes" >> validation-report.txt
+        fi
+        
+        cat validation-report.txt
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "github-actions[bot]"
+        git add "validation-report.txt" "assets/urls.txt" "jnsj.json"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "✅ Validate URLs $(date +'%Y%m%d_%H%M%S')"
+          git pull origin main --rebase
+          git push origin main
+        fi
+
+    - name: Notify on failure
+      if: failure()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'URL 验证失败',
+            body: 'URL 验证任务执行失败，请检查日志。'
+          })

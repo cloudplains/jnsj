@@ -2,8 +2,8 @@ name: Daily Lottery Analysis
 
 on:
   schedule:
-    # 第一次：每天01:10 UTC（对应北京时间09:10）
-    - cron: '10 1 * * *'
+    # 第一次：每天00:10 UTC（对应北京时间08:10）
+    - cron: '10 0 * * *'
     # 第二次：每天07:30 UTC（对应北京时间15:30）
     - cron: '30 7 * * *'
   workflow_dispatch:  # 允许手动触发

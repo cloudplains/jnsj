@@ -1,6 +1,6 @@
-# 更新时间: 2026-01-20 01:10:05
-# 有效URL数量: 89
-# 无效URL数量: 0
+# 更新时间: 2026-01-20 05:25:46
+# 有效URL数量: 93
+# 无效URL数量: 6
 
 https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
@@ -92,21 +92,6 @@ https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://sub.ottiptv.cc/bililive.m3u
-
-http://ok.zoho.to//i/?T=酷岗台
-
-http://ok.zoho.to//i/?T=岗
-
-http://he.html-5.me/2/i/HK.txt
-
-http://he.html-5.me/2/i/港台.txt
-
-http://gc.gt.tc/o/i/电视剧.txt
-
 http://go8.myartsonline.com/zx/0/测试·源.txt
-
 http://d.jsy777.top/box/tvzb9.txt
-
-http://gc.gt.tc/o/i/酷看台湾.txt
-
 https://pan.vma.cc/pan/down.php/c250aac7bc03121d0d3c14125c900952.txt

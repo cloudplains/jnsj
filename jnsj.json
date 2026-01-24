@@ -85,10 +85,6 @@
       "name": "金鹰"
     },
     {
-      "url": "https://cdn.githubraw.com/xuexuguang/tvbox_spider/main/tv/kk/heroaku_dtes.json",
-      "name": "无名接口"
-    },
-    {
       "url": "https://jihulab.com/mengzhu2/ysc/-/raw/main/YSC.json",
       "name": "影视仓Box"
     },
@@ -158,8 +154,8 @@
     }
   ],
   "last_updated": "2025-12-12",
-  "valid_count": 39,
-  "invalid_count": 0,
-  "last_validated": "2026-01-23 10:30:04",
+  "valid_count": 38,
+  "invalid_count": 1,
+  "last_validated": "2026-01-24 02:58:49",
   "original_count": 39
 }

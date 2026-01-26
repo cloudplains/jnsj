@@ -5,32 +5,8 @@
       "name": "OK线路"
     },
     {
-      "url": "https://catbox.n13.club/jk/jsm.json",
-      "name": "JSM"
-    },
-    {
       "url": "http://cdn.qiaoji8.com/tvbox.json",
       "name": "巧技"
-    },
-    {
-      "url": "https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
-      "name": "南风线路"
-    },
-    {
-      "url": "http://pandown.pro/tvbox/tvbox.json",
-      "name": "巧儿接口"
-    },
-    {
-      "url": "https://jihulab.com/kgsp/tv/raw/box/666.json",
-      "name": "坤哥影视接口"
-    },
-    {
-      "url": "http://ztha.top/TVBox/GYCK.json",
-      "name": "TH挺好接口"
-    },
-    {
-      "url": "http://ztha.top/TVBox/thdjk.json",
-      "name": "TH挺好接口2"
     },
     {
       "url": "http://tv.aisimu.cn/tv/all.json",
@@ -45,18 +21,6 @@
       "name": "香雅情接口"
     },
     {
-      "url": "https://700sjro44343.vicp.fun/eggp/qzku/tv.json",
-      "name": "茄子库接口"
-    },
-    {
-      "url": "http://影视仓接口.top",
-      "name": "快乐接口"
-    },
-    {
-      "url": "http://7337.kstore.space/qxys/禁止传播.json",
-      "name": "天微七星接口"
-    },
-    {
       "url": "http://hello.肥猫.com",
       "name": "肥猫(新)"
     },
@@ -65,92 +29,21 @@
       "name": "牛二(凯速)"
     },
     {
-      "url": "https://chuanshuo.77blog.cn/tv.json",
-      "name": "传说"
-    },
-    {
-      "url": "https://play.iptv365.org/tvbox.txt",
-      "name": "神秘的哥哥们"
-    },
-    {
-      "url": "http://fmys.top/fmys.json",
-      "name": "驸马"
-    },
-    {
-      "url": "https://xn--qoqw77q.top/",
-      "name": "龙一"
-    },
-    {
-      "url": "http://550.3vcn.work/wdjyys.json",
-      "name": "金鹰"
-    },
-    {
-      "url": "https://jihulab.com/mengzhu2/ysc/-/raw/main/YSC.json",
-      "name": "影视仓Box"
-    },
-    {
-      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
-      "name": "道长"
-    },
-    {
-      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
-      "name": "小苹果"
-    },
-    {
       "url": "https://la.kstore.dev/download/2863/01.txt",
       "name": "潇洒"
-    },
-    {
-      "url": "http://宝盒接口.top",
-      "name": "宝盒"
     },
     {
       "url": "https://gitee.com/blssss/jk/raw/api/bls.json",
       "name": "玩偶接口"
     },
     {
-      "url": "https://gitee.com/lukei7/lib/raw/Luck/自建.json",
-      "name": "蓝天"
-    },
-    {
       "url": "http://tvbox.王二小放牛娃.top",
       "name": "牛二(中文top)"
     },
-    {
-      "url": "https://upld.zone.id/uploads/q9iq9e5iq/tvboxlvse.json",
-      "name": "科技长青"
-    },
-    {
-      "url": "https://xmbjm.github.io/ck.json",
-      "name": "拾光趣乐屋"
-    },
-    {
-      "url": "https://git.acwing.com/shhentu/lzxw/-/raw/main/Monster.json",
-      "name": "小屋"
-    },
+
     {
       "url": "http://肥猫.com",
       "name": "肥猫"
-    },
-    {
-      "url": "https://gitee.com/yiwu369/6758/raw/master/青龙/1.json",
-      "name": "青龙"
-    },
-    {
-      "url": "https://g.3344550.xyz/https://raw.githubusercontent.com/jigedos/1024/master/jsm.json",
-      "name": "非凡"
-    },
-    {
-      "url": "https://git.acwing.com/cisenyuan/kdsb/-/raw/main/海冰影视.json",
-      "name": "海冰"
-    },
-    {
-      "url": "https://git.acwing.com/abai/tv/-/raw/main/huas.json",
-      "name": "花生"
-    },
-    {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
-      "name": "南风"
     }
   ],
   "last_updated": "2025-12-12",

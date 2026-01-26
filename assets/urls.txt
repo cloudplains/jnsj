@@ -2,7 +2,7 @@
 # 有效URL数量: 93
 # 无效URL数量: 0
 
-https://jihulab.com/237331946/2/-/raw/main/live.txt
+https://jnsj.cloudplains.dpdns.org/assets/live.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
 https://zbds.org/tv/iptv4.txt

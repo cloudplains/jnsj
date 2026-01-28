@@ -13,8 +13,8 @@
       "name": "艾丝沐"
     },
     {
-      "url": "https://9877.kstore.space/AnotherD/api.json",
-      "name": "潇洒单线"
+      "url": "http://www.饭太硬.com/tv",
+      "name": "饭太硬"
     },
     {
       "url": "https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json",
@@ -48,6 +48,6 @@
   "last_updated": "2025-12-12",
   "valid_count": 11,
   "invalid_count": 0,
-  "last_validated": "2026-01-27 03:09:22",
+  "last_validated": "2026-01-27 10:32:13",
   "original_count": 11
 }

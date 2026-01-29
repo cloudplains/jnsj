@@ -1,8 +1,7 @@
-# 更新时间: 2026-01-28 10:33:02
+# 更新时间: 2026-01-29 01:16:41
 # 有效URL数量: 96
-# 无效URL数量: 0
+# 无效URL数量: 1
 
-http://txt.gt.tc/users/HKTV.txt
 https://jnsj.cloudplains.dpdns.org/assets/live.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt

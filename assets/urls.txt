@@ -2,6 +2,7 @@
 # 有效URL数量: 93
 # 无效URL数量: 0
 
+http://txt.gt.tc/users/HKTV.txt
 https://jnsj.cloudplains.dpdns.org/assets/live.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt

@@ -1,4 +1,7 @@
-﻿Adithya
+﻿*HOY TV
+*HOY 國際財經台
+*HOY 資訊台
+Adithya
 AEC
 Al-Hijrah
 Al-Hijrah(備用)
@@ -13,7 +16,11 @@ Arirang
 Asian
 Asianet
 Astro
+Astro AEC_SMT
+Astro AOD_SMT
+Astro QJ_SMT
 Astrol
+Astro欢喜台_SMT
 ATV
 Aura
 Awani
@@ -53,6 +60,7 @@ CBSN
 Celestial
 Ceria
 CGTN
+CGTN 英語頻道
 Channel
 Channel5Thailand
 Cinemax
@@ -104,6 +112,10 @@ History
 Hits
 HiTV
 HOY
+HOY TV
+HOY 國際財經台
+HOY 資訊台
+HOY资讯台_SMT
 HRT
 HTTV
 HTV
@@ -119,6 +131,7 @@ iNews
 itv
 Jak
 JTV
+JULI
 KBS
 KG
 Kompass
@@ -146,7 +159,13 @@ Net
 News
 NHK
 Nh鈔
+NowSports
+Now爆谷台
+Now財經台
 NOW新闻台
+Now新聞台
+Now星影台
+Now直播台
 NTV
 NTV7
 Oasis
@@ -154,6 +173,7 @@ One
 Outdoor
 Pick
 Picture
+PopC电影
 Prima
 Prima(備用)
 PRO
@@ -229,9 +249,15 @@ TV3(備用)
 TV8
 TV9
 TVB
+TVB Plus
+TVB PLUS_SMT
+TVBS HD
+TVBS HD(备)
 TVB千禧经典
 TVB新闻
 TVB星河
+TVB星河_SMT
+TVB娱乐新闻台_SMT
 TVE
 TVMU
 tvN
@@ -240,6 +266,10 @@ TVRI
 TVS
 Vision
 ViuTV
+ViuTV_SMT
+ViuTVsix
+ViuTVSix_SMT
+VIUTV全运-2
 VNEWS
 VOV
 VP
@@ -276,25 +306,63 @@ WWE
 YTV
 Zee
 阿里郎电视台Arirang
+爱奇艺_SMT
 澳门Macau
 澳门体育
 澳门资讯
 澳视澳门
 澳视葡文
+八度空间_SMT
 半岛电视台
 半岛新闻
 朝鲜中央台
+东森新闻
 法国时尚
+翡翠台
+翡翠台_SMT
+凤凰香港台
+凤凰中文台
+凤凰资讯台
+鳳凰衛視香港台
+港台電視 31
+港台電視 32
 韩国KBS
 韩国MBN
 韩国戲劇台KBS
+华丽翡翠台_SMT
+寰宇新闻
+极限电影
 金鹰卡通
 莲花卫视
+龙华电影
+龙华经典
+龙华卡通
+龙华偶像
+龙华日韩
+龙华戏剧
+龙华洋片
+明珠台
+明珠台_SMT
+年代新闻
+千禧经典台_SMT
 人间卫视
 日本UN
 台湾Plus
 天映经典
+天映经典_SMT
+天映频道
+天映频道_SMT
 无线翡翠
 无线新闻台
+无线新闻台_SMT
 无线星河
+無綫新聞台
+星空卫视(国际)
 亚洲卫视
+中國環球電視網紀錄頻道 (CGTN紀錄頻道)
+中视新闻
+中天新闻
+中天新闻(备)
+中天娱乐
+中天综合
+中央電視台綜合頻道（CCTV-1綜合)

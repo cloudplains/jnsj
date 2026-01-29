@@ -1,4 +1,4 @@
-金鹰采集电影之1,#genre#
+金鹰电影1,#genre#
 动作片-打黑,https://hd.ijycnd.com/play/Xe062L5b/index.m3u8
 动作片-尼斯警花,https://hd.ijycnd.com/play/YaOrZ4Le/index.m3u8
 动作片-钻石女王,https://hd.ijycnd.com/play/9aA51nPa/index.m3u8
@@ -499,7 +499,7 @@
 动作片-警醒（粤语版）,https://hd.ijycnd.com/play/BeXnV4Wb/index.m3u8
 动作片-狙击职业杀手（粤语版）,https://hd.ijycnd.com/play/Xe0O3Qvd/index.m3u8
 动作片-巨齿鲨（粤语版）,https://hd.ijycnd.com/play/nelD6r5e/index.m3u8
-金鹰采集电影之2,#genre#
+金鹰电影2,#genre#
 动作片-狂暴巨兽（粤语版）,https://hd.ijycnd.com/play/1aMoB33d/index.m3u8
 动作片-狂野之河（粤语版）,https://hd.ijycnd.com/play/qaQvL9Yb/index.m3u8
 动作片-猎神：冬日之战（粤语版）,https://hd.ijycnd.com/play/nelD6q6e/index.m3u8
@@ -1000,7 +1000,7 @@
 动作片-疑云背后,https://hd.ijycnd.com/play/PdROx7Ve/index.m3u8
 动作片-武林志,https://hd.ijycnd.com/play/xe715MOb/index.m3u8
 动作片-疑云背后（国语版）,https://hd.ijycnd.com/play/0dNLqR2a/index.m3u8
-金鹰采集电影之3,#genre#
+金鹰电影3,#genre#
 动作片-武林风云,https://hd.ijycnd.com/play/PdROxXYe/index.m3u8
 动作片-武林圣火令（国语版）,https://hd.ijycnd.com/play/Le3Q539b/index.m3u8
 动作片-全能战将（国语版）,https://hd.ijycnd.com/play/zbq7voye/index.m3u8
@@ -1501,7 +1501,7 @@
 动作片-幻影战士（国语版）,https://hd.ijycnd.com/play/negXODaw/index.m3u8
 动作片-我是一个贼,https://hd.ijycnd.com/play/vbmXPpaY/index.m3u8
 动作片-花旗少林,https://hd.ijycnd.com/play/zbq8X3ap/index.m3u8
-金鹰采集电影之4,#genre#
+金鹰电影4,#genre#
 动作片-为爱叛逆2之逆战到底,https://hd.ijycnd.com/play/7axjj9dy/index.m3u8
 动作片-虎胆追凶,https://hd.ijycnd.com/play/vbmOBReY/index.m3u8
 动作片-洪拳大师,https://hd.ijycnd.com/play/6dBE9Nb7/index.m3u8
@@ -2002,7 +2002,7 @@
 动作片-封神传说之妖狐王妃,https://hd.ijycnd.com/play/QbYR80dz/index.m3u8
 动作片-疯狂的足球,https://hd.ijycnd.com/play/QdJRoDdO/index.m3u8
 动作片-飞鱼服,https://hd.ijycnd.com/play/xe7kKAe7/index.m3u8
-金鹰采集电影之5,#genre#
+金鹰电影5,#genre#
 动作片-毒。诫,https://hd.ijycnd.com/play/QdJRAKdO/index.m3u8
 动作片-方世玉之胜者为王,https://hd.ijycnd.com/play/zbq90rbp/index.m3u8
 动作片-中南海保镖,https://hd.ijycnd.com/play/QdJR9PdO/index.m3u8
@@ -2503,7 +2503,7 @@
 动作片-蝎子王5:灵魂之书,https://hd.ijycnd.com/play/7ax9Ylby/index.m3u8
 动作片-夏福特,https://hd.ijycnd.com/play/7ax9XEby/index.m3u8
 动作片-风流家族 風流家族,https://hd.ijycnd.com/play/QdJzy2dO/index.m3u8
-金鹰采集电影之6,#genre#
+金鹰电影6,#genre#
 动作片-废柴特工(普通话版),https://hd.ijycnd.com/play/vbmGD3eY/index.m3u8
 动作片-焚兽之都(粤语版),https://hd.ijycnd.com/play/0dNpQDaL/index.m3u8
 动作片-焚兽之都(普通话版),https://hd.ijycnd.com/play/7ax9Z3by/index.m3u8
@@ -3004,7 +3004,7 @@
 动作片-抢孤,https://hd.ijycnd.com/play/PdR1WKbG/index.m3u8
 动作片-帕克,https://hd.ijycnd.com/play/QdJQoybO/index.m3u8
 动作片-金蝉脱壳2：冥府（原声版）,https://hd.ijycnd.com/play/Le3wMRe6/index.m3u8
-金鹰采集电影之7,#genre#
+金鹰电影7,#genre#
 动作片-神迹之上古传奇,https://hd.ijycnd.com/play/xe7XQ1a7/index.m3u8
 动作片-江湖龙虎斗,https://hd.ijycnd.com/play/vbmyx3bY/index.m3u8
 动作片-使徒行者2：谍影行动（国语版）,https://hd.ijycnd.com/play/Le3w5Ae6/index.m3u8
@@ -3505,7 +3505,7 @@
 动作片-刀剑笑新传之宝鉴,https://hd.ijycnd.com/play/zbqBq0dp/index.m3u8
 动作片-扭转钱坤,https://hd.ijycnd.com/play/nego9kew/index.m3u8
 动作片-佳人有约,https://hd.ijycnd.com/play/6dBZWJd7/index.m3u8
-金鹰采集电影之8,#genre#
+金鹰电影8,#genre#
 动作片-家族与情感,https://hd.ijycnd.com/play/QdJpooaO/index.m3u8
 动作片-俄罗斯之锤,https://hd.ijycnd.com/play/PdRAqKbG/index.m3u8
 动作片-蹴鞠,https://hd.ijycnd.com/play/PdRAmObG/index.m3u8
@@ -4006,7 +4006,7 @@
 动作片-生死拳,https://hd.ijycnd.com/play/QbYE6zWb/index.m3u8
 动作片-江湖水,https://hd.ijycnd.com/play/xe7364Ge/index.m3u8
 动作片-过失,https://hd.ijycnd.com/play/xe7365Ge/index.m3u8
-金鹰采集电影之9,#genre#
+金鹰电影9,#genre#
 动作片-致命武器4,https://hd.ijycnd.com/play/QbYE6Lpb/index.m3u8
 动作片-钟馗伏魔：雪妖魔灵,https://hd.ijycnd.com/play/Le31lPOb/index.m3u8
 动作片-游侠,https://hd.ijycnd.com/play/negJ546d/index.m3u8
@@ -4507,7 +4507,7 @@
 动作片-一线生机,https://hd.ijycnd.com/play/vbmQJNRb/index.m3u8
 动作片-最后的武士,https://hd.ijycnd.com/play/xe7L42ja/index.m3u8
 动作片-战龙在野,https://hd.ijycnd.com/play/7axvXw9d/index.m3u8
-金鹰采集电影之10,#genre#
+金鹰电影10,#genre#
 动作片-杂技亡命队,https://hd.ijycnd.com/play/xe7L4kja/index.m3u8
 动作片-智勇三宝,https://hd.ijycnd.com/play/QdJq5r2b/index.m3u8
 动作片-玉面侠,https://hd.ijycnd.com/play/0dN94jDb/index.m3u8
@@ -5008,7 +5008,7 @@
 爱情片-我的女友是苏妲己,https://hd.ijycnd.com/play/Le3Q5lxb/index.m3u8
 爱情片-我的邻居是美女,https://hd.ijycnd.com/play/QdJyom9b/index.m3u8
 爱情片-大地的女儿1991,https://hd.ijycnd.com/play/zbq71RRe/index.m3u8
-金鹰采集电影之11,#genre#
+金鹰电影11,#genre#
 爱情片-三千年的渴望,https://hd.ijycnd.com/play/PdROAzOe/index.m3u8
 爱情片-偷窥者,https://hd.ijycnd.com/play/vbmOLZGe/index.m3u8
 爱情片-通往仙境,https://hd.ijycnd.com/play/PdROWZYe/index.m3u8
@@ -5509,7 +5509,7 @@
 爱情片-封口者,https://hd.ijycnd.com/play/7axmMJby/index.m3u8
 爱情片-功夫男仆,https://hd.ijycnd.com/play/7axmREby/index.m3u8
 爱情片-疯狂试爱之勇敢爱,https://hd.ijycnd.com/play/xe7kGwe7/index.m3u8
-金鹰采集电影之12,#genre#
+金鹰电影12,#genre#
 爱情片-熟男，我爱你,https://hd.ijycnd.com/play/Le3G3Ae6/index.m3u8
 爱情片-在乎你,https://hd.ijycnd.com/play/6dByykb7/index.m3u8
 爱情片-封仙册之铁扇罗刹,https://hd.ijycnd.com/play/negP09aw/index.m3u8
@@ -6010,7 +6010,7 @@
 爱情片-斯德哥尔摩情人,https://hd.ijycnd.com/play/6dB0GXa7/index.m3u8
 爱情片-你好，之华,https://hd.ijycnd.com/play/Le3mpRb6/index.m3u8
 爱情片-十步一剑,https://hd.ijycnd.com/play/neg4N3aw/index.m3u8
-金鹰采集电影之13,#genre#
+金鹰电影13,#genre#
 爱情片-时尚女模头3,https://hd.ijycnd.com/play/QbYPmnaz/index.m3u8
 爱情片-圣何塞谋杀案 聖荷西謀殺案(普通话),https://hd.ijycnd.com/play/6dB0jNa7/index.m3u8
 爱情片-圣何塞谋杀案（粤语版）,https://hd.ijycnd.com/play/QdJwrPeO/index.m3u8
@@ -6511,7 +6511,7 @@
 爱情片-亲吻亭2,https://hd.ijycnd.com/play/6dBBm7Qd/index.m3u8
 爱情片-最伟大的,https://hd.ijycnd.com/play/0dNkBzme/index.m3u8
 爱情片-淘金俏冤家,https://hd.ijycnd.com/play/0dNkBvLe/index.m3u8
-金鹰采集电影之14,#genre#
+金鹰电影14,#genre#
 爱情片-偷情别墅,https://hd.ijycnd.com/play/zbqxnyRa/index.m3u8
 爱情片-蝴蝶梦,https://hd.ijycnd.com/play/vbmZjEAd/index.m3u8
 爱情片-宅男腐女恋爱真难,https://hd.ijycnd.com/play/Le31PLpb/index.m3u8
@@ -7012,7 +7012,7 @@
 爱情片-月亮的后裔,https://hd.ijycnd.com/play/7axvXm9d/index.m3u8
 爱情片-鸳鸯谱,https://hd.ijycnd.com/play/Le32W0xd/index.m3u8
 爱情片-欲海情魔,https://hd.ijycnd.com/play/vbmQJ69b/index.m3u8
-金鹰采集电影之15,#genre#
+金鹰电影15,#genre#
 爱情片-海滩,https://hd.ijycnd.com/play/vbmQJYEb/index.m3u8
 爱情片-缘份新天空,https://hd.ijycnd.com/play/PdRo90Ke/index.m3u8
 爱情片-遇见波莉,https://hd.ijycnd.com/play/vbmQJ6rb/index.m3u8
@@ -7513,7 +7513,7 @@
 喜剧片-海滩游侠（粤语版）,https://hd.ijycnd.com/play/RdGgKl8d/index.m3u8
 喜剧片-黑暗阴影（粤语版）,https://hd.ijycnd.com/play/BeXnVJAb/index.m3u8
 喜剧片-嘿咻卡（粤语版）,https://hd.ijycnd.com/play/Xe0O3xKd/index.m3u8
-金鹰采集电影之16,#genre#
+金鹰电影16,#genre#
 喜剧片-回到未来2（粤语版）,https://hd.ijycnd.com/play/DdwZgBRb/index.m3u8
 喜剧片-惊情谍变（粤语版）,https://hd.ijycnd.com/play/9aAAO4Oa/index.m3u8
 喜剧片-王牌大保镖,https://hd.ijycnd.com/play/mep7VrXd/index.m3u8
@@ -8014,7 +8014,7 @@
 喜剧片-二度姻缘三日情,https://hd.ijycnd.com/play/PdRlBmVa/index.m3u8
 喜剧片-斗鸡侠,https://hd.ijycnd.com/play/neg5Zrbw/index.m3u8
 喜剧片-冲锋车 衝鋒車,https://hd.ijycnd.com/play/zbqjXRdp/index.m3u8
-金鹰采集电影之17,#genre#
+金鹰电影17,#genre#
 喜剧片-比得兔2：逃跑计划,https://hd.ijycnd.com/play/QbY6ROdz/index.m3u8
 喜剧片-还我清白抢银行,https://hd.ijycnd.com/play/vbmwpReY/index.m3u8
 喜剧片-高台家的成员,https://hd.ijycnd.com/play/neg5Glbw/index.m3u8
@@ -8515,7 +8515,7 @@
 喜剧片-赌神（粤语版）,https://hd.ijycnd.com/play/Le3rZAd6/index.m3u8
 喜剧片-海豚伯尼2,https://hd.ijycnd.com/play/6dBvBNd7/index.m3u8
 喜剧片-警察故事2013（粤语版）,https://hd.ijycnd.com/play/QbYY1Abz/index.m3u8
-金鹰采集电影之18,#genre#
+金鹰电影18,#genre#
 喜剧片-横财局中局,https://hd.ijycnd.com/play/Le33lMe6/index.m3u8
 喜剧片-赌神3之少年赌神（粤语版）,https://hd.ijycnd.com/play/zbqpg7ap/index.m3u8
 喜剧片-九条命（原声版）,https://hd.ijycnd.com/play/6dBXDYa7/index.m3u8
@@ -9016,7 +9016,7 @@
 喜剧片-西游外传之大圣娶亲,https://hd.ijycnd.com/play/zbqkr2ep/index.m3u8
 喜剧片-心若在，家就在,https://hd.ijycnd.com/play/zbqkERep/index.m3u8
 喜剧片-缩小人生,https://hd.ijycnd.com/play/0dN6xKdL/index.m3u8
-金鹰采集电影之19,#genre#
+金鹰电影19,#genre#
 喜剧片-咸鱼,https://hd.ijycnd.com/play/PdRV7RdG/index.m3u8
 喜剧片-西游之大话女儿国,https://hd.ijycnd.com/play/7axrB9dy/index.m3u8
 喜剧片-西虹市首富,https://hd.ijycnd.com/play/Le3x0Ma6/index.m3u8
@@ -9517,7 +9517,7 @@
 喜剧片-弟子也疯狂,https://hd.ijycnd.com/play/negZVGdw/index.m3u8
 喜剧片-散弹露露,https://hd.ijycnd.com/play/vbmOp0eY/index.m3u8
 喜剧片-东北往事之人在江湖,https://hd.ijycnd.com/play/QdJypDbO/index.m3u8
-金鹰采集电影之20,#genre#
+金鹰电影20,#genre#
 喜剧片-憨豆的黄金周,https://hd.ijycnd.com/play/zbq7Erep/index.m3u8
 喜剧片-轻松自由,https://hd.ijycnd.com/play/xe71GGb7/index.m3u8
 喜剧片-三个鲁伯特,https://hd.ijycnd.com/play/7axnArdy/index.m3u8
@@ -10018,7 +10018,7 @@
 喜剧片-天堂的祝福,https://hd.ijycnd.com/play/zbqV5ydp/index.m3u8
 喜剧片-天生爱情狂(粤语版),https://hd.ijycnd.com/play/0dNE0zbL/index.m3u8
 喜剧片-天使出更,https://hd.ijycnd.com/play/vbm2kndY/index.m3u8
-金鹰采集电影之21,#genre#
+金鹰电影21,#genre#
 喜剧片-天生爱情狂(普通话版),https://hd.ijycnd.com/play/Le3jwQd6/index.m3u8
 喜剧片-天下无双（粤语版）,https://hd.ijycnd.com/play/zbqVDRdp/index.m3u8
 喜剧片-明星少女养成记,https://hd.ijycnd.com/play/0dNEKNbL/index.m3u8
@@ -10519,7 +10519,7 @@
 喜剧片-骗徒奇遇记,https://hd.ijycnd.com/play/xe73MEye/index.m3u8
 喜剧片-如果我是男生,https://hd.ijycnd.com/play/xe73Mlje/index.m3u8
 喜剧片-你玩什么？,https://hd.ijycnd.com/play/QbYEZ1Mb/index.m3u8
-金鹰采集电影之22,#genre#
+金鹰电影22,#genre#
 喜剧片-美丽至极,https://hd.ijycnd.com/play/QbYEZg2b/index.m3u8
 喜剧片-跨次元少女大作战,https://hd.ijycnd.com/play/xe73MKOe/index.m3u8
 喜剧片-皮特·戴维森：我仍在纽约,https://hd.ijycnd.com/play/Le313zOb/index.m3u8
@@ -11020,7 +11020,7 @@
 喜剧片-冰河世纪：猛犸象的圣诞,https://hd.ijycnd.com/play/QdJ6GLgd/index.m3u8
 喜剧片-都是戴茜惹的祸,https://hd.ijycnd.com/play/zbqxwkra/index.m3u8
 喜剧片-我要成名,https://hd.ijycnd.com/play/xe7688yd/index.m3u8
-金鹰采集电影之23,#genre#
+金鹰电影23,#genre#
 喜剧片-鱿鱼和鲸,https://hd.ijycnd.com/play/0dNkQz8e/index.m3u8
 喜剧片-捉奸侦探,https://hd.ijycnd.com/play/vbmZlyEd/index.m3u8
 喜剧片-四角关系,https://hd.ijycnd.com/play/6dBBljXd/index.m3u8
@@ -11521,7 +11521,7 @@
 喜剧片-佐州自救兄弟,https://hd.ijycnd.com/play/6dBBBVYd/index.m3u8
 喜剧片-圆桌,https://hd.ijycnd.com/play/7axkkJle/index.m3u8
 喜剧片-信长协奏曲 电影版,https://hd.ijycnd.com/play/negJJgDd/index.m3u8
-金鹰采集电影之24,#genre#
+金鹰电影24,#genre#
 喜剧片-走火交易,https://hd.ijycnd.com/play/zbqxxgpa/index.m3u8
 喜剧片-今天的恋爱,https://hd.ijycnd.com/play/xe733PBe/index.m3u8
 喜剧片-银之匙 真人版,https://hd.ijycnd.com/play/0dNkk38e/index.m3u8
@@ -12022,7 +12022,7 @@
 喜剧片-三个男人故事,https://hd.ijycnd.com/play/6dBNoWXd/index.m3u8
 喜剧片-寻找约翰·吉辛,https://hd.ijycnd.com/play/0dNLDqza/index.m3u8
 喜剧片-香城艳史,https://hd.ijycnd.com/play/zbq7RA3e/index.m3u8
-金鹰采集电影之25,#genre#
+金鹰电影25,#genre#
 喜剧片-仙班校园2,https://hd.ijycnd.com/play/vbmORYOe/index.m3u8
 喜剧片-香车美人,https://hd.ijycnd.com/play/vbmOR7pe/index.m3u8
 喜剧片-现代爱情故事,https://hd.ijycnd.com/play/PdROY1qe/index.m3u8
@@ -12523,7 +12523,7 @@
 科幻片-边境迷雾,https://hd.ijycnd.com/play/xe77Pye7/index.m3u8
 科幻片-变异九头蛇,https://hd.ijycnd.com/play/zbqXgGap/index.m3u8
 科幻片-极北之战,https://hd.ijycnd.com/play/negVzGdw/index.m3u8
-金鹰采集电影之26,#genre#
+金鹰电影26,#genre#
 科幻片-记忆提取,https://hd.ijycnd.com/play/6dB73ke7/index.m3u8
 科幻片-机械战士,https://hd.ijycnd.com/play/PdRrxEdG/index.m3u8
 科幻片-白蛇2：青蛇劫起,https://hd.ijycnd.com/play/vbmVPAdY/index.m3u8
@@ -13024,7 +13024,7 @@
 科幻片-侵占,https://hd.ijycnd.com/play/xe7KJQe7/index.m3u8
 科幻片-如来神掌,https://hd.ijycnd.com/play/vbm46GaY/index.m3u8
 科幻片-最后的日出,https://hd.ijycnd.com/play/xe7KXGe7/index.m3u8
-金鹰采集电影之27,#genre#
+金鹰电影27,#genre#
 科幻片-末路狂欢,https://hd.ijycnd.com/play/vbm47naY/index.m3u8
 科幻片-三界寻龙记,https://hd.ijycnd.com/play/6dB0pYa7/index.m3u8
 科幻片-潜艇总动员：海底两万里,https://hd.ijycnd.com/play/0dNA12bL/index.m3u8
@@ -13525,7 +13525,7 @@
 恐怖片-地狱折磨,https://hd.ijycnd.com/play/Le3D4mQa/index.m3u8
 恐怖片-寄人皮下,https://hd.ijycnd.com/play/xe7Kjy1e/index.m3u8
 恐怖片-害虫,https://hd.ijycnd.com/play/Pe9MJYPe/index.m3u8
-金鹰采集电影之28,#genre#
+金鹰电影28,#genre#
 恐怖片-曲面,https://hd.ijycnd.com/play/Le3DZZ4a/index.m3u8
 恐怖片-安娜贝尔,https://hd.ijycnd.com/play/oeEo4gWb/index.m3u8
 恐怖片-西辛6,https://hd.ijycnd.com/play/xe7K4BBe/index.m3u8
@@ -14026,7 +14026,7 @@
 恐怖片-人形师,https://hd.ijycnd.com/play/Le36A9Od/index.m3u8
 恐怖片-亲爱的快逃,https://hd.ijycnd.com/play/vbmqLQAb/index.m3u8
 恐怖片-魔翼杀手5,https://hd.ijycnd.com/play/6dBrWOXd/index.m3u8
-金鹰采集电影之29,#genre#
+金鹰电影29,#genre#
 恐怖片-地狱之渊,https://hd.ijycnd.com/play/QbY72rpe/index.m3u8
 恐怖片-野蛮人,https://hd.ijycnd.com/play/zbqQGLrb/index.m3u8
 恐怖片-密弑逃生,https://hd.ijycnd.com/play/vbmqKL3b/index.m3u8
@@ -14527,7 +14527,7 @@
 恐怖片-张震讲故事之三更夜,https://hd.ijycnd.com/play/6dBMpWb7/index.m3u8
 恐怖片-巢穴,https://hd.ijycnd.com/play/QdJnxKdO/index.m3u8
 恐怖片-残屋尸骸,https://hd.ijycnd.com/play/7ax0NPay/index.m3u8
-金鹰采集电影之30,#genre#
+金鹰电影30,#genre#
 恐怖片-张震讲故事之洗脸女生的传说,https://hd.ijycnd.com/play/QdJnAvdO/index.m3u8
 恐怖片-兴安岭猎人传说,https://hd.ijycnd.com/play/zbqELRbp/index.m3u8
 恐怖片-细思极恐,https://hd.ijycnd.com/play/Le3qKrb6/index.m3u8
@@ -15028,7 +15028,7 @@
 恐怖片-灵动：鬼影实录3,https://hd.ijycnd.com/play/6dBnZnd7/index.m3u8
 恐怖片-死神快递,https://hd.ijycnd.com/play/PdRL3YaG/index.m3u8
 恐怖片-隧道尽头,https://hd.ijycnd.com/play/zbq29Gdp/index.m3u8
-金鹰采集电影之31,#genre#
+金鹰电影31,#genre#
 恐怖片-猎魔女警,https://hd.ijycnd.com/play/zbq203dp/index.m3u8
 恐怖片-老九门番外之二月花开,https://hd.ijycnd.com/play/PdRLJqaG/index.m3u8
 恐怖片-史前巨鳄2,https://hd.ijycnd.com/play/0dN8RpaL/index.m3u8
@@ -15529,7 +15529,7 @@
 恐怖片-童眼,https://hd.ijycnd.com/play/0dNkN9pe/index.m3u8
 恐怖片-善与恶的房子,https://hd.ijycnd.com/play/xe73j3ye/index.m3u8
 恐怖片-死亡水域,https://hd.ijycnd.com/play/Le314lxb/index.m3u8
-金鹰采集电影之32,#genre#
+金鹰电影32,#genre#
 恐怖片-死亡经历,https://hd.ijycnd.com/play/QbYE26nb/index.m3u8
 恐怖片-目露凶光,https://hd.ijycnd.com/play/vbmZKppd/index.m3u8
 恐怖片-千疮百孔,https://hd.ijycnd.com/play/PdR6RYOd/index.m3u8
@@ -16030,7 +16030,7 @@
 剧情片-倒数时刻,https://hd.ijycnd.com/play/BeXJPKkb/index.m3u8
 剧情片-我的小公主,https://hd.ijycnd.com/play/rb20Xmve/index.m3u8
 剧情片-黄金少年,https://hd.ijycnd.com/play/BeXJXmAb/index.m3u8
-金鹰采集电影之33,#genre#
+金鹰电影33,#genre#
 剧情片-秘鲁奥鲁,https://hd.ijycnd.com/play/lej3gWWa/index.m3u8
 剧情片-无声的爱 2024,https://hd.ijycnd.com/play/Ddw3yKzd/index.m3u8
 剧情片-阴山守陵人,https://hd.ijycnd.com/play/Yer3qZwa/index.m3u8
@@ -16531,7 +16531,7 @@
 剧情片-无限斗界之暗夜双龙,https://hd.ijycnd.com/play/xe7mPB8b/index.m3u8
 剧情片-狂蟒之灾,https://hd.ijycnd.com/play/7e5kNKBb/index.m3u8
 剧情片-左轮手枪莉莉,https://hd.ijycnd.com/play/9avyGgne/index.m3u8
-金鹰采集电影之34,#genre#
+金鹰电影34,#genre#
 剧情片-那夜我们行向彼方,https://hd.ijycnd.com/play/QbYw3EWe/index.m3u8
 剧情片-古今大战秦俑情,https://hd.ijycnd.com/play/xbooL3zb/index.m3u8
 剧情片-鲍勃·马利：一份爱,https://hd.ijycnd.com/play/QbYwgAMe/index.m3u8
@@ -17032,7 +17032,7 @@
 剧情片-丧尸之城,https://hd.ijycnd.com/play/PdRDw5La/index.m3u8
 剧情片-湘西诡案,https://hd.ijycnd.com/play/6dBjRYXd/index.m3u8
 剧情片-银色薄雾,https://hd.ijycnd.com/play/NbWXWn4d/index.m3u8
-金鹰采集电影之35,#genre#
+金鹰电影35,#genre#
 剧情片-杜巴利伯爵夫人,https://hd.ijycnd.com/play/0dNy7xmb/index.m3u8
 剧情片-狱卒,https://hd.ijycnd.com/play/PdRDMXLa/index.m3u8
 剧情片-悖论,https://hd.ijycnd.com/play/ZdPAYRye/index.m3u8
@@ -17533,7 +17533,7 @@
 剧情片-新封神之二郎神,https://hd.ijycnd.com/play/7e53jzqb/index.m3u8
 剧情片-嘻哈梦想,https://hd.ijycnd.com/play/wdLnLowa/index.m3u8
 剧情片-紫菜卷女孩,https://hd.ijycnd.com/play/9avDN3Xd/index.m3u8
-金鹰采集电影之36,#genre#
+金鹰电影36,#genre#
 剧情片-家庭晚餐,https://hd.ijycnd.com/play/kaz9Rwqe/index.m3u8
 剧情片-海湾之遇,https://hd.ijycnd.com/play/PdRwRJwe/index.m3u8
 剧情片-钦天异闻录,https://hd.ijycnd.com/play/6dBQx7Wb/index.m3u8
@@ -18034,7 +18034,7 @@
 剧情片-行走的正义,https://hd.ijycnd.com/play/Le3wOGMe/index.m3u8
 剧情片-江南1970,https://hd.ijycnd.com/play/vbmyGNGb/index.m3u8
 剧情片-海边的曼彻斯特,https://hd.ijycnd.com/play/QbY50r2b/index.m3u8
-金鹰采集电影之37,#genre#
+金鹰电影37,#genre#
 剧情片-法兰西特派,https://hd.ijycnd.com/play/7ax198Bb/index.m3u8
 剧情片-我亲爱的莫妮卡,https://hd.ijycnd.com/play/PdR15NVb/index.m3u8
 剧情片-高速公路家族,https://hd.ijycnd.com/play/6dB6RqQd/index.m3u8
@@ -18535,7 +18535,7 @@
 剧情片-青春喂了狗2：不一样的烟火,https://hd.ijycnd.com/play/zbqQky0b/index.m3u8
 剧情片-青春无悔,https://hd.ijycnd.com/play/QbY7Dz2e/index.m3u8
 剧情片-青葱那年,https://hd.ijycnd.com/play/xe79qo1b/index.m3u8
-金鹰采集电影之38,#genre#
+金鹰电影38,#genre#
 剧情片-青红,https://hd.ijycnd.com/play/negpWAka/index.m3u8
 剧情片-青山翠谷,https://hd.ijycnd.com/play/6dBrGDYd/index.m3u8
 剧情片-青苔,https://hd.ijycnd.com/play/0dNOoVve/index.m3u8
@@ -19036,7 +19036,7 @@
 剧情片-青春的园地,https://hd.ijycnd.com/play/QdJ895Ja/index.m3u8
 剧情片-墙头马上,https://hd.ijycnd.com/play/7ax6rMld/index.m3u8
 剧情片-巧哥儿,https://hd.ijycnd.com/play/PdRlVAVa/index.m3u8
-金鹰采集电影之39,#genre#
+金鹰电影39,#genre#
 剧情片-俏皮女学生,https://hd.ijycnd.com/play/xe79BZQb/index.m3u8
 剧情片-梧桐河衫恋,https://hd.ijycnd.com/play/negpDP9a/index.m3u8
 剧情片-快闪猎人暗黑正义,https://hd.ijycnd.com/play/negpE03a/index.m3u8
@@ -19537,7 +19537,7 @@
 剧情片-C+侦探,https://hd.ijycnd.com/play/negJkYdw/index.m3u8
 剧情片-不要离开,https://hd.ijycnd.com/play/Le316xb6/index.m3u8
 剧情片-变鬼,https://hd.ijycnd.com/play/46dBlYa7/index.m3u8
-金鹰采集电影之40,#genre#
+金鹰电影40,#genre#
 剧情片-兵心无悔,https://hd.ijycnd.com/play/6dBBgkd7/index.m3u8
 剧情片-埃贡·席勒：过度,https://hd.ijycnd.com/play/QdJ6yPdO/index.m3u8
 剧情片-90后青年,https://hd.ijycnd.com/play/zbqxY0ap/index.m3u8
@@ -20038,7 +20038,7 @@
 剧情片-分手说爱你,https://hd.ijycnd.com/play/vbmV79dY/index.m3u8
 剧情片-埃德沃德·迈布里奇,https://hd.ijycnd.com/play/0dNn0vdL/index.m3u8
 剧情片-唇上之歌,https://hd.ijycnd.com/play/vbmVqRdY/index.m3u8
-金鹰采集电影之41,#genre#
+金鹰电影41,#genre#
 剧情片-风俗店之行改变了我的人生,https://hd.ijycnd.com/play/vbmVM9dY/index.m3u8
 剧情片-告别汉堡,https://hd.ijycnd.com/play/7axNj9dy/index.m3u8
 剧情片-独行杀手,https://hd.ijycnd.com/play/6dB76Ye7/index.m3u8
@@ -20539,7 +20539,7 @@
 剧情片-无名大师,https://hd.ijycnd.com/play/negXElaw/index.m3u8
 剧情片-我的女儿,https://hd.ijycnd.com/play/xe7JzAd7/index.m3u8
 剧情片-无尽的战壕,https://hd.ijycnd.com/play/PdRBJ0dG/index.m3u8
-金鹰采集电影之42,#genre#
+金鹰电影42,#genre#
 剧情片-我们的家园,https://hd.ijycnd.com/play/0dN12LbL/index.m3u8
 剧情片-夏令营,https://hd.ijycnd.com/play/negXjDaw/index.m3u8
 剧情片-春天里的琴声,https://hd.ijycnd.com/play/vbmX9EaY/index.m3u8
@@ -21040,7 +21040,7 @@
 剧情片-第四出局,https://hd.ijycnd.com/play/QdJMQJbO/index.m3u8
 剧情片-好消息,https://hd.ijycnd.com/play/vbmm2rbY/index.m3u8
 剧情片-荒野,https://hd.ijycnd.com/play/PdRmwqbG/index.m3u8
-金鹰采集电影之43,#genre#
+金鹰电影43,#genre#
 剧情片-吉伯特拒蛋行动,https://hd.ijycnd.com/play/negOMYew/index.m3u8
 剧情片-黄金日记,https://hd.ijycnd.com/play/xe7mOjb7/index.m3u8
 剧情片-第四面墙,https://hd.ijycnd.com/play/0dNg8DeL/index.m3u8
@@ -21541,7 +21541,7 @@
 剧情片-一触即发之除爆,https://hd.ijycnd.com/play/QbY9GYbz/index.m3u8
 剧情片-巡梦行者,https://hd.ijycnd.com/play/neg9oDbw/index.m3u8
 剧情片-辛亥元勋蒋翊武,https://hd.ijycnd.com/play/0dN6rKdL/index.m3u8
-金鹰采集电影之44,#genre#
+金鹰电影44,#genre#
 剧情片-颜如玉,https://hd.ijycnd.com/play/PdRVNYdG/index.m3u8
 剧情片-乘列车前行,https://hd.ijycnd.com/play/vbm9pEbY/index.m3u8
 剧情片-一日父子,https://hd.ijycnd.com/play/QbY9gYbz/index.m3u8
@@ -22042,7 +22042,7 @@
 剧情片-黑处有什么,https://hd.ijycnd.com/play/PdRD0YaG/index.m3u8
 剧情片-海上钢琴师,https://hd.ijycnd.com/play/PdR72VeG/index.m3u8
 剧情片-荒野玫瑰,https://hd.ijycnd.com/play/PdRDMRaG/index.m3u8
-金鹰采集电影之45,#genre#
+金鹰电影45,#genre#
 剧情片-霍家拳之精武英雄,https://hd.ijycnd.com/play/6dBjQxd7/index.m3u8
 剧情片-化身,https://hd.ijycnd.com/play/7axwl9ey/index.m3u8
 剧情片-火山口,https://hd.ijycnd.com/play/negN69dw/index.m3u8
@@ -22543,7 +22543,7 @@
 剧情片-亲切的金子,https://hd.ijycnd.com/play/vbmYkpbY/index.m3u8
 剧情片-孩子在那我在这,https://hd.ijycnd.com/play/QdJNR9dO/index.m3u8
 剧情片-哈纳莱伊湾,https://hd.ijycnd.com/play/QbYynObz/index.m3u8
-金鹰采集电影之46,#genre#
+金鹰电影46,#genre#
 剧情片-浴血而战,https://hd.ijycnd.com/play/QdJNAldO/index.m3u8
 剧情片-欲望号快车,https://hd.ijycnd.com/play/6dBP7na7/index.m3u8
 剧情片-林家铺子,https://hd.ijycnd.com/play/zbql07ap/index.m3u8
@@ -23044,7 +23044,7 @@
 剧情片-赌城大亨之新哥传奇,https://hd.ijycnd.com/play/QdJq1PbO/index.m3u8
 剧情片-绿头苍蝇,https://hd.ijycnd.com/play/vbmQkrbY/index.m3u8
 剧情片-快相睡眠,https://hd.ijycnd.com/play/6dBL2Ja7/index.m3u8
-金鹰采集电影之47,#genre#
+金鹰电影47,#genre#
 剧情片-对不起，我们错过了你,https://hd.ijycnd.com/play/xe7L2Aa7/index.m3u8
 剧情片-恋恋难知音,https://hd.ijycnd.com/play/QdJqg9bO/index.m3u8
 剧情片-达芬奇的蛋,https://hd.ijycnd.com/play/xe7LBwa7/index.m3u8
@@ -23545,7 +23545,7 @@
 剧情片-好人寥寥（国语版）,https://hd.ijycnd.com/play/6dBRmnd7/index.m3u8
 剧情片-以眼还眼,https://hd.ijycnd.com/play/vbmMgAbY/index.m3u8
 剧情片-迎头痛击（国语版）,https://hd.ijycnd.com/play/6dBRAWd7/index.m3u8
-金鹰采集电影之48,#genre#
+金鹰电影48,#genre#
 剧情片-迎头痛击,https://hd.ijycnd.com/play/QdJ7MveO/index.m3u8
 剧情片-异乡故事 異鄉故事,https://hd.ijycnd.com/play/PdR5J0bG/index.m3u8
 剧情片-引狼入室,https://hd.ijycnd.com/play/zbqMWDbp/index.m3u8
@@ -24046,7 +24046,7 @@
 剧情片-日落大道,https://hd.ijycnd.com/play/7axllzay/index.m3u8
 剧情片-死亡笔记：L改变世界,https://hd.ijycnd.com/play/Le3994b6/index.m3u8
 剧情片-倔强甜心,https://hd.ijycnd.com/play/vbmE2EbY/index.m3u8
-金鹰采集电影之49,#genre#
+金鹰电影49,#genre#
 剧情片-师公降魔,https://hd.ijycnd.com/play/zbq2Akdp/index.m3u8
 剧情片-杀手自由人（粤语版）,https://hd.ijycnd.com/play/xe7AJQb7/index.m3u8
 剧情片-摔跤吧！爸爸,https://hd.ijycnd.com/play/QdJQG2bO/index.m3u8
@@ -24547,7 +24547,7 @@
 剧情片-霹雳行动,https://hd.ijycnd.com/play/0dNOX4Ne/index.m3u8
 剧情片-皮囊之下,https://hd.ijycnd.com/play/QbY7r3We/index.m3u8
 剧情片-霹雳甜心,https://hd.ijycnd.com/play/QdJ8z5va/index.m3u8
-金鹰采集电影之50,#genre#
+金鹰电影50,#genre#
 剧情片-霹雳蓝天使,https://hd.ijycnd.com/play/vbmq8Jnb/index.m3u8
 剧情片-霹雳大将军,https://hd.ijycnd.com/play/PdRlkxza/index.m3u8
 剧情片-披头四与我,https://hd.ijycnd.com/play/0dNOXqme/index.m3u8
@@ -25048,7 +25048,7 @@
 剧情片-我11,https://hd.ijycnd.com/play/vbmqX80b/index.m3u8
 剧情片-我，花样女王,https://hd.ijycnd.com/play/negpX86a/index.m3u8
 剧情片-我爱丹尼斯,https://hd.ijycnd.com/play/7ax6j8rd/index.m3u8
-金鹰采集电影之51,#genre#
+金鹰电影51,#genre#
 剧情片-我啊，走自己的路,https://hd.ijycnd.com/play/zbqQ86rb/index.m3u8
 剧情片-我爱红娘,https://hd.ijycnd.com/play/0dNO1Xze/index.m3u8
 剧情片-我爱法拉利,https://hd.ijycnd.com/play/QdJ8Xzoa/index.m3u8
@@ -25549,7 +25549,7 @@
 剧情片-田园风光,https://hd.ijycnd.com/play/vbmZXMAd/index.m3u8
 剧情片-凯特·麦考的审判,https://hd.ijycnd.com/play/negJM9Yd/index.m3u8
 剧情片-赌命威龙,https://hd.ijycnd.com/play/negJX6ld/index.m3u8
-金鹰采集电影之52,#genre#
+金鹰电影52,#genre#
 剧情片-灭法者,https://hd.ijycnd.com/play/6dBB9GJd/index.m3u8
 剧情片-空城计,https://hd.ijycnd.com/play/QdJ6XKvd/index.m3u8
 剧情片-爱的捆绑,https://hd.ijycnd.com/play/Le31Jjrb/index.m3u8
@@ -26050,7 +26050,7 @@
 剧情片-疾风回旋曲,https://hd.ijycnd.com/play/zbqB3rdp/index.m3u8
 剧情片-旧爱重拍,https://hd.ijycnd.com/play/negog6ew/index.m3u8
 剧情片-花牌情缘,https://hd.ijycnd.com/play/zbqB12dp/index.m3u8
-金鹰采集电影之53,#genre#
+金鹰电影53,#genre#
 剧情片-女人的阴影,https://hd.ijycnd.com/play/negol9ew/index.m3u8
 剧情片-夏威夷往事,https://hd.ijycnd.com/play/7axMDrby/index.m3u8
 剧情片-恋,https://hd.ijycnd.com/play/negoz9ew/index.m3u8
@@ -26551,7 +26551,7 @@
 剧情片-托马索,https://hd.ijycnd.com/play/vbmrOndY/index.m3u8
 剧情片-父传子传,https://hd.ijycnd.com/play/xe757yb7/index.m3u8
 剧情片-怀旧,https://hd.ijycnd.com/play/QbY3VKez/index.m3u8
-金鹰采集电影之54,#genre#
+金鹰电影54,#genre#
 剧情片-疗伤旅程,https://hd.ijycnd.com/play/zbqyjDbp/index.m3u8
 剧情片-喜宝,https://hd.ijycnd.com/play/neg33rew/index.m3u8
 剧情片-契卡,https://hd.ijycnd.com/play/7ax3Gzey/index.m3u8
@@ -27052,7 +27052,7 @@
 剧情片-忘了去懂你,https://hd.ijycnd.com/play/xe73gQje/index.m3u8
 剧情片-犯罪活动,https://hd.ijycnd.com/play/zbqxKK2a/index.m3u8
 剧情片-幸福59厘米之夜天使,https://hd.ijycnd.com/play/PdR6plYd/index.m3u8
-金鹰采集电影之55,#genre#
+金鹰电影55,#genre#
 剧情片-天与地（国语版）,https://hd.ijycnd.com/play/vbmZD5Gd/index.m3u8
 剧情片-幸福59厘米之北京门票,https://hd.ijycnd.com/play/0dNklLNe/index.m3u8
 剧情片-微微一笑很诡异,https://hd.ijycnd.com/play/7axkRR9e/index.m3u8
@@ -27553,7 +27553,7 @@
 剧情片-船,https://hd.ijycnd.com/play/vbmZQ3Od/index.m3u8
 剧情片-更好的世界,https://hd.ijycnd.com/play/xe73LPAe/index.m3u8
 剧情片-峨眉飞盗,https://hd.ijycnd.com/play/vbmZQAAd/index.m3u8
-金鹰采集电影之56,#genre#
+金鹰电影56,#genre#
 剧情片-爱的教育,https://hd.ijycnd.com/play/vbmZQ49d/index.m3u8
 剧情片-新的一代,https://hd.ijycnd.com/play/zbqxYORa/index.m3u8
 剧情片-单身骑士,https://hd.ijycnd.com/play/xe73LGje/index.m3u8
@@ -28054,7 +28054,7 @@
 剧情片-独家头条2022,https://hd.ijycnd.com/play/vbmwxWRe/index.m3u8
 剧情片-大国手之扬州论枰,https://hd.ijycnd.com/play/neg5o1Zb/index.m3u8
 剧情片-大国手之才子佳人,https://hd.ijycnd.com/play/xe76ZN8d/index.m3u8
-金鹰采集电影之57,#genre#
+金鹰电影57,#genre#
 剧情片-300杀手,https://hd.ijycnd.com/play/0dNxwVLa/index.m3u8
 剧情片-幽灵樟宜,https://hd.ijycnd.com/play/zbqjBJRd/index.m3u8
 剧情片-双面太子妃,https://hd.ijycnd.com/play/neg5o9rb/index.m3u8
@@ -28555,7 +28555,7 @@
 剧情片-曼殊沙华,https://hd.ijycnd.com/play/0dNxM6pa/index.m3u8
 剧情片-摇滚新乐团,https://hd.ijycnd.com/play/0dNxzlva/index.m3u8
 剧情片-蜗牛餐厅,https://hd.ijycnd.com/play/xe76QQQd/index.m3u8
-金鹰采集电影之58,#genre#
+金鹰电影58,#genre#
 剧情片-我们关系的基础知识,https://hd.ijycnd.com/play/PdRg3yYe/index.m3u8
 剧情片-萨曼莎：一个美国女孩的假期,https://hd.ijycnd.com/play/xe76PNwd/index.m3u8
 剧情片-韩国街舞少年事件,https://hd.ijycnd.com/play/6dBg3GWe/index.m3u8
@@ -29056,7 +29056,7 @@
 剧情片-小猫跳出来3D,https://hd.ijycnd.com/play/negL1mZa/index.m3u8
 剧情片-小教父,https://hd.ijycnd.com/play/QbYvoG9d/index.m3u8
 剧情片-小马的山村日记,https://hd.ijycnd.com/play/Le32BW4d/index.m3u8
-金鹰采集电影之59,#genre#
+金鹰电影59,#genre#
 剧情片-小狗的巡警先生,https://hd.ijycnd.com/play/vbmQl5pb/index.m3u8
 剧情片-临床医生,https://hd.ijycnd.com/play/QbYvoL0d/index.m3u8
 剧情片-小夫妻,https://hd.ijycnd.com/play/0dN9QJLb/index.m3u8
@@ -29557,7 +29557,7 @@
 剧情片-行规,https://hd.ijycnd.com/play/6dBNXVWd/index.m3u8
 剧情片-行骗天下,https://hd.ijycnd.com/play/QbYWYjWe/index.m3u8
 剧情片-雁鸿岭下,https://hd.ijycnd.com/play/Le3QrBAb/index.m3u8
-金鹰采集电影之60,#genre#
+金鹰电影60,#genre#
 剧情片-夜不藏罪,https://hd.ijycnd.com/play/negZyZGd/index.m3u8
 剧情片-夜半天使,https://hd.ijycnd.com/play/7axnyv3d/index.m3u8
 剧情片-玩命警探3,https://hd.ijycnd.com/play/Yer8qxEb/index.m3u8
@@ -30058,7 +30058,7 @@
 战争片-天国王朝,https://hd.ijycnd.com/play/6dBBNgod/index.m3u8
 战争片-闪闪的红星,https://hd.ijycnd.com/play/Le31QjOb/index.m3u8
 战争片-旗正飘飘,https://hd.ijycnd.com/play/xe731X1e/index.m3u8
-金鹰采集电影之61,#genre#
+金鹰电影61,#genre#
 战争片-巍巍昆仑,https://hd.ijycnd.com/play/Le31QYOb/index.m3u8
 战争片-你逃我也逃,https://hd.ijycnd.com/play/negJZLrd/index.m3u8
 战争片-吉鸿昌,https://hd.ijycnd.com/play/Le312Zrb/index.m3u8
@@ -30559,7 +30559,7 @@
 记录片-美国交响曲,https://hd.ijycnd.com/play/QdJ95zPb/index.m3u8
 记录片-无良医生：爱里藏刀,https://hd.ijycnd.com/play/6dBY4Rkb/index.m3u8
 记录片-崇高之上,https://hd.ijycnd.com/play/zbqk3Q2e/index.m3u8
-金鹰采集电影之62,#genre#
+金鹰电影62,#genre#
 记录片-琉璃宝塔地宫之谜,https://hd.ijycnd.com/play/xbog1DXb/index.m3u8
 记录片-照亮余生,https://hd.ijycnd.com/play/0dN6AKLd/index.m3u8
 记录片-杨贵妃之死,https://hd.ijycnd.com/play/QbY9PX0b/index.m3u8
@@ -31060,7 +31060,7 @@
 记录片-秘境探险队,https://hd.ijycnd.com/play/5eV5V2vd/index.m3u8
 记录片-嫁到西非的德国女人,https://hd.ijycnd.com/play/rb2gwDzd/index.m3u8
 记录片-复兴之路,https://hd.ijycnd.com/play/YaOE06rd/index.m3u8
-金鹰采集电影之63,#genre#
+金鹰电影63,#genre#
 记录片-法航里约空难,https://hd.ijycnd.com/play/negx9Mka/index.m3u8
 记录片-地球的秘密,https://hd.ijycnd.com/play/9b6mAKRa/index.m3u8
 记录片-罪案现场实录 第三季,https://hd.ijycnd.com/play/xe7nBp8d/index.m3u8
@@ -31561,7 +31561,7 @@
 记录片-席琳·狄翁：全世界的目光,https://hd.ijycnd.com/play/negJP6Gd/index.m3u8
 记录片-象牙游戏,https://hd.ijycnd.com/play/zbqx9D0a/index.m3u8
 记录片-大卫·伯恩的美国乌托邦,https://hd.ijycnd.com/play/negJPYZd/index.m3u8
-金鹰采集电影之64,#genre#
+金鹰电影64,#genre#
 记录片-塞加拉陵墓揭秘,https://hd.ijycnd.com/play/0dNkR02e/index.m3u8
 记录片-尼尔·杨：金子心,https://hd.ijycnd.com/play/QdJ6RNKd/index.m3u8
 记录片-地球2100,https://hd.ijycnd.com/play/Le31GjRb/index.m3u8
@@ -32062,7 +32062,7 @@
 动画片-芭比之十二个跳舞的公主 2006,https://hd.ijycnd.com/play/Qe1ABr3e/index.m3u8
 动画片-芭比之美人鱼历险记 2010,https://hd.ijycnd.com/play/Le3DKlra/index.m3u8
 动画片-芭比之美人鱼历险记2 2012,https://hd.ijycnd.com/play/NbWNjnWa/index.m3u8
-金鹰采集电影之65,#genre#
+金鹰电影65,#genre#
 动画片-芭比之仙子的秘密 2011,https://hd.ijycnd.com/play/0dNA5xLb/index.m3u8
 动画片-芭比与小凯莉：消失的生日 2021,https://hd.ijycnd.com/play/7ax47kJa/index.m3u8
 动画片-芭比：大城市大梦想 2021,https://hd.ijycnd.com/play/xbo462Kd/index.m3u8
@@ -32563,7 +32563,7 @@
 动画片-死宅之地,https://hd.ijycnd.com/play/zbqkR3ep/index.m3u8
 动画片-赛尔号大电影2之雷伊与迈尔斯,https://hd.ijycnd.com/play/7axxD3ay/index.m3u8
 动画片-深海特攻队之超能晶石,https://hd.ijycnd.com/play/QdJx42aO/index.m3u8
-金鹰采集电影之66,#genre#
+金鹰电影66,#genre#
 动画片-少年岳飞,https://hd.ijycnd.com/play/negEw3bw/index.m3u8
 动画片-三只小猪2,https://hd.ijycnd.com/play/negEzGbw/index.m3u8
 动画片-少年泰坦出击大战少年泰坦（国语版）,https://hd.ijycnd.com/play/PdRJQKdG/index.m3u8
@@ -33064,7 +33064,7 @@
 动画片-怪医黑杰克,https://hd.ijycnd.com/play/negJ3Ykd/index.m3u8
 动画片-穿越2021,https://hd.ijycnd.com/play/vbmZ5lRd/index.m3u8
 动画片-怪医黑杰克：两位神秘医师,https://hd.ijycnd.com/play/Le31DDAb/index.m3u8
-金鹰采集电影之67,#genre#
+金鹰电影67,#genre#
 动画片-翡翠森林狼与羊,https://hd.ijycnd.com/play/PdR6GGVd/index.m3u8
 动画片-名侦探柯南：水平线上的阴谋,https://hd.ijycnd.com/play/7axk4Mle/index.m3u8
 动画片-剧场版 超时空要塞F：虚空歌姬,https://hd.ijycnd.com/play/PdR6GPEd/index.m3u8
@@ -33565,7 +33565,7 @@
 动画片-辛德瑞拉3D,https://hd.ijycnd.com/play/QbYv482d/index.m3u8
 动画片-新地道战,https://hd.ijycnd.com/play/6dBLz5ka/index.m3u8
 动画片-新世纪福音战士剧场版：死与新生,https://hd.ijycnd.com/play/zbqYJO2b/index.m3u8
-金鹰采集电影之68,#genre#
+金鹰电影68,#genre#
 动画片-新灰姑娘2,https://hd.ijycnd.com/play/6dBLz4ka/index.m3u8
 动画片-五星物语,https://hd.ijycnd.com/play/6dBLxPNa/index.m3u8
 动画片-精灵宝可梦：结晶塔的帝王,https://hd.ijycnd.com/play/xe7Lj9ra/index.m3u8
@@ -34066,7 +34066,7 @@
 剧情片-暹罗诅咒,https://hd.ijycnd.com/play/Xe0QwrLa/index.m3u8
 剧情片-解密,https://hd.ijycnd.com/play/Xe0Qwm5a/index.m3u8
 恐怖片-行动倒数,https://hd.ijycnd.com/play/RdG4Ln5e/index.m3u8
-金鹰采集电影之69,#genre#
+金鹰电影69,#genre#
 恐怖片-断魂小丑3,https://hd.ijycnd.com/play/YaO4WlEb/index.m3u8
 记录片-公路日记：布鲁斯·斯普林斯汀与E街乐队,https://hd.ijycnd.com/play/YaO4WKYb/index.m3u8
 记录片-伊贝林的非凡人生,https://hd.ijycnd.com/play/rb2VjKKb/index.m3u8
@@ -34567,7 +34567,7 @@
 动作片-穷凶极恶,https://hd.ijycnd.com/play/PdyKE6wa/index.m3u8
 喜剧片-东北“大仙儿”,https://hd.ijycnd.com/play/RdGpjYQe/index.m3u8
 恐怖片-炼狱车站,https://hd.ijycnd.com/play/1aMypX1a/index.m3u8
-金鹰采集电影之70,#genre#
+金鹰电影70,#genre#
 恐怖片-碧比,https://hd.ijycnd.com/play/yb8R5Voe/index.m3u8
 喜剧片-菜鸟,https://hd.ijycnd.com/play/9b6P5E7e/index.m3u8
 爱情片-千王情人,https://hd.ijycnd.com/play/QeZPJLvb/index.m3u8
@@ -35068,7 +35068,7 @@
 喜剧片-闺女特烦恼,https://hd.ijycnd.com/play/mep4lDme/index.m3u8
 爱情片-厨神驾到,https://hd.ijycnd.com/play/yb8G0vra/index.m3u8
 恐怖片-见鬼发财,https://hd.ijycnd.com/play/lejXNolb/index.m3u8
-金鹰采集电影之71,#genre#
+金鹰电影71,#genre#
 剧情片-草图,https://hd.ijycnd.com/play/5eVwKwWa/index.m3u8
 喜剧片-大画王,https://hd.ijycnd.com/play/lejXK2zb/index.m3u8
 剧情片-小西伯利亚,https://hd.ijycnd.com/play/pen2kxYe/index.m3u8
@@ -35569,7 +35569,7 @@
 恐怖片-疯狂一天,https://hd.ijycnd.com/play/QeZkY96a/index.m3u8
 喜剧片-Not an Artist,https://hd.ijycnd.com/play/DbDG1lna/index.m3u8
 喜剧片-Kill Tony：笑不死偿命,https://hd.ijycnd.com/play/1aMRwx3b/index.m3u8
-金鹰采集电影之72,#genre#
+金鹰电影72,#genre#
 剧情片-七层纱,https://hd.ijycnd.com/play/lejEZPRd/index.m3u8
 动作片-江湖通缉令,https://hd.ijycnd.com/play/yb8p1zgb/index.m3u8
 恐怖片-暗夜女妖,https://hd.ijycnd.com/play/QeZkYoJa/index.m3u8

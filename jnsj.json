@@ -34,16 +34,56 @@
     },
     {
       "url": "http://tvbox.王二小放牛娃.top",
-      "name": "牛二(中文top)"
+      "name": "牛二线路"
     },
     {
       "url": "http://肥猫.com",
-      "name": "肥猫"
+      "name": "肥猫线路"
+    },
+    {
+      "url": "http://饭太硬.com/tv",
+      "name": "饭太硬①"
+    },
+    {
+      "url": "https://9877.kstore.space/AnotherDS/api.json",
+      "name": "潇洒多仓"
+    },
+    {
+      "url": "https://9877.kstore.space/AnotherD/api.json",
+      "name": "潇洒单线"
+    },
+    {
+      "url": "http://hb.小虎斑.site:25252/仅供测试",
+      "name": "小虎斑接口"
+    },
+    {
+      "url": "http://我不是.摸鱼儿.top",
+      "name": "摸鱼接口①"
+    },
+    {
+      "url": "http://ok321.top/tv",
+      "name": "OK接口"
+    },
+    {
+      "url": "http://v-dragon.com.hk/4k/",
+      "name": "4K接口(龙)"
+    },
+    {
+      "url": "http://tv.4kbox.top/4k/index.php",
+      "name": "4K接口(box)"
+    },
+    {
+      "url": "https://12523.kstore.space/hx.json",
+      "name": "茴香4k"
+    },
+    {
+      "url": "https://gitee.com/wynp/ys/raw/master/yc.json",
+      "name": "如意接口"
     }
   ],
-  "last_updated": "2025-12-12",
-  "valid_count": 10,
+  "last_updated": "2026-01-30",
+  "valid_count": 20,
   "invalid_count": 0,
-  "last_validated": "2026-01-29 03:30:12",
-  "original_count": 10
+  "last_validated": "",
+  "original_count": 20
 }

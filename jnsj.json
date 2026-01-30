@@ -25,10 +25,6 @@
       "name": "牛二(凯速)"
     },
     {
-      "url": "https://la.kstore.dev/download/2863/01.txt",
-      "name": "潇洒"
-    },
-    {
       "url": "https://gitee.com/blssss/jk/raw/api/bls.json",
       "name": "玩偶接口"
     },
@@ -62,8 +58,8 @@
     }
   ],
   "last_updated": "2026-01-30",
-  "valid_count": 15,
+  "valid_count": 14,
   "invalid_count": 1,
-  "last_validated": "2026-01-30 06:46:20",
-  "original_count": 16
+  "last_validated": "2026-01-30 10:39:07",
+  "original_count": 15
 }

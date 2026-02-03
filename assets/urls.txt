@@ -1,5 +1,5 @@
-# 更新时间: 2026-01-30 03:30:48
-# 有效URL数量: 96
+# 更新时间: 2026-02-02 10:49:39
+# 有效URL数量: 95
 # 无效URL数量: 0
 
 https://jnsj.cloudplains.dpdns.org/assets/live.txt
@@ -97,4 +97,3 @@ http://d.jsy777.top/box/tvzb9.txt
 https://pan.vma.cc/pan/down.php/c250aac7bc03121d0d3c14125c900952.txt
 https://www.iyouhun.com/tv/zb		# 游魂直播源
 https://3043.kstore.space/bhvip/bhzb.txt # 宝盒直播
-http://go8.myartsonline.com/zx/0/港澳4Gtv.txt # 港澳4Gtv

@@ -1,6 +1,6 @@
-# 更新时间: 2026-02-19 10:46:36
-# 有效URL数量: 94
-# 无效URL数量: 0
+# 更新时间: 2026-02-20 03:36:25
+# 有效URL数量: 93
+# 无效URL数量: 1
 
 https://jnsj.cloudplains.dpdns.org/assets/live.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
@@ -89,7 +89,6 @@ https://raw.githubusercontent.com/iptv-org/iptv/gh-pages/countries/cn.m3u
 https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
-https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://sub.ottiptv.cc/bililive.m3u
 http://go8.myartsonline.com/zx/0/测试·源.txt
 http://d.jsy777.top/box/tvzb9.txt

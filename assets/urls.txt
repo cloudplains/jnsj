@@ -1,5 +1,5 @@
-# 更新时间: 2026-02-05 00:39:54
-# 有效URL数量: 95
+# 更新时间: 2026-02-25 03:40:11
+# 有效URL数量: 93
 # 无效URL数量: 0
 
 https://jnsj.cloudplains.dpdns.org/assets/live.txt
@@ -32,7 +32,6 @@ https://raw.githubusercontent.com/xzw832/cmys/refs/heads/main/S_weishi.txt
 https://raw.githubusercontent.com/MemoryCollection/IPTV/refs/heads/main/hotel.txt
 https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u
 https://raw.githubusercontent.com/mlzlzj/hnyuan/refs/heads/main/iptv_list.txt
-https://raw.githubusercontent.com/BP3388/BP001.github.io/main/tivi.list
 https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt
 https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt
 https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt
@@ -90,7 +89,6 @@ https://raw.githubusercontent.com/iptv-org/iptv/gh-pages/countries/cn.m3u
 https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u
 https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
-https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://sub.ottiptv.cc/bililive.m3u
 http://go8.myartsonline.com/zx/0/测试·源.txt
 http://d.jsy777.top/box/tvzb9.txt

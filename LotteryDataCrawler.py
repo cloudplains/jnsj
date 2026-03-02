@@ -12,50 +12,20 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.worksheet.filters import FilterColumn, Filters
 
-
 class LotteryDataCrawler:
     def __init__(self):
-        # 更完整的请求头，模拟 Chrome 浏览器
         self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
             'Accept-Encoding': 'gzip, deflate, br',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'none',
-            'Sec-Fetch-User': '?1',
-            'Cache-Control': 'max-age=0',
         }
         self.session = requests.Session()
         self.session.headers.update(self.headers)
-        
-        # 添加重试策略
-        adapter = requests.adapters.HTTPAdapter(
-            max_retries=3,
-            pool_connections=10,
-            pool_maxsize=10
-        )
-        self.session.mount('http://', adapter)
-        self.session.mount('https://', adapter)
-        
-        self._warmed_up = False  # 标记是否已预热（获取cookies）
 
-    def _warmup(self):
-        """预热 session，获取 78500.cn 的 cookies"""
-        if self._warmed_up:
-            return
-        try:
-            # 先访问首页获取 cookies
-            self.session.get("https://kaijiang.78500.cn/", timeout=10)
-            time.sleep(random.uniform(1, 2))
-            self._warmed_up = True
-        except Exception as e:
-            print(f"预热失败: {e}")
-
-    # 大乐透函数（保持不变）
+    # 大乐透函数
     def get_dlt_history_data_all(self):
         """获取所有大乐透历史开奖数据"""
         headers = {
@@ -255,7 +225,7 @@ class LotteryDataCrawler:
         except Exception:
             return None
 
-    # 双色球函数（保持不变）
+    # 双色球函数
     def get_ssq_history_data_all(self):
         """获取所有双色球历史开奖数据"""
         headers = {
@@ -455,40 +425,32 @@ class LotteryDataCrawler:
         except Exception:
             return None
 
-    # 排列五函数（优化版）
+    # 排列五函数
     def get_pl5_recent_data(self, count=30):
-        """获取排列五最近N期数据（带预热和重试）"""
-        self._warmup()  # 确保已获取cookies
-
+        """获取排列五最近N期数据"""
         base_url = "https://kaijiang.78500.cn/p5/"
         current_year = datetime.now().year
         params = {
             'action': 'years',
             'year': current_year
         }
-        
-        max_attempts = 3
-        for attempt in range(max_attempts):
-            try:
-                response = self.session.get(base_url, params=params, timeout=15)
-                response.encoding = 'gb2312'
-                if response.status_code == 200:
-                    df = self.parse_pl5_html(response.text)
-                    if df is not None and len(df) > 0:
-                        # 取最近count期数据
-                        recent_df = df.head(count).copy()
-                        # 按时间顺序排列（从早到晚）
-                        recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-                        return recent_df
-                    else:
-                        # 解析失败可能是IP被屏蔽，等待后重试
-                        time.sleep(random.uniform(3, 6))
+        try:
+            response = self.session.get(base_url, params=params, timeout=15)
+            response.encoding = 'gb2312'
+            if response.status_code == 200:
+                df = self.parse_pl5_html(response.text)
+                if df is not None and len(df) > 0:
+                    # 取最近count期数据
+                    recent_df = df.head(count).copy()
+                    # 按时间顺序排列（从早到晚）
+                    recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
+                    return recent_df
                 else:
-                    time.sleep(random.uniform(2, 4))
-            except Exception as e:
-                print(f"排列五请求异常 (尝试 {attempt+1}/{max_attempts}): {e}")
-                time.sleep(random.uniform(5, 10))
-        return None
+                    return None
+            else:
+                return None
+        except Exception as e:
+            return None
 
     def parse_pl5_html(self, html_content):
         """
@@ -559,46 +521,35 @@ class LotteryDataCrawler:
 
         return pd.DataFrame(data) if data else None
 
-    # 福彩3D函数（优化版）
+    # 福彩3D函数
     def get_3d_recent_data(self, count=30):
-        """获取福彩3D最近N期数据（带预热和重试）"""
-        self._warmup()
-
+        """获取福彩3D最近N期数据"""
         base_url = "https://kaijiang.78500.cn/3d/"
         current_year = datetime.now().year
         params = {
             'action': 'years',
             'year': current_year
         }
-        
-        max_attempts = 3
-        for attempt in range(max_attempts):
-            try:
-                response = self.session.get(base_url, params=params, timeout=15)
-                response.encoding = 'gb2312'
-                if response.status_code == 200:
-                    df = self.parse_3d_html(response.text)
-                    if df is not None and len(df) > 0:
-                        recent_df = df.head(count).copy()
-                        recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-                        return recent_df
-                    else:
-                        time.sleep(random.uniform(3, 6))
+        try:
+            response = self.session.get(base_url, params=params, timeout=15)
+            response.encoding = 'gb2312'
+            if response.status_code == 200:
+                df = self.parse_3d_html(response.text)
+                if df is not None and len(df) > 0:
+                    recent_df = df.head(count).copy()
+                    recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
+                    return recent_df
                 else:
-                    time.sleep(random.uniform(2, 4))
-            except Exception as e:
-                print(f"福彩3D请求异常 (尝试 {attempt+1}/{max_attempts}): {e}")
-                time.sleep(random.uniform(5, 10))
-        return None
+                    return None
+            else:
+                return None
+        except Exception as e:
+            return None
 
     def parse_3d_html(self, html_content):
         """
         解析福彩3D HTML内容，提取开奖数据
-        列索引参考实际页面：
-        - 期号: cols[0]
-        - 开奖日期: cols[1]
-        - 销售额: cols[2]
-        - 开奖号码: cols[3] (内含<a>标签)
+        注意：此函数暂未修改，若3D页面结构也有变化需同步调整
         """
         soup = BeautifulSoup(html_content, 'html.parser')
         table = soup.find('table', class_='kjls')
@@ -610,7 +561,7 @@ class LotteryDataCrawler:
 
         for row in rows:
             cols = row.find_all('td')
-            if len(cols) >= 9:  # 福彩3D有更多列，但我们只需要前几个
+            if len(cols) >= 9:  # 福彩3D有更多列
                 try:
                     period = cols[0].get_text(strip=True)
                     if not period.isdigit():
@@ -662,8 +613,7 @@ class LotteryDataCrawler:
         except:
             return 0
 
-
-# 通用函数（保持不变）
+# 通用函数
 def get_existing_data(filename='Tools.xlsx', sheet_name='dltall'):
     """从Excel文件中读取现有的开奖数据"""
     if not os.path.exists(filename):
@@ -938,7 +888,7 @@ def update_3d_data(crawler):
 
 def main():
     """主函数 - 更新所有彩票数据"""
-    print("彩票开奖数据获取工具 - 完整版 (优化版)")
+    print("彩票开奖数据获取工具 - 完整版")
     print("=" * 50)
     crawler = LotteryDataCrawler()
     print("正在更新大乐透数据...")

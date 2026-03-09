@@ -9,6 +9,8 @@ import os
 from openpyxl import load_workbook
 from tqdm import tqdm
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.worksheet.datavalidation import DataValidation
+from openpyxl.worksheet.filters import FilterColumn, Filters
 
 class LotteryDataCrawler:
     def __init__(self):
@@ -22,11 +24,8 @@ class LotteryDataCrawler:
         }
         self.session = requests.Session()
         self.session.headers.update(self.headers)
-        # 500.com 数据接口基础 URL
-        self.base_url_pl5 = "https://datachart.500.com/plw/history/inc/history.php"
-        self.base_url_3d = "https://datachart.500.com/sd/history/inc/history.php"
 
-    # ================== 大乐透（原有，未改动） ==================
+    # 大乐透函数
     def get_dlt_history_data_all(self):
         """获取所有大乐透历史开奖数据"""
         headers = {
@@ -226,7 +225,7 @@ class LotteryDataCrawler:
         except Exception:
             return None
 
-    # ================== 双色球（原有，未改动） ==================
+    # 双色球函数
     def get_ssq_history_data_all(self):
         """获取所有双色球历史开奖数据"""
         headers = {
@@ -426,268 +425,178 @@ class LotteryDataCrawler:
         except Exception:
             return None
 
-    # ================== 排列五（从500.com获取） ==================
-    def get_pl5_data_by_range(self, start_period, end_period):
-        """
-        按期号范围获取排列五历史数据
-        :param start_period: 起始期号（数字，例如26000）
-        :param end_period:   结束期号（数字，例如26057）
-        :return: DataFrame 包含列：期号, 开奖日期, 销售金额, 开奖号码, 一等奖注数(默认0)
-        """
-        url = f"{self.base_url_pl5}?start={start_period}&end={end_period}"
-        try:
-            resp = self.session.get(url, timeout=30)
-            resp.encoding = 'gb2312'
-            soup = BeautifulSoup(resp.text, 'html.parser')
-            # 查找表格（通常 id="tablelist"）
-            table = soup.find('table', {'id': 'tablelist'})
-            if not table:
-                # 尝试通过其他方式定位（有些页面可能没有id）
-                table = soup.find('table', class_='chartTable') or soup.find('table')
-            if not table:
-                return None
-
-            data = []
-            rows = table.find_all('tr')
-            # 跳过可能存在的表头行（最多跳过前3行）
-            start_row = 0
-            for i, row in enumerate(rows):
-                txt = row.get_text()
-                if '期号' in txt and '开奖日期' in txt:
-                    start_row = i + 1
-                    break
-
-            for row in rows[start_row:]:
-                cols = row.find_all('td')
-                if len(cols) < 5:   # 至少要有期号、号码、总和、销售额、日期
-                    continue
-                try:
-                    # 期号
-                    period_td = cols[0].get_text(strip=True)
-                    if not period_td.isdigit():
-                        continue
-
-                    # 开奖号码（第2列，可能包含<a>标签）
-                    num_td = cols[1]
-                    num_link = num_td.find('a')
-                    if num_link:
-                        numbers_raw = num_link.get_text(strip=True)
-                    else:
-                        numbers_raw = num_td.get_text(strip=True)
-                    # 清洗号码：去掉所有空格，检查是否为5位数字
-                    clean_nums = numbers_raw.replace(' ', '')
-                    if not re.match(r'^\d{5}$', clean_nums):
-                        continue
-                    # 格式化为带空格的形式，例如 "4 7 9 3 1"
-                    numbers_formatted = ' '.join(clean_nums)
-
-                    # 销售金额（第4列，索引3）
-                    sales_td = cols[3].get_text(strip=True)
-                    sales_amount = self.parse_sales_amount(sales_td)
-
-                    # 开奖日期（第5列，索引4）
-                    date_td = cols[4].get_text(strip=True)
-                    # 可能日期格式为 2026-03-08
-                    if not re.match(r'\d{4}-\d{2}-\d{2}', date_td):
-                        continue
-
-                    # 一等奖注数（500网站不提供，填充0以保持列一致性）
-                    first_prize = 0
-
-                    data.append([
-                        period_td,
-                        date_td,
-                        sales_amount,
-                        numbers_formatted,
-                        first_prize
-                    ])
-                except Exception:
-                    continue
-
-            if not data:
-                return None
-
-            df = pd.DataFrame(data, columns=['期号', '开奖日期', '销售金额', '开奖号码', '一等奖注数'])
-            # 按开奖日期排序（升序）
-            df['开奖日期'] = pd.to_datetime(df['开奖日期'])
-            df = df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
-            return df
-        except Exception as e:
-            print(f"获取排列五数据出错: {e}")
-            return None
-
-    def get_all_pl5_history(self):
-        """获取所有排列五历史数据（分批获取）"""
-        # 生成批次：期号从1到99999，每1000期一批
-        batches = []
-        for start in range(1, 100000, 1000):
-            end = min(start + 999, 99999)
-            batches.append((start, end))
-
-        all_df = pd.DataFrame()
-        for start, end in tqdm(batches, desc="获取排列五历史数据"):
-            df = self.get_pl5_data_by_range(start, end)
-            if df is not None and not df.empty:
-                all_df = pd.concat([all_df, df], ignore_index=True)
-            time.sleep(random.uniform(1, 2))
-
-        if all_df.empty:
-            return None
-
-        # 全局去重并按日期排序
-        all_df['开奖日期'] = pd.to_datetime(all_df['开奖日期'])
-        all_df = all_df.drop_duplicates(subset=['期号']).sort_values('开奖日期', ascending=True).reset_index(drop=True)
-        all_df['开奖日期'] = all_df['开奖日期'].dt.strftime('%Y-%m-%d')
-        return all_df
-
-    def get_latest_pl5_data(self):
-        """获取最新的一条排列五数据（通过获取所有数据取最新）"""
-        all_data = self.get_all_pl5_history()
-        if all_data is None or all_data.empty:
-            return None
-        # 按开奖日期降序取第一条
-        latest = all_data.sort_values('开奖日期', ascending=False).iloc[0:1].copy()
-        latest = latest.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-        return latest
-
+    # 排列五函数
     def get_pl5_recent_data(self, count=30):
-        """获取最近N期排列五数据"""
-        all_data = self.get_all_pl5_history()
-        if all_data is None or all_data.empty:
-            return None
-        # 按开奖日期降序取前count条，再升序排列
-        recent = all_data.sort_values('开奖日期', ascending=False).head(count).copy()
-        recent = recent.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-        return recent
-
-    # ================== 福彩3D（从500.com获取） ==================
-    def get_3d_data_by_range(self, start_period, end_period):
-        """
-        按期号范围获取福彩3D历史数据
-        :param start_period: 起始期号（数字，例如2026001）
-        :param end_period:   结束期号（数字，例如2026057）
-        :return: DataFrame 包含列：期号, 开奖日期, 销售金额, 开奖号码
-        """
-        url = f"{self.base_url_3d}?start={start_period}&end={end_period}"
+        """获取排列五最近N期数据"""
+        base_url = "https://kaijiang.78500.cn/p5/"
+        current_year = datetime.now().year
+        params = {
+            'action': 'years',
+            'year': current_year
+        }
         try:
-            resp = self.session.get(url, timeout=30)
-            resp.encoding = 'gb2312'
-            soup = BeautifulSoup(resp.text, 'html.parser')
-            table = soup.find('table', {'id': 'tablelist'}) or soup.find('table', class_='chartTable') or soup.find('table')
-            if not table:
+            response = self.session.get(base_url, params=params, timeout=15)
+            response.encoding = 'gb2312'
+            if response.status_code == 200:
+                df = self.parse_pl5_html(response.text)
+                if df is not None and len(df) > 0:
+                    # 取最近count期数据
+                    recent_df = df.head(count).copy()
+                    # 按时间顺序排列（从早到晚）
+                    recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
+                    return recent_df
+                else:
+                    return None
+            else:
                 return None
+        except Exception as e:
+            return None
 
-            data = []
-            rows = table.find_all('tr')
-            # 找到数据起始行（跳过表头）
-            start_row = 0
-            for i, row in enumerate(rows):
-                txt = row.get_text()
-                if '期号' in txt and '开奖日期' in txt:
-                    start_row = i + 1
-                    break
+    def parse_pl5_html(self, html_content):
+        """
+        解析排列五HTML内容，提取开奖数据
+        根据实际页面结构修正列索引：
+        - 期号: cols[0]
+        - 开奖日期: cols[1]
+        - 开奖号码: cols[2] (内含<a>标签，文本带空格)
+        - 直选注数(一等奖注数): cols[3]
+        - 直选奖金: cols[4] (暂不使用)
+        - 销售额: cols[5]
+        - 奖池奖金: cols[6] (暂不使用)
+        - 详情链接: cols[7] (忽略)
+        """
+        soup = BeautifulSoup(html_content, 'html.parser')
+        table = soup.find('table', class_='kjls')
+        if not table:
+            return None
 
-            for row in rows[start_row:]:
-                cols = row.find_all('td')
-                # 3D表格至少有8列（期号、号码、总和、销售额、直选注数、直选奖金、组选3注数、组选3奖金、组选6注数、组选6奖金、开奖日期）
-                # 但为了稳健，我们检查至少6列
-                if len(cols) < 6:
+        data = []
+        # 跳过表头行（前两行）
+        rows = table.find_all('tr')[2:]
+
+        for row in rows:
+            cols = row.find_all('td')
+            # 实际数据行应有8个td
+            if len(cols) < 8:
+                continue
+            try:
+                # 期号
+                period = cols[0].get_text(strip=True)
+                if not period.isdigit():
                     continue
+
+                # 开奖日期
+                date_text = cols[1].get_text(strip=True)
+
+                # 开奖号码：优先取<a>标签内的文本，否则直接取td文本
+                number_cell = cols[2]
+                number_link = number_cell.find('a')
+                if number_link:
+                    numbers = number_link.get_text(strip=True)
+                else:
+                    numbers = number_cell.get_text(strip=True)
+                # 保留原始格式（带空格）
+                numbers = numbers.strip()
+                # 验证号码格式（应为5位数字，可能有空格）
+                clean_numbers = numbers.replace(' ', '')
+                if not re.match(r'^\d{5}$', clean_numbers):
+                    continue
+
+                # 直选注数（一等奖注数）
+                first_prize_count = self.parse_prize_count(cols[3].get_text(strip=True))
+
+                # 销售额
+                sales_text = cols[5].get_text(strip=True)
+                sales_amount = self.parse_sales_amount(sales_text)
+
+                data.append({
+                    '期号': period,
+                    '开奖日期': date_text,
+                    '销售金额': sales_amount,
+                    '开奖号码': numbers,
+                    '一等奖注数': first_prize_count
+                })
+            except Exception:
+                continue
+
+        return pd.DataFrame(data) if data else None
+
+    # 福彩3D函数
+    def get_3d_recent_data(self, count=30):
+        """获取福彩3D最近N期数据"""
+        base_url = "https://kaijiang.78500.cn/3d/"
+        current_year = datetime.now().year
+        params = {
+            'action': 'years',
+            'year': current_year
+        }
+        try:
+            response = self.session.get(base_url, params=params, timeout=15)
+            response.encoding = 'gb2312'
+            if response.status_code == 200:
+                df = self.parse_3d_html(response.text)
+                if df is not None and len(df) > 0:
+                    recent_df = df.head(count).copy()
+                    recent_df = recent_df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
+                    return recent_df
+                else:
+                    return None
+            else:
+                return None
+        except Exception as e:
+            return None
+
+    def parse_3d_html(self, html_content):
+        """
+        解析福彩3D HTML内容，提取开奖数据
+        注意：此函数暂未修改，若3D页面结构也有变化需同步调整
+        """
+        soup = BeautifulSoup(html_content, 'html.parser')
+        table = soup.find('table', class_='kjls')
+        if not table:
+            return None
+
+        data = []
+        rows = table.find_all('tr')[2:]
+
+        for row in rows:
+            cols = row.find_all('td')
+            if len(cols) >= 9:  # 福彩3D有更多列
                 try:
-                    period_td = cols[0].get_text(strip=True)
-                    if not period_td.isdigit():
+                    period = cols[0].get_text(strip=True)
+                    if not period.isdigit():
                         continue
 
-                    # 开奖号码（第2列，可能含链接）
-                    num_td = cols[1]
-                    num_link = num_td.find('a')
-                    if num_link:
-                        numbers_raw = num_link.get_text(strip=True)
+                    date_text = cols[1].get_text(strip=True)
+
+                    sales_text = cols[2].get_text(strip=True)
+                    sales_amount = self.parse_sales_amount(sales_text)
+
+                    number_cell = cols[3]
+                    number_link = number_cell.find('a')
+                    if number_link:
+                        numbers = number_link.get_text(strip=True)
                     else:
-                        numbers_raw = num_td.get_text(strip=True)
-                    clean_nums = numbers_raw.replace(' ', '')
-                    if not re.match(r'^\d{3}$', clean_nums):
-                        continue
-                    numbers_formatted = ' '.join(clean_nums)
+                        numbers = number_cell.get_text(strip=True)
 
-                    # 销售金额（第4列，索引3）
-                    sales_td = cols[3].get_text(strip=True)
-                    sales_amount = self.parse_sales_amount(sales_td)
-
-                    # 开奖日期（最后一列，索引可能为10，但动态计算）
-                    date_td = cols[-1].get_text(strip=True)
-                    if not re.match(r'\d{4}-\d{2}-\d{2}', date_td):
+                    numbers = numbers.strip()
+                    clean_numbers = numbers.replace(' ', '')
+                    if not re.match(r'^\d{3}$', clean_numbers):
                         continue
 
-                    data.append([
-                        period_td,
-                        date_td,
-                        sales_amount,
-                        numbers_formatted
-                    ])
+                    data.append({
+                        '期号': period,
+                        '开奖日期': date_text,
+                        '销售金额': sales_amount,
+                        '开奖号码': numbers
+                    })
                 except Exception:
                     continue
 
-            if not data:
-                return None
+        return pd.DataFrame(data) if data else None
 
-            df = pd.DataFrame(data, columns=['期号', '开奖日期', '销售金额', '开奖号码'])
-            df['开奖日期'] = pd.to_datetime(df['开奖日期'])
-            df = df.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-            df['开奖日期'] = df['开奖日期'].dt.strftime('%Y-%m-%d')
-            return df
-        except Exception as e:
-            print(f"获取福彩3D数据出错: {e}")
-            return None
-
-    def get_all_3d_history(self):
-        """获取所有福彩3D历史数据（分批获取）"""
-        # 福彩3D期号通常为7位，前4位年份，后3位期号，范围从2002001开始到当前
-        # 我们简单从2002001到9999999分批，每1000期一批
-        start = 2002001
-        end = 2027000  # 预估到2027年
-        batches = []
-        for s in range(start, end, 1000):
-            e = min(s + 999, end)
-            batches.append((s, e))
-
-        all_df = pd.DataFrame()
-        for s, e in tqdm(batches, desc="获取福彩3D历史数据"):
-            df = self.get_3d_data_by_range(s, e)
-            if df is not None and not df.empty:
-                all_df = pd.concat([all_df, df], ignore_index=True)
-            time.sleep(random.uniform(1, 2))
-
-        if all_df.empty:
-            return None
-
-        all_df['开奖日期'] = pd.to_datetime(all_df['开奖日期'])
-        all_df = all_df.drop_duplicates(subset=['期号']).sort_values('开奖日期', ascending=True).reset_index(drop=True)
-        all_df['开奖日期'] = all_df['开奖日期'].dt.strftime('%Y-%m-%d')
-        return all_df
-
-    def get_latest_3d_data(self):
-        """获取最新的一条福彩3D数据"""
-        all_data = self.get_all_3d_history()
-        if all_data is None or all_data.empty:
-            return None
-        latest = all_data.sort_values('开奖日期', ascending=False).iloc[0:1].copy()
-        latest = latest.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-        return latest
-
-    def get_3d_recent_data(self, count=30):
-        """获取最近N期福彩3D数据"""
-        all_data = self.get_all_3d_history()
-        if all_data is None or all_data.empty:
-            return None
-        recent = all_data.sort_values('开奖日期', ascending=False).head(count).copy()
-        recent = recent.sort_values('开奖日期', ascending=True).reset_index(drop=True)
-        return recent
-
-    # ================== 辅助解析函数 ==================
     def parse_sales_amount(self, text):
-        """解析销售金额字符串，去除逗号并转为整数"""
+        """解析销售金额"""
         if text in ['', '-', '0']:
             return 0
         try:
@@ -704,8 +613,7 @@ class LotteryDataCrawler:
         except:
             return 0
 
-
-# ================== 通用数据处理函数 ==================
+# 通用函数
 def get_existing_data(filename='Tools.xlsx', sheet_name='dltall'):
     """从Excel文件中读取现有的开奖数据"""
     if not os.path.exists(filename):
@@ -725,7 +633,6 @@ def get_existing_data(filename='Tools.xlsx', sheet_name='dltall'):
         return existing_df
     except Exception:
         return pd.DataFrame()
-
 
 def safe_save_to_excel(df, filename='Tools.xlsx', sheet_name='dltall'):
     """安全保存数据，不修改现有文件结构，保留外部链接和其他工作表内容"""
@@ -774,7 +681,6 @@ def safe_save_to_excel(df, filename='Tools.xlsx', sheet_name='dltall'):
         except Exception:
             pass
 
-
 def get_existing_dates(filename, sheet_name):
     """获取工作表中已存在的开奖日期"""
     try:
@@ -786,7 +692,6 @@ def get_existing_dates(filename, sheet_name):
         return set(existing_df['开奖日期'].astype(str))
     except Exception:
         return set()
-
 
 def incremental_save_to_excel(new_df, filename='Tools.xlsx', sheet_name='pl5'):
     """增量保存数据到Excel，基于开奖日期去重"""
@@ -828,20 +733,17 @@ def incremental_save_to_excel(new_df, filename='Tools.xlsx', sheet_name='pl5'):
     except Exception:
         return False
 
-
 def format_pl5_dataframe(df):
     """格式化排列五数据框"""
     expected_columns = ['期号', '开奖日期', '销售金额', '开奖号码', '一等奖注数']
     df = df[expected_columns].copy()
     return df
 
-
 def format_3d_dataframe(df):
     """格式化福彩3D数据框"""
     expected_columns = ['期号', '开奖日期', '销售金额', '开奖号码']
     df = df[expected_columns].copy()
     return df
-
 
 def update_ev_sheet_with_lottery_data(filename='Tools.xlsx'):
     """将pl5和3D工作表的开奖数据自动写入EV工作表的相应列"""
@@ -862,7 +764,6 @@ def update_ev_sheet_with_lottery_data(filename='Tools.xlsx'):
         print(f"pl5数据行数: {len(pl5_df)}")
         print(f"3D数据行数: {len(d3_df)}")
         print(f"EV工作表行数: {ev_ws.max_row}")
-
         date_to_row = {}
         for row in range(2, ev_ws.max_row + 1):
             date_cell = ev_ws.cell(row, 1).value
@@ -876,7 +777,6 @@ def update_ev_sheet_with_lottery_data(filename='Tools.xlsx'):
                     date_str = date_str.split(' ')[0]
             date_to_row[date_str] = row
         print(f"EV工作表日期映射数量: {len(date_to_row)}")
-
         pl5_updated = 0
         for _, row in pl5_df.iterrows():
             date_str = str(row['开奖日期']).strip()
@@ -893,7 +793,6 @@ def update_ev_sheet_with_lottery_data(filename='Tools.xlsx'):
                         ev_ws.cell(ev_row, b_col).value = numbers
                         pl5_updated += 1
                         print(f"更新PL5数据: 日期 {date_str}, 号码 {numbers}")
-
         d3_updated = 0
         for _, row in d3_df.iterrows():
             date_str = str(row['开奖日期']).strip()
@@ -910,7 +809,6 @@ def update_ev_sheet_with_lottery_data(filename='Tools.xlsx'):
                         ev_ws.cell(ev_row, e_col).value = numbers
                         d3_updated += 1
                         print(f"更新3D数据: 日期 {date_str}, 号码 {numbers}")
-
         workbook.save(filename)
         workbook.close()
         print(f"PL5更新了 {pl5_updated} 条数据")
@@ -921,7 +819,6 @@ def update_ev_sheet_with_lottery_data(filename='Tools.xlsx'):
         if 'workbook' in locals():
             workbook.close()
         return False
-
 
 def update_dlt_data(crawler):
     """更新大乐透数据：只获取并添加新期数"""
@@ -949,7 +846,6 @@ def update_dlt_data(crawler):
     combined_data['开奖日期'] = combined_data['开奖日期'].dt.strftime('%Y-%m-%d')
     safe_save_to_excel(combined_data, 'Tools.xlsx', 'dltall')
 
-
 def update_ssq_data(crawler):
     """更新双色球数据：只获取并添加新期数"""
     existing_df = get_existing_data('Tools.xlsx', 'ssq')
@@ -976,52 +872,42 @@ def update_ssq_data(crawler):
     combined_data['开奖日期'] = combined_data['开奖日期'].dt.strftime('%Y-%m-%d')
     safe_save_to_excel(combined_data, 'Tools.xlsx', 'ssq')
 
-
 def update_pl5_data(crawler):
-    """更新排列五数据（最近30期）"""
+    """更新排列五数据"""
     pl5_df = crawler.get_pl5_recent_data(30)
     if pl5_df is not None and len(pl5_df) > 0:
         pl5_formatted = format_pl5_dataframe(pl5_df)
         incremental_save_to_excel(pl5_formatted, 'Tools.xlsx', 'pl5')
 
-
 def update_3d_data(crawler):
-    """更新福彩3D数据（最近30期）"""
+    """更新福彩3D数据"""
     d3_df = crawler.get_3d_recent_data(30)
     if d3_df is not None and len(d3_df) > 0:
         d3_formatted = format_3d_dataframe(d3_df)
         incremental_save_to_excel(d3_formatted, 'Tools.xlsx', '3D')
-
 
 def main():
     """主函数 - 更新所有彩票数据"""
     print("彩票开奖数据获取工具 - 完整版")
     print("=" * 50)
     crawler = LotteryDataCrawler()
-
     print("正在更新大乐透数据...")
     update_dlt_data(crawler)
-
     print("正在更新双色球数据...")
     update_ssq_data(crawler)
-
     print("正在更新排列五数据...")
     update_pl5_data(crawler)
-
     print("正在更新福彩3D数据...")
     update_3d_data(crawler)
-
     print("正在将PL5和3D数据更新到EV工作表...")
     success = update_ev_sheet_with_lottery_data('Tools.xlsx')
     if success:
         print("EV工作表更新成功!")
     else:
         print("EV工作表更新失败!")
-
     file_path = os.path.abspath('Tools.xlsx')
     print(f"文件保存路径: {file_path}")
     print("所有数据更新完成!")
-
 
 if __name__ == "__main__":
     main()

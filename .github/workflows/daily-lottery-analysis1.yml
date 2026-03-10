@@ -2,63 +2,77 @@ name: Daily Lottery Analysis
 
 on:
   schedule:
-    - cron: '20 6 * * *'   # 每天 UTC 6:20（北京时间 14:20）
-    - cron: '0 1 * * *'    # 每天 UTC 1:00（北京时间 9:00）
-  workflow_dispatch:
+    - cron: '20 6 * * *'  # 每天UTC时间6点20分运行（北京时间14点20分/下午2点30分）
+    - cron: '0 1 * * *' # 每天UTC时间9点运行（北京时间次日凌晨9点）
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
-
+          clean: true
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-
+      
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install pandas numpy matplotlib openpyxl requests
-
+      
       - name: Run lottery analysis
         run: |
           echo "开始执行彩票分析脚本..."
           echo "触发时间（UTC）: $(date -u '+%Y-%m-%d %H:%M:%S')"
           echo "触发时间（北京时间）: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           python deepseek_cp2025.py
-
+          echo "脚本执行完成"
+      
       - name: Commit and push report
         run: |
+          echo "准备提交报告文件..."
+          
+          # 检查文件是否存在
           if [ ! -f "deepseek_cp_report.html" ]; then
             echo "❌ 报告文件不存在"
             exit 1
           fi
-          git config user.email "actions@github.com"
-          git config user.name "github-actions[bot]"
+          
+          # 配置Git
+          git config --local user.email "actions@github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 添加文件
           git add deepseek_cp_report.html
-          if ! git diff --staged --quiet; then
+          
+          # 检查是否有变化
+          if git diff --staged --quiet; then
+            echo "没有变化可提交"
+          else
+            # 获取当前时间用于提交信息
             BEIJING_TIME=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
             git commit -m "🔮 自动更新彩票分析报告 ${BEIJING_TIME}"
             git pull origin main --rebase
             git push origin main
             echo "✅ 报告提交完成"
-          else
-            echo "没有变化可提交"
           fi
-
+      
       - name: Upload report as artifact
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: lottery-report-${{ github.run_number }}   # 使用 run_number 作为唯一标识
+          name: lottery-report-$(date +%Y%m%d-%H%M)
           path: deepseek_cp_report.html
           retention-days: 7
-
+      
       - name: Show summary
         run: |
           echo "========================================"
@@ -66,13 +80,15 @@ jobs:
           echo "📅 UTC时间: $(date -u '+%Y-%m-%d %H:%M:%S')"
           echo "📅 北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           echo "🎯 触发方式: ${{ github.event_name }}"
+          
           if [ -f "deepseek_cp_report.html" ]; then
             file_size=$(wc -c < deepseek_cp_report.html)
             echo "✅ 报告文件: deepseek_cp_report.html"
             echo "📊 文件大小: ${file_size} 字节"
             echo "🌐 访问地址: https://github.com/cloudplains/jnsj/blob/main/deepseek_cp_report.html"
-            echo "📥 Artifact: lottery-report-${{ github.run_number }}"
+            echo "📥 Artifact: lottery-report-$(date +%Y%m%d-%H%M)"
           else
             echo "❌ 报告生成失败"
           fi
+          
           echo "========================================"

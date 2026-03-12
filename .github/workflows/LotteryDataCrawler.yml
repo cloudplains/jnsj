@@ -2,7 +2,7 @@ name: Lottery Data Crawler
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # 每天UTC时间5点运行（北京时间13点/下午1点）
+    #- cron: '0 5 * * *'  # 每天UTC时间5点运行（北京时间13点/下午1点）
     - cron: '0 20 * * *' # 每天UTC时间20点运行（北京时间次日凌晨4点）
   workflow_dispatch:  # 允许手动触发
 

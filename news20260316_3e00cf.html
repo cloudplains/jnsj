@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-    <title>🗞️ 海外新闻网站 · 196国 · 643站点</title>
+    <title>🗞️ 海外新闻网站 · 196国 · 643+站点</title>
     <style>
         * {
             margin: 0;
@@ -273,7 +273,7 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>📡 海外新闻网站 · 覆盖196国 · 643个站点</h1>
+        <h1>📡 海外新闻网站 · 覆盖196国 · 新增中国及多站点</h1>
         <div class="stats">
             <span><span class="dot-g"></span> 绿色 · 综合/主流</span>
             <span><span class="dot-y"></span> 黄色 · 区域/次要</span>
@@ -282,7 +282,7 @@
         </div>
     </div>
 
-    <!-- 原始数据存放 (隐藏) -->
+    <!-- 完整数据源 (已整合中国及补充站点) -->
     <script type="text/plain" id="rawSource">
 🧰联合国
 1 联合国
@@ -291,7 +291,19 @@
 🟢联合国国际法院：https://www.icj-cij.org/
 🟢联合国官方网络电视：UN WEB TV https://webtv.un.org/zh
 🟢联合国官方文件系统：https://documents.un.org/
-🧰 亚洲（47国）
+🧰 亚洲（48国）
+1 中国
+🟢新华网：新华网_https://www.news.cn/
+🟢人民网：https://www.people.com.cn/
+🟢央视网：央视网_https://www.cctv.com/
+🟢环球网：环球网_https://huanqiu.com/
+🟢光明网：光明网_https://www.gmw.cn/
+🟢香港新闻网：https://hkcna.hk
+🟢香港文汇网：文匯網 - https://www.wenweipo.com/hongkong
+🟢中时新闻：https://www.chinatimes.com/
+🔴ETtoday：https://www.ettoday.net/
+🟢澳门日报：https://www.macaodaily.com
+🟢澳门新闻：https://www.exmoo.com/
 2 日本
 🟢雅虎日本新闻：https://news.yahoo.co.jp/
 🟢NHK新闻网：https://news.web.nhk/newsweb
@@ -319,7 +331,7 @@
 5 沙特阿拉伯
 🟢阿拉伯新闻：https://www.arabnews.com/
 🟢沙特公报：https://saudigazette.com.sa/
-🟢阿拉伯卫视：https://english.alarabiya.net/https://www.alarabiya.net/
+🟢阿拉伯卫视：https://english.alarabiya.net/ https://www.alarabiya.net/
 🟢中东报：https://aawsat.com/
 🟡沙特官方通讯社：https://www.spa.gov.sa/
 🟢奥卡兹报：https://www.okaz.com.sa/
@@ -1121,15 +1133,18 @@
 197 纽埃
 🟢纽埃广播：https://tvniue.com/
 🧰 其他网站
-🟢太平洋岛国新闻协会（覆盖太平洋岛国）：https://pina.com.fj/
+🟢聚焦中亚五国：https://centralasia.media/
+🟡实时新闻聚合平台NewsNow：https://www.newsnow.co.uk/h/
+🟡ipsos：https://www.ipsos.com
+🟢太平洋岛国新闻协会（覆盖太平洋岛国）：https://pina.com.fj/ 斐济、巴布亚新几内亚、所罗门群岛、汤加、萨摩亚、瓦努阿图、基里巴斯、密克罗尼西亚、马绍尔群岛、帕劳、瑙鲁、图瓦卢、库克群岛、纽埃
     </script>
 
     <!-- 渲染容器 -->
-    <div id="output" class="loading">⏳ 正在解析643个站点，构建漂亮版面…</div>
+    <div id="output" class="loading">⏳ 正在解析站点，构建新版面…</div>
 </div>
 
 <footer>
-    🌐 覆盖196个国家及地区 · 643个新闻网站 · 颜色标记仅作视觉分类 · 所有链接可直接访问
+    🌐 覆盖196个国家及地区 · 新增中国及多家媒体 · 所有链接可直接访问
 </footer>
 
 <script>
@@ -1137,7 +1152,7 @@
     // 获取原始文本
     const raw = document.getElementById('rawSource').textContent;
 
-    // 工具：HTML转义 (避免XSS，同时为链接提取做准备)
+    // 工具：HTML转义
     function escapeHtml(unsafe) {
         return unsafe.replace(/[&<>"]/g, function(m) {
             if (m === '&') return '&amp;';
@@ -1150,12 +1165,8 @@
 
     // 将文本中的URL转换为<a>标签 (前提是文本已经被转义)
     function linkify(escapedText) {
-        // 匹配 http:// 或 https:// 后跟非空白字符
         const urlPattern = /(https?:\/\/[^\s]+)/g;
         return escapedText.replace(urlPattern, function(url) {
-            // 去掉尾部可能的标点 (逗号、句号、括号等，但保留大部分URL)
-            // 简单起见，保留原始，但若有句点结尾，通常不是URL的一部分
-            // 精细处理：如果URL最后一个字符是.,?!)等且不属于协议，可以移除，但为了简单保留
             return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
         });
     }
@@ -1179,30 +1190,24 @@
 
             // 大洲标题 (以🧰开头)
             if (trimmed.startsWith('🧰')) {
-                // 保存之前的大洲
                 if (currentContinent) {
                     continents.push(currentContinent);
                 }
-                // 新大洲
                 const continentName = trimmed.replace(/^🧰\s*/, '').trim() || '其他';
                 currentContinent = {
                     name: continentName,
-                    countries: [],        // 有国家分类的
-                    directItems: []       // 直接挂在大洲下的条目 (如联合国)
+                    countries: [],
+                    directItems: []
                 };
                 currentCountry = null;
                 continue;
             }
 
-            if (!currentContinent) {
-                // 如果还没遇到大洲，忽略(理论上不会)
-                continue;
-            }
+            if (!currentContinent) continue;
 
-            // 国家标题: 以数字开头，例如 "2 日本" 或 "3 韩国"
+            // 国家标题: 以数字开头，例如 "1 中国" 或 "2 日本"
             const countryMatch = trimmed.match(/^(\d+)\s+(.+)/);
             if (countryMatch) {
-                // 创建新国家
                 const countryNum = countryMatch[1];
                 const countryRawName = countryMatch[2].trim();
                 currentCountry = {
@@ -1214,57 +1219,47 @@
                 continue;
             }
 
-            // 网站条目: 以 🟢 🟡 🔴 开头 (也可能有空格)
+            // 网站条目: 以 🟢 🟡 🔴 开头
             if (trimmed.startsWith('🟢') || trimmed.startsWith('🟡') || trimmed.startsWith('🔴')) {
-                // 提取颜色符号
-                const colorSymbol = trimmed.slice(0, 2); // 两个字符
-                const restLine = trimmed.slice(2).trim(); // 剩余部分
+                const colorSymbol = trimmed.slice(0, 2);
+                const restLine = trimmed.slice(2).trim();
 
-                // 根据当前是否有国家来添加
                 const item = {
                     color: colorSymbol,
                     raw: restLine,
-                    processed: processLineContent(restLine) // 转义+链接
+                    processed: processLineContent(restLine)
                 };
 
                 if (currentCountry) {
                     currentCountry.items.push(item);
                 } else {
-                    // 没有国家 (比如联合国下直接跟的网站)
                     currentContinent.directItems.push(item);
                 }
                 continue;
             }
 
-            // 其他行 (可能是一些注释或附加链接，但一般不会，可忽略)
-            // 保险: 如果行包含http且当前有国家，可以尝试作为条目处理？但不处理避免混乱，忽略
+            // 其他行忽略（可能是一些注释，但保留大洲下的直接链接已经涵盖）
         }
 
-        // 添加最后一个大洲
-        if (currentContinent) {
-            continents.push(currentContinent);
-        }
-
+        if (currentContinent) continents.push(currentContinent);
         return continents;
     }
 
     // 渲染大洲数据到DOM
     function render(continents) {
         const output = document.getElementById('output');
-        output.className = ''; // 移除loading
-        output.innerHTML = ''; 
+        output.className = '';
+        output.innerHTML = '';
 
         for (const cont of continents) {
             const contDiv = document.createElement('div');
             contDiv.className = 'continent';
 
-            // 大洲头部
             const headerDiv = document.createElement('div');
             headerDiv.className = 'continent-header';
             headerDiv.innerHTML = `<h2>${escapeHtml(cont.name)} <span>${cont.countries.length}国 / 直链${cont.directItems.length}</span></h2>`;
             contDiv.appendChild(headerDiv);
 
-            // 如果有直接条目 (无国家分类，如联合国)
             if (cont.directItems.length > 0) {
                 const directDiv = document.createElement('div');
                 directDiv.className = 'direct-sites';
@@ -1280,7 +1275,6 @@
                 contDiv.appendChild(directDiv);
             }
 
-            // 国家网格
             if (cont.countries.length > 0) {
                 const grid = document.createElement('div');
                 grid.className = 'country-grid';
@@ -1304,22 +1298,12 @@
                             ul.appendChild(li);
                         }
                         card.appendChild(ul);
-                    } else {
-                        // 理论上每个国家至少一条新闻
-                        const emptyMsg = document.createElement('div');
-                        emptyMsg.style.padding = '0.5rem 0';
-                        emptyMsg.style.color = '#888';
-                        emptyMsg.innerText = '暂无条目';
-                        card.appendChild(emptyMsg);
                     }
 
                     grid.appendChild(card);
                 }
 
                 contDiv.appendChild(grid);
-            } else if (cont.directItems.length === 0) {
-                // 既无国家也无直接条目，极不可能
-                contDiv.innerHTML += '<p style="padding:1rem; color:#888;">暂无站点</p>';
             }
 
             output.appendChild(contDiv);

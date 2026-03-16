@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>🗞️ 海外新闻网站 · 196国 · 643站点</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            padding: 2rem 1.5rem;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* 页头 */
+        .header {
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #0f2b4b, #2c5282);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header .stats {
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            margin-top: 0.75rem;
+            border: 1px solid #e9edf2;
+            flex-wrap: wrap;
+        }
+
+        .stats span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+            background: #f1f5f9;
+            padding: 0.25rem 0.9rem;
+            border-radius: 30px;
+        }
+
+        .stats .dot-g {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #2b8c5e;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        .stats .dot-y {
+            background: #d99f2b;
+        }
+        .stats .dot-r {
+            background: #c23b2b;
+        }
+
+        /* 大洲卡片 (外容器) */
+        .continent {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 10px 25px -8px rgba(0,20,40,0.1);
+            border: 1px solid #dee7ef;
+            transition: box-shadow 0.15s;
+        }
+
+        .continent:hover {
+            box-shadow: 0 18px 30px -8px rgba(17, 45, 78, 0.15);
+        }
+
+        .continent-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eef2f6;
+            padding-bottom: 0.75rem;
+        }
+
+        .continent-header h2 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #0a2647;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .continent-header h2 span {
+            background: #d4e2f0;
+            font-size: 1rem;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #1d3b5c;
+        }
+
+        .country-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.4rem;
+        }
+
+        /* 国家卡片 */
+        .country-card {
+            background: #fafcff;
+            border-radius: 20px;
+            padding: 1.2rem 1.2rem 1rem;
+            border: 1px solid #dde5ed;
+            transition: background 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+        }
+
+        .country-card:hover {
+            background: #ffffff;
+            border-color: #bcd0e5;
+        }
+
+        .country-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 0.5rem;
+        }
+
+        .country-name .country-num {
+            background: #e1eaf1;
+            width: 26px;
+            height: 26px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1e405e;
+        }
+
+        /* 网站列表 */
+        .site-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .site-item {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            color: #1e2f44;
+            word-break: break-word;
+        }
+
+        .site-item .bullet {
+            font-size: 1.2rem;
+            line-height: 1.2;
+            flex-shrink: 0;
+            width: 1.6em;
+            text-align: left;
+        }
+
+        .site-content {
+            flex: 1;
+        }
+
+        .site-content a {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #b9d1f0;
+        }
+
+        .site-content a:hover {
+            color: #0b2f7a;
+            border-bottom: 1px solid #2563eb;
+        }
+
+        /* 直接条目 (无国家分类，如联合国、其他网站) */
+        .direct-sites {
+            margin-top: 1rem;
+            background: #f4f9ff;
+            border-radius: 18px;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #cbddec;
+        }
+
+        .direct-sites h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1e3a5f;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .direct-sites ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .direct-sites li {
+            flex: 0 1 auto;
+            min-width: 240px;
+        }
+
+        /* 加载/解析状态 */
+        .loading {
+            text-align: center;
+            padding: 5rem;
+            color: #62748b;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            color: #6f7e93;
+            text-align: center;
+            border-top: 1px solid #d7e0e9;
+            padding-top: 1.5rem;
+        }
+
+        /* 颜色标记自定义 */
+        .dot-g {
+            color: #1f9a5a;
+        }
+        .dot-y {
+            color: #c48b1b;
+        }
+        .dot-r {
+            color: #c23b2b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📡 海外新闻网站 · 覆盖196国 · 643个站点</h1>
+        <div class="stats">
+            <span><span class="dot-g"></span> 绿色 · 综合/主流</span>
+            <span><span class="dot-y"></span> 黄色 · 区域/次要</span>
+            <span><span class="dot-r"></span> 红色 · 官方/特殊</span>
+            <span>⚡ 可直接访问 (链接已激活)</span>
+        </div>
+    </div>
+
+    <!-- 原始数据存放 (隐藏) -->
+    <script type="text/plain" id="rawSource">
+🧰联合国
+1 联合国
+🟢联合国新闻网：UN News https://webtv.un.org/zh
+🟢联合国数字图书馆：https://digitallibrary.un.org/
+🟢联合国国际法院：https://www.icj-cij.org/
+🟢联合国官方网络电视：UN WEB TV https://webtv.un.org/zh
+🟢联合国官方文件系统：https://documents.un.org/
+🧰 亚洲（47国）
+2 日本
+🟢雅虎日本新闻：https://news.yahoo.co.jp/
+🟢NHK新闻网：https://news.web.nhk/newsweb
+🟢NHK World：NHK WORLD-https://www3.nhk.or.jp/nhkworld/
+🟢共同通讯社：https://www.kyodo.co.jp/
+🟢日本电视台：https://news.ntv.co.jp/
+🟢共同网：https://china.kyodonews.net/
+🟢朝日新闻：https://www.asahi.com/
+3 韩国
+🟢韩联社：연합뉴스https://www.yna.co.kr/
+🟡韩国放送公社：https://news.kbs.co.kr/news/pc/main/main.html
+🟢韩国时报：https://www.koreatimes.co.kr/
+🟡朝鲜日报：https://www.chosun.com/
+🟡Naver新闻：https://news.naver.com/
+🟡中央日报：https://joongang.co.kr/
+🟡MBC News：https://imnews.imbc.com/
+4 土耳其
+🟡自由报：https://www.hurriyet.com.tr/
+🔴Milliyet：https://www.milliyet.com.tr/
+🟢阿纳多卢通讯社：https://www.aa.com.tr/
+🟢晨报：https://www.sabah.com.tr/
+🟡Sözcü：https://www.sozcu.com.tr/
+🟡Mynet：https://www.mynet.com/
+🟡En Son Haber：https://www.ensonhaber.com/
+5 沙特阿拉伯
+🟢阿拉伯新闻：https://www.arabnews.com/
+🟢沙特公报：https://saudigazette.com.sa/
+🟢阿拉伯卫视：https://english.alarabiya.net/https://www.alarabiya.net/
+🟢中东报：https://aawsat.com/
+🟡沙特官方通讯社：https://www.spa.gov.sa/
+🟢奥卡兹报：https://www.okaz.com.sa/
+6 巴基斯坦
+🟢SAMAA TV：https://www.samaa.tv/
+🟢ARY News：https://arynews.tv/
+🟢战斗报：https://jang.com.pk/
+🟢巴基斯坦联合通讯社：https://www.app.com.pk/
+7 以色列
+🟢以色列时报：https://www.timesofisrael.com/
+🟢国土报：https://www.haaretz.com/
+🟢Ynetnews：https://www.ynetnews.com/
+🟢The Jerusalem Post耶路撒冷邮报：https://www.jpost.com/
+🟡Israel Hayom：https://www.israelhayom.com/
+🟢Arutz Sheva以色列国家新闻：https://www.israelnationalnews.com/
+8 伊朗
+🟢伊朗伊斯兰共和国通讯社：https://en.irna.ir/
+🟢Press TV：https://www.presstv.ir/
+9 阿联酋
+🟢海湾新闻：https://gulfnews.com/
+🟢国家报：https://www.thenationalnews.com/
+🟢宣言报：https://www.albayan.ae/
+🟢阿联酋国家通讯社：https://www.wam.ae/ar/home/main
+🟡哈利吉时报：https://www.khaleejtimes.com/
+🟡Emirates Today：https://www.emirates247.com/
+10 新加坡
+🟡Mothership：https://mothership.sg/
+🟢联合早报：https://www.zaobao.com/
+🔴新加坡眼：https://www.yan.sg/
+11 马来西亚
+🟢星报：https://www.thestar.com.my/
+🟢马来西亚通讯社：https://bernama.com/bm/index.php
+12 印度尼西亚
+🟢安塔拉通讯社：https://en.antaranews.com/
+🟡http://Detik.com：https://www.detik.com/
+🟡http://Kompas.com：https://www.kompas.com/
+🟡CNBC Indonesia：https://www.cnbcindonesia.com/
+13 越南
+🟢越南新闻：https://vietnamnews.vn/
+🟢VnExpress：https://e.vnexpress.net/
+14 阿富汗
+🟢阿富汗新闻网：https://www.afghanistannews.net/
+🟡Tolo News：https://tolonews.com/
+🟡Pajhwok Afghan News：https://www.pajhwok.com/
+🔴Ariana News：https://www.ariananews.af/
+🟡巴赫特通讯社：https://www.bakhtarnews.af/
+15 阿塞拜疆
+🟢阿塞拜疆新闻：https://www.azernews.az/
+🟡 趋势通讯社（Trend News Agency）：https://en.trend.az/
+🟡 报告通讯社（Report.az）：https://report.az/en/
+🟡 第一新闻频道（1news.az）：https://1news.az/
+🟡 阿塞拜疆国家新闻社（AZERTAC）：https://azertag.az/en/
+16 伊拉克
+🟢伊拉克国家通讯社：http://www.ina.iq/
+🟡 伊拉克媒体网（Iraqi Media Network）：https://www.imn.iq/
+🟡 苏美尔新闻（Al-Sumaria News）：https://www.alsumaria.tv/
+🟡 沙法克新闻（Shafaq News）：https://shafaq.com/
+🟡萨巴赫报：https://alsabaah.iq/
+17 卡塔尔
+🟢海湾时报：https://www.gulf-times.com/
+🟢半岛报：https://thepeninsulaqatar.com/
+🟢论坛报：https://www.qatar-tribune.com/
+🟢Al-Sharq：https://al-sharq.com/
+18 泰国
+🟢Sanook：https://www.sanook.com/
+🟢泰叻报：https://www.thairath.co.th/
+🟢考苏得英文报：https://www.khaosod.co.th/
+19 孟加拉国
+🟢bdnews24：https://bdnews24.com/
+🟢每日星报：https://www.thedailystar.net/
+20 菲律宾
+🟢Rappler：https://www.rappler.com/
+🟢GMA新闻：https://www.gmanetwork.com/news/
+🟡Philippine News Agency：https://www.pna.gov.ph/
+🟡The Manila Times：https://www.manilatimes.net/
+🟡Philippine Star：https://www.philstar.com/
+21 哈萨克斯坦
+🟢Qazinform：https://qazinform.com/
+🟢Tengrinews：https://tengrinews.kz/
+22 科威特
+🟢科威特时报：https://kuwaittimes.com/
+🟡Al Qabas：https://alqabas.com/
+🟡Al Rai：https://www.alraimedia.com/
+🟡 阿拉伯时报：https://www.arabtimesonline.com/
+🟡 Indians in Kuwait：https://www.indiansinkuwait.com/
+23 印度
+🟢Aaj Tak：https://www.aajtak.in/
+🟢Scroll：https://scroll.in/
+24 巴勒斯坦
+🟢972 Magazine：https://www.972mag.com/
+🟢巴勒斯坦通讯社：https://english.wafa.ps/
+🟡巴勒斯坦广播公司：http://www.pbc.ps/
+🟢电子起义：https://electronicintifada.net/
+🟢Maan News：https://www.maannews.net/
+🟢巴勒斯坦纪事报：https://www.palestinechronicle.com/
+🟢Palestine News Network：https://pnn.ps/
+🟢圣城报：https://www.alquds.com/ar/
+25 亚美尼亚
+🟢亚美尼亚公共广播电台：https://en.armradio.am/
+🟢CivilNet：https://www.civilnet.am/
+🟢News Armenia：https://newsarmenia.am/
+26 巴林
+🟢巴林本周：https://www.bahrainthisweek.com/
+🟢巴林镜报：https://bahrainmirror.com/
+🟢巴林通讯社：https://www.bna.bh/
+27 文莱
+🟢文莱灯塔报：https://www.pelitabrunei.gov.bn/
+🟢文莱快报：https://www.brudirect.com/
+🟢文莱商业网：https://www.bizbrunei.com/
+28 柬埔寨
+🟢Fresh News：https://freshnews.com.kh/
+🟢柬埔寨通讯社：https://www.akp.gov.kh/
+🟢金边邮报：https://www.phnompenhpost.com/
+29 朝鲜
+🟢Uriminzokkiri：https://www.minjok.com/
+🟢朝鲜之声：https://www.vok.rep.kp/
+30 东帝汶
+🟢帝力周报：https://thediliweekly.com/
+🟢Media One Timor：https://mediaonetimor.co/
+🟢Timor News：https://www.timornews.tl/
+31 格鲁吉亚
+🟢IPN新闻社：https://www.interpressnews.ge/ka/
+🟢Netgazeti：https://netgazeti.ge/
+🟢Tabula：https://tabula.ge/ge Civil.ge：https://civil.ge/
+32 约旦
+🟢约旦时报：https://jordantimes.com/
+🟢言论报：https://alrai.com/
+🟢ammonnews：https://www.ammonnews.net/
+🟢alghad：https://alghad.com/
+🟢道路报：https://assabeel.net/
+33 吉尔吉斯斯坦
+🟢TCA：https://timesca.com/
+🟢Kyrgyzstan News：https://www.kyrgyzstannews.net/
+🟢24kg：https://24.kg/
+🟢吉尔吉斯斯坦国家广播电视公司：https://ktrk.kg/
+🟢K-News：https://knews.kg/
+🟢吉尔吉斯斯坦通讯社之一：https://akipress.org/
+🟢吉尔吉斯坦新闻：https://kloop.kg/
+34 老挝
+🟢万象时报：https://www.vientianetimeslao.la/ https://www.vientianetimes.org.la/
+🟡老挝广播电台：https://lnr.org.la/
+🔴老挝国家通讯社：https://kpl.gov.la/
+35 黎巴嫩
+🟢黎巴嫩国家通讯社：https://nna-leb.gov.lb/ar
+🟢安纳哈尔报：https://www.annahar.com/
+🟢Naharnet：https://www.naharnet.com/
+🟢东方日报：https://www.lorientlejour.com/
+🟢Al-Akhbar：https://www.al-akhbar.com/
+36 马尔代夫
+🟢马尔代夫独立版：https://maldivesindependent.com/
+🟡马尔代夫官方公共媒体：https://psmnews.mv/
+🟡太阳报：https://see.mv/
+🟡Mihaaru：https://mihaaru.com/
+37 蒙古
+🟡Gogo：https://gogo.mn/
+🟡Sonin：https://sonin.mn/
+🔴蒙古国家通讯社：https://montsame.mn/
+🔴蒙古国家公共广播电视台：https://www.mnb.mn/
+38 缅甸
+🟢缅甸现在新闻：https://myanmar-now.org/en/
+🔴缅甸官方英文日报：https://www.gnlm.com.mm/
+🟢伊洛瓦底新闻网：https://www.irrawaddy.com/
+39 尼泊尔
+🟡坎蒂普尔日报：https://gorkhapatraonline.com/
+🟡尼泊尔国家日报：https://ekantipur.com/
+40 阿曼
+🟡阿曼新闻社：https://www.omannews.gov.om/
+🟡国报：https://alwatan.om/
+🟡青年报：https://shabiba.com/
+🟡阿曼每日观察：https://www.omanobserver.om/
+41 斯里兰卡
+🟢胜利雄狮：https://www.virakesari.lk/
+🟢Adaderana：https://www.adaderana.lk/
+🔴每日新闻：https://dailynews.lk/
+42 叙利亚
+🟢时代新闻：https://zamanalwsl.net/
+🟢叙利亚阿拉伯通讯社：https://sana.sy/
+🟢叙利亚直击：https://syriadirect.org/
+43 塔吉克斯坦
+🟢塔吉克斯坦国家通讯社：https://khovar.tj/
+🟢共和国报：https://jumhuriyat.tj/
+44 土库曼斯坦
+🟢综合新闻：https://turkmenistan.gov.tm/tk
+🟢土库曼斯坦国家通讯社：https://tdh.gov.tm/tk
+🟢中立土库曼斯坦报：https://neutrality.gov.tm/
+45 乌兹别克斯坦
+🟢KUN.UZ：https://kun.uz/kr/
+🟡UzA：https://uza.uz/
+🟡Gazeta.uz：https://www.gazeta.uz/
+🟡Daryo.uz：https://daryo.uz/
+🟢 乌兹别克斯坦国家通讯社：https://uza.uz/uz
+46 也门
+🟢革命报：https://althawrah.ye/
+🟢马雷卜新闻社：https://marebpress.net/
+🟢Yemen Times：https://yementimes.com/
+🔴胡塞：https://saba.ye/ar
+🔴哈迪/阿里米：https://www.sabanew.net/
+47 塞浦路斯
+🟢自由爱好者报：https://www.philenews.com/
+🟡塞浦路斯通讯社：https://cna.org.cy/
+🔴塞浦路斯广播：https://rik.cy/
+48 不丹
+🟢不丹国家官方日报：https://kuenselonline.com/
+🟢不丹广播公司：https://www.bbs.bt/235279/
+🔴Daily Bhutan：https://www.dailybhutan.com/
+🧰 欧洲（44国）
+49 俄罗斯
+🟢今日俄罗斯：https://www.rt.com/
+🟢塔斯社：https://tass.com/
+🟢俄罗斯卫星通讯社中文版：https://sputniknews.cn/
+🟢俄罗斯卫星通讯社英文版：https://sputnikglobe.com/
+50 德国
+🟢时代周报：https://www.zeit.de/
+🟢德新社：https://www.dpa.com/de
+🟢德国概况：https://www.deutschland.de/en
+51 英国
+🟢每日电讯报：https://www.telegraph.co.uk/
+🟢天空新闻：https://news.sky.com/
+🟢泰晤士报：https://www.thetimes.com/
+🟢英国独立电台：https://www.itv.com/news
+52 法国
+🟢France 24：https://www.france24.com/en/
+🟢BFM TV：https://www.bfmtv.com/
+🟢回声报：https://www.lesechos.fr/
+🟢巴黎人报：https://www.leparisien.fr/
+53 意大利
+🟢晚邮报：https://www.corriere.it/
+🟢安莎通讯社：https://www.ansa.it/english
+54 乌克兰
+🟢乌克兰国家通讯社：https://www.ukrinform.net/
+🟢基辅独立报：https://kyivindependent.com/
+🟢乌克兰独立新闻社：https://www.unian.net/
+🟢基辅邮报：https://www.kyivpost.com/
+55 波兰
+🟢华沙之声：https://www.warsawvoice.pl/
+🟢Rzeczpospolita：https://www.rp.pl/
+56 立陶宛
+🟢Delfi：https://www.delfi.lt/
+🟢Lrytas：https://www.lrytas.lt/english
+🟡15min：https://www.15min.lt/
+🟡 LNK电视台（LNK）：https://lnk.lt/
+57 丹麦
+🟢丹麦广播公司：https://www.dr.dk/
+58 西班牙
+🟢世界报：https://www.elmundo.es/
+🟡La Vanguardia：https://www.lavanguardia.com/
+🟡20minutos：https://www.20minutos.es/
+59 荷兰
+🟢电讯报：https://www.telegraaf.nl/
+🟢https://www.nu.nl/
+🟡NRC：https://www.nrc.nl/
+🟡AD：https://www.ad.nl/
+60 瑞士
+🟢20 Minuten：https://www.20min.ch/
+🟢每日导报：https://www.tagesanzeiger.ch/
+61 瑞典
+🟢Aftonbladet：https://www.aftonbladet.se/
+🟢Sveriges kvalitetssajt för nyheter：https://www.svd.se/
+62 比利时
+🟢Het Nieuwsblad：https://www.nieuwsblad.be/
+63 挪威
+🟢Dagbladet：https://www.dagbladet.no/
+🟡VG：https://www.vg.no/
+🟢 经济日报（Dagens Næringsliv）：https://www.dn.no/
+64 奥地利
+🟢Krone：https://www.krone.at/
+🟢Heute：https://www.heute.at/
+🟢ORF：https://news.orf.at/
+🟡Der Standard：https://www.derstandard.at/
+🟡Die Presse：https://www.diepresse.com/
+🟡Kurier：https://kurier.at/
+🟡 Kleine Zeitung：https://www.kleinezeitung.at/
+🟡 OE24：https://www.oe24.at/
+65 芬兰
+🟢赫尔辛基日报：https://www.hs.fi/
+🟢芬兰广播公司：https://www.yle.fi/
+66 希腊
+🟢每日报：https://www.kathimerini.gr/
+🟢Protothema：https://www.protothema.gr/
+67 葡萄牙
+🟢公众报：https://www.publico.pt/
+🟡Expresso：https://expresso.pt/
+🟡Jornal de Notícias：https://www.jn.pt/
+🟡Diário de Notícias：https://www.dn.pt/
+68 爱尔兰
+🟢RTÉ News：https://www.rte.ie/news/
+🟢爱尔兰新闻：https://www.thejournal.ie/
+69 捷克
+🟢iDNES：https://www.idnes.cz/
+🟢Novinky：https://www.novinky.cz/
+🟢Denik：https://www.denik.cz/
+🟡Aktuálně.cz：https://www.aktualne.cz/
+🟡ČT24：https://ct24.ceskatelevize.cz/
+70 匈牙利
+🟢24.hu：https://24.hu/
+🟢Index：https://index.hu/
+🟡Origo：https://www.origo.hu/
+🟡Magyar Nemzet：https://magyarnemzet.hu/
+71 罗马尼亚
+🟢HotNews：https://hotnews.ro/
+🟢Digi24：https://www.digi24.ro/
+🟢Adevărul：https://adevarul.ro/
+72 梵蒂冈
+🟢梵蒂冈新闻网：梵蒂冈新闻 http://www.vaticannews.cn/zh.html
+🟢罗马观察报：https://www.osservatoreromano.va/it.html
+73 阿尔巴尼亚
+🟢阿尔巴尼亚 通讯社：https://ata.gov.al/
+🟢世纪报：https://shekulli.com.al/
+🟢全景报：https://www.panorama.com.al/
+🟢阿尔巴尼亚官方英文媒体：https://www.tiranatimes.com/
+🟢今日报：https://gazetadita.al/
+74 安道尔
+🟢安道尔报：https://elperiodic.ad/
+🟢早安报：https://www.bondia.ad/
+🟢通讯社：https://www.ana.ad/
+🟡Fòrum：https://forum.ad/
+🟡安道尔广播：https://www.rtva.ad/
+75 白俄罗斯
+🟢白俄罗斯通讯社：https://belta.by/
+🟢白俄语日报：https://zviazda.by/
+🟢白俄罗斯国家官网新闻中心：https://www.belarus.by/cn/press-center
+🟡明斯克先驱报：https://minskherald.com/
+🟡Naviny.by：https://naviny.by/
+76 波黑
+🟢萨拉热窝时报：https://sarajevotimes.com/
+🟢Fokus.ba：https://www.fokus.ba/
+🟢自由波斯尼亚：https://www.slobodna-bosna.ba/
+🟡每日之声：https://avaz.ba/
+🟡n1info：https://n1info.ba/
+🟢波黑广播电视总台：https://www.bhrt.ba/
+77 保加利亚
+🟢保加利亚通讯社：https://www.bta.bg/en
+🟢Dnevnik：https://www.dnevnik.bg/
+🟡Standart News：https://www.standartnews.com/
+🟡24 Chasa：https://www.24chasa.bg/
+🟢保加利亚广播电台：https://bnrnews.bg/en
+78 克罗地亚
+🟢Index.hr：https://www.index.hr/
+🟢Večernji List：https://www.vecernji.hr/
+🟢24sata：https://www.24sata.hr/
+🟢克罗地亚国家广播：https://www.hrt.hr/
+🟢Croatia Week：https://www.croatiaweek.com/
+79 爱沙尼亚
+🟢Delfi.ee：https://www.delfi.ee/
+🟢爱沙尼亚国家广播：https://www.err.ee/
+🟢爱沙尼亚快报：https://ekspress.delfi.ee/
+🟡Õhtuleht：https://www.ohtuleht.ee/
+80 冰岛
+🟢Morgunblaðið ：https://www.mbl.is/frettir/
+🟢Visir：https://www.visir.is/
+🟢冰岛国家广播：https://www.ruv.is/
+🟢日报：https://www.dv.is/
+🟡冰岛评论：https://www.icelandreview.com/news/
+81 拉脱维亚
+🟢http://NRA.lv：https://nra.lv/
+🟢http://Delfi.lv：https://www.delfi.lv/
+🟡The Baltic Times：https://www.baltictimes.com/
+🟡拉脱维亚公共广播：https://www.lsm.lv/
+🟡http://Diena.lv：https://www.diena.lv/
+82 列支敦士登
+🟢祖国报：https://www.vaterland.li/
+🔴国家镜报：https://landesspiegel.li/
+83 卢森堡
+🟢卢森堡言论报：https://www.wort.lu/
+🟢卢森堡日报：https://journal.lu/de
+🟡Le Quotidien：https://lequotidien.lu/
+🟢卢森堡广播：https://www.rtl.lu/
+84 马耳他
+🟢马耳他时报：https://timesofmalta.com/
+🟢MaltaToday：https://www.maltatoday.com.mt/
+🟢马耳他独立报：https://www.independent.com.mt/
+🟡Lovin Malta：https://lovinmalta.com/
+🟢马耳他通讯社：https://www.maltanewsagency.com/
+85 摩尔多瓦
+🟢MoldovaLive：https://moldovalive.md/
+🟢TV8：https://tv8.md/
+🟢Telegraph：https://telegraph.md/
+🟡Newsmaker：https://newsmaker.md/
+🔴摩尔多瓦通讯社：https://www.moldpres.md/
+86 摩纳哥
+🟢摩纳哥公报：https://journaldemonaco.gouv.mc/
+🟢论坛报：https://www.monaco-tribune.com/
+🟢NEWS.MC：https://news.mc/
+87 黑山
+🔴Pobjeda：https://www.pobjeda.me/
+🔴黑山国家广播：https://rtcg.me/
+88 北马其顿
+🟡Makfax：https://makfax.com.mk/
+🟡新马其顿报：https://novamakedonija.com.mk/
+🟡Vecer：https://vecer.mk/
+🟡Sloboden Pechat：https://www.slobodenpecat.mk/
+🟡Republika：https://republika.mk/
+89 圣马力诺
+🟢Libertas：https://www.libertas.sm/
+90 塞尔维亚
+🟢闪电报：https://www.blic.rs/
+🟢Politika：https://www.politika.rs/
+🟢N1 Info：n1info https://n1info.rs/
+🟢塞尔维亚国家广电：https://www.rts.rs/sr/index.html
+🟢Vecernje Novosti：https://www.novosti.rs/
+91 斯洛伐克
+🟢Pravda：https://www.pravda.sk/
+🟢Denník N：https://dennikn.sk/
+🟢24 小时新闻电视台：https://www.ta3.com/
+🟢TASR：https://www.tasr.sk/
+92 斯洛文尼亚
+🟢24ur：https://www.24ur.com/
+🟢Delo：https://www.delo.si/
+🟢Slovenske Novice：https://slovenskenovice.delo.si/
+🟡Dnevnik：https://www.dnevnik.si/
+🟢斯洛文尼亚通讯社：https://english.sta.si/
+🧰 美洲（35国）
+93 美国
+🟢美国有线电视新闻网：https://us.cnn.com/
+🟢洛杉矶时报：https://www.latimes.com/
+🟢美联社：https://apnews.com/
+🟢美国全国公共广播电台：https://www.npr.org/
+🟢ABC新闻：https://abcnews.com/
+🟢U.S. News：https://www.usnews.com
+🟢Common Dreams：https://www.commondreams.org/
+94 加拿大
+🟢CTV新闻：https://www.ctvnews.ca/
+🟢Global News：https://globalnews.ca/
+95 巴西
+🟢Folha de S.Paulo：https://www.folha.uol.com.br/
+96 阿根廷
+🟢民族报：https://www.lanacion.com.ar/
+🟢号角报：http://www.clarin.com/
+🟡Página12：https://www.pagina12.com.ar/
+🟡Infobae：https://www.infobae.com/
+97 墨西哥
+🟢宇宙报：https://www.eluniversal.com.mx/
+🟡La Jornada：https://www.jornada.com.mx/
+🟡Excélsior：https://www.excelsior.com.mx/
+98 智利
+🟢El Mercurio：https://www.emol.com/
+🟢BioBioChile：https://www.biobiochile.cl/
+99 秘鲁
+🟢RPP Noticias：https://rpp.pe/
+🟢La República：https://larepublica.pe/
+100 哥伦比亚
+🟢Infobae：https://www.infobae.com/america/
+🟢El Tiempo：https://www.eltiempo.com/
+🟢El Colombiano：https://www.elcolombiano.com/
+101 安提瓜和巴布达
+🟢ABS TV：https://abstvradio.com/
+🟡观察家报：https://antiguaobserver.com/
+102 巴哈马
+🟢Tribune 242：https://www.tribune242.com/
+🟢ZNS Bahamas广电：https://znsbahamas.com/
+🟡Bahamas Press：https://www.bahamaspress.com/
+103 巴巴多斯
+🟢Nation News：https://nationnews.com/
+🟢Barbados Today：https://barbadostoday.bb/
+🟢CBC广电：https://www.cbc.bb/
+104 伯利兹
+🟢7newsbelize：https://www.7newsbelize.com/
+🟢lovefm：https://lovefm.com/
+105 玻利维亚
+🟡El Diario：https://www.eldiario.net/portal/
+🟡El Deber：https://eldeber.com.bo/
+🟡Los Tiempos：https://www.lostiempos.com/
+🟡La Razón：https://larazon.bo/
+106 哥斯达黎加
+🟢La Nación：https://www.nacion.com/
+🟢Diario Extra：https://www.diarioextra.com/
+🔴The Costa Rica News：https://thecostaricanews.com/
+107 古巴
+🟢14ymedio：https://www.14ymedio.com/
+🟢Granma：https://www.granma.cu/
+🟡Juventud Rebelde：https://www.juventudrebelde.cu/
+108 多米尼克
+🟢DNO：https://dominicanewsonline.com/news/
+🟢emonews：https://emonewsdm.com/
+109 多米尼加
+🟢Diario Libre：https://www.diariolibre.com/
+🟡El Nacional：https://elnacional.com.do/
+🟡Dominican Today：https://dominicantoday.com/
+110 厄瓜多尔
+🟢Hoy：https://www.hoy.com.ec/
+🟢Vistazo：https://www.vistazo.com/
+🟢El Universo：https://www.eluniverso.com/
+🟢La Hora：https://lahoradiario.com/
+111 萨尔瓦多
+🟢世界报：https://diario.elmundo.sv/
+🟡萨尔瓦多日报：https://diarioelsalvador.com/
+🔴今日报：https://www.eldiariodehoy.com/
+🔴Diario Co Latino：https://www.diariocolatino.com/
+112 格林纳达
+🔴Now Grenada：https://nowgrenada.com/
+🟢The Grenada Informer：https://thegrenadainformer.com/
+113 危地马拉
+🟢Prensa Libre：https://www.prensalibre.com/
+🔴Diario de Centro América：https://dca.gob.gt/
+114 圭亚那
+🟢斯塔布鲁克新闻报：https://www.stabroeknews.com/
+🟢Demerara Waves：https://demerarawaves.com/
+🟢凯丘新闻报：https://kaieteurnewsonline.com/
+🟡Guyana Chronicle：https://guyanachronicle.com/
+115 海地
+🟢Gazette Haiti：https://www.gazettehaiti.com/
+🟢海地自由报：https://www.haitilibre.com/
+🟢Le Nouvelliste：https://www.lenouvelliste.com/
+🟡Le Quotidien 509：https://lequotidien509.com/
+🔴Haiti Liberté：https://haitiliberte.com/
+116 洪都拉斯
+🟡La Prensa：https://www.laprensa.hn/
+🟡El Heraldo：https://www.elheraldo.hn/
+117 牙买加
+🟡The Gleaner：https://jamaica-gleaner.com/
+🟡Jamaica Observer：https://www.jamaicaobserver.com/
+118 尼加拉瓜
+🟡El 19 Digital：https://www.el19digital.com/
+119 巴拿马
+🟡La Prensa：https://www.prensa.com/
+🟡Panamá América：https://www.panamaamerica.com.pa/
+🟡El Siglo：https://elsiglo.com.pa/
+🟡TVN Noticias：https://www.tvn-2.com/
+120 巴拉圭
+🟢ABC Color：https://www.abc.com.py/
+🟢Última Hora：https://www.ultimahora.com/
+🟢Noticias Paraguay：https://www.npy.com.py/
+🟡国家报：https://www.lanacion.com.py/
+121 圣基茨和尼维斯
+🟢The St. Kitts-Nevis Observer：https://www.thestkittsnevisobserver.com/
+🟡SKN News：https://sknis.gov.kn/
+🟡SKN Vibes：https://www.sknvibes.com/
+122 圣卢西亚
+🟢The Voice：https://thevoiceslu.com/
+🟢St. Lucia Star：https://stluciastar.com/
+🟡St. Lucia Times：https://stluciatimes.com/
+123 圣文森特和格林纳丁斯
+🟢Searchlight：https://www.searchlight.vc/
+🟢The Vincentian：https://thevincentian.com/
+🟡St. Vincent Times：https://www.stvincenttimes.com/
+124 苏里南
+🟡StarNieuws：https://www.starnieuws.com/
+🟡De Ware Tijd：https://www.dwtonline.com/
+125 特立尼达和多巴哥
+🟡Trinidad and Tobago Newsday：https://newsday.co.tt/
+🟡Guardian Trinidad：https://www.guardian.co.tt/
+126 乌拉圭
+🟡El País：https://www.elpais.com.uy/
+🟡El Observador：https://www.elobservador.com.uy/
+🟡Montevideo Portal：https://www.montevideo.com.uy/
+127 委内瑞拉
+🟡宇宙报：https://www.eluniversal.com/
+🟡国民报：https://www.elnacional.com/
+🔴Últimas Noticias：https://ultimasnoticias.com.ve/
+🧰 非洲（54国）
+128 南非
+🟢Mail & Guardian：https://mg.co.za/
+🟢 独立在线（IOL）：https://www.iol.co.za/
+🟡 时代直播（TimesLIVE）：https://www.timeslive.co.za/
+129 埃及
+🟢金字塔报：https://english.ahram.org.eg/
+🟡Daily News Egypt：https://www.dailynewsegypt.com/
+130 肯尼亚
+🟢民族日报：https://nation.africa/
+🟢标准报：https://www.standardmedia.co.ke/
+131 尼日利亚
+🟢Premium Times：https://www.premiumtimesng.com/
+🟢卫报：https://guardian.ng/
+132 阿尔及利亚
+🟡El Khabar：https://www.elkhabar.com/
+🟡Algérie Presse Service：https://www.aps.dz/
+🟡El Watan：https://elwatan-dz.com/
+🟡Liberté：https://www.liberte-algerie.com/
+🟡Tout sur l’Algérie：https://www.tsa-algerie.com/
+133 安哥拉
+🟡Jornal de Angola：https://www.jornaldeangola.ao/
+🟡Novo Jornal：https://novojornal.co.ao/
+134 贝宁
+🟡Benin Web TV：https://beninwebtv.com/
+🟡Banouto：https://banouto.bj/
+135 博茨瓦纳
+🟡Mmegi Online：https://www.mmegi.bw/
+🟡The Botswana Gazette：https://www.thegazette.news/
+136 布基纳法索
+🟡Le Faso：https://www.lefaso.net/
+🟡Burkina 24：https://www.burkina24.com/
+137 布隆迪
+🟡Iwacu：https://www.iwacu-burundi.org/
+🟡RTNB：http://www.rtnb.bi/
+138 佛得角
+🟡Inforpress：https://inforpress.cv/
+🟡A Nação：https://anacao.cv/
+🟡Expresso das Ilhas：https://expressodasilhas.cv/
+139 喀麦隆
+🟡Cameroon Tribune：https://www.cameroon-tribune.cm/
+🟡Journal du Cameroun：https://www.journalducameroun.com/
+140 中非
+🟡Radio Ndeke Luka：https://www.radiondekeluka.org/
+🟡Centrafrique Presse：https://centrafrique-presse.info/
+141 乍得
+🟡Alwihda Info：https://www.alwihdainfo.com/
+🟡Tchad Infos：https://tchadinfos.com/
+142 科摩罗
+🟡La Gazette des Comores：https://lagazettedescomores.com/
+143 科特迪瓦
+🟡http://Abidjan.net：https://www.abidjan.net/
+🟡Fraternité Matin：https://www.fratmat.info/
+🟡Le Point Sur：https://lepointsur.com/
+144 刚果（布）
+🟡Les Dépêches de Brazzaville：https://www.lesdepechesdebrazzaville.fr/
+🟡ADIAC：https://www.adiac-congo.com/
+145 刚果（金）
+🟡Actualite.cd：https://actualite.cd/
+146 吉布提
+🟡ADI：http://www.adi.dj/
+🟡La Nation：http://www.lanation.dj/
+🟡Djibouti Post：https://www.djiboutipost.com/
+147 赤道几内亚
+🟡AhoraEG：https://ahoraeg.com/
+🟡Guinea Ecuatorial Press：https://www.guineaecuatorialpress.com/
+148 厄立特里亚
+🟡Shabait：http://www.shabait.com/
+149 埃塞俄比亚
+🟡Ethiopian News Agency：https://www.ena.et/
+🟡The Reporter Ethiopia：https://www.thereporterethiopia.com/
+🟡Addis Standard：https://addisstandard.com/
+🟡Borkena：https://borkena.com/
+150 加蓬
+🟡Gabon Review：https://www.gabonreview.com/
+🟡Gabon Media Time：https://www.gabonmediatime.com/
+151 冈比亚
+🟡The Point：https://thepoint.gm/
+🟡Standard Gambia：https://standard.gm/
+152 加纳
+🟡Ghana News Agency：https://www.gna.org.gh/
+🟡Daily Graphic：https://www.graphic.com.gh/
+🟡Joy Online：https://www.myjoyonline.com/
+🟡Citinewsroom：https://citinewsroom.com/
+153 几内亚
+🟢Le Djely：https://ledjely.com/
+🟢guineenews：https://guineenews.org/
+154 几内亚比绍
+🟡O Democrata：http://www.odemocratagb.com/
+🟡Jornal Nô Pintcha：https://jornalnopintcha.gw/
+🟡Rádio Sol Mansi：https://www.radiosolmansi.net/
+155 莱索托
+🟡Lesotho Times：https://lestimes.com/
+🟡Informative News：https://www.informativenews.co.ls/
+156 利比里亚
+🟡FrontPage Africa：https://frontpageafricaonline.com/
+157 利比亚
+🟡Libya Herald：https://www.libyaherald.com/
+🟡The Libya Observer：https://www.libyaobserver.ly/
+158 马达加斯加
+🟡Midi Madagasikara：https://www.midi-madagasikara.mg/
+🟡L’Express de Madagascar：https://lexpress.mg/
+🟡NewsMada：https://newsmada.com/
+159 马拉维
+🟢The Nation：https://www.mwnation.com/
+🟡Nyasa Times：https://www.nyasatimes.com/
+🟡Malawi24：https://malawi24.com/
+160 马里
+🟡http://Bamada.net：https://bamada.net/
+🟡MaliJet：https://malijet.com/
+🟡Studio Tamani：https://www.studiotamani.org/
+161 毛里塔尼亚
+🟡AMI：http://www.ami.mr/
+🟡Cridem：https://cridem.org/
+🟡Al Akhbar：https://alakhbar.info/
+162 毛里求斯
+🟡L’Express：https://lexpress.mu/
+🟡Le Mauricien：https://www.lemauricien.com/
+🟡Mauritius Times：https://mauritiustimes.com/
+🟡Defimedia：https://defimedia.info/
+163 摩洛哥
+🟡Le360：https://fr.le360.ma/
+🟡Hespress：https://www.hespress.com/
+🟡Medias24：https://www.medias24.com/
+164 莫桑比克
+🟡AIM：https://aimnews.org/
+🟡O País：https://opais.co.mz/
+🟡Carta de Moçambique：https://cartamz.com/
+🟡Notícias：https://www.jornalnoticias.co.mz/
+165 纳米比亚
+🟡The Namibian：https://www.namibian.com.na/
+166 尼日尔
+🟡Le Sahel：http://www.lesahel.org/
+167 卢旺达
+🟢The New Times：https://www.newtimes.co.rw/
+🟢KT Press：https://www.ktpress.rw/
+🟡IGIHE：https://www.igihe.com/
+🟡Umuseke：https://umuseke.rw/
+168 圣多美和普林西比
+🟡Téla Nón：https://www.telanon.info/
+🟡STP-Press：https://www.stp-press.st/
+169 塞内加尔
+🟡APS：https://aps.sn/
+🟡Le Soleil：https://lesoleil.sn/
+🟡Seneweb：https://www.seneweb.com/
+🟡Dakaractu：https://www.dakaractu.com/
+170 塞舌尔
+🟡Seychelles Nation：http://www.nation.sc/
+171 塞拉利昂
+🟡SLENA：https://slena.gov.sl/
+🟡Politico SL：https://www.politicosl.com/
+172 索马里
+🟢索马里国家电视台：https://sntv.so/
+🟡Somali Dispatch：https://www.somalidispatch.com/
+🟡Goobjoog Media：https://goobjoog.com/
+🟡Hiiraan Online：https://www.hiiraan.com/
+🟡SONNA：https://sonna.so/
+🟡Garowe Online：https://www.garoweonline.com/
+🟡Caasimada Online：https://www.caasimada.net/
+173 南苏丹
+🟡Eye Radio：https://eyeradio.org/
+🟡Radio Tamazuj：https://radiotamazuj.org/
+🟡Sudans Post：https://sudanspost.com/
+174 苏丹
+🟢Sudan Tribune：https://sudantribune.com/
+🟢Dabanga Sudan：https://www.dabangasudan.org/en
+🟡Sudanese Net：https://www.sudaninet.net/
+🟢Sudanile：https://www.sudannews.net/
+🟢苏丹通讯社：https://suna-sd.net/
+🔴Al Rakoba：https://www.alrakoba.net/
+🔴Sudan Press：https://www.sudaress.com/
+175 斯威士兰
+🟢埃斯瓦蒂尼时报：https://www.times.co.sz/
+176 坦桑尼亚
+🟢Mwananchi：https://www.mwananchi.co.tz/
+🟢坦桑尼亚国家广播：https://www.tbc.go.tz/
+🟡IPP Media：https://ippmedia.com/the-guardian
+🟡Daily News：https://dailynews.co.tz/
+🟡桑给巴尔广播：https://www.zbc.go.tz/
+177 多哥
+🟡Lomé Infos：https://www.lomeinfos.com/
+🟡多哥新闻报：https://togopresse.tg/
+🟡Togo First：https://www.togofirst.com/fr
+🟡27 Avril：https://www.27avril.com/
+178 突尼斯
+🟢Nawaat：https://nawaat.org/
+🟢曙光报：https://www.assabahnews.tn/ar/
+🟢Inkyfada：https://inkyfada.com/fr/
+🟢Business News：https://www.businessnews.com.tn/
+179 乌干达
+🟢观察者报：https://observer.ug/
+🟢Daily Monitor：https://www.monitor.co.ug/
+🟡New Vision：https://www.newvision.co.ug/
+🟡尼罗河邮报：https://nilepost.co.ug/
+🟡Bukedde：https://www.bukedde.co.ug/
+180 赞比亚
+🟢Zambia 24：https://zambia24.com/
+🟢News Diggers：https://diggers.news/
+181 津巴布韦
+🟢Pindula：https://www.pindula.co.zw/Welcome_to_Pindula
+🟢New Zimbabwe：https://www.newzimbabwe.com/
+🟡iHarare：https://iharare.com/
+🟡My Zimbabwe：https://www.myzimbabwe.co.zw/
+🟡The Zimbabwean：https://www.thezimbabwean.co/
+🟡Nehanda Radio：https://nehandaradio.com/
+🟢Techzim：https://www.techzim.co.zw/
+🧰 大洋洲（14国）
+182 澳大利亚
+🟢澳大利亚联合通讯社：https://aapnews.aap.com.au/
+🟢7news：https://7news.com.au/
+183 新西兰
+🟢Stuff：Stuff
+🟢新西兰先驱报：https://www.nzherald.co.nz/
+184 斐济
+🟢太阳报： https://fijisun.com.fj/
+🟢斐济时报：https://www.fijitimes.com.fj/
+🟢Fiji Village：https://fijivillage.com/
+185 基里巴斯
+🟢基里巴斯政府网站：https://kiribati.gov.ki/
+186 马绍尔群岛
+🟢马绍尔群岛日报：https://marshallislandsjournal.com/category/news/
+187 密克罗尼西亚
+🟢密克罗尼西亚政府官网：https://gov.fm/
+188 瑙鲁
+🟢瑙鲁政府官网：https://www.nauru.gov.nr/
+189 帕劳
+🟢岛屿时报：https://islandtimes.org/
+190 巴布亚新几内亚
+🟢EMTV 电视台：https://emtv.com.pg/
+🟢The National：https://www.thenational.com.pg/
+🟢信使邮报：https://www.postcourier.com.pg/
+191 萨摩亚
+🔴萨摩亚观察：https://www.samoaobserver.ws/
+🟡Samoa Global News：https://samoaglobalnews.com/
+192 所罗门群岛
+🟢所罗门星报：https://www.solomonstarnews.com/
+🟡群岛报:https://sundayisles.islesmedia.net/
+🟡所罗门群岛广播公司：https://www.sibconline.com.sb/
+193 汤加
+🟢汤加风：https://matangitonga.to/
+🟢汤加广播：https://tbc.to/
+194 图瓦卢
+🟢图瓦卢时报：https://www.tuvalutimes.com/
+195 瓦努阿图
+🟢维拉港新闻：https://portvilagazette.com/
+🟡瓦努阿图广播：https://vbtc.vu/
+🧰 其他国家（2国）
+196 库克群岛
+🟢库克群岛新闻：https://www.cookislandsnews.com/
+197 纽埃
+🟢纽埃广播：https://tvniue.com/
+🧰 其他网站
+🟢太平洋岛国新闻协会（覆盖太平洋岛国）：https://pina.com.fj/
+    </script>
+
+    <!-- 渲染容器 -->
+    <div id="output" class="loading">⏳ 正在解析643个站点，构建漂亮版面…</div>
+</div>
+
+<footer>
+    🌐 覆盖196个国家及地区 · 643个新闻网站 · 颜色标记仅作视觉分类 · 所有链接可直接访问
+</footer>
+
+<script>
+(function() {
+    // 获取原始文本
+    const raw = document.getElementById('rawSource').textContent;
+
+    // 工具：HTML转义 (避免XSS，同时为链接提取做准备)
+    function escapeHtml(unsafe) {
+        return unsafe.replace(/[&<>"]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            if (m === '"') return '&quot;';
+            return m;
+        });
+    }
+
+    // 将文本中的URL转换为<a>标签 (前提是文本已经被转义)
+    function linkify(escapedText) {
+        // 匹配 http:// 或 https:// 后跟非空白字符
+        const urlPattern = /(https?:\/\/[^\s]+)/g;
+        return escapedText.replace(urlPattern, function(url) {
+            // 去掉尾部可能的标点 (逗号、句号、括号等，但保留大部分URL)
+            // 简单起见，保留原始，但若有句点结尾，通常不是URL的一部分
+            // 精细处理：如果URL最后一个字符是.,?!)等且不属于协议，可以移除，但为了简单保留
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        });
+    }
+
+    // 处理单行内容：转义 + 链接化
+    function processLineContent(line) {
+        const escaped = escapeHtml(line);
+        return linkify(escaped);
+    }
+
+    // 解析主逻辑
+    function parseSource(text) {
+        const lines = text.split(/\r?\n/);
+        const continents = [];
+        let currentContinent = null;
+        let currentCountry = null;
+
+        for (let line of lines) {
+            const trimmed = line.trim();
+            if (trimmed === '') continue;
+
+            // 大洲标题 (以🧰开头)
+            if (trimmed.startsWith('🧰')) {
+                // 保存之前的大洲
+                if (currentContinent) {
+                    continents.push(currentContinent);
+                }
+                // 新大洲
+                const continentName = trimmed.replace(/^🧰\s*/, '').trim() || '其他';
+                currentContinent = {
+                    name: continentName,
+                    countries: [],        // 有国家分类的
+                    directItems: []       // 直接挂在大洲下的条目 (如联合国)
+                };
+                currentCountry = null;
+                continue;
+            }
+
+            if (!currentContinent) {
+                // 如果还没遇到大洲，忽略(理论上不会)
+                continue;
+            }
+
+            // 国家标题: 以数字开头，例如 "2 日本" 或 "3 韩国"
+            const countryMatch = trimmed.match(/^(\d+)\s+(.+)/);
+            if (countryMatch) {
+                // 创建新国家
+                const countryNum = countryMatch[1];
+                const countryRawName = countryMatch[2].trim();
+                currentCountry = {
+                    number: countryNum,
+                    displayName: countryRawName,
+                    items: []
+                };
+                currentContinent.countries.push(currentCountry);
+                continue;
+            }
+
+            // 网站条目: 以 🟢 🟡 🔴 开头 (也可能有空格)
+            if (trimmed.startsWith('🟢') || trimmed.startsWith('🟡') || trimmed.startsWith('🔴')) {
+                // 提取颜色符号
+                const colorSymbol = trimmed.slice(0, 2); // 两个字符
+                const restLine = trimmed.slice(2).trim(); // 剩余部分
+
+                // 根据当前是否有国家来添加
+                const item = {
+                    color: colorSymbol,
+                    raw: restLine,
+                    processed: processLineContent(restLine) // 转义+链接
+                };
+
+                if (currentCountry) {
+                    currentCountry.items.push(item);
+                } else {
+                    // 没有国家 (比如联合国下直接跟的网站)
+                    currentContinent.directItems.push(item);
+                }
+                continue;
+            }
+
+            // 其他行 (可能是一些注释或附加链接，但一般不会，可忽略)
+            // 保险: 如果行包含http且当前有国家，可以尝试作为条目处理？但不处理避免混乱，忽略
+        }
+
+        // 添加最后一个大洲
+        if (currentContinent) {
+            continents.push(currentContinent);
+        }
+
+        return continents;
+    }
+
+    // 渲染大洲数据到DOM
+    function render(continents) {
+        const output = document.getElementById('output');
+        output.className = ''; // 移除loading
+        output.innerHTML = ''; 
+
+        for (const cont of continents) {
+            const contDiv = document.createElement('div');
+            contDiv.className = 'continent';
+
+            // 大洲头部
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'continent-header';
+            headerDiv.innerHTML = `<h2>${escapeHtml(cont.name)} <span>${cont.countries.length}国 / 直链${cont.directItems.length}</span></h2>`;
+            contDiv.appendChild(headerDiv);
+
+            // 如果有直接条目 (无国家分类，如联合国)
+            if (cont.directItems.length > 0) {
+                const directDiv = document.createElement('div');
+                directDiv.className = 'direct-sites';
+                directDiv.innerHTML = '<h3>📌 直属站点</h3>';
+                const ul = document.createElement('ul');
+                for (const item of cont.directItems) {
+                    const li = document.createElement('li');
+                    li.className = 'site-item';
+                    li.innerHTML = `<span class="bullet">${item.color}</span><span class="site-content">${item.processed}</span>`;
+                    ul.appendChild(li);
+                }
+                directDiv.appendChild(ul);
+                contDiv.appendChild(directDiv);
+            }
+
+            // 国家网格
+            if (cont.countries.length > 0) {
+                const grid = document.createElement('div');
+                grid.className = 'country-grid';
+
+                for (const country of cont.countries) {
+                    const card = document.createElement('div');
+                    card.className = 'country-card';
+
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'country-name';
+                    nameDiv.innerHTML = `<span class="country-num">${escapeHtml(country.number)}</span> ${escapeHtml(country.displayName)}`;
+                    card.appendChild(nameDiv);
+
+                    if (country.items.length > 0) {
+                        const ul = document.createElement('ul');
+                        ul.className = 'site-list';
+                        for (const item of country.items) {
+                            const li = document.createElement('li');
+                            li.className = 'site-item';
+                            li.innerHTML = `<span class="bullet">${item.color}</span><span class="site-content">${item.processed}</span>`;
+                            ul.appendChild(li);
+                        }
+                        card.appendChild(ul);
+                    } else {
+                        // 理论上每个国家至少一条新闻
+                        const emptyMsg = document.createElement('div');
+                        emptyMsg.style.padding = '0.5rem 0';
+                        emptyMsg.style.color = '#888';
+                        emptyMsg.innerText = '暂无条目';
+                        card.appendChild(emptyMsg);
+                    }
+
+                    grid.appendChild(card);
+                }
+
+                contDiv.appendChild(grid);
+            } else if (cont.directItems.length === 0) {
+                // 既无国家也无直接条目，极不可能
+                contDiv.innerHTML += '<p style="padding:1rem; color:#888;">暂无站点</p>';
+            }
+
+            output.appendChild(contDiv);
+        }
+    }
+
+    try {
+        const continents = parseSource(raw);
+        render(continents);
+    } catch (e) {
+        document.getElementById('output').innerHTML = `<div style="color:#b33; padding:3rem;">解析出错：${e.message}。请稍后重试。</div>`;
+        console.error(e);
+    }
+})();
+</script>
+</body>
+</html>

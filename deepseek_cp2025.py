@@ -231,31 +231,31 @@ class LotteryAnalyzer:
             
         print("\n=== 大乐透数据分析 ===")
         
-        # 获取最近15期数据进行分析
-        recent_15_data = self.dlt_df.tail(15)
+        # 获取最近30期数据进行分析
+        recent_30_data = self.dlt_df.tail(30)
         
         # 获取所有数据进行分析
         front_numbers = pd.concat([self.dlt_df[col] for col in self.dlt_front_cols])
         back_numbers = pd.concat([self.dlt_df[col] for col in self.dlt_back_cols])
         
-        # 最近15期数据分析
-        recent_front_numbers = pd.concat([recent_15_data[col] for col in self.dlt_front_cols])
-        recent_back_numbers = pd.concat([recent_15_data[col] for col in self.dlt_back_cols])
+        # 最近30期数据分析
+        recent_front_numbers = pd.concat([recent_30_data[col] for col in self.dlt_front_cols])
+        recent_back_numbers = pd.concat([recent_30_data[col] for col in self.dlt_back_cols])
         
         # 频率统计（全部数据）
         front_freq = front_numbers.value_counts().sort_index()
         back_freq = back_numbers.value_counts().sort_index()
         
-        # 频率统计（最近15期）
+        # 频率统计（最近30期）
         recent_front_freq = recent_front_numbers.value_counts()
         recent_back_freq = recent_back_numbers.value_counts()
         
-        # 获取热门号码（最近15期出现次数最多的1-2个）
+        # 获取热门号码（最近30期出现次数最多的1-2个）
         recent_front_hot = recent_front_freq.head(2).index.tolist()
         recent_back_hot = recent_back_freq.head(1).index.tolist()  # 后区只取1个热门
         
-        # 获取冷门号码（最近15期出现次数最少或未出现的）
-        # 前区冷门：最近15期出现0次或1次的号码
+        # 获取冷门号码（最近30期出现次数最少或未出现的）
+        # 前区冷门：最近30期出现0次或1次的号码
         recent_front_cold = []
         for num in range(self.dlt_front_range[0], self.dlt_front_range[1] + 1):
             if num not in recent_front_freq.index or recent_front_freq[num] <= 1:
@@ -264,7 +264,7 @@ class LotteryAnalyzer:
         if len(recent_front_cold) > 10:
             recent_front_cold = recent_front_freq.tail(5).index.tolist()
         
-        # 后区冷门：最近15期出现次数最少的1-2个号码
+        # 后区冷门：最近30期出现次数最少的1-2个号码
         if len(recent_back_freq) > 0:
             # 找出出现次数最少的2个号码
             recent_back_cold = recent_back_freq.tail(2).index.tolist()
@@ -296,10 +296,10 @@ class LotteryAnalyzer:
         front_intervals = front_numbers.apply(dlt_front_interval)
         back_intervals = back_numbers.apply(dlt_back_interval)
         
-        print(f"   前区热门号码(最近15期)：{recent_front_hot}")
-        print(f"   前区冷门号码(最近15期)：{recent_front_cold[:5]}...")  # 只显示前5个
-        print(f"   后区热门号码(最近15期)：{recent_back_hot}")
-        print(f"   后区冷门号码(最近15期)：{recent_back_cold}")
+        print(f"   前区热门号码(最近30期)：{recent_front_hot}")
+        print(f"   前区冷门号码(最近30期)：{recent_front_cold[:5]}...")  # 只显示前5个
+        print(f"   后区热门号码(最近30期)：{recent_back_hot}")
+        print(f"   后区冷门号码(最近30期)：{recent_back_cold}")
         print(f"   前区奇偶比：{front_odd}/{front_even} ({front_odd/len(front_numbers):.1%}:{front_even/len(front_numbers):.1%})")
         
         return {
@@ -328,31 +328,31 @@ class LotteryAnalyzer:
             
         print("\n=== 双色球数据分析 ===")
         
-        # 获取最近15期数据进行分析
-        recent_15_data = self.ssq_df.tail(15)
+        # 获取最近30期数据进行分析
+        recent_30_data = self.ssq_df.tail(30)
         
         # 获取所有数据进行分析
         red_numbers = pd.concat([self.ssq_df[col] for col in self.ssq_red_cols])
         blue_numbers = pd.concat([self.ssq_df[col] for col in self.ssq_blue_cols])
         
-        # 最近15期数据分析
-        recent_red_numbers = pd.concat([recent_15_data[col] for col in self.ssq_red_cols])
-        recent_blue_numbers = pd.concat([recent_15_data[col] for col in self.ssq_blue_cols])
+        # 最近30期数据分析
+        recent_red_numbers = pd.concat([recent_30_data[col] for col in self.ssq_red_cols])
+        recent_blue_numbers = pd.concat([recent_30_data[col] for col in self.ssq_blue_cols])
         
         # 频率统计（全部数据）
         red_freq = red_numbers.value_counts().sort_index()
         blue_freq = blue_numbers.value_counts().sort_index()
         
-        # 频率统计（最近15期）
+        # 频率统计（最近30期）
         recent_red_freq = recent_red_numbers.value_counts()
         recent_blue_freq = recent_blue_numbers.value_counts()
         
-        # 获取热门号码（最近15期出现次数最多的）
+        # 获取热门号码（最近30期出现次数最多的）
         recent_red_hot = recent_red_freq.head(2).index.tolist()
         recent_blue_hot = recent_blue_freq.head(1).index.tolist()
         
-        # 获取冷门号码（最近15期出现次数最少或未出现的）
-        # 红球冷门：最近15期出现0次或1次的号码
+        # 获取冷门号码（最近30期出现次数最少或未出现的）
+        # 红球冷门：最近30期出现0次或1次的号码
         recent_red_cold = []
         for num in range(self.ssq_red_range[0], self.ssq_red_range[1] + 1):
             if num not in recent_red_freq.index or recent_red_freq[num] <= 1:
@@ -361,7 +361,7 @@ class LotteryAnalyzer:
         if len(recent_red_cold) > 10:
             recent_red_cold = recent_red_freq.tail(5).index.tolist()
         
-        # 蓝球冷门：最近15期出现次数最少的1-2个号码
+        # 蓝球冷门：最近30期出现次数最少的1-2个号码
         if len(recent_blue_freq) > 0:
             # 找出出现次数最少的2个号码
             recent_blue_cold = recent_blue_freq.tail(2).index.tolist()
@@ -393,10 +393,10 @@ class LotteryAnalyzer:
         red_intervals = red_numbers.apply(ssq_red_interval)
         blue_intervals = blue_numbers.apply(ssq_blue_interval)
         
-        print(f"   红球热门号码(最近15期)：{recent_red_hot}")
-        print(f"   红球冷门号码(最近15期)：{recent_red_cold[:5]}...")  # 只显示前5个
-        print(f"   蓝球热门号码(最近15期)：{recent_blue_hot}")
-        print(f"   蓝球冷门号码(最近15期)：{recent_blue_cold}")
+        print(f"   红球热门号码(最近30期)：{recent_red_hot}")
+        print(f"   红球冷门号码(最近30期)：{recent_red_cold[:5]}...")  # 只显示前5个
+        print(f"   蓝球热门号码(最近30期)：{recent_blue_hot}")
+        print(f"   蓝球冷门号码(最近30期)：{recent_blue_cold}")
         print(f"   红球奇偶比：{red_odd}/{red_even} ({red_odd/len(red_numbers):.1%}:{red_even/len(red_numbers):.1%})")
         
         return {
@@ -430,8 +430,8 @@ class LotteryAnalyzer:
             print("   警告：排列五数据为空")
             return None
         
-        # 获取最近15期数据进行分析
-        recent_15_data = self.pl5_df.tail(15)
+        # 获取最近30期数据进行分析
+        recent_30_data = self.pl5_df.tail(30)
         
         # 存储每位数字的频率
         position_freq = {}
@@ -450,17 +450,17 @@ class LotteryAnalyzer:
                 freq = numbers.value_counts().sort_index()
                 position_freq[col] = freq
                 
-                # 最近15期数据
-                recent_numbers = pd.to_numeric(recent_15_data[col], errors='coerce').fillna(0).astype(int)
+                # 最近30期数据
+                recent_numbers = pd.to_numeric(recent_30_data[col], errors='coerce').fillna(0).astype(int)
                 recent_freq = recent_numbers.value_counts()
                 recent_position_freq[col] = recent_freq
                 
-                # 获取热门和冷门号码（基于最近15期）
+                # 获取热门和冷门号码（基于最近30期）
                 # 热门号码：出现次数最多的前2个
                 recent_hot = recent_freq.head(2).index.tolist() if len(recent_freq) > 0 else []
                 position_hot[col] = recent_hot
                 
-                # 冷门号码：最近15期出现次数最少或未出现的
+                # 冷门号码：最近30期出现次数最少或未出现的
                 recent_cold = []
                 for num in range(0, 10):
                     if num not in recent_freq.index or recent_freq[num] <= 1:
@@ -470,8 +470,8 @@ class LotteryAnalyzer:
                     recent_cold = recent_freq.tail(3).index.tolist() if len(recent_freq) >= 3 else recent_cold[:3]
                 position_cold[col] = recent_cold
                 
-                print(f"   {col}热门数字(最近15期)：{recent_hot}")
-                print(f"   {col}冷门数字(最近15期)：{recent_cold}")
+                print(f"   {col}热门数字(最近30期)：{recent_hot}")
+                print(f"   {col}冷门数字(最近30期)：{recent_cold}")
         
         # 如果没有数据，返回空结果
         if not position_numbers:
@@ -518,8 +518,8 @@ class LotteryAnalyzer:
             
         print("\n=== 大乐透号码推荐 ===")
         
-        # 获取最近15期数据
-        recent_data = self.dlt_df.tail(15)
+        # 获取最近30期数据
+        recent_data = self.dlt_df.tail(30)
         recent_front = pd.concat([recent_data[col] for col in self.dlt_front_cols])
         recent_back = pd.concat([recent_data[col] for col in self.dlt_back_cols])
         
@@ -532,9 +532,9 @@ class LotteryAnalyzer:
         all_back = list(range(self.dlt_back_range[0], self.dlt_back_range[1] + 1))
         
         # 前区号码选择策略：2个热门 + 2个冷门 + 1个随机
-        # 热门号码（最近15期出现次数最多的）
+        # 热门号码（最近30期出现次数最多的）
         front_hot = recent_front_freq.head(10).index.tolist()
-        # 冷门号码（最近15期出现次数最少的，或未出现的）
+        # 冷门号码（最近30期出现次数最少的，或未出现的）
         front_cold = [num for num in all_front if num not in recent_front_freq.index]
         if len(front_cold) < 2:  # 如果冷门号码不足，选择出现次数最少的
             front_cold = recent_front_freq.tail(10).index.tolist()
@@ -566,7 +566,7 @@ class LotteryAnalyzer:
         print(f"   前区：{' '.join(map(str, front_numbers))}")
         print(f"   后区：{' '.join(map(str, back_numbers))}")
         print(f"   策略：前区(2热:{selected_hot} + 2冷:{selected_cold} + 1随机:{random_num}) | 后区(1热:{selected_back_hot} + 1随机:{random_back})")
-        print(f"   分析期数：最近15期")
+        print(f"   分析期数：最近30期")
         
         return front_numbers, back_numbers
     
@@ -577,8 +577,8 @@ class LotteryAnalyzer:
             
         print("\n=== 双色球号码推荐 ===")
         
-        # 获取最近15期数据
-        recent_data = self.ssq_df.tail(15)
+        # 获取最近30期数据
+        recent_data = self.ssq_df.tail(30)
         recent_red = pd.concat([recent_data[col] for col in self.ssq_red_cols])
         recent_blue = pd.concat([recent_data[col] for col in self.ssq_blue_cols])
         
@@ -640,7 +640,7 @@ class LotteryAnalyzer:
         print(f"   红球：{' '.join(map(str, red_numbers))}")
         print(f"   蓝球：{blue_number}")
         print(f"   策略：红球(2热:{selected_hot} + 2温:{selected_warm} + 2冷:{selected_cold}) | 蓝球(热门:{blue_number})")
-        print(f"   分析期数：最近15期")
+        print(f"   分析期数：最近30期")
         
         return red_numbers, blue_number
     
@@ -656,8 +656,8 @@ class LotteryAnalyzer:
             print("   警告：排列五数据为空")
             return None
         
-        # 获取最近15期数据
-        recent_data = self.pl5_df.tail(15)
+        # 获取最近30期数据
+        recent_data = self.pl5_df.tail(30)
         
         # 为每个位置推荐数字
         recommended_numbers = []
@@ -680,10 +680,10 @@ class LotteryAnalyzer:
                 big_count = (numbers >= 5).sum()
                 
                 # 推荐策略：基于热号、冷号、奇偶、大小平衡
-                # 1. 考虑热号（最近15期出现次数最多的）
+                # 1. 考虑热号（最近30期出现次数最多的）
                 hot_numbers = freq.head(3).index.tolist()
                 
-                # 2. 考虑冷号（最近15期出现次数最少的或未出现的）
+                # 2. 考虑冷号（最近30期出现次数最少的或未出现的）
                 cold_numbers = [num for num in range(0, 10) if num not in freq.index]
                 if len(cold_numbers) < 2:
                     cold_numbers = freq.tail(3).index.tolist()
@@ -756,7 +756,7 @@ class LotteryAnalyzer:
         
         print(f"🎯 推荐号码：{''.join(map(str, recommended_numbers))}")
         print(f"   策略：{' | '.join(recommendation_strategy)}")
-        print(f"   分析期数：最近15期")
+        print(f"   分析期数：最近30期")
         
         return recommended_numbers
     
@@ -1226,7 +1226,7 @@ class LotteryAnalyzer:
         
         <!-- 核心发现 -->
         <div class="section">
-            <div class="section-title">🔍 核心发现（基于最近15期数据）</div>
+            <div class="section-title">🔍 核心发现（基于最近30期数据）</div>
             <div class="lottery-grid">
                 <div class="lottery-card">
                     <div class="analysis-title">🏀 大乐透热门与冷门号码</div>
@@ -1269,7 +1269,7 @@ class LotteryAnalyzer:
                         <li>前区号码：1-35，选择5个号码</li>
                         <li>后区号码：1-12，选择2个号码</li>
                         <li>每周一、三、六开奖</li>
-                        <li>分析基于<b>最近15期</b>历史数据</li>
+                        <li>分析基于<b>最近30期</b>历史数据</li>
                     </ul>
                 </div>
                 <div class="lottery-card">
@@ -1278,7 +1278,7 @@ class LotteryAnalyzer:
                         <li>红球号码：1-33，选择6个号码</li>
                         <li>蓝球号码：1-16，选择1个号码</li>
                         <li>每周二、四、日开奖</li>
-                        <li>分析基于<b>最近15期</b>历史数据</li>
+                        <li>分析基于<b>最近30期</b>历史数据</li>
                     </ul>
                 </div>
                 <div class="lottery-card">
@@ -1286,7 +1286,7 @@ class LotteryAnalyzer:
                     <ul>
                         <li>每位号码：0-9，共5位</li>
                         <li>每天开奖（除休市外）</li>
-                        <li>分析基于<b>最近15期</b>历史数据</li>
+                        <li>分析基于<b>最近30期</b>历史数据</li>
                         <li>考虑奇偶、大小、热冷号平衡</li>
                     </ul>
                 </div>
@@ -1294,7 +1294,7 @@ class LotteryAnalyzer:
             <div class="recommendation" style="margin-top: 15px;">
                 <h3 style="margin-bottom: 10px;">🎯 购彩建议</h3>
                 <ul>
-                    <li>本推荐基于<b>最近15期数据的热冷平衡策略</b>，更加科学合理</li>
+                    <li>本推荐基于<b>最近30期数据的热冷平衡策略</b>，更加科学合理</li>
                     <li>排列五推荐考虑每个位置的独立趋势与整体平衡</li>
                 </ul>
             </div>
@@ -1392,7 +1392,7 @@ class LotteryAnalyzer:
                 <div class="strategy-info">
                     <h4>推荐策略：</h4>
                     <ul>
-                        <li>基于<b>最近15期</b>数据分析</li>
+                        <li>基于<b>最近30期</b>数据分析</li>
                         <li>前区：<b>2个热门号码 + 2个冷门号码 + 1个随机号码</b></li>
                         <li>后区：<b>1个热门号码 + 1个随机号码</b></li>
                         <li>结合热冷平衡，提高覆盖范围</li>
@@ -1417,7 +1417,7 @@ class LotteryAnalyzer:
                 <div class="strategy-info">
                     <h4>推荐策略：</h4>
                     <ul>
-                        <li>基于<b>最近15期</b>数据分析</li>
+                        <li>基于<b>最近30期</b>数据分析</li>
                         <li>红球：<b>2个热门号码 + 2个温门号码 + 2个冷门号码</b></li>
                         <li>蓝球：<b>热门号码</b>优先</li>
                         <li>平衡热冷分布，优化号码组合</li>
@@ -1441,7 +1441,7 @@ class LotteryAnalyzer:
                 <div class="strategy-info">
                     <h4>推荐策略：</h4>
                     <ul>
-                        <li>基于<b>最近15期</b>数据分析</li>
+                        <li>基于<b>最近30期</b>数据分析</li>
                         <li>每个位置独立分析热号、冷号</li>
                         <li>考虑<b>奇偶平衡</b>和<b>大小平衡</b></li>
                         <li>优先选择满足多个条件的数字</li>

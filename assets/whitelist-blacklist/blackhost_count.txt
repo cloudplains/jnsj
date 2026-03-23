@@ -18,3 +18,6 @@ https://iptv.catvod.com
 https://migu.188766.xyz
 https://live.catvod.com
 http://194.147.100.173
+https://stream1.freetv.fun
+http://122.152.202.33
+http://139.196.228.200:5678

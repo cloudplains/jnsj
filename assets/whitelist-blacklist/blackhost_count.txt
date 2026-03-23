@@ -1,3 +1,4 @@
+http://php.jdshipin.com
 https://www.freetv.top/
 http://a21709.tv.netsite.cc
 https://api.olelive.com
@@ -21,3 +22,5 @@ http://194.147.100.173
 https://stream1.freetv.fun
 http://122.152.202.33
 http://139.196.228.200:5678
+https://stream1.freetv.fun/
+http://cdn9.163189.xyz

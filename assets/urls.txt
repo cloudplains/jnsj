@@ -1,8 +1,6 @@
 # 更新时间: 2026-03-23 05:28:10
 # 有效URL数量: 92
 # 无效URL数量: 0
-
-https://jnsj.cloudplains.dpdns.org/assets/live.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
 https://zbds.org/tv/iptv4.txt

@@ -1,6 +1,6 @@
-# 更新时间: 2026-04-04 03:37:30
-# 有效URL数量: 91
-# 无效URL数量: 0
+# 更新时间: 2026-04-04 10:37:09
+# 有效URL数量: 90
+# 无效URL数量: 1
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
@@ -90,6 +90,5 @@ https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
 https://sub.ottiptv.cc/bililive.m3u
 http://d.jsy777.top/box/tvzb9.txt
-https://pan.vma.cc/pan/down.php/c250aac7bc03121d0d3c14125c900952.txt
 https://www.iyouhun.com/tv/zb		# 游魂直播源
 https://3043.kstore.space/bhvip/bhzb.txt # 宝盒直播

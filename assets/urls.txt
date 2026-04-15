@@ -1,5 +1,5 @@
-# 更新时间: 2026-03-31 03:53:39
-# 有效URL数量: 91
+# 更新时间: 2026-04-14 11:05:50
+# 有效URL数量: 89
 # 无效URL数量: 0
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
@@ -57,7 +57,6 @@ https://m3u.ibert.me/txt/fmml_ipv6.txt
 https://m3u.ibert.me/txt/ycl_iptv.txt
 https://m3u.ibert.me/txt/y_g.txt
 https://live.zbds.org/tv/iptv4.txt
-https://d.kstore.dev/download/12441/ds9.txt
 https://epg.pw/test_channels.m3u#中国大陆频道
 https://iptv-org.github.io/iptv/countries/tw.m3u#中国台湾频道
 https://iptv-org.github.io/iptv/index.m3u#世界各地免费电视频道
@@ -89,6 +88,5 @@ https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
 https://sub.ottiptv.cc/bililive.m3u
 http://d.jsy777.top/box/tvzb9.txt
-https://pan.vma.cc/pan/down.php/c250aac7bc03121d0d3c14125c900952.txt
 https://www.iyouhun.com/tv/zb		# 游魂直播源
 https://3043.kstore.space/bhvip/bhzb.txt # 宝盒直播

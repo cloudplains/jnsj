@@ -53,10 +53,6 @@
       "name": "神秘的哥哥们"
     },
     {
-      "url": "https://6492.kstore.space/xnf/xnf.json",
-      "name": "环宇轩单线"
-    },
-    {
       "url": "http://tv.aisimu.cn/tv/all.json",
       "name": "艾丝沐"
     },
@@ -138,8 +134,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 34,
-  "invalid_count": 32,
-  "last_validated": "2026-04-23 02:03:44",
-  "original_count": 66
+  "valid_count": 33,
+  "invalid_count": 1,
+  "last_validated": "2026-04-23 04:17:05",
+  "original_count": 34
 }

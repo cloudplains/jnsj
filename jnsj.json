@@ -5,18 +5,6 @@
       "name": "宝盒"
     },
     {
-      "url": "http://mzjk.top/禁止贩卖",
-      "name": "宝盒(禁止贩卖)"
-    },
-    {
-      "url": "https://ghp.ci/raw.githubusercontent.com/guot55/YGBH/main/vip2.json",
-      "name": "宝盒(YGBH)"
-    },
-    {
-      "url": "http://www.xn--sss604efuw.com/tv",
-      "name": "太硬了"
-    },
-    {
       "url": "http://影视仓接口.top",
       "name": "快乐接口"
     },
@@ -27,10 +15,6 @@
     {
       "url": "http://cdn.qiaoji8.com/tvbox.json",
       "name": "麒麟接口/巧技"
-    },
-    {
-      "url": "https://gitee.com/blssss/jk/raw/api/bls.json",
-      "name": "玩偶接口"
     },
     {
       "url": "http://mzrjk.top/学习",
@@ -47,18 +31,6 @@
     {
       "url": "http://肥猫.com",
       "name": "肥猫"
-    },
-    {
-      "url": "https://gitee.com/lukei7/lib/raw/Luck/%E8%87%AA%E5%BB%BA.json",
-      "name": "蓝天"
-    },
-    {
-      "url": "http://www.饭太硬.net/tv",
-      "name": "饭太硬(net)"
-    },
-    {
-      "url": "http://www.饭太硬.com/tv",
-      "name": "饭太硬(com)"
     },
     {
       "url": "http://tvbox.王二小放牛娃.top",
@@ -89,76 +61,20 @@
       "name": "艾丝沐"
     },
     {
-      "url": "http://xmbjm.fh4u.org/ck.txt",
-      "name": "拾光趣乐屋(fh4u)"
-    },
-    {
       "url": "https://xmbjm.github.io/ck.json",
       "name": "拾光趣乐屋(github)"
-    },
-    {
-      "url": "https://4708.kstore.space/ck.json",
-      "name": "拾光趣乐屋(kstore)"
     },
     {
       "url": "http://z.qiqiv.cn/123",
       "name": "奇奇单仓"
     },
     {
-      "url": "https://9877.kstore.space/FourDS/api.json",
-      "name": "潇洒单仓"
-    },
-    {
-      "url": "http://kxrj.site:55",
-      "name": "开心单仓"
-    },
-    {
-      "url": "https://qixing.myhkw.com/DC.txt",
-      "name": "天微单仓"
-    },
-    {
-      "url": "https://4708.kstore.space/omg/hollo.json",
-      "name": "拾光"
-    },
-    {
-      "url": "https://fmbox.cc/",
-      "name": "星辰"
-    },
-    {
-      "url": "https://github.moeyy.xyz/https://raw.githubusercontent.com/maoystv/6/main/000.json",
-      "name": "分享"
-    },
-    {
       "url": "https://git.acwing.com/shhentu/lzxw/-/raw/main/Monster.json",
       "name": "小屋"
     },
     {
-      "url": "https://ghp.ci/https://raw.githubusercontent.com/vbskycn/tvbox/a244f6f5c08565a9a0e319d6a3cc2e919d05d893/MY%E6%8E%A2%E6%8E%A2.txt",
-      "name": "影探"
-    },
-    {
-      "url": "https://www.mpanso.com/%E5%B0%8F%E7%B1%B3/DEMO.json",
-      "name": "小米"
-    },
-    {
-      "url": "http://ok321.top/ok",
-      "name": "OK"
-    },
-    {
       "url": "http://我不是.摸鱼儿.com",
       "name": "摸鱼"
-    },
-    {
-      "url": "http://kxrj.site:55/天天开心",
-      "name": "开心"
-    },
-    {
-      "url": "https://gitee.com/yiwu369/6758/raw/master/%E9%9D%92%E9%BE%99/1.json",
-      "name": "青龙"
-    },
-    {
-      "url": "http://meowtv.cn/tv",
-      "name": "喵影视"
     },
     {
       "url": "https://ztha.top/TVBox/thdjk.json",
@@ -171,10 +87,6 @@
     {
       "url": "https://xn--qoqw77q.top/",
       "name": "龙一"
-    },
-    {
-      "url": "https://2912.kstore.space/0506.json",
-      "name": "西夏"
     },
     {
       "url": "https://g.3344550.xyz/https://raw.githubusercontent.com/jigedos/1024/master/jsm.json",
@@ -205,36 +117,8 @@
       "name": "金鹰"
     },
     {
-      "url": "http://74.120.175.78/JK/XYQTVBox/dj.json",
-      "name": "短剧(74.120)"
-    },
-    {
-      "url": "http://box.ufuzi.com/tv/qq/短剧频道/api.json",
-      "name": "短剧(ufuzi)"
-    },
-    {
-      "url": "http://124.71.189.194/a.json",
-      "name": "白龙"
-    },
-    {
-      "url": "http://39.101.135.137:8080",
-      "name": "浪里小白龙(主)"
-    },
-    {
-      "url": "http://39.101.135.137:8888",
-      "name": "浪里小白龙(备用)"
-    },
-    {
       "url": "https://jihulab.com/mengzhu2/ysc/-/raw/main/YSC.json",
       "name": "影视仓Box"
-    },
-    {
-      "url": "https://100km.top/0",
-      "name": "优质"
-    },
-    {
-      "url": "http://t.lkkk.love/02.json",
-      "name": "天命人"
     },
     {
       "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
@@ -249,25 +133,13 @@
       "name": "潇洒"
     },
     {
-      "url": "https://hb.xyyh.online/tvbox/",
-      "name": "小虎斑(有弹幕)"
-    },
-    {
-      "url": "http://tv.laohu.cool/tvbox.json",
-      "name": "老虎"
-    },
-    {
-      "url": "https://秦始皇.xyz",
-      "name": "秦始皇"
-    },
-    {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
       "name": "南风"
     }
   ],
-   "last_updated": "2026-04-23",
-  "valid_count": 72,
-  "invalid_count": 0,
-  "last_validated": "2026-04-23 00:00:00",
-  "original_count": 72
+  "last_updated": "2026-04-23",
+  "valid_count": 34,
+  "invalid_count": 32,
+  "last_validated": "2026-04-23 02:03:44",
+  "original_count": 66
 }

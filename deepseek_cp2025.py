@@ -430,8 +430,8 @@ class LotteryAnalyzer:
             print("   警告：排列五数据为空")
             return None
         
-        # 获取最近30期数据进行分析
-        recent_30_data = self.pl5_df.tail(30)
+        # 获取最近10期数据进行分析
+        recent_10_data = self.pl5_df.tail(10)
         
         # 存储每位数字的频率
         position_freq = {}
@@ -450,17 +450,17 @@ class LotteryAnalyzer:
                 freq = numbers.value_counts().sort_index()
                 position_freq[col] = freq
                 
-                # 最近30期数据
-                recent_numbers = pd.to_numeric(recent_30_data[col], errors='coerce').fillna(0).astype(int)
+                # 最近10期数据
+                recent_numbers = pd.to_numeric(recent_10_data[col], errors='coerce').fillna(0).astype(int)
                 recent_freq = recent_numbers.value_counts()
                 recent_position_freq[col] = recent_freq
                 
-                # 获取热门和冷门号码（基于最近30期）
+                # 获取热门和冷门号码（基于最近10期）
                 # 热门号码：出现次数最多的前2个
                 recent_hot = recent_freq.head(2).index.tolist() if len(recent_freq) > 0 else []
                 position_hot[col] = recent_hot
                 
-                # 冷门号码：最近30期出现次数最少或未出现的
+                # 冷门号码：最近10期出现次数最少或未出现的
                 recent_cold = []
                 for num in range(0, 10):
                     if num not in recent_freq.index or recent_freq[num] <= 1:
@@ -656,8 +656,8 @@ class LotteryAnalyzer:
             print("   警告：排列五数据为空")
             return None
         
-        # 获取最近30期数据
-        recent_data = self.pl5_df.tail(30)
+        # 获取最近10期数据
+        recent_data = self.pl5_df.tail(10)
         
         # 为每个位置推荐数字
         recommended_numbers = []
@@ -683,7 +683,7 @@ class LotteryAnalyzer:
                 # 1. 考虑热号（最近30期出现次数最多的）
                 hot_numbers = freq.head(3).index.tolist()
                 
-                # 2. 考虑冷号（最近30期出现次数最少的或未出现的）
+                # 2. 考虑冷号（最近10期出现次数最少的或未出现的）
                 cold_numbers = [num for num in range(0, 10) if num not in freq.index]
                 if len(cold_numbers) < 2:
                     cold_numbers = freq.tail(3).index.tolist()
@@ -756,7 +756,7 @@ class LotteryAnalyzer:
         
         print(f"🎯 推荐号码：{''.join(map(str, recommended_numbers))}")
         print(f"   策略：{' | '.join(recommendation_strategy)}")
-        print(f"   分析期数：最近30期")
+        print(f"   分析期数：最近10期")
         
         return recommended_numbers
     

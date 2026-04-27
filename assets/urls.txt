@@ -1,5 +1,5 @@
-# 更新时间: 2026-04-22 11:08:33
-# 有效URL数量: 88
+# 更新时间: 2026-04-26 10:49:26
+# 有效URL数量: 87
 # 无效URL数量: 0
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
@@ -13,7 +13,6 @@ https://raw.githubusercontent.com/eric1216chan/eric1216tvbox/refs/heads/main/18l
 https://iptv-org.github.io/iptv/index.m3u
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
-https://3043.kstore.space/bhvip/bhzb.txt
 https://tv.850930.xyz/pix.m3u
 https://raw.githubusercontent.com/cyalias/mytvs-github/refs/heads/main/mytv.txt
 https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8

@@ -1,28 +1,12 @@
 {
   "urls": [
     {
-      "url": "http://宝盒接口.top",
-      "name": "宝盒"
-    },
-    {
-      "url": "http://影视仓接口.top",
-      "name": "快乐接口"
-    },
-    {
       "url": "http://7337.kstore.space/qxys/禁止传播.json",
       "name": "天微七星接口"
     },
     {
       "url": "http://cdn.qiaoji8.com/tvbox.json",
       "name": "麒麟接口/巧技"
-    },
-    {
-      "url": "http://mzrjk.top/学习",
-      "name": "学习接口"
-    },
-    {
-      "url": "http://mzrjk.top/音乐",
-      "name": "音乐接口"
     },
     {
       "url": "http://hello.肥猫.com",
@@ -134,8 +118,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 33,
-  "invalid_count": 0,
-  "last_validated": "2026-04-28 04:38:50",
+  "valid_count": 29,
+  "invalid_count": 4,
+  "last_validated": "2026-04-28 11:48:31",
   "original_count": 33
 }

@@ -1,10 +1,6 @@
 {
   "urls": [
     {
-      "url": "http://7337.kstore.space/qxys/禁止传播.json",
-      "name": "天微七星接口"
-    },
-    {
       "url": "http://hello.肥猫.com",
       "name": "肥猫(新)"
     },
@@ -15,10 +11,6 @@
     {
       "url": "http://tvbox.王二小放牛娃.top",
       "name": "牛二(中文top)"
-    },
-    {
-      "url": "https://9280.kstore.space/wex.json",
-      "name": "牛二(凯速)"
     },
     {
       "url": "https://chuanshuo.77blog.cn/tv.json",
@@ -105,17 +97,13 @@
       "name": "小苹果"
     },
     {
-      "url": "https://la.kstore.dev/download/2863/01.txt",
-      "name": "潇洒"
-    },
-    {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
       "name": "南风"
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 28,
-  "invalid_count": 1,
-  "last_validated": "2026-05-04 04:44:26",
-  "original_count": 29
+  "valid_count": 25,
+  "invalid_count": 3,
+  "last_validated": "2026-05-04 11:51:46",
+  "original_count": 28
 }

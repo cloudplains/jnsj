@@ -1,6 +1,6 @@
-# 更新时间: 2026-05-04 04:43:49
-# 有效URL数量: 86
-# 无效URL数量: 0
+# 更新时间: 2026-05-04 11:51:08
+# 有效URL数量: 85
+# 无效URL数量: 1
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
@@ -87,4 +87,3 @@ https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv6.txt
 https://sub.ottiptv.cc/bililive.m3u
 http://d.jsy777.top/box/tvzb9.txt
-https://3043.kstore.space/bhvip/bhzb.txt # 宝盒直播

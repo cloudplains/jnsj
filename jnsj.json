@@ -5,10 +5,6 @@
       "name": "天微七星接口"
     },
     {
-      "url": "http://cdn.qiaoji8.com/tvbox.json",
-      "name": "麒麟接口/巧技"
-    },
-    {
       "url": "http://hello.肥猫.com",
       "name": "肥猫(新)"
     },
@@ -118,8 +114,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 29,
-  "invalid_count": 0,
-  "last_validated": "2026-05-03 10:57:13",
+  "valid_count": 28,
+  "invalid_count": 1,
+  "last_validated": "2026-05-04 04:44:26",
   "original_count": 29
 }

@@ -41,10 +41,6 @@
       "name": "小屋"
     },
     {
-      "url": "http://我不是.摸鱼儿.com",
-      "name": "摸鱼"
-    },
-    {
       "url": "https://ztha.top/TVBox/thdjk.json",
       "name": "挺好"
     },
@@ -102,8 +98,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 25,
-  "invalid_count": 0,
-  "last_validated": "2026-05-11 05:02:07",
+  "valid_count": 24,
+  "invalid_count": 1,
+  "last_validated": "2026-05-11 12:41:40",
   "original_count": 25
 }

@@ -1,10 +1,6 @@
 {
   "urls": [
     {
-      "url": "http://hello.肥猫.com",
-      "name": "肥猫(新)"
-    },
-    {
       "url": "http://肥猫.com",
       "name": "肥猫"
     },
@@ -98,8 +94,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 24,
+  "valid_count": 23,
   "invalid_count": 1,
-  "last_validated": "2026-05-11 12:41:40",
-  "original_count": 25
+  "last_validated": "2026-05-12 04:42:13",
+  "original_count": 24
 }

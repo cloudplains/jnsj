@@ -33,10 +33,6 @@
       "name": "奇奇单仓"
     },
     {
-      "url": "https://git.acwing.com/shhentu/lzxw/-/raw/main/Monster.json",
-      "name": "小屋"
-    },
-    {
       "url": "https://ztha.top/TVBox/thdjk.json",
       "name": "挺好"
     },
@@ -51,26 +47,6 @@
     {
       "url": "https://g.3344550.xyz/https://raw.githubusercontent.com/jigedos/1024/master/jsm.json",
       "name": "非凡"
-    },
-    {
-      "url": "https://git.acwing.com/cisenyuan/kdsb/-/raw/main/%E6%B5%B7%E5%85%B5%E5%BD%B1%E8%A7%86.json",
-      "name": "海冰"
-    },
-    {
-      "url": "https://git.acwing.com/abai/tv/-/raw/main/huas.json",
-      "name": "花生"
-    },
-    {
-      "url": "https://git.acwing.com/lw0704/66/-/raw/master/jjzx.json",
-      "name": "刘伟"
-    },
-    {
-      "url": "https://git.acwing.com/203BDXC/tvboxt/-/raw/main/CJ.json",
-      "name": "超级"
-    },
-    {
-      "url": "https://git.acwing.com/lkq0379/zjys/-/raw/main/zjys.json",
-      "name": "剪影"
     },
     {
       "url": "http://550.3vcn.work/wdjyys.json",
@@ -94,8 +70,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 23,
-  "invalid_count": 0,
-  "last_validated": "2026-05-15 11:58:43",
+  "valid_count": 17,
+  "invalid_count": 6,
+  "last_validated": "2026-05-16 04:33:33",
   "original_count": 23
 }

@@ -37,10 +37,6 @@
       "name": "挺好"
     },
     {
-      "url": "http://fmys.top/fmys.json",
-      "name": "驸马"
-    },
-    {
       "url": "https://xn--qoqw77q.top/",
       "name": "龙一"
     },
@@ -70,8 +66,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 17,
-  "invalid_count": 0,
-  "last_validated": "2026-05-23 11:15:04",
+  "valid_count": 16,
+  "invalid_count": 1,
+  "last_validated": "2026-05-24 05:06:31",
   "original_count": 17
 }

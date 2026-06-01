@@ -9,10 +9,6 @@
       "name": "牛二(中文top)"
     },
     {
-      "url": "https://chuanshuo.77blog.cn/tv.json",
-      "name": "传说"
-    },
-    {
       "url": "https://upld.zone.id/uploads/q9iq9e5iq/tvboxlvse.json",
       "name": "科技长青"
     },
@@ -66,8 +62,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 16,
-  "invalid_count": 0,
-  "last_validated": "2026-06-01 06:09:56",
+  "valid_count": 15,
+  "invalid_count": 1,
+  "last_validated": "2026-06-01 15:59:04",
   "original_count": 16
 }

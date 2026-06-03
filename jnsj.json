@@ -45,10 +45,6 @@
       "name": "金鹰"
     },
     {
-      "url": "https://jihulab.com/mengzhu2/ysc/-/raw/main/YSC.json",
-      "name": "影视仓Box"
-    },
-    {
       "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
       "name": "道长"
     },
@@ -62,8 +58,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 15,
-  "invalid_count": 0,
-  "last_validated": "2026-06-02 14:05:19",
+  "valid_count": 14,
+  "invalid_count": 1,
+  "last_validated": "2026-06-03 06:09:24",
   "original_count": 15
 }

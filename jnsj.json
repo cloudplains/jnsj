@@ -5,10 +5,6 @@
       "name": "肥猫"
     },
     {
-      "url": "http://tvbox.王二小放牛娃.top",
-      "name": "牛二(中文top)"
-    },
-    {
       "url": "https://upld.zone.id/uploads/q9iq9e5iq/tvboxlvse.json",
       "name": "科技长青"
     },
@@ -50,8 +46,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 12,
+  "valid_count": 11,
   "invalid_count": 1,
-  "last_validated": "2026-06-21 06:09:48",
-  "original_count": 13
+  "last_validated": "2026-06-21 12:12:12",
+  "original_count": 12
 }

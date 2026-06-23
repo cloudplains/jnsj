@@ -1,10 +1,6 @@
 {
   "urls": [
     {
-      "url": "http://肥猫.com",
-      "name": "肥猫"
-    },
-    {
       "url": "https://upld.zone.id/uploads/q9iq9e5iq/tvboxlvse.json",
       "name": "科技长青"
     },
@@ -46,8 +42,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 11,
-  "invalid_count": 0,
-  "last_validated": "2026-06-23 05:08:33",
+  "valid_count": 10,
+  "invalid_count": 1,
+  "last_validated": "2026-06-23 12:35:17",
   "original_count": 11
 }

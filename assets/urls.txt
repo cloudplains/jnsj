@@ -1,6 +1,6 @@
-# 更新时间: 2026-07-07 12:28:18
-# 有效URL数量: 73
-# 无效URL数量: 0
+# 更新时间: 2026-07-08 04:19:40
+# 有效URL数量: 72
+# 无效URL数量: 1
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
@@ -32,7 +32,6 @@ https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt
 https://raw.githubusercontent.com/junge3333/juds6/main/yszb1.txt
 https://raw.githubusercontent.com/zzmaze/iptv/main/itvlist.txt
-https://raw.githubusercontent.com/maitel2020/iptv-self-use/main/iptv.txt
 https://raw.githubusercontent.com/n3rddd/CTVLive/refs/heads/main/live.txt
 https://raw.githubusercontent.com/xiongjian83/TvBox/refs/heads/main/live.txt
 https://raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/live.txt

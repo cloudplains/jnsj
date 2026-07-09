@@ -35,15 +35,11 @@
     {
       "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
       "name": "小苹果"
-    },
-    {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
-      "name": "南风"
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 10,
-  "invalid_count": 0,
-  "last_validated": "2026-07-08 11:48:02",
+  "valid_count": 9,
+  "invalid_count": 1,
+  "last_validated": "2026-07-09 04:59:17",
   "original_count": 10
 }

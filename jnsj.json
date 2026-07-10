@@ -1,10 +1,6 @@
 {
   "urls": [
     {
-      "url": "https://upld.zone.id/uploads/q9iq9e5iq/tvboxlvse.json",
-      "name": "科技长青"
-    },
-    {
       "url": "https://play.iptv365.org/tvbox.txt",
       "name": "神秘的哥哥们"
     },
@@ -38,8 +34,8 @@
     }
   ],
   "last_updated": "2026-04-23",
-  "valid_count": 9,
-  "invalid_count": 0,
-  "last_validated": "2026-07-10 04:58:26",
+  "valid_count": 8,
+  "invalid_count": 1,
+  "last_validated": "2026-07-10 12:26:36",
   "original_count": 9
 }

@@ -1,50 +1,153 @@
 {
   "urls": [
-    { "url": "https://play.iptv365.org/tvbox.txt", "name": "神秘的哥哥们" },
-    { "url": "http://tv.aisimu.cn/tv/all.json", "name": "艾丝沐" },
-    { "url": "https://xmbjm.github.io/ck.json", "name": "拾光趣乐屋(github)" },
-    { "url": "http://z.qiqiv.cn/123", "name": "奇奇单仓" },
-    { "url": "https://ztha.top/TVBox/thdjk.json", "name": "挺好" },
-    { "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json", "name": "道长" },
-    { "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json", "name": "小苹果" },
-    { "url": "https://6800.kstore.vip/fish.json", "name": "摸鱼" },
-    { "url": "http://itv666.cc/aowu/config.webp", "name": "嗷呜" },
-    { "url": "https://9280.kstore.vip/newwex.json", "name": "牛二" },
-    { "url": "http://wexfnw:wexfnw@cat.xn--4kq62z5rby2qupq9ub.top/index.js.md5", "name": "牛二猫源(带认证)" },
-    { "url": "https://9280.kstore.vip/cat/index.js.md5", "name": "牛二猫源2" },
-    { "url": "https://raw.githubusercontent.com/Darklessing/catvod/refs/heads/main/xuenai/index.js.md5", "name": "雪乃猫源" },
-    { "url": "https://raw.githubusercontent.com/4TVBox/Cat/refs/heads/main/index.js.md5", "name": "沐辰" },
-    { "url": "http://ztha.top/TVBox/GYCK.json", "name": "观影仓库" },
-    { "url": "http://肥猫.net/tv", "name": "肥猫tv" },
-    { "url": "https://codeberg.org/Jsnzkpg/Jsnzkpg/raw/branch/Jsnzkpg/Jsnzkpg2", "name": "Jsnzkpg" },
-    { "url": "http://王二小放牛娃牛逼.999888987.xyz", "name": "王二小放牛娃" },
-    { "url": "https://12586.kstore.space/123.json", "name": "影视仓精品仓库" },
-    { "url": "https://qist.wyfc.qzz.io/fty.json", "name": "qist" },
-    { "url": "https://pastecode.dev/raw/7tvw3n7c/kuzis.json", "name": "裤佬多线" },
-    { "url": "http://www.饭太硬.com/tv", "name": "饭太硬(com)" },
-    { "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/", "name": "tvbox域名" },
-    { "url": "https://tv.xn--yhqu5zs87a.top", "name": "tv.xn" },
-    { "url": "http://肥猫.com", "name": "肥猫com" },
-    { "url": "http://肥猫.live/", "name": "肥猫live" },
-    { "url": "http://tv.nxog.top/m/", "name": "nxog" },
-    { "url": "http://xhww.fun/小米 / DEMO.json", "name": "小米DEMO" },
-    { "url": "http://cdn.qiaoji8.com/tvbox.json", "name": "qiaoji8" },
-    { "url": "https://agit.ai/Yoursmile7/TVBox/raw/branch/master/XC.json", "name": "Yoursmile7" },
-    { "url": "http://bp.tvbox.cam/", "name": "bp" },
-    { "url": "http://www.wya6.cn/tv/yc.json", "name": "wya6" },
-    { "url": "http://我不是.摸鱼儿.top", "name": "摸鱼儿" },
-    { "url": "https://www.252035.xyz/xs/tvbox/api.json", "name": "252035-api" },
-    { "url": "https://www.252035.xyz/p/jsm.json", "name": "252035-jsm" },
-    { "url": "https://www.252035.xyz/z/FongMi.json", "name": "252035-FongMi" },
-    { "url": "https://cnb.cool/fish2018/xs/-/git/raw/main/api.json", "name": "fish2018" },
-    { "url": "https://w.junce.dpdns.org/fm.gif", "name": "备用地址(fm.gif)" },
-    { "url": "http://fty.xxooo.cf/tv", "name": "饭太硬(fty)" },
-    { "url": "http://hb.小虎斑.site:25252/仅供测试", "name": "小虎斑" },
-    { "url": "https://zzzy.shop/tv/", "name": "zzzy" }
+    {
+      "url": "https://play.iptv365.org/tvbox.txt",
+      "name": "神秘的哥哥们"
+    },
+    {
+      "url": "http://tv.aisimu.cn/tv/all.json",
+      "name": "艾丝沐"
+    },
+    {
+      "url": "https://xmbjm.github.io/ck.json",
+      "name": "拾光趣乐屋(github)"
+    },
+    {
+      "url": "http://z.qiqiv.cn/123",
+      "name": "奇奇单仓"
+    },
+    {
+      "url": "https://ztha.top/TVBox/thdjk.json",
+      "name": "挺好"
+    },
+    {
+      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
+      "name": "道长"
+    },
+    {
+      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
+      "name": "小苹果"
+    },
+    {
+      "url": "https://6800.kstore.vip/fish.json",
+      "name": "摸鱼"
+    },
+    {
+      "url": "http://itv666.cc/aowu/config.webp",
+      "name": "嗷呜"
+    },
+    {
+      "url": "https://9280.kstore.vip/newwex.json",
+      "name": "牛二"
+    },
+    {
+      "url": "http://wexfnw:wexfnw@cat.xn--4kq62z5rby2qupq9ub.top/index.js.md5",
+      "name": "牛二猫源(带认证)"
+    },
+    {
+      "url": "https://9280.kstore.vip/cat/index.js.md5",
+      "name": "牛二猫源2"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Darklessing/catvod/refs/heads/main/xuenai/index.js.md5",
+      "name": "雪乃猫源"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/4TVBox/Cat/refs/heads/main/index.js.md5",
+      "name": "沐辰"
+    },
+    {
+      "url": "http://ztha.top/TVBox/GYCK.json",
+      "name": "观影仓库"
+    },
+    {
+      "url": "http://肥猫.net/tv",
+      "name": "肥猫tv"
+    },
+    {
+      "url": "https://codeberg.org/Jsnzkpg/Jsnzkpg/raw/branch/Jsnzkpg/Jsnzkpg2",
+      "name": "Jsnzkpg"
+    },
+    {
+      "url": "http://王二小放牛娃牛逼.999888987.xyz",
+      "name": "王二小放牛娃"
+    },
+    {
+      "url": "https://12586.kstore.space/123.json",
+      "name": "影视仓精品仓库"
+    },
+    {
+      "url": "https://qist.wyfc.qzz.io/fty.json",
+      "name": "qist"
+    },
+    {
+      "url": "http://www.饭太硬.com/tv",
+      "name": "饭太硬(com)"
+    },
+    {
+      "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/",
+      "name": "tvbox域名"
+    },
+    {
+      "url": "https://tv.xn--yhqu5zs87a.top",
+      "name": "tv.xn"
+    },
+    {
+      "url": "http://肥猫.com",
+      "name": "肥猫com"
+    },
+    {
+      "url": "http://肥猫.live/",
+      "name": "肥猫live"
+    },
+    {
+      "url": "https://agit.ai/Yoursmile7/TVBox/raw/branch/master/XC.json",
+      "name": "Yoursmile7"
+    },
+    {
+      "url": "http://bp.tvbox.cam/",
+      "name": "bp"
+    },
+    {
+      "url": "http://我不是.摸鱼儿.top",
+      "name": "摸鱼儿"
+    },
+    {
+      "url": "https://www.252035.xyz/xs/tvbox/api.json",
+      "name": "252035-api"
+    },
+    {
+      "url": "https://www.252035.xyz/p/jsm.json",
+      "name": "252035-jsm"
+    },
+    {
+      "url": "https://www.252035.xyz/z/FongMi.json",
+      "name": "252035-FongMi"
+    },
+    {
+      "url": "https://cnb.cool/fish2018/xs/-/git/raw/main/api.json",
+      "name": "fish2018"
+    },
+    {
+      "url": "https://w.junce.dpdns.org/fm.gif",
+      "name": "备用地址(fm.gif)"
+    },
+    {
+      "url": "http://fty.xxooo.cf/tv",
+      "name": "饭太硬(fty)"
+    },
+    {
+      "url": "http://hb.小虎斑.site:25252/仅供测试",
+      "name": "小虎斑"
+    },
+    {
+      "url": "https://zzzy.shop/tv/",
+      "name": "zzzy"
+    }
   ],
   "last_updated": "2026-07-13",
-  "valid_count": 41,
-  "invalid_count": 0,
-  "last_validated": "2026-07-13 00:00:00",
+  "valid_count": 36,
+  "invalid_count": 5,
+  "last_validated": "2026-07-13 06:16:20",
   "original_count": 41
 }

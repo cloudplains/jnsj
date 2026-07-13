@@ -1,11 +1,9 @@
-# 更新时间: 2026-05-26 05:08:25
-# 有效URL数量: 84
+# 更新时间: 2026-07-13 04:34:29
+# 有效URL数量: 72
 # 无效URL数量: 0
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
-https://zbds.org/tv/iptv4.txt
-https://jihulab.com/237331946/2/-/raw/main/live.txt
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
 https://raw.githubusercontent.com/hy5528/tvbox/refs/heads/main/live.txt
@@ -13,7 +11,6 @@ https://raw.githubusercontent.com/eric1216chan/eric1216tvbox/refs/heads/main/18l
 https://iptv-org.github.io/iptv/index.m3u
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
-https://raw.githubusercontent.com/cyalias/mytvs-github/refs/heads/main/mytv.txt
 https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8
 https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u
 https://raw.githubusercontent.com/fanmingming/live/refs/heads/main/tv/m3u/ipv6.m3u
@@ -35,7 +32,6 @@ https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt
 https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt
 https://raw.githubusercontent.com/junge3333/juds6/main/yszb1.txt
 https://raw.githubusercontent.com/zzmaze/iptv/main/itvlist.txt
-https://raw.githubusercontent.com/maitel2020/iptv-self-use/main/iptv.txt
 https://raw.githubusercontent.com/n3rddd/CTVLive/refs/heads/main/live.txt
 https://raw.githubusercontent.com/xiongjian83/TvBox/refs/heads/main/live.txt
 https://raw.githubusercontent.com/yoursmile66/TVBox/refs/heads/main/live.txt
@@ -48,23 +44,15 @@ https://raw.githubusercontent.com/yuanzl77/IPTV/refs/heads/main/live.txt
 https://iptv-org.github.io/iptv/languages/zho.m3u
 https://iptv-org.github.io/iptv/countries/us.m3u
 https://iptv-org.github.io/iptv/countries/tw.m3u
-https://live.zbds.top/tv/iptv4.txt
-https://live.zbds.top/tv/iptv6.txt
 https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt
 https://m3u.ibert.me/txt/fmml_ipv6.txt
 https://m3u.ibert.me/txt/ycl_iptv.txt
 https://m3u.ibert.me/txt/y_g.txt
-https://live.zbds.org/tv/iptv4.txt
 https://epg.pw/test_channels.m3u#中国大陆频道
 https://iptv-org.github.io/iptv/countries/tw.m3u#中国台湾频道
 https://iptv-org.github.io/iptv/index.m3u#世界各地免费电视频道
 https://live.fanmingming.cn/tv/m3u/ipv6.m3u#范明明直播源国内镜像加速地址
 https://live.iptv365.org/live.txt#TV直播源(每日自动收集?持续更新)
-https://live.izbds.com/tv/iptv4.m3u#M3U格式直播源（已带台标和EPG）
-https://live.izbds.com/tv/iptv4.txt#自动扫描直播源IPTV4
-https://live.izbds.com/tv/iptv6.m3u#M3U格式直播源（已带台标和EPG）
-https://live.izbds.com/tv/iptv6.txt#自动扫描直播源IPTV6
-https://live.zbds.top/tv/iptv4.txt#直播电视IPV4
 https://raw.githubusercontent.com/BigBigGrandG/IPTV-URL/release/Gather.m3u#BigBigGrandG源，有部分IPv6
 https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u#范明明直播源
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u#IPTVIPv4

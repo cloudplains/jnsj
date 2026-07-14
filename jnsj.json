@@ -187,15 +187,11 @@
     {
       "url": "https://www.yingm.cc/dm/dm.json",
       "name": "动漫"
-    },
-    {
-      "url": "https://6492.kstore.space/xnf/xnf.json",
-      "name": "小脑斧"
     }
   ],
   "last_updated": "2026-07-14",
-  "valid_count": 48,
-  "invalid_count": 22,
-  "last_validated": "2026-07-14 08:18:54",
-  "original_count": 70
+  "valid_count": 47,
+  "invalid_count": 1,
+  "last_validated": "2026-07-14 11:27:37",
+  "original_count": 48
 }

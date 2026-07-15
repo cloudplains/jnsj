@@ -65,10 +65,6 @@
       "name": "肥猫tv"
     },
     {
-      "url": "https://codeberg.org/Jsnzkpg/Jsnzkpg/raw/branch/Jsnzkpg/Jsnzkpg2",
-      "name": "Jsnzkpg"
-    },
-    {
       "url": "http://王二小放牛娃牛逼.999888987.xyz",
       "name": "王二小放牛娃"
     },
@@ -190,8 +186,8 @@
     }
   ],
   "last_updated": "2026-07-14",
-  "valid_count": 47,
+  "valid_count": 46,
   "invalid_count": 1,
-  "last_validated": "2026-07-14 11:27:37",
-  "original_count": 48
+  "last_validated": "2026-07-15 04:11:06",
+  "original_count": 47
 }

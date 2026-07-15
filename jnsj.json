@@ -105,10 +105,6 @@
       "name": "bp"
     },
     {
-      "url": "http://我不是.摸鱼儿.top",
-      "name": "摸鱼儿(top)"
-    },
-    {
       "url": "https://www.252035.xyz/xs/tvbox/api.json",
       "name": "252035-api"
     },
@@ -186,8 +182,8 @@
     }
   ],
   "last_updated": "2026-07-14",
-  "valid_count": 46,
+  "valid_count": 45,
   "invalid_count": 1,
-  "last_validated": "2026-07-15 04:11:06",
-  "original_count": 47
+  "last_validated": "2026-07-15 11:38:04",
+  "original_count": 46
 }

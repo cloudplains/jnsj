@@ -65,10 +65,6 @@
       "name": "肥猫tv"
     },
     {
-      "url": "https://codeberg.org/Jsnzkpg/Jsnzkpg/raw/branch/Jsnzkpg/Jsnzkpg2",
-      "name": "Jsnzkpg"
-    },
-    {
       "url": "http://王二小放牛娃牛逼.999888987.xyz",
       "name": "王二小放牛娃"
     },
@@ -107,10 +103,6 @@
     {
       "url": "http://bp.tvbox.cam/",
       "name": "bp"
-    },
-    {
-      "url": "http://我不是.摸鱼儿.top",
-      "name": "摸鱼儿(top)"
     },
     {
       "url": "https://www.252035.xyz/xs/tvbox/api.json",
@@ -187,11 +179,87 @@
     {
       "url": "https://www.yingm.cc/dm/dm.json",
       "name": "动漫"
+    },
+    {
+      "url": "https://17264.kstore.space/哈基米.png",
+      "name": "哈基米"
+    },
+    {
+      "url": "https://cdn.gitmirror.com/bb/xduo/libs/master/index.json",
+      "name": "道长(代理)"
+    },
+    {
+      "url": "https://gitee.com/free-kingdom/dc/raw/main/T4.json",
+      "name": "T4接口"
+    },
+    {
+      "url": "https://dxawi.github.io/0/0.json",
+      "name": "dxawi"
+    },
+    {
+      "url": "http://xhztv.top/xhz",
+      "name": "小盒子单仓"
+    },
+    {
+      "url": "http://xhztv.top/4k.json",
+      "name": "小盒子4K"
+    },
+    {
+      "url": "https://9877.kstore.space/ONE/one.json",
+      "name": "潇洒接口(ONE)"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/guot55/YGBH/main/vip2.json",
+      "name": "宝盒VIP"
+    },
+    {
+      "url": "https://xn--anna-wn6lw489o.v.nxog.top/m/",
+      "name": "欧歌(单线)"
+    },
+    {
+      "url": "http://www.meowtv.vip/tvbox.json",
+      "name": "喵影视(vip)"
+    },
+    {
+      "url": "http://fmys.top/fmys.json",
+      "name": "驸马"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gaotianliuyun/gao/master/js.json",
+      "name": "高天流云"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/maoystv/6/main/000.json",
+      "name": "分享(maoystv)"
+    },
+    {
+      "url": "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json",
+      "name": "短剧(cnb)"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chitue/dongliTV/main/api.json",
+      "name": "东篱线路"
+    },
+    {
+      "url": "https://cnb.cool/aooooowuuuuu/FreeSpider/-/git/raw/main/config",
+      "name": "嗷呜线路(cnb)"
+    },
+    {
+      "url": "https://android.lushunming.qzz.io/json/index.json",
+      "name": "L佬线路"
+    },
+    {
+      "url": "https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json",
+      "name": "天神IY"
+    },
+    {
+      "url": "https://pastebin.com/raw/gtbKvnE1",
+      "name": "苹果CMS资源站"
     }
   ],
-  "last_updated": "2026-07-14",
-  "valid_count": 47,
-  "invalid_count": 1,
-  "last_validated": "2026-07-14 11:27:37",
-  "original_count": 48
+  "last_updated": "2026-07-16",
+  "valid_count": 64,
+  "invalid_count": 0,
+  "last_validated": "2026-07-16 09:00:00",
+  "original_count": 64
 }

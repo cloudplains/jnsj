@@ -69,10 +69,6 @@
       "name": "王二小放牛娃"
     },
     {
-      "url": "https://12586.kstore.space/123.json",
-      "name": "影视仓精品仓库"
-    },
-    {
       "url": "https://qist.wyfc.qzz.io/fty.json",
       "name": "qist"
     },
@@ -161,10 +157,6 @@
       "name": "雷蒙"
     },
     {
-      "url": "http://mzjk.top/禁止贩卖",
-      "name": "宝盒(禁止贩卖)"
-    },
-    {
       "url": "https://jihulab.com/bhjk1/vip/-/raw/main/vip.json",
       "name": "儿童教育"
     },
@@ -226,8 +218,8 @@
     }
   ],
   "last_updated": "2026-07-16",
-  "valid_count": 56,
-  "invalid_count": 0,
-  "last_validated": "2026-07-16 11:42:40",
+  "valid_count": 54,
+  "invalid_count": 2,
+  "last_validated": "2026-07-17 04:13:48",
   "original_count": 56
 }

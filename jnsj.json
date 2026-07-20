@@ -105,10 +105,6 @@
       "name": "252035-FongMi"
     },
     {
-      "url": "https://cnb.cool/fish2018/xs/-/git/raw/main/api.json",
-      "name": "fish2018"
-    },
-    {
       "url": "https://w.junce.dpdns.org/fm.gif",
       "name": "备用地址(fm.gif)"
     },
@@ -197,10 +193,6 @@
       "name": "分享(maoystv)"
     },
     {
-      "url": "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json",
-      "name": "短剧(cnb)"
-    },
-    {
       "url": "https://raw.githubusercontent.com/chitue/dongliTV/main/api.json",
       "name": "东篱线路"
     },
@@ -214,8 +206,8 @@
     }
   ],
   "last_updated": "2026-07-16",
-  "valid_count": 53,
-  "invalid_count": 0,
-  "last_validated": "2026-07-19 11:10:40",
+  "valid_count": 51,
+  "invalid_count": 2,
+  "last_validated": "2026-07-20 04:41:11",
   "original_count": 53
 }

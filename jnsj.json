@@ -97,28 +97,12 @@
       "name": "bp"
     },
     {
-      "url": "https://www.252035.xyz/xs/tvbox/api.json",
-      "name": "252035-api"
-    },
-    {
-      "url": "https://www.252035.xyz/z/FongMi.json",
-      "name": "252035-FongMi"
-    },
-    {
       "url": "https://w.junce.dpdns.org/fm.gif",
       "name": "备用地址(fm.gif)"
     },
     {
       "url": "http://fty.xxooo.cf/tv",
       "name": "饭太硬(fty)"
-    },
-    {
-      "url": "http://hb.小虎斑.site:25252/仅供测试",
-      "name": "小虎斑"
-    },
-    {
-      "url": "https://zzzy.shop/tv/",
-      "name": "zzzy"
     },
     {
       "url": "http://www.饭太硬.net/tv",
@@ -202,8 +186,8 @@
     }
   ],
   "last_updated": "2026-07-16",
-  "valid_count": 50,
-  "invalid_count": 1,
-  "last_validated": "2026-07-20 12:19:14",
-  "original_count": 51
+  "valid_count": 46,
+  "invalid_count": 4,
+  "last_validated": "2026-07-21 04:20:28",
+  "original_count": 50
 }

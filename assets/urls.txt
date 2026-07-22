@@ -1,6 +1,6 @@
-# 更新时间: 2026-07-21 11:47:47
-# 有效URL数量: 73
-# 无效URL数量: 0
+# 更新时间: 2026-07-22 04:21:34
+# 有效URL数量: 72
+# 无效URL数量: 1
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt
@@ -55,7 +55,6 @@ https://live.fanmingming.cn/tv/m3u/ipv6.m3u#范明明直播源国内镜像加速
 https://live.iptv365.org/live.txt#TV直播源(每日自动收集?持续更新)
 https://raw.githubusercontent.com/BigBigGrandG/IPTV-URL/release/Gather.m3u#BigBigGrandG源，有部分IPv6
 https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u#范明明直播源
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u#IPTVIPv4
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u#IPTVIPv6
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u#IPTV默认源
 https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u#Kimentanm源，有部分IPv6

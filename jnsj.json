@@ -61,16 +61,8 @@
       "name": "观影仓库"
     },
     {
-      "url": "http://肥猫.net/tv",
-      "name": "肥猫tv"
-    },
-    {
       "url": "http://王二小放牛娃牛逼.999888987.xyz",
       "name": "王二小放牛娃"
-    },
-    {
-      "url": "https://12586.kstore.space/123.json",
-      "name": "影视仓精品仓库"
     },
     {
       "url": "https://qist.wyfc.qzz.io/fty.json",
@@ -89,10 +81,6 @@
       "name": "tv.xn"
     },
     {
-      "url": "http://肥猫.com",
-      "name": "肥猫com"
-    },
-    {
       "url": "http://肥猫.live/",
       "name": "肥猫live"
     },
@@ -105,18 +93,6 @@
       "name": "bp"
     },
     {
-      "url": "https://www.252035.xyz/xs/tvbox/api.json",
-      "name": "252035-api"
-    },
-    {
-      "url": "https://www.252035.xyz/z/FongMi.json",
-      "name": "252035-FongMi"
-    },
-    {
-      "url": "https://cnb.cool/fish2018/xs/-/git/raw/main/api.json",
-      "name": "fish2018"
-    },
-    {
       "url": "https://w.junce.dpdns.org/fm.gif",
       "name": "备用地址(fm.gif)"
     },
@@ -125,20 +101,8 @@
       "name": "饭太硬(fty)"
     },
     {
-      "url": "http://hb.小虎斑.site:25252/仅供测试",
-      "name": "小虎斑"
-    },
-    {
-      "url": "https://zzzy.shop/tv/",
-      "name": "zzzy"
-    },
-    {
       "url": "http://www.饭太硬.net/tv",
       "name": "饭太硬(net)"
-    },
-    {
-      "url": "http://hello.肥猫.com",
-      "name": "肥猫(hello)"
     },
     {
       "url": "http://tvbox.王二小放牛娃.top",
@@ -157,20 +121,12 @@
       "name": "菜妮丝"
     },
     {
-      "url": "https://api.hgyx.vip/hgyx.json",
-      "name": "HG"
-    },
-    {
       "url": "https://szyyds.cn/tv/x.json",
       "name": "小马"
     },
     {
       "url": "https://raw.githubusercontent.com/n3rddd/N3RD/master/JN/雷蒙影视.bmp",
       "name": "雷蒙"
-    },
-    {
-      "url": "http://mzjk.top/禁止贩卖",
-      "name": "宝盒(禁止贩卖)"
     },
     {
       "url": "https://jihulab.com/bhjk1/vip/-/raw/main/vip.json",
@@ -185,14 +141,6 @@
       "name": "哈基米"
     },
     {
-      "url": "https://cdn.gitmirror.com/bb/xduo/libs/master/index.json",
-      "name": "道长(代理)"
-    },
-    {
-      "url": "https://gitee.com/free-kingdom/dc/raw/main/T4.json",
-      "name": "T4接口"
-    },
-    {
       "url": "https://dxawi.github.io/0/0.json",
       "name": "dxawi"
     },
@@ -205,20 +153,8 @@
       "name": "小盒子4K"
     },
     {
-      "url": "https://9877.kstore.space/ONE/one.json",
-      "name": "潇洒接口(ONE)"
-    },
-    {
       "url": "https://raw.githubusercontent.com/guot55/YGBH/main/vip2.json",
       "name": "宝盒VIP"
-    },
-    {
-      "url": "https://xn--anna-wn6lw489o.v.nxog.top/m/",
-      "name": "欧歌(单线)"
-    },
-    {
-      "url": "http://www.meowtv.vip/tvbox.json",
-      "name": "喵影视(vip)"
     },
     {
       "url": "http://fmys.top/fmys.json",
@@ -233,33 +169,85 @@
       "name": "分享(maoystv)"
     },
     {
-      "url": "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json",
-      "name": "短剧(cnb)"
-    },
-    {
       "url": "https://raw.githubusercontent.com/chitue/dongliTV/main/api.json",
       "name": "东篱线路"
-    },
-    {
-      "url": "https://cnb.cool/aooooowuuuuu/FreeSpider/-/git/raw/main/config",
-      "name": "嗷呜线路(cnb)"
     },
     {
       "url": "https://android.lushunming.qzz.io/json/index.json",
       "name": "L佬线路"
     },
     {
-      "url": "https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json",
-      "name": "天神IY"
-    },
-    {
       "url": "https://pastebin.com/raw/gtbKvnE1",
       "name": "苹果CMS资源站"
+    },
+    {
+      "url": "http://肥猫.net",
+      "name": "肥猫接口"
+    },
+    {
+      "url": "http://我不是.摸鱼儿.top",
+      "name": "摸鱼儿接口"
+    },
+    {
+      "url": "http://home.jundie.top:81/top98.json",
+      "name": "俊佬接口"
+    },
+    {
+      "url": "http://cdn.qiaoji8.com/tvbox.json",
+      "name": "巧记"
+    },
+    {
+      "url": "http://ok213.top/tv",
+      "name": "OK影视内部接口 暂时不可用"
+    },
+    {
+      "url": "http://ok213.top/ok",
+      "name": "OK影视公开接口 暂时不可用"
+    },
+    {
+      "url": "https://cdn.gitmirror.com/bb/xduo/libs/master/index.json",
+      "name": "道长接口"
+    },
+    {
+      "url": "https://gitee.com/free-kingdom/dc/raw/main/T4.json",
+      "name": "T4接口"
+    },
+    {
+      "url": "https://api.hgyx.vip/hgyx.json",
+      "name": "HG接口"
+    },
+    {
+      "url": "https://9877.kstore.space/ONE/one.json",
+      "name": "潇洒接口"
+    },
+    {
+      "url": "https://xn--anna-wn6lw489o.v.nxog.top/m/",
+      "name": "欧歌"
+    },
+    {
+      "url": "https://www.252035.xyz/z/FongMi.json",
+      "name": "真心"
+    },
+    {
+      "url": "http://www.meowtv.vip/tvbox.json",
+      "name": "喵影视"
+    },
+    {
+      "url": "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json",
+      "name": "短剧"
+    },
+    {
+      "url": "https://cnb.cool/aooooowuuuuu/FreeSpider/-/git/raw/main/config",
+      "name": "嗷呜线路"
+    },
+    {
+      "url": "https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json",
+      "name": "天神IY"
     }
   ],
-  "last_updated": "2026-07-16",
-  "valid_count": 64,
-  "invalid_count": 0,
-  "last_validated": "2026-07-16 09:00:00",
-  "original_count": 64
+  "last_updated": "2026-07-24",
+  "valid_count": 61,
+  "invalid_count": 1,
+  "last_validated": "2026-07-24 12:00:00",
+  "original_count": 62
 }

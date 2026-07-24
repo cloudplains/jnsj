@@ -193,26 +193,6 @@
       "name": "俊佬接口"
     },
     {
-      "url": "http://cdn.qiaoji8.com/tvbox.json",
-      "name": "巧记"
-    },
-    {
-      "url": "http://ok213.top/tv",
-      "name": "OK影视内部接口 暂时不可用"
-    },
-    {
-      "url": "http://ok213.top/ok",
-      "name": "OK影视公开接口 暂时不可用"
-    },
-    {
-      "url": "https://cdn.gitmirror.com/bb/xduo/libs/master/index.json",
-      "name": "道长接口"
-    },
-    {
-      "url": "https://gitee.com/free-kingdom/dc/raw/main/T4.json",
-      "name": "T4接口"
-    },
-    {
       "url": "https://api.hgyx.vip/hgyx.json",
       "name": "HG接口"
     },
@@ -227,27 +207,11 @@
     {
       "url": "https://www.252035.xyz/z/FongMi.json",
       "name": "真心"
-    },
-    {
-      "url": "http://www.meowtv.vip/tvbox.json",
-      "name": "喵影视"
-    },
-    {
-      "url": "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json",
-      "name": "短剧"
-    },
-    {
-      "url": "https://cnb.cool/aooooowuuuuu/FreeSpider/-/git/raw/main/config",
-      "name": "嗷呜线路"
-    },
-    {
-      "url": "https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json",
-      "name": "天神IY"
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 61,
-  "invalid_count": 1,
-  "last_validated": "2026-07-24 12:00:00",
-  "original_count": 62
+  "valid_count": 52,
+  "invalid_count": 9,
+  "last_validated": "2026-07-24 01:08:36",
+  "original_count": 61
 }

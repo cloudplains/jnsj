@@ -129,10 +129,6 @@
       "name": "雷蒙"
     },
     {
-      "url": "https://jihulab.com/bhjk1/vip/-/raw/main/vip.json",
-      "name": "儿童教育"
-    },
-    {
       "url": "https://www.yingm.cc/dm/dm.json",
       "name": "动漫"
     },
@@ -202,8 +198,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 50,
+  "valid_count": 49,
   "invalid_count": 1,
-  "last_validated": "2026-07-26 04:32:29",
-  "original_count": 51
+  "last_validated": "2026-07-26 11:21:58",
+  "original_count": 50
 }

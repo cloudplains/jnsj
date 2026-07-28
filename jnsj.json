@@ -73,10 +73,6 @@
       "name": "饭太硬(com)"
     },
     {
-      "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top/",
-      "name": "tvbox域名"
-    },
-    {
       "url": "https://tv.xn--yhqu5zs87a.top",
       "name": "tv.xn"
     },
@@ -103,10 +99,6 @@
     {
       "url": "http://www.饭太硬.net/tv",
       "name": "饭太硬(net)"
-    },
-    {
-      "url": "http://tvbox.王二小放牛娃.top",
-      "name": "王二小放牛娃(top)"
     },
     {
       "url": "https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
@@ -198,8 +190,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 49,
-  "invalid_count": 0,
-  "last_validated": "2026-07-28 04:16:20",
+  "valid_count": 47,
+  "invalid_count": 2,
+  "last_validated": "2026-07-28 12:00:17",
   "original_count": 49
 }

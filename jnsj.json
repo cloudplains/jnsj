@@ -69,10 +69,6 @@
       "name": "qist"
     },
     {
-      "url": "http://www.饭太硬.com/tv",
-      "name": "饭太硬(com)"
-    },
-    {
       "url": "https://tv.xn--yhqu5zs87a.top",
       "name": "tv.xn"
     },
@@ -190,8 +186,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 47,
-  "invalid_count": 2,
-  "last_validated": "2026-07-28 12:00:17",
-  "original_count": 49
+  "valid_count": 46,
+  "invalid_count": 1,
+  "last_validated": "2026-07-29 04:18:48",
+  "original_count": 47
 }

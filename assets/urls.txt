@@ -1,6 +1,6 @@
-# 更新时间: 2026-07-28 11:58:57
+# 更新时间: 2026-07-29 04:17:36
 # 有效URL数量: 70
-# 无效URL数量: 1
+# 无效URL数量: 0
 
 https://raw.githubusercontent.com/nianxinmj/nxpz/refs/heads/main/lib/live.txt
 https://live.hacks.tools/tv/iptv4.txt

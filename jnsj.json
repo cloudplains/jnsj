@@ -109,10 +109,6 @@
       "name": "菜妮丝"
     },
     {
-      "url": "https://szyyds.cn/tv/x.json",
-      "name": "小马"
-    },
-    {
       "url": "https://raw.githubusercontent.com/n3rddd/N3RD/master/JN/雷蒙影视.bmp",
       "name": "雷蒙"
     },
@@ -186,8 +182,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 46,
-  "invalid_count": 0,
-  "last_validated": "2026-07-30 04:11:30",
+  "valid_count": 45,
+  "invalid_count": 1,
+  "last_validated": "2026-07-30 11:53:53",
   "original_count": 46
 }

@@ -33,10 +33,6 @@
       "name": "摸鱼(凯速)"
     },
     {
-      "url": "http://itv666.cc/aowu/config.webp",
-      "name": "嗷呜"
-    },
-    {
       "url": "https://9280.kstore.vip/newwex.json",
       "name": "牛二"
     },
@@ -69,10 +65,6 @@
       "name": "qist"
     },
     {
-      "url": "https://tv.xn--yhqu5zs87a.top",
-      "name": "tv.xn"
-    },
-    {
       "url": "http://肥猫.live/",
       "name": "肥猫live"
     },
@@ -103,10 +95,6 @@
     {
       "url": "https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json",
       "name": "香雅情"
-    },
-    {
-      "url": "https://tv.菜妮丝.top",
-      "name": "菜妮丝"
     },
     {
       "url": "https://raw.githubusercontent.com/n3rddd/N3RD/master/JN/雷蒙影视.bmp",
@@ -173,17 +161,13 @@
       "name": "俊佬接口"
     },
     {
-      "url": "https://api.hgyx.vip/hgyx.json",
-      "name": "HG接口"
-    },
-    {
       "url": "https://xn--anna-wn6lw489o.v.nxog.top/m/",
       "name": "欧歌"
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 45,
-  "invalid_count": 1,
-  "last_validated": "2026-07-30 11:53:53",
-  "original_count": 46
+  "valid_count": 41,
+  "invalid_count": 4,
+  "last_validated": "2026-07-31 04:29:13",
+  "original_count": 45
 }

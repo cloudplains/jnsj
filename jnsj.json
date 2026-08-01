@@ -157,17 +157,13 @@
       "name": "摸鱼儿接口"
     },
     {
-      "url": "http://home.jundie.top:81/top98.json",
-      "name": "俊佬接口"
-    },
-    {
       "url": "https://xn--anna-wn6lw489o.v.nxog.top/m/",
       "name": "欧歌"
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 41,
-  "invalid_count": 0,
-  "last_validated": "2026-08-01 04:25:15",
+  "valid_count": 40,
+  "invalid_count": 1,
+  "last_validated": "2026-08-01 11:18:39",
   "original_count": 41
 }

@@ -141,10 +141,6 @@
       "name": "东篱线路"
     },
     {
-      "url": "https://android.lushunming.qzz.io/json/index.json",
-      "name": "L佬线路"
-    },
-    {
       "url": "https://pastebin.com/raw/gtbKvnE1",
       "name": "苹果CMS资源站"
     },
@@ -162,8 +158,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 40,
-  "invalid_count": 0,
-  "last_validated": "2026-08-05 04:16:47",
+  "valid_count": 39,
+  "invalid_count": 1,
+  "last_validated": "2026-08-05 12:01:43",
   "original_count": 40
 }

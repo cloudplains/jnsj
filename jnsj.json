@@ -113,14 +113,6 @@
       "name": "dxawi"
     },
     {
-      "url": "http://xhztv.top/xhz",
-      "name": "小盒子单仓"
-    },
-    {
-      "url": "http://xhztv.top/4k.json",
-      "name": "小盒子4K"
-    },
-    {
       "url": "https://raw.githubusercontent.com/guot55/YGBH/main/vip2.json",
       "name": "宝盒VIP"
     },
@@ -158,8 +150,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 39,
-  "invalid_count": 0,
-  "last_validated": "2026-08-18 02:18:34",
+  "valid_count": 37,
+  "invalid_count": 2,
+  "last_validated": "2026-08-18 10:31:01",
   "original_count": 39
 }

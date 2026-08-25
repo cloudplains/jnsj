@@ -143,15 +143,11 @@
     {
       "url": "http://我不是.摸鱼儿.top",
       "name": "摸鱼儿接口"
-    },
-    {
-      "url": "https://xn--anna-wn6lw489o.v.nxog.top/m/",
-      "name": "欧歌"
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 37,
-  "invalid_count": 0,
-  "last_validated": "2026-08-25 02:20:44",
+  "valid_count": 36,
+  "invalid_count": 1,
+  "last_validated": "2026-08-25 10:35:31",
   "original_count": 37
 }

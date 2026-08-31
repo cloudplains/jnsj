@@ -41,10 +41,6 @@
       "name": "牛二猫源(带认证)"
     },
     {
-      "url": "https://9280.kstore.vip/cat/index.js.md5",
-      "name": "牛二猫源2"
-    },
-    {
       "url": "https://raw.githubusercontent.com/Darklessing/catvod/refs/heads/main/xuenai/index.js.md5",
       "name": "雪乃猫源"
     },
@@ -146,8 +142,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 36,
-  "invalid_count": 0,
-  "last_validated": "2026-08-31 06:52:43",
+  "valid_count": 35,
+  "invalid_count": 1,
+  "last_validated": "2026-08-31 17:27:14",
   "original_count": 36
 }

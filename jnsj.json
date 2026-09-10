@@ -133,17 +133,13 @@
       "name": "苹果CMS资源站"
     },
     {
-      "url": "http://肥猫.net",
-      "name": "肥猫接口"
-    },
-    {
       "url": "http://我不是.摸鱼儿.top",
       "name": "摸鱼儿接口"
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 35,
-  "invalid_count": 0,
-  "last_validated": "2026-09-10 05:46:04",
+  "valid_count": 34,
+  "invalid_count": 1,
+  "last_validated": "2026-09-10 14:09:29",
   "original_count": 35
 }

@@ -103,6 +103,7 @@ CONFIG = {
         "name": "排列五", "code": "plw", "source": "500plw",
         "digits": 5,
         "digit_range": (0, 9),
+        "split_at": None,
         "static": [
             ("26102", "2026-09-08", [1, 3, 5, 7, 9]),
             ("26101", "2026-09-07", [2, 4, 6, 8, 0]),
@@ -125,6 +126,7 @@ CONFIG = {
         "name": "福彩3D", "code": "sd", "source": "500sd",
         "digits": 3,
         "digit_range": (0, 9),
+        "split_at": None,
         "static": [
             ("26102", "2026-09-08", [1, 3, 5]),
             ("26101", "2026-09-07", [2, 4, 6]),
@@ -147,6 +149,7 @@ CONFIG = {
         "name": "七星彩", "code": "qxc", "source": "500qxc",
         "digits": 7,
         "digit_range": (0, 9),
+        "split_at": 6,     # 前 6 位 + 第 7 位（特别号）分开
         "static": [
             ("26102", "2026-09-08", [1, 3, 5, 7, 9, 2, 4]),
             ("26101", "2026-09-07", [2, 4, 6, 8, 0, 1, 3]),
@@ -333,7 +336,6 @@ def fetch_dlt(issue_count: int) -> tuple[list[tuple], str]:
 
 
 def _parse_digit_xml(text: str, issue_count: int, digits: int) -> list[tuple]:
-    """通用数字型彩种 XML 解析：opencode 形如 "1 2 3" 或 "1,2,3" """
     from xml.etree import ElementTree as ET
     root = ET.fromstring(text)
     draws = []
@@ -362,11 +364,9 @@ def _parse_digit_xml(text: str, issue_count: int, digits: int) -> list[tuple]:
 
 
 def fetch_digit(kind: str, issue_count: int) -> tuple[list[tuple], str]:
-    """通用数字型彩种抓取：3D(sd) / 排列五(plw) / 七星彩(qxc)"""
     if requests is None:
         raise RuntimeError("未安装 requests")
     cfg = CONFIG[kind]
-    # 500.com 静态 XML 目录名：sd / plw / qxc
     url = f"https://datachart.500.com/static/info/kaijiang/xml/{kind}/list.xml"
     h = dict(HEADERS)
     h.update({"Referer": f"https://datachart.500.com/{kind}/history/", "Accept": "*/*"})
@@ -566,7 +566,6 @@ def _analyze_lotto(kind: str, draws: list[tuple]) -> dict:
 
 def _build_digit_combos(pos_counters: list[Counter], d_lo: int, d_hi: int,
                         digits: int) -> list[dict]:
-    """通用数字型参考组合：热号型 / 次热型 / 冷号型"""
     def ranked(counter: Counter) -> list[int]:
         return sorted(range(d_lo, d_hi + 1),
                       key=lambda x: (-counter.get(x, 0), -x))
@@ -587,7 +586,6 @@ def _build_digit_combos(pos_counters: list[Counter], d_lo: int, d_hi: int,
 
 
 def _analyze_digit(kind: str, draws: list[tuple]) -> dict:
-    """通用数字型分析：福彩3D / 排列五 / 七星彩"""
     cfg = CONFIG[kind]
     digits = cfg["digits"]
     d_lo, d_hi = cfg["digit_range"]
@@ -627,6 +625,7 @@ def _analyze_digit(kind: str, draws: list[tuple]) -> dict:
         "rule": f"每位 {d_lo}-{d_hi}，共 {digits} 位",
         "digits": digits,
         "digit_range": (d_lo, d_hi),
+        "split_at": cfg.get("split_at"),
         "table": table,
         "pos_freq": pos_freq,
         "sums": sums,
@@ -694,29 +693,37 @@ h1{text-align:center;font-size:22px;margin-bottom:6px}
 table{width:100%;border-collapse:collapse;font-size:12px}
 th,td{padding:6px 4px;text-align:center;border-bottom:1px solid #eee}
 th{background:#f8f9fa;color:#555;font-weight:600;white-space:nowrap}
+/* 号码列表头/单元格统一左对齐，和号码球对齐 */
+th.num-col, td.num-col{text-align:left;white-space:nowrap;padding-left:8px}
 tr.latest td{background:#fff8e1;font-weight:bold}
 .ball{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;
-  padding:0 1px;border-radius:50%;color:#fff;font-size:12px;font-weight:bold;margin:0 1px}
+  padding:0 1px;border-radius:50%;color:#fff;font-size:12px;font-weight:bold;margin:0 2px}
 .ball.z0,.freq-item.z0{background:var(--z0)}
 .ball.z1,.freq-item.z1{background:var(--z1)}
 .ball.z2,.freq-item.z2{background:var(--z2)}
 .ball.back{background:#8e44ad}
+/* 前区/后区 之间的分隔符 */
+.ball-sep{display:inline-block;color:#b2bec3;font-weight:bold;font-size:14px;
+  margin:0 6px;vertical-align:middle;line-height:1}
 .freq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px 3px}
 .freq-item{position:relative;display:flex;align-items:center;justify-content:center;
   width:34px;height:34px;border-radius:50%;color:#fff;font-size:12px;font-weight:bold;
   margin:0 auto;border:2px solid transparent;flex:none}
-.freq-item .cnt{position:absolute;right:-3px;bottom:-3px;min-width:15px;height:15px;padding:0 3px;
-  border-radius:8px;background:#333;color:#fff;font-size:9px;font-weight:bold;
-  display:flex;align-items:center;justify-content:center;line-height:1}
+/* 出现次数角标：统一黑底白字 + 白描边，任何彩球上都醒目 */
+.freq-item .cnt{position:absolute;right:-4px;bottom:-4px;
+  min-width:16px;height:16px;padding:0 4px;border-radius:9px;
+  background:#1a1a1a;color:#fff;font-size:9px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;line-height:1;
+  border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);z-index:2}
 .freq-item.hot{box-shadow:0 0 0 2px var(--hot)}
 .freq-item.cold{opacity:.35}
 .back-grid{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-.pos-block{margin-bottom:14px}
-.pos-block .pos-label{font-size:12px;color:#666;margin-bottom:6px;font-weight:bold}
-/* 数字型：每位固定 10 列 grid，整齐排一行 */
-.pos-grid{display:grid;grid-template-columns:repeat(10,34px);
-  justify-content:center;gap:6px 6px}
-.pos-grid .freq-item{width:30px;height:30px;font-size:11px;margin:0}
+/* 位置频率块：收紧间距 */
+.pos-block{margin-bottom:10px}
+.pos-block .pos-label{font-size:12px;color:#666;margin-bottom:4px;font-weight:bold}
+.pos-grid{display:grid;grid-template-columns:repeat(10,30px);
+  justify-content:center;gap:3px 4px}
+.pos-grid .freq-item{width:26px;height:26px;font-size:10.5px;margin:0}
 .combos{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
 .combo{background:#f8f9fa;border-radius:10px;padding:14px 16px;border-top:3px solid #bbb;overflow:hidden}
 .combo.hot{border-top-color:var(--hot)}
@@ -747,16 +754,19 @@ tr.latest td{background:#fff8e1;font-weight:bold}
   .dot{width:10px;height:10px}
   table{font-size:11px}
   th,td{padding:5px 2px}
+  th.num-col, td.num-col{padding-left:4px}
   .ball{min-width:20px;height:20px;font-size:10px;margin:0 1px;padding:0}
+  .ball-sep{margin:0 3px;font-size:12px}
   .freq-grid{grid-template-columns:repeat(auto-fill,minmax(28px,1fr));gap:5px 2px}
   .freq-item{width:26px;height:26px;font-size:10px}
-  .freq-item .cnt{min-width:12px;height:12px;font-size:8px;padding:0 2px;right:-2px;bottom:-2px}
-  .pos-block{margin-bottom:10px}
-  .pos-block .pos-label{font-size:11px;margin-bottom:4px}
-  .pos-grid{grid-template-columns:repeat(10,1fr);gap:4px 3px;justify-content:stretch}
-  .pos-grid .freq-item{width:100%;max-width:30px;height:auto;aspect-ratio:1/1;
+  .freq-item .cnt{min-width:13px;height:13px;font-size:8.5px;padding:0 3px;
+    right:-2px;bottom:-2px;border-width:1px}
+  /* 位置频率：手机端更紧凑 */
+  .pos-block{margin-bottom:8px}
+  .pos-block .pos-label{font-size:11px;margin-bottom:3px}
+  .pos-grid{grid-template-columns:repeat(10,1fr);gap:3px 2px;justify-content:stretch}
+  .pos-grid .freq-item{width:100%;max-width:28px;height:auto;aspect-ratio:1/1;
     font-size:10px;margin:0 auto}
-  .pos-grid .freq-item .cnt{font-size:7.5px;min-width:11px;height:11px;right:-1px;bottom:-1px}
   .combos{grid-template-columns:1fr;gap:8px}
   .combo{padding:10px 12px;border-radius:8px}
   .combo .tag{font-size:11px;margin-bottom:6px}
@@ -799,12 +809,15 @@ document.querySelectorAll('.tab').forEach(function(t){
 
 
 def _render_balls(front: list[int], front_zone: list[int], back: list[int]) -> str:
+    """双色球/大乐透号码球：前区 + 分隔符 + 后区"""
     parts = []
     for i, x in enumerate(front):
         z = front_zone[i] if i < len(front_zone) else 0
         parts.append(f'<span class="ball z{z}">{int(x):02d}</span>')
-    for x in back:
-        parts.append(f'<span class="ball back">{int(x):02d}</span>')
+    if back:
+        parts.append('<span class="ball-sep">+</span>')
+        for x in back:
+            parts.append(f'<span class="ball back">{int(x):02d}</span>')
     return "".join(parts)
 
 
@@ -824,11 +837,12 @@ def _render_panel_lotto(d: dict) -> str:
             f'<tr{tr_cls}>'
             f'<td>{row["issue"]}</td>'
             f'<td>{row["date"]}</td>'
-            f'<td style="text-align:left;white-space:nowrap">{balls_html}</td>'
+            f'<td class="num-col">{balls_html}</td>'
             f'</tr>'
         )
     table_html = (
-        '<table><thead><tr><th>期号</th><th>日期</th><th>号码</th></tr></thead>'
+        '<table><thead><tr><th>期号</th><th>日期</th>'
+        '<th class="num-col">号码</th></tr></thead>'
         '<tbody>' + "".join(rows) + '</tbody></table>'
     )
 
@@ -864,7 +878,7 @@ def _render_panel_lotto(d: dict) -> str:
             f'<div class="freq-item" style="width:{size}px;height:{size}px;'
             f'background:rgba(142,68,173,{opacity:.2f});border:2px solid #8e44ad" '
             f'title="后区 {num:02d} 出现 {cnt} 次">{num:02d}'
-            f'<span class="cnt" style="background:#8e44ad">{cnt}</span></div>'
+            f'<span class="cnt">{cnt}</span></div>'
         )
     back_freq_html = '<div class="back-grid">' + "".join(back_items) + '</div>'
 
@@ -880,7 +894,7 @@ def _render_panel_lotto(d: dict) -> str:
         combo_cards.append(
             f'<div class="combo {combo_cls[i]}">'
             f'<div class="tag">组合{i + 1} · {c["label"]}</div>'
-            f'<div class="line">{front_html}<span class="sep">|</span>{back_html}</div>'
+            f'<div class="line">{front_html}<span class="sep">+</span>{back_html}</div>'
             f'</div>'
         )
     combos_html = '<div class="combos">' + "".join(combo_cards) + '</div>'
@@ -921,30 +935,34 @@ def _render_panel_lotto(d: dict) -> str:
 def _render_panel_digit(d: dict) -> str:
     """通用数字型渲染：福彩3D / 排列五 / 七星彩"""
     kind = d["kind"]
-    cls = kind                          # ssq / dlt / plw / sd / qxc
+    cls = kind
     source_cls = d.get("source_cls", "source-static")
     colors = DIGIT_COLORS[kind]
+    digits = d["digits"]
+    split_at = d.get("split_at")
 
-    # ---- 近期开奖（每位独立颜色）----
+    # ---- 近期开奖（每位独立颜色；七星彩第6位后加分隔）----
     recent = d["table"][-TABLE_SHOW:] if d["table"] else []
     last_issue = recent[-1]["issue"] if recent else None
     rows = []
     for row in recent:
         tr_cls = ' class="latest"' if row["issue"] == last_issue else ''
-        balls_html = "".join(
-            f'<span class="ball" style="background:{colors[i % len(colors)]}">{int(x)}</span>'
-            for i, x in enumerate(row["nums"])
-        )
+        parts = []
+        for i, x in enumerate(row["nums"]):
+            if split_at is not None and i == split_at:
+                parts.append('<span class="ball-sep">+</span>')
+            color = colors[i % len(colors)]
+            parts.append(f'<span class="ball" style="background:{color}">{int(x)}</span>')
         rows.append(
             f'<tr{tr_cls}>'
             f'<td>{row["issue"]}</td>'
             f'<td>{row["date"]}</td>'
-            f'<td style="text-align:left;white-space:nowrap">{balls_html}</td>'
+            f'<td class="num-col">{"".join(parts)}</td>'
             f'</tr>'
         )
-    digits = d["digits"]
     table_html = (
-        f'<table><thead><tr><th>期号</th><th>日期</th><th>号码（{digits}位）</th></tr></thead>'
+        f'<table><thead><tr><th>期号</th><th>日期</th>'
+        f'<th class="num-col">号码（{digits}位）</th></tr></thead>'
         '<tbody>' + "".join(rows) + '</tbody></table>'
     )
 
@@ -962,7 +980,7 @@ def _render_panel_digit(d: dict) -> str:
                 f'<div class="freq-item" '
                 f'style="background:{color};opacity:{opacity:.2f};border:2px solid {color}" '
                 f'title="第{i+1}位 {num} 出现 {cnt} 次">{num}'
-                f'<span class="cnt" style="background:{color}">{cnt}</span></div>'
+                f'<span class="cnt">{cnt}</span></div>'
             )
         pos_blocks.append(
             f'<div class="pos-block">'
@@ -972,18 +990,20 @@ def _render_panel_digit(d: dict) -> str:
         )
     pos_freq_html = "".join(pos_blocks)
 
-    # ---- 参考组合（每位独立颜色）----
+    # ---- 参考组合（每位独立颜色；七星彩加分隔）----
     combo_cls = ["dig-a", "dig-b", "dig-c"]
     combo_cards = []
     for i, c in enumerate(d["combos"]):
-        nums_html = "".join(
-            f'<span class="ball" style="background:{colors[j % len(colors)]}">{int(x)}</span>'
-            for j, x in enumerate(c["nums"])
-        )
+        parts = []
+        for j, x in enumerate(c["nums"]):
+            if split_at is not None and j == split_at:
+                parts.append('<span class="sep">+</span>')
+            color = colors[j % len(colors)]
+            parts.append(f'<span class="ball" style="background:{color}">{int(x)}</span>')
         combo_cards.append(
             f'<div class="combo {combo_cls[i]}">'
             f'<div class="tag">组合{i + 1} · {c["label"]}</div>'
-            f'<div class="line">{nums_html}</div>'
+            f'<div class="line">{"".join(parts)}</div>'
             f'</div>'
         )
     combos_html = '<div class="combos">' + "".join(combo_cards) + '</div>'

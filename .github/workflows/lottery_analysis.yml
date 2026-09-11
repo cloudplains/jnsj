@@ -2,8 +2,8 @@ name: lottery_analysis
 
 on:
   schedule:
-    - cron: '0 15 * * *'   # UTC 15:00 = 北京时间 23:00
-    - cron: '0 17 * * *'   # UTC 17:00 = 北京时间 次日 01:00
+    - cron: '0 14 * * *'   # UTC 14:00 = 北京时间 22:00
+    - cron: '0 18 * * *'   # UTC 18:00 = 北京时间 次日 02:00
   workflow_dispatch:
 
 # 防止两个定时任务重叠

@@ -8,6 +8,8 @@
 - 排列五 / 福彩3D / 七星彩: 500.com 镜像XML
 - 抓取成功自动写入本地缓存 lottery_cache/*.json
 - 数据源失败自动降级：实时 → 本地缓存 → 内置静态数据
+- 每彩种面板顶部有"最新开奖大字卡"，号码更醒目
+- 推荐组合附策略说明，一目了然
 - 表格仅显示最新 5 期，分析仍用全部抓取期数(默认15)
 - 不自动打开浏览器，适合服务器定时任务
 
@@ -48,6 +50,35 @@ DIGIT_COLORS = {
     "sd":  ["#e74c3c", "#e67e22", "#27ae60"],
     "plw": ["#e74c3c", "#e67e22", "#27ae60", "#2980b9", "#8e44ad"],
     "qxc": ["#e74c3c", "#e67e22", "#f39c12", "#27ae60", "#16a085", "#2980b9", "#8e44ad"],
+}
+
+# 组合策略说明（给推荐号码加一行小字）
+STRATEGY_HINTS = {
+    "ssq": {
+        "热号型": "近期出现频次最高的红球为主",
+        "邻号型": "以上期号码 ±1 为核心",
+        "均衡型": "冷号解冻 + 少量热号补位",
+    },
+    "dlt": {
+        "热号型": "近期出现频次最高的前区号",
+        "邻号型": "以上期号码 ±1 为核心",
+        "均衡型": "冷号解冻 + 少量热号补位",
+    },
+    "plw": {
+        "热号型": "每位取该位出现最多的数字",
+        "次热型": "每位取该位出现次多的数字",
+        "冷号型": "每位取该位出现最少的数字",
+    },
+    "sd": {
+        "热号型": "每位取该位出现最多的数字",
+        "次热型": "每位取该位出现次多的数字",
+        "冷号型": "每位取该位出现最少的数字",
+    },
+    "qxc": {
+        "热号型": "每位取该位出现最多的数字",
+        "次热型": "每位取该位出现次多的数字",
+        "冷号型": "每位取该位出现最少的数字",
+    },
 }
 
 CONFIG = {
@@ -701,6 +732,21 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .ball.back{background:#8e44ad}
 .ball-sep{display:inline-block;color:#b2bec3;font-weight:bold;font-size:14px;
   margin:0 6px;vertical-align:middle;line-height:1}
+/* ============= 新增：最新开奖大字卡 ============= */
+.latest-card{
+  background:linear-gradient(135deg,#fafbfe,#eef2f9);
+  border-radius:14px;padding:22px 14px;text-align:center;
+  border:1px solid #e8eef6;
+}
+.latest-meta{font-size:12px;color:#7f8c8d;margin-bottom:14px;letter-spacing:.5px}
+.latest-numbers{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px 0}
+.ball.big{
+  min-width:46px;height:46px;font-size:18px;font-weight:800;
+  margin:0 4px;padding:0 4px;
+  box-shadow:0 3px 8px rgba(0,0,0,.15),inset 0 -3px 5px rgba(0,0,0,.12),
+             inset 0 3px 5px rgba(255,255,255,.25);
+}
+.ball-sep.big{font-size:22px;margin:0 10px}
 .freq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px 3px}
 .freq-item{position:relative;display:flex;align-items:center;justify-content:center;
   width:34px;height:34px;border-radius:50%;color:#fff;font-size:12px;font-weight:bold;
@@ -726,12 +772,13 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .combo.dig-a{border-top-color:var(--plw)}
 .combo.dig-b{border-top-color:#3498db}
 .combo.dig-c{border-top-color:#95a5a6}
-/* tag 行改成两端对齐，右边放复制按钮 */
+/* tag 行两端对齐，右边放复制按钮 */
 .combo .tag{display:flex;justify-content:space-between;align-items:center;gap:8px;
-  font-size:12px;color:#7f8c8d;margin-bottom:8px}
+  font-size:12px;color:#7f8c8d;margin-bottom:4px}
+/* 新增：策略说明小字 */
+.combo .strategy{font-size:11px;color:#95a5a6;margin-bottom:10px;line-height:1.5}
 .combo .line{display:flex;align-items:center;flex-wrap:nowrap;white-space:nowrap}
 .combo .sep{margin:0 6px;color:#bbb;font-weight:bold}
-/* 复制按钮 */
 .copy-btn{padding:2px 10px;border-radius:12px;border:1px solid #cbd5e0;
   background:#fff;color:#555;font-size:11px;font-weight:600;cursor:pointer;
   user-select:none;-webkit-tap-highlight-color:transparent;transition:.15s;
@@ -760,6 +807,11 @@ tr.latest td{background:#fff8e1;font-weight:bold}
   th.num-col, td.num-col{padding-left:4px}
   .ball{min-width:20px;height:20px;font-size:10px;margin:0 1px;padding:0}
   .ball-sep{margin:0 3px;font-size:12px}
+  /* 手机端大字卡适当缩小 */
+  .latest-card{padding:16px 8px;border-radius:12px}
+  .latest-meta{font-size:11px;margin-bottom:10px}
+  .ball.big{min-width:34px;height:34px;font-size:14px;margin:0 2px}
+  .ball-sep.big{font-size:16px;margin:0 6px}
   .freq-grid{grid-template-columns:repeat(auto-fill,minmax(28px,1fr));gap:5px 2px}
   .freq-item{width:26px;height:26px;font-size:10px}
   .freq-item .cnt{min-width:13px;height:13px;font-size:8.5px;padding:0 3px;
@@ -771,7 +823,8 @@ tr.latest td{background:#fff8e1;font-weight:bold}
     font-size:10px;margin:0 auto}
   .combos{grid-template-columns:1fr;gap:8px}
   .combo{padding:10px 12px;border-radius:8px}
-  .combo .tag{font-size:11px;margin-bottom:6px}
+  .combo .tag{font-size:11px;margin-bottom:3px}
+  .combo .strategy{font-size:10.5px;margin-bottom:8px}
   .combo .sep{margin:0 4px;font-size:13px}
   .copy-btn{padding:3px 9px;font-size:10px}
   .note{padding:10px 12px;font-size:11px;line-height:1.6}
@@ -854,15 +907,20 @@ document.querySelectorAll('.copy-btn').forEach(function(btn){
 """
 
 
-def _render_balls(front: list[int], front_zone: list[int], back: list[int]) -> str:
+def _render_balls(front: list[int], front_zone: list[int], back: list[int],
+                  big: bool = False) -> str:
+    """号码球渲染（big=True 用于最新开奖大字卡）"""
+    cls = "ball big" if big else "ball"
     parts = []
     for i, x in enumerate(front):
         z = front_zone[i] if i < len(front_zone) else 0
-        parts.append(f'<span class="ball z{z}">{int(x):02d}</span>')
+        parts.append(f'<span class="{cls} z{z}">{int(x):02d}</span>')
     if back:
-        parts.append('<span class="ball-sep">+</span>')
+        sep_cls = "ball-sep big" if big else "ball-sep"
+        parts.append(f'<span class="{sep_cls}">+</span>')
         for x in back:
-            parts.append(f'<span class="ball back">{int(x):02d}</span>')
+            back_cls = f'{cls} back'
+            parts.append(f'<span class="{back_cls}">{int(x):02d}</span>')
     return "".join(parts)
 
 
@@ -880,11 +938,58 @@ def _copy_text_digit(nums: list[int], split_at) -> str:
     return " ".join(parts)
 
 
+def _render_latest_card_lotto(d: dict) -> str:
+    """双色球/大乐透：最新开奖大字卡"""
+    if not d["table"]:
+        return ""
+    last = d["table"][-1]
+    kind = d["kind"]
+    cls = "ssq" if kind == "ssq" else "dlt"
+    balls = _render_balls(last["front"], last["front_zone"], last["back"], big=True)
+    return f"""
+  <div class="card">
+    <h2 class="{cls}">最新开奖</h2>
+    <div class="latest-card">
+      <div class="latest-meta">第 {last['issue']} 期 · {last['date']}</div>
+      <div class="latest-numbers">{balls}</div>
+    </div>
+  </div>
+"""
+
+
+def _render_latest_card_digit(d: dict) -> str:
+    """排列五/福彩3D/七星彩：最新开奖大字卡"""
+    if not d["table"]:
+        return ""
+    last = d["table"][-1]
+    kind = d["kind"]
+    colors = DIGIT_COLORS[kind]
+    split_at = d.get("split_at")
+    parts = []
+    for i, x in enumerate(last["nums"]):
+        if split_at is not None and i == split_at:
+            parts.append('<span class="ball-sep big">+</span>')
+        color = colors[i % len(colors)]
+        parts.append(f'<span class="ball big" style="background:{color}">{int(x)}</span>')
+    return f"""
+  <div class="card">
+    <h2 class="{kind}">最新开奖</h2>
+    <div class="latest-card">
+      <div class="latest-meta">第 {last['issue']} 期 · {last['date']}</div>
+      <div class="latest-numbers">{"".join(parts)}</div>
+    </div>
+  </div>
+"""
+
+
 def _render_panel_lotto(d: dict) -> str:
     kind = d["kind"]
     cls = "ssq" if kind == "ssq" else "dlt"
     source_cls = d.get("source_cls", "source-static")
     zones = d["zones"]
+    hints = STRATEGY_HINTS.get(kind, {})
+
+    latest_card = _render_latest_card_lotto(d)
 
     recent = d["table"][-TABLE_SHOW:] if d["table"] else []
     last_issue = recent[-1]["issue"] if recent else None
@@ -951,12 +1056,15 @@ def _render_panel_lotto(d: dict) -> str:
         )
         back_html = "".join(f'<span class="ball back">{int(x):02d}</span>' for x in c["back"])
         copy_text = _copy_text_lotto(c["front"], c["back"])
+        hint = hints.get(c["label"], "")
+        hint_html = f'<div class="strategy">{hint}</div>' if hint else ""
         combo_cards.append(
             f'<div class="combo {combo_cls[i]}">'
             f'<div class="tag">'
             f'<span>组合{i + 1} · {c["label"]}</span>'
             f'<button type="button" class="copy-btn" data-copy="{copy_text}">📋 复制</button>'
             f'</div>'
+            f'{hint_html}'
             f'<div class="line">{front_html}<span class="sep">+</span>{back_html}</div>'
             f'</div>'
         )
@@ -971,7 +1079,7 @@ def _render_panel_lotto(d: dict) -> str:
       <span>分析期数：{d['count']}</span>
     </div>
   </div>
-
+{latest_card}
   <div class="card">
     <h2 class="{cls}">近期开奖（最新 {TABLE_SHOW} 期，最新一期置底高亮）</h2>
     {table_html}
@@ -1002,6 +1110,9 @@ def _render_panel_digit(d: dict) -> str:
     colors = DIGIT_COLORS[kind]
     digits = d["digits"]
     split_at = d.get("split_at")
+    hints = STRATEGY_HINTS.get(kind, {})
+
+    latest_card = _render_latest_card_digit(d)
 
     recent = d["table"][-TABLE_SHOW:] if d["table"] else []
     last_issue = recent[-1]["issue"] if recent else None
@@ -1060,12 +1171,15 @@ def _render_panel_digit(d: dict) -> str:
             color = colors[j % len(colors)]
             parts.append(f'<span class="ball" style="background:{color}">{int(x)}</span>')
         copy_text = _copy_text_digit(c["nums"], split_at)
+        hint = hints.get(c["label"], "")
+        hint_html = f'<div class="strategy">{hint}</div>' if hint else ""
         combo_cards.append(
             f'<div class="combo {combo_cls[i]}">'
             f'<div class="tag">'
             f'<span>组合{i + 1} · {c["label"]}</span>'
             f'<button type="button" class="copy-btn" data-copy="{copy_text}">📋 复制</button>'
             f'</div>'
+            f'{hint_html}'
             f'<div class="line">{"".join(parts)}</div>'
             f'</div>'
         )
@@ -1086,7 +1200,7 @@ def _render_panel_digit(d: dict) -> str:
       <span>最近 {d['count']} 期和值均值：<b>{d['avg_sum']}</b>（0-{sum_max} 区间）</span>
     </div>
   </div>
-
+{latest_card}
   <div class="card">
     <h2 class="{cls}">近期开奖（最新 {TABLE_SHOW} 期，最新一期置底高亮）</h2>
     {table_html}

@@ -29,10 +29,6 @@
       "name": "小苹果"
     },
     {
-      "url": "https://6800.kstore.vip/fish.json",
-      "name": "摸鱼(凯速)"
-    },
-    {
       "url": "https://9280.kstore.vip/newwex.json",
       "name": "牛二"
     },
@@ -138,8 +134,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 34,
-  "invalid_count": 0,
-  "last_validated": "2026-09-11 06:05:10",
+  "valid_count": 33,
+  "invalid_count": 1,
+  "last_validated": "2026-09-11 14:07:37",
   "original_count": 34
 }

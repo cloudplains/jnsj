@@ -1,4 +1,4 @@
-name: Daily Lottery Analysis
+name: lottery_analysis
 
 on:
   schedule:

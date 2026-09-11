@@ -45,9 +45,9 @@ TABLE_SHOW = 5
 
 # 数字型彩种每位颜色（按位从左到右）
 DIGIT_COLORS = {
-    "sd":  ["#e74c3c", "#e67e22", "#27ae60"],                                   # 福彩3D   3位
-    "plw": ["#e74c3c", "#e67e22", "#27ae60", "#2980b9", "#8e44ad"],              # 排列五   5位
-    "qxc": ["#e74c3c", "#e67e22", "#f39c12", "#27ae60", "#16a085", "#2980b9", "#8e44ad"],  # 七星彩 7位
+    "sd":  ["#e74c3c", "#e67e22", "#27ae60"],
+    "plw": ["#e74c3c", "#e67e22", "#27ae60", "#2980b9", "#8e44ad"],
+    "qxc": ["#e74c3c", "#e67e22", "#f39c12", "#27ae60", "#16a085", "#2980b9", "#8e44ad"],
 }
 
 CONFIG = {
@@ -149,7 +149,7 @@ CONFIG = {
         "name": "七星彩", "code": "qxc", "source": "500qxc",
         "digits": 7,
         "digit_range": (0, 9),
-        "split_at": 6,     # 前 6 位 + 第 7 位（特别号）分开
+        "split_at": 6,
         "static": [
             ("26102", "2026-09-08", [1, 3, 5, 7, 9, 2, 4]),
             ("26101", "2026-09-07", [2, 4, 6, 8, 0, 1, 3]),
@@ -170,10 +170,8 @@ CONFIG = {
     },
 }
 
-# 数字型彩种集合（3D / 排列五 / 七星彩）
 DIGIT_KINDS = {"sd", "plw", "qxc"}
 
-# ---------------- 本地缓存 ----------------
 CACHE_DIR = Path(__file__).resolve().parent / "lottery_cache"
 
 
@@ -693,7 +691,6 @@ h1{text-align:center;font-size:22px;margin-bottom:6px}
 table{width:100%;border-collapse:collapse;font-size:12px}
 th,td{padding:6px 4px;text-align:center;border-bottom:1px solid #eee}
 th{background:#f8f9fa;color:#555;font-weight:600;white-space:nowrap}
-/* 号码列表头/单元格统一左对齐，和号码球对齐 */
 th.num-col, td.num-col{text-align:left;white-space:nowrap;padding-left:8px}
 tr.latest td{background:#fff8e1;font-weight:bold}
 .ball{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;
@@ -702,14 +699,12 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .ball.z1,.freq-item.z1{background:var(--z1)}
 .ball.z2,.freq-item.z2{background:var(--z2)}
 .ball.back{background:#8e44ad}
-/* 前区/后区 之间的分隔符 */
 .ball-sep{display:inline-block;color:#b2bec3;font-weight:bold;font-size:14px;
   margin:0 6px;vertical-align:middle;line-height:1}
 .freq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px 3px}
 .freq-item{position:relative;display:flex;align-items:center;justify-content:center;
   width:34px;height:34px;border-radius:50%;color:#fff;font-size:12px;font-weight:bold;
   margin:0 auto;border:2px solid transparent;flex:none}
-/* 出现次数角标：统一黑底白字 + 白描边，任何彩球上都醒目 */
 .freq-item .cnt{position:absolute;right:-4px;bottom:-4px;
   min-width:16px;height:16px;padding:0 4px;border-radius:9px;
   background:#1a1a1a;color:#fff;font-size:9px;font-weight:800;
@@ -718,7 +713,6 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .freq-item.hot{box-shadow:0 0 0 2px var(--hot)}
 .freq-item.cold{opacity:.35}
 .back-grid{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-/* 位置频率块：收紧间距 */
 .pos-block{margin-bottom:10px}
 .pos-block .pos-label{font-size:12px;color:#666;margin-bottom:4px;font-weight:bold}
 .pos-grid{display:grid;grid-template-columns:repeat(10,30px);
@@ -732,15 +726,24 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .combo.dig-a{border-top-color:var(--plw)}
 .combo.dig-b{border-top-color:#3498db}
 .combo.dig-c{border-top-color:#95a5a6}
-.combo .tag{font-size:12px;color:#7f8c8d;margin-bottom:8px}
+/* tag 行改成两端对齐，右边放复制按钮 */
+.combo .tag{display:flex;justify-content:space-between;align-items:center;gap:8px;
+  font-size:12px;color:#7f8c8d;margin-bottom:8px}
 .combo .line{display:flex;align-items:center;flex-wrap:nowrap;white-space:nowrap}
 .combo .sep{margin:0 6px;color:#bbb;font-weight:bold}
+/* 复制按钮 */
+.copy-btn{padding:2px 10px;border-radius:12px;border:1px solid #cbd5e0;
+  background:#fff;color:#555;font-size:11px;font-weight:600;cursor:pointer;
+  user-select:none;-webkit-tap-highlight-color:transparent;transition:.15s;
+  font-family:inherit;line-height:1.6;white-space:nowrap;flex:none}
+.copy-btn:hover{background:#eef2f7;border-color:#a0aec0}
+.copy-btn:active{transform:scale(.96)}
+.copy-btn.copied{background:#27ae60;border-color:#27ae60;color:#fff}
 .note{background:#fff9e6;border:1px solid #ffe08a;border-radius:10px;padding:12px 16px;
   color:#8a6d00;font-size:12px;text-align:center;line-height:1.7}
 .summary{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#555;margin-top:8px}
 .summary b{color:#2c3e50}
 
-/* ============ 手机端优化 ============ */
 @media(max-width:600px){
   body{padding:8px;font-size:13px}
   h1{font-size:18px;margin-bottom:4px}
@@ -761,7 +764,6 @@ tr.latest td{background:#fff8e1;font-weight:bold}
   .freq-item{width:26px;height:26px;font-size:10px}
   .freq-item .cnt{min-width:13px;height:13px;font-size:8.5px;padding:0 3px;
     right:-2px;bottom:-2px;border-width:1px}
-  /* 位置频率：手机端更紧凑 */
   .pos-block{margin-bottom:8px}
   .pos-block .pos-label{font-size:11px;margin-bottom:3px}
   .pos-grid{grid-template-columns:repeat(10,1fr);gap:3px 2px;justify-content:stretch}
@@ -771,6 +773,7 @@ tr.latest td{background:#fff8e1;font-weight:bold}
   .combo{padding:10px 12px;border-radius:8px}
   .combo .tag{font-size:11px;margin-bottom:6px}
   .combo .sep{margin:0 4px;font-size:13px}
+  .copy-btn{padding:3px 9px;font-size:10px}
   .note{padding:10px 12px;font-size:11px;line-height:1.6}
   .summary{font-size:11px;gap:8px;margin-top:6px}
 }
@@ -802,6 +805,49 @@ document.querySelectorAll('.tab').forEach(function(t){
     if(p) p.classList.add('active');
   };
 });
+
+/* ---- 复制功能：优先 Clipboard API，http 环境回退 execCommand ---- */
+function _fallbackCopy(text, done){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.top = '0';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, text.length);
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+  document.body.removeChild(ta);
+  if(ok) done(); else alert('复制失败，请手动选择号码');
+}
+
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var text = btn.dataset.copy || '';
+    if(!text) return;
+    var finish = function(){
+      var old = btn.textContent;
+      btn.textContent = '✓ 已复制';
+      btn.classList.add('copied');
+      btn.disabled = true;
+      setTimeout(function(){
+        btn.textContent = old;
+        btn.classList.remove('copied');
+        btn.disabled = false;
+      }, 1500);
+    };
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(finish).catch(function(){
+        _fallbackCopy(text, finish);
+      });
+    } else {
+      _fallbackCopy(text, finish);
+    }
+  });
+});
 </script>
 </body>
 </html>
@@ -809,7 +855,6 @@ document.querySelectorAll('.tab').forEach(function(t){
 
 
 def _render_balls(front: list[int], front_zone: list[int], back: list[int]) -> str:
-    """双色球/大乐透号码球：前区 + 分隔符 + 后区"""
     parts = []
     for i, x in enumerate(front):
         z = front_zone[i] if i < len(front_zone) else 0
@@ -819,6 +864,20 @@ def _render_balls(front: list[int], front_zone: list[int], back: list[int]) -> s
         for x in back:
             parts.append(f'<span class="ball back">{int(x):02d}</span>')
     return "".join(parts)
+
+
+def _copy_text_lotto(front: list[int], back: list[int]) -> str:
+    s = " ".join(f"{int(x):02d}" for x in front)
+    if back:
+        s += " + " + " ".join(f"{int(x):02d}" for x in back)
+    return s
+
+
+def _copy_text_digit(nums: list[int], split_at) -> str:
+    parts = [str(int(x)) for x in nums]
+    if split_at is not None and 0 < split_at < len(parts):
+        return " ".join(parts[:split_at]) + " + " + " ".join(parts[split_at:])
+    return " ".join(parts)
 
 
 def _render_panel_lotto(d: dict) -> str:
@@ -891,9 +950,13 @@ def _render_panel_lotto(d: dict) -> str:
             for j, x in enumerate(c["front"])
         )
         back_html = "".join(f'<span class="ball back">{int(x):02d}</span>' for x in c["back"])
+        copy_text = _copy_text_lotto(c["front"], c["back"])
         combo_cards.append(
             f'<div class="combo {combo_cls[i]}">'
-            f'<div class="tag">组合{i + 1} · {c["label"]}</div>'
+            f'<div class="tag">'
+            f'<span>组合{i + 1} · {c["label"]}</span>'
+            f'<button type="button" class="copy-btn" data-copy="{copy_text}">📋 复制</button>'
+            f'</div>'
             f'<div class="line">{front_html}<span class="sep">+</span>{back_html}</div>'
             f'</div>'
         )
@@ -933,7 +996,6 @@ def _render_panel_lotto(d: dict) -> str:
 
 
 def _render_panel_digit(d: dict) -> str:
-    """通用数字型渲染：福彩3D / 排列五 / 七星彩"""
     kind = d["kind"]
     cls = kind
     source_cls = d.get("source_cls", "source-static")
@@ -941,7 +1003,6 @@ def _render_panel_digit(d: dict) -> str:
     digits = d["digits"]
     split_at = d.get("split_at")
 
-    # ---- 近期开奖（每位独立颜色；七星彩第6位后加分隔）----
     recent = d["table"][-TABLE_SHOW:] if d["table"] else []
     last_issue = recent[-1]["issue"] if recent else None
     rows = []
@@ -966,7 +1027,6 @@ def _render_panel_digit(d: dict) -> str:
         '<tbody>' + "".join(rows) + '</tbody></table>'
     )
 
-    # ---- 每一位的位置频率 ----
     pos_blocks = []
     for i, pf in enumerate(d["pos_freq"]):
         color = colors[i % len(colors)]
@@ -990,7 +1050,6 @@ def _render_panel_digit(d: dict) -> str:
         )
     pos_freq_html = "".join(pos_blocks)
 
-    # ---- 参考组合（每位独立颜色；七星彩加分隔）----
     combo_cls = ["dig-a", "dig-b", "dig-c"]
     combo_cards = []
     for i, c in enumerate(d["combos"]):
@@ -1000,9 +1059,13 @@ def _render_panel_digit(d: dict) -> str:
                 parts.append('<span class="sep">+</span>')
             color = colors[j % len(colors)]
             parts.append(f'<span class="ball" style="background:{color}">{int(x)}</span>')
+        copy_text = _copy_text_digit(c["nums"], split_at)
         combo_cards.append(
             f'<div class="combo {combo_cls[i]}">'
-            f'<div class="tag">组合{i + 1} · {c["label"]}</div>'
+            f'<div class="tag">'
+            f'<span>组合{i + 1} · {c["label"]}</span>'
+            f'<button type="button" class="copy-btn" data-copy="{copy_text}">📋 复制</button>'
+            f'</div>'
             f'<div class="line">{"".join(parts)}</div>'
             f'</div>'
         )

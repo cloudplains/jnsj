@@ -127,15 +127,11 @@
     {
       "url": "https://pastebin.com/raw/gtbKvnE1",
       "name": "苹果CMS资源站"
-    },
-    {
-      "url": "http://我不是.摸鱼儿.top",
-      "name": "摸鱼儿接口"
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 33,
+  "valid_count": 32,
   "invalid_count": 1,
-  "last_validated": "2026-09-11 14:07:37",
-  "original_count": 34
+  "last_validated": "2026-09-12 05:33:11",
+  "original_count": 33
 }

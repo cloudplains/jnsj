@@ -21,10 +21,6 @@
       "name": "挺好"
     },
     {
-      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
-      "name": "道长"
-    },
-    {
       "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
       "name": "小苹果"
     },
@@ -97,10 +93,6 @@
       "name": "动漫"
     },
     {
-      "url": "https://17264.kstore.space/哈基米.png",
-      "name": "哈基米"
-    },
-    {
       "url": "https://dxawi.github.io/0/0.json",
       "name": "dxawi"
     },
@@ -130,8 +122,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 32,
-  "invalid_count": 0,
-  "last_validated": "2026-09-12 13:24:35",
+  "valid_count": 30,
+  "invalid_count": 2,
+  "last_validated": "2026-09-13 05:52:29",
   "original_count": 32
 }

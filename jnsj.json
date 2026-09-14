@@ -21,10 +21,6 @@
       "name": "挺好"
     },
     {
-      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
-      "name": "小苹果"
-    },
-    {
       "url": "https://9280.kstore.vip/newwex.json",
       "name": "牛二"
     },
@@ -122,8 +118,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 30,
-  "invalid_count": 0,
-  "last_validated": "2026-09-13 14:09:15",
+  "valid_count": 29,
+  "invalid_count": 1,
+  "last_validated": "2026-09-14 05:59:24",
   "original_count": 30
 }

@@ -97,10 +97,6 @@
       "name": "宝盒VIP"
     },
     {
-      "url": "http://fmys.top/fmys.json",
-      "name": "驸马"
-    },
-    {
       "url": "https://raw.githubusercontent.com/gaotianliuyun/gao/master/js.json",
       "name": "高天流云"
     },
@@ -118,8 +114,8 @@
     }
   ],
   "last_updated": "2026-07-24",
-  "valid_count": 29,
-  "invalid_count": 0,
-  "last_validated": "2026-09-15 06:00:21",
+  "valid_count": 28,
+  "invalid_count": 1,
+  "last_validated": "2026-09-15 14:41:53",
   "original_count": 29
 }

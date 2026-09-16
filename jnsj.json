@@ -121,10 +121,6 @@
       "name": "饭硬一线"
     },
     {
-      "url": "http://itv666.cc/aowu/config.webp",
-      "name": "嗷呜线路"
-    },
-    {
       "url": "https://api.hgyx.vip/hgyx.json",
       "name": "嗨哥魔改"
     },
@@ -206,8 +202,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 51,
-  "invalid_count": 8,
-  "last_validated": "2026-09-16 07:45:42",
-  "original_count": 59
+  "valid_count": 50,
+  "invalid_count": 1,
+  "last_validated": "2026-09-16 14:42:24",
+  "original_count": 51
 }

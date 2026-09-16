@@ -121,24 +121,12 @@
       "name": "饭硬一线"
     },
     {
-      "url": "http://www.小不点.com",
-      "name": "小不点线"
-    },
-    {
       "url": "http://itv666.cc/aowu/config.webp",
       "name": "嗷呜线路"
     },
     {
       "url": "https://api.hgyx.vip/hgyx.json",
       "name": "嗨哥魔改"
-    },
-    {
-      "url": "https://xn--biib-rp5imh.v.nxog.top/apitv.php",
-      "name": "讴歌线路 装歌API"
-    },
-    {
-      "url": "https://play.iptv365.org/香雅情/api.json",
-      "name": "香雅情线"
     },
     {
       "url": "https://zhangqun1818.serv00.net/zq/api.json",
@@ -157,16 +145,8 @@
       "name": "王二小线"
     },
     {
-      "url": "https://6800.kstore.vip/fish.json",
-      "name": "摸鱼线路"
-    },
-    {
       "url": "https://szyyds.cn/tv/x.json",
       "name": "小马线路"
-    },
-    {
-      "url": "http://fmys.top/fmys.json",
-      "name": "驸马线路"
     },
     {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhoujck/config/main/box",
@@ -201,10 +181,6 @@
       "name": "俊宇线路"
     },
     {
-      "url": "http://rihou.cc:88/demoabc.json",
-      "name": "VOX线路"
-    },
-    {
       "url": "https://clun.top/box.json",
       "name": "clun线路"
     },
@@ -227,19 +203,11 @@
     {
       "url": "http://xhztv.top/xhz",
       "name": "聚玩线路"
-    },
-    {
-      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
-      "name": "道长线路"
-    },
-    {
-      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
-      "name": "小苹果线"
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 59,
-  "invalid_count": 0,
-  "last_validated": "2026-09-15 14:41:53",
+  "valid_count": 51,
+  "invalid_count": 8,
+  "last_validated": "2026-09-16 07:45:42",
   "original_count": 59
 }

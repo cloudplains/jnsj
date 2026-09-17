@@ -165,10 +165,6 @@
       "name": "肥猫线路"
     },
     {
-      "url": "http://hucongrong.web3v.work/风水/fxz/fxz.json",
-      "name": "分享者线"
-    },
-    {
       "url": "http://tjf1100.serv00.net",
       "name": "传说线路"
     },
@@ -202,8 +198,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 50,
-  "invalid_count": 0,
-  "last_validated": "2026-09-17 05:58:07",
+  "valid_count": 49,
+  "invalid_count": 1,
+  "last_validated": "2026-09-17 14:46:16",
   "original_count": 50
 }

@@ -3,13 +3,13 @@
 五彩种自动分析脚本 (双色球 + 大乐透 + 排列五 + 福彩3D + 七星彩)
 运行后生成 HTML 网页报告
 
-- 双色球: 中国福彩官网实时接口
-- 大乐透: 500.com 镜像XML(主源) + 中国体彩官网(备选)
-- 排列五 / 福彩3D / 七星彩: 500.com 镜像XML
+- 双色球 / 大乐透: 500.com HTML 表格(含奖池 + 一等奖)
+- 排列五 / 福彩3D / 七星彩: 500.com 镜像 XML
 - 抓取成功自动写入本地缓存 lottery_cache/*.json
 - 数据源失败自动降级：实时 → 本地缓存 → 内置静态数据
-- 每彩种面板顶部有"最新开奖大字卡"，号码更醒目
-- 推荐组合附策略说明，一目了然
+- 每彩种面板顶部有"最新开奖大字卡" + 奖池
+- 双色球/大乐透近期开奖附一等奖(注数×奖金)
+- 大乐透追加一等奖金 = 基本一等奖金 × 80%(官方规则)
 - 表格仅显示最新 5 期，分析仍用全部抓取期数(默认15)
 - 不自动打开浏览器，适合服务器定时任务
 
@@ -25,8 +25,8 @@
 from __future__ import annotations
 
 import json
-import os
 import random
+import re
 import sys
 from collections import Counter
 from datetime import datetime
@@ -37,22 +37,34 @@ try:
 except ImportError:
     requests = None
 
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    BeautifulSoup = None
+
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    "Referer": "https://webapi.sporttery.cn/",
-    "Accept": "application/json",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
 }
 
 TABLE_SHOW = 5
 
-# 数字型彩种每位颜色（按位从左到右）
+# ===== 一等奖参考默认值(抓不到真实数据时使用) =====
+DEFAULT_PRIZE_SSQ = 5000000
+DEFAULT_PRIZE_DLT_BASIC = 5000000
+# 大乐透追加奖金 = 基本奖金 × 80%
+DLT_ADD_RATIO = 0.8
+
+# 数字型彩种每位颜色(按位从左到右)
 DIGIT_COLORS = {
     "sd":  ["#e74c3c", "#e67e22", "#27ae60"],
     "plw": ["#e74c3c", "#e67e22", "#27ae60", "#2980b9", "#8e44ad"],
     "qxc": ["#e74c3c", "#e67e22", "#f39c12", "#27ae60", "#16a085", "#2980b9", "#8e44ad"],
 }
 
-# 组合策略说明（给推荐号码加一行小字）
+# 组合策略说明
 STRATEGY_HINTS = {
     "ssq": {
         "热号型": "近期出现频次最高的红球为主",
@@ -83,7 +95,7 @@ STRATEGY_HINTS = {
 
 CONFIG = {
     "ssq": {
-        "name": "双色球", "code": "ssq", "source": "cwl",
+        "name": "双色球", "code": "ssq", "source": "500ssq_html",
         "front_range": (1, 33), "front_pick": 6,
         "back_range": (1, 16),  "back_pick": 1,
         "zones": [(1, 11), (12, 22), (23, 33)],
@@ -107,7 +119,7 @@ CONFIG = {
         ],
     },
     "dlt": {
-        "name": "大乐透", "code": "dlt", "source": "500", "game_no": "350102",
+        "name": "大乐透", "code": "dlt", "source": "500html",
         "front_range": (1, 35), "front_pick": 5,
         "back_range": (1, 12),  "back_pick": 2,
         "zones": [(1, 12), (13, 24), (25, 35)],
@@ -210,17 +222,26 @@ def _cache_path(code: str) -> Path:
     return CACHE_DIR / f"{code}.json"
 
 
-def _save_cache(code: str, draws: list[tuple]) -> None:
+def _save_cache(code: str, draws: list, extras: dict) -> None:
     try:
         CACHE_DIR.mkdir(exist_ok=True)
         items = []
         for d in draws:
             if len(d) == 4:
                 n, dt, f, b = d
-                items.append({"issue": n, "date": dt, "front": list(f), "back": list(b)})
+                e = (extras or {}).get(str(n), {}) or {}
+                items.append({
+                    "issue": n, "date": dt,
+                    "front": list(f), "back": list(b),
+                    "extra": e,
+                })
             elif len(d) == 3:
                 n, dt, nums = d
-                items.append({"issue": n, "date": dt, "nums": list(nums)})
+                e = (extras or {}).get(str(n), {}) or {}
+                items.append({
+                    "issue": n, "date": dt,
+                    "nums": list(nums), "extra": e,
+                })
         payload = {
             "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "draws": items,
@@ -232,139 +253,221 @@ def _save_cache(code: str, draws: list[tuple]) -> None:
         print(f"  [warn] 写入缓存失败({code}): {e}", flush=True)
 
 
-def _load_cache(code: str, issue_count: int) -> tuple[list[tuple] | None, str]:
+def _load_cache(code: str, issue_count: int):
+    """返回 (draws, extras, updated_at)；失败返回 None"""
     p = _cache_path(code)
     if not p.exists():
-        return None, ""
+        return None
     try:
         payload = json.loads(p.read_text(encoding="utf-8"))
         draws = []
+        extras = {}
         for x in payload.get("draws", []):
+            issue = str(x.get("issue"))
+            date = str(x.get("date"))
+            e = x.get("extra") or {}
+            extras[issue] = e
             if "nums" in x:
-                draws.append((str(x["issue"]), str(x["date"]),
-                              [int(v) for v in x["nums"]]))
+                draws.append((issue, date, [int(v) for v in x["nums"]]))
             else:
-                draws.append((str(x["issue"]), str(x["date"]),
+                draws.append((issue, date,
                               [int(v) for v in x["front"]],
                               [int(v) for v in x["back"]]))
         if not draws:
-            return None, ""
-        return draws[-issue_count:], payload.get("updated_at", "")
+            return None
+        return draws[-issue_count:], extras, payload.get("updated_at", "")
     except Exception as e:
         print(f"  [warn] 读取缓存失败({code}): {e}", flush=True)
-        return None, ""
+        return None
 
 
 # ==================== 数据抓取 ====================
 
-def _norm_date(s: str) -> str:
-    return (s or "").split("(")[0].strip()
+def _safe_int(v):
+    """解析带逗号的数字字符串，如 '10,000,000' -> 10000000"""
+    if v is None or v == "":
+        return None
+    try:
+        return int(float(str(v).replace(",", "").strip()))
+    except (ValueError, TypeError):
+        return None
 
 
-def fetch_ssq(issue_count: int) -> list[tuple]:
+def _extract_prize_from_cells(cells, pool_idx, cnt_idx, amt_idx):
+    """从指定列位置尝试提取 (奖池, 注数, 奖金)，并做合理性校验"""
+    if pool_idx >= len(cells) or cnt_idx >= len(cells) or amt_idx >= len(cells):
+        return None, None, None
+    pool = _safe_int(cells[pool_idx])
+    cnt = _safe_int(cells[cnt_idx]) or 0
+    amt = _safe_int(cells[amt_idx]) or 0
+    # 合理性：注数应 < 1000，奖金至少 10 万元
+    if 0 < cnt < 1000 and amt > 100000:
+        if pool is not None and pool <= 0:
+            pool = None
+        return pool, cnt, amt
+    return None, None, None
+
+
+def fetch_ssq_html(issue_count: int):
+    """
+    双色球：500.com HTML 表格(含奖池 + 一等奖)。
+    URL: https://datachart.500.com/ssq/history/newinc/history.php
+
+    列布局有两种：
+      含"快乐星期天"列(16 列)：
+        0=期号 | 1-6=红球 | 7=蓝球 | 8=快乐星期天 | 9=奖池 | 10=一等奖注数 |
+        11=一等奖金 | 12=二等奖注数 | 13=二等奖金 | 14=总投注额 | 15=开奖日期
+      不含"快乐星期天"列(15 列)：
+        0=期号 | 1-6=红球 | 7=蓝球 | 8=奖池 | 9=一等奖注数 |
+        10=一等奖金 | 11=二等奖注数 | 12=二等奖金 | 13=总投注额 | 14=开奖日期
+
+    代码会同时尝试两种布局，用"一等奖注数 < 1000"的合理性校验自动选择。
+    """
     if requests is None:
         raise RuntimeError("未安装 requests")
-    url = "https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice"
-    params = {"name": "ssq", "issueCount": str(issue_count)}
-    r = requests.get(url, params=params, headers=HEADERS, timeout=15)
+    if BeautifulSoup is None:
+        raise RuntimeError("未安装 beautifulsoup4 (pip install beautifulsoup4)")
+
+    url = f"https://datachart.500.com/ssq/history/newinc/history.php?limit={issue_count}&sort=0"
+    h = dict(HEADERS)
+    h["Referer"] = "https://datachart.500.com/ssq/history/history.shtml"
+    r = requests.get(url, headers=h, timeout=20)
     r.raise_for_status()
+    r.encoding = "gb2312"
 
-    draws = []
-    for item in r.json().get("result", [])[:issue_count]:
-        reds = [int(x) for x in (item.get("red") or "").split(",") if x]
-        blue_raw = item.get("blue") or ""
-        if not reds or not blue_raw:
+    soup = BeautifulSoup(r.text, "html.parser")
+    tbody = soup.find("tbody", id="tdata") or soup
+
+    draws, extras = [], {}
+    for tr in tbody.find_all("tr"):
+        tds = tr.find_all("td")
+        if len(tds) < 15:
             continue
+        cells = [td.get_text(strip=True) for td in tds]
+        issue = cells[0]
+        if not issue or not issue.isdigit():
+            continue
+
+        # 红球 1-6，蓝球 7
         try:
-            blue = int(blue_raw)
-        except ValueError:
+            front = [int(cells[i]) for i in range(1, 7)]
+            back = [int(cells[7])]
+        except (ValueError, IndexError):
             continue
-        num = item.get("code") or item.get("issueno") or ""
-        draws.append((str(num), _norm_date(item.get("date") or ""), reds, [blue]))
 
-    if not draws:
-        raise ValueError("福彩接口未解析到双色球数据")
-    draws.reverse()
-    return draws
+        # 尝试两种列布局
+        pool, cnt, amt = _extract_prize_from_cells(cells, 9, 10, 11)  # 含快乐星期天
+        if cnt is None:
+            pool, cnt, amt = _extract_prize_from_cells(cells, 8, 9, 10)  # 不含
+        if cnt is None:
+            pool, cnt, amt = None, 0, 0
 
+        prize = None
+        if cnt > 0 and amt > 0:
+            prize = {"count": cnt, "amount": amt}
 
-def _parse_dlt_xml(text: str, issue_count: int) -> list[tuple]:
-    from xml.etree import ElementTree as ET
-    root = ET.fromstring(text)
-    draws = []
-    for row in root.findall("row"):
-        opencode = row.get("opencode", "")
-        if "|" not in opencode:
-            continue
-        front_s, back_s = opencode.split("|", 1)
-        try:
-            front = [int(x) for x in front_s.split(",") if x]
-            back = [int(x) for x in back_s.split(",") if x]
-        except ValueError:
-            continue
-        if len(front) != 5 or len(back) != 2:
-            continue
-        draws.append((row.get("expect", ""), (row.get("opentime") or "")[:10], front, back))
+        extras[issue] = {"pool": pool, "prize": prize}
+
+        # 日期：找最后一个符合日期格式的单元格
+        date = ""
+        for c in reversed(cells):
+            if re.match(r'^\d{4}-\d{2}-\d{2}$', c) or re.match(r'^\d{8}$', c):
+                date = c
+                break
+        if not date and cells:
+            date = cells[-1]
+
+        draws.append((issue, date, front, back))
         if len(draws) >= issue_count:
             break
 
     if not draws:
-        raise ValueError("500.com XML 未解析到大乐透数据")
-    return draws
+        raise ValueError("500.com SSQ HTML 未解析到数据")
+    draws.reverse()
+    return draws, extras, "500.com 镜像(实时)"
 
 
-def fetch_dlt(issue_count: int) -> tuple[list[tuple], str]:
+def fetch_dlt_html(issue_count: int):
+    """
+    大乐透：500.com HTML 表格(含奖池 + 一等奖基本)。
+    URL: https://datachart.500.com/dlt/history/newinc/history.php
+
+    列布局：
+      0=期号 | 1-5=前区 | 6-7=后区 | 8=奖池 | 9=一等奖注数 | 10=一等奖金 |
+      11=二等奖注数 | 12=二等奖金 | 13=总投注额 | 14=开奖日期
+
+    追加一等奖金 = 基本一等奖金 × 80% (大乐透官方规则)
+    """
     if requests is None:
         raise RuntimeError("未安装 requests")
+    if BeautifulSoup is None:
+        raise RuntimeError("未安装 beautifulsoup4")
 
-    url500 = "https://datachart.500.com/static/info/kaijiang/xml/dlt/list.xml"
-    h500 = dict(HEADERS)
-    h500.update({"Referer": "https://datachart.500.com/dlt/history/", "Accept": "*/*"})
-    try:
-        r = requests.get(url500, headers=h500, timeout=15)
-        r.raise_for_status()
-        draws = _parse_dlt_xml(r.text, issue_count)
-        draws.reverse()
-        return draws, "500.com 镜像(实时)"
-    except Exception as e:
-        print(f"  [info] 500.com 源失败({e}), 尝试体彩官网...", flush=True)
-
-    url = "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry"
-    params = {
-        "gameNo": CONFIG["dlt"]["game_no"],
-        "provinceId": "0",
-        "pageSize": str(issue_count),
-        "isVerify": "1",
-        "pageNo": "1",
-    }
-    dlt_headers = dict(HEADERS)
-    dlt_headers.update({"Origin": "https://webapi.sporttery.cn",
-                        "Cookie": "Hm_lvt_=1; Hm_lpvt_=1"})
-    r = requests.get(url, params=params, headers=dlt_headers, timeout=15)
+    url = f"https://datachart.500.com/dlt/history/newinc/history.php?limit={issue_count}&sort=0"
+    h = dict(HEADERS)
+    h["Referer"] = "https://datachart.500.com/dlt/history/history.shtml"
+    r = requests.get(url, headers=h, timeout=20)
     r.raise_for_status()
-    data = r.json().get("value", {}).get("list", [])
+    r.encoding = "gb2312"
 
-    draws = []
-    for item in data[:issue_count]:
-        if "排列" in (item.get("lotteryGameName") or ""):
+    soup = BeautifulSoup(r.text, "html.parser")
+    tbody = soup.find("tbody", id="tdata") or soup
+
+    draws, extras = [], {}
+    for tr in tbody.find_all("tr"):
+        tds = tr.find_all("td")
+        if len(tds) < 15:
             continue
-        nums = [n for n in (item.get("lotteryDrawResult") or "").split()
-                if n not in ("+", "＋")]
-        if len(nums) < 7:
+        cells = [td.get_text(strip=True) for td in tds]
+        issue = cells[0]
+        if not issue or not issue.isdigit():
             continue
+
+        # 前区 1-5，后区 6-7
         try:
-            front = [int(x) for x in nums[:5]]
-            back = [int(x) for x in nums[5:7]]
-        except ValueError:
+            front = [int(cells[i]) for i in range(1, 6)]
+            back = [int(cells[i]) for i in range(6, 8)]
+        except (ValueError, IndexError):
             continue
-        draws.append((item.get("lotteryDrawNum"), item.get("lotteryDrawTime"), front, back))
+
+        # 奖池 8，一等奖注数 9，一等奖金 10
+        pool, cnt, amt = _extract_prize_from_cells(cells, 8, 9, 10)
+        if cnt is None:
+            pool, cnt, amt = None, 0, 0
+
+        basic = None
+        add = None
+        if cnt > 0 and amt > 0:
+            basic = {"count": cnt, "amount": amt}
+            # 追加金额 = 基本金额 × 80%
+            add = {"amount": int(amt * DLT_ADD_RATIO)}
+
+        prize = None
+        if basic:
+            prize = {"basic": basic, "additional": add}
+
+        extras[issue] = {"pool": pool, "prize": prize}
+
+        # 日期：找最后一个符合日期格式的单元格
+        date = ""
+        for c in reversed(cells):
+            if re.match(r'^\d{4}-\d{2}-\d{2}$', c) or re.match(r'^\d{8}$', c):
+                date = c
+                break
+        if not date and cells:
+            date = cells[-1]
+
+        draws.append((issue, date, front, back))
+        if len(draws) >= issue_count:
+            break
 
     if not draws:
-        raise ValueError(f"未解析到大乐透数据(gameNo={CONFIG['dlt']['game_no']})")
-    return draws, "中国体彩官网(实时)"
+        raise ValueError("500.com DLT HTML 未解析到数据")
+    draws.reverse()
+    return draws, extras, "500.com 镜像(实时)"
 
 
-def _parse_digit_xml(text: str, issue_count: int, digits: int) -> list[tuple]:
+def _parse_digit_xml(text: str, issue_count: int, digits: int) -> list:
     from xml.etree import ElementTree as ET
     root = ET.fromstring(text)
     draws = []
@@ -392,76 +495,84 @@ def _parse_digit_xml(text: str, issue_count: int, digits: int) -> list[tuple]:
     return draws
 
 
-def fetch_digit(kind: str, issue_count: int) -> tuple[list[tuple], str]:
+def fetch_digit(kind: str, issue_count: int):
+    """数字型彩种：500.com XML(无奖池数据)"""
     if requests is None:
         raise RuntimeError("未安装 requests")
     cfg = CONFIG[kind]
     url = f"https://datachart.500.com/static/info/kaijiang/xml/{kind}/list.xml"
     h = dict(HEADERS)
-    h.update({"Referer": f"https://datachart.500.com/{kind}/history/", "Accept": "*/*"})
+    h["Referer"] = f"https://datachart.500.com/{kind}/history/"
+    h["Accept"] = "*/*"
     r = requests.get(url, headers=h, timeout=15)
     r.raise_for_status()
     draws = _parse_digit_xml(r.text, issue_count, cfg["digits"])
     draws.reverse()
-    return draws, "500.com 镜像(实时)"
+    extras = {str(n): {"pool": None} for n, _, _ in draws}
+    return draws, extras, "500.com 镜像(实时)"
 
 
-def fetch(kind: str, issue_count: int) -> list[tuple]:
+def fetch(kind: str, issue_count: int) -> list:
     cfg = CONFIG[kind]
     code = cfg["code"]
+    cfg["_extras"] = {}
 
     try:
         if requests is None:
             raise RuntimeError("未安装 requests")
-        if cfg["source"] == "cwl":
-            draws, source = fetch_ssq(issue_count), "中国福彩官网(实时)"
-        elif cfg["source"] == "500":
-            draws, source = fetch_dlt(issue_count)
+        if cfg["source"] == "500ssq_html":
+            draws, extras, source = fetch_ssq_html(issue_count)
+        elif cfg["source"] == "500html":
+            draws, extras, source = fetch_dlt_html(issue_count)
         elif cfg["source"] in ("500plw", "500sd", "500qxc"):
-            draws, source = fetch_digit(kind, issue_count)
+            draws, extras, source = fetch_digit(kind, issue_count)
         else:
             raise RuntimeError(f"未知数据源: {cfg['source']}")
         if not draws:
             raise ValueError("返回为空")
 
-        _save_cache(code, draws)
+        cfg["_extras"] = extras or {}
+        _save_cache(code, draws, cfg["_extras"])
         cfg["_source"] = source
         cfg["_source_cls"] = "source-live"
         return draws
     except Exception as e:
         print(f"  [warn] 实时接口失败({cfg['name']}: {e})，尝试读取本地缓存...", flush=True)
 
-    cached, updated_at = _load_cache(code, issue_count)
-    if cached:
+    cached_result = _load_cache(code, issue_count)
+    if cached_result:
+        draws, cached_extras, updated_at = cached_result
+        cfg["_extras"] = cached_extras or {}
         tail = f" {updated_at}" if updated_at else ""
         cfg["_source"] = f"本地缓存(上次实时:{tail})" if tail else "本地缓存"
         cfg["_source_cls"] = "source-cache"
-        return cached
+        return draws
 
     cfg["_source"] = "内置静态数据(非实时)"
     cfg["_source_cls"] = "source-static"
+    cfg["_extras"] = {}
     print(f"  [warn] {cfg['name']} 缓存不可用，使用内置静态数据兜底", flush=True)
     return list(cfg["static"][:issue_count])
 
 
 # ==================== 分析 ====================
 
-def _zone_of(x: int, zones: list[tuple[int, int]]) -> int:
+def _zone_of(x: int, zones: list) -> int:
     for i, (a, b) in enumerate(zones):
         if a <= x <= b:
             return i
     return 0
 
 
-def _pick_combo(rng: random.Random, priority: list[int], num_range: tuple[int, int],
-                need: int, sum_range: tuple[int, int], zones: list[tuple[int, int]],
-                max_tries: int = 500) -> list[int]:
+def _pick_combo(rng: random.Random, priority: list, num_range: tuple,
+                need: int, sum_range: tuple, zones: list,
+                max_tries: int = 500) -> list:
     lo, hi = num_range
     prio = [x for x in dict.fromkeys(priority) if lo <= x <= hi]
     prio_set = set(prio)
     others = [x for x in range(lo, hi + 1) if x not in prio_set]
 
-    def valid(cand: list[int]) -> bool:
+    def valid(cand: list) -> bool:
         if len(cand) != need:
             return False
         if not (sum_range[0] <= sum(cand) <= sum_range[1]):
@@ -494,7 +605,7 @@ def _pick_combo(rng: random.Random, priority: list[int], num_range: tuple[int, i
 
 
 def _build_combos(cfg: dict, back_counter: Counter,
-                  last_front: list[int], hot: list[int], cold: list[int]) -> list[dict]:
+                  last_front: list, hot: list, cold: list) -> list:
     num_range = cfg["front_range"]
     need = cfg["front_pick"]
     sum_center = cfg["sum_center"]
@@ -508,11 +619,9 @@ def _build_combos(cfg: dict, back_counter: Counter,
     })
 
     hot_combo = _pick_combo(rng, hot, num_range, need, sum_center, zones)
-
     neigh_seed = neighbors + [x for x in range(num_range[0], num_range[1] + 1)
                               if x not in set(neighbors)]
     neigh_combo = _pick_combo(rng, neigh_seed, num_range, need, sum_center, zones)
-
     cold_only = [c for c in cold if c not in set(hot)] or list(cold)
     eq_seed = cold_only[:need] + hot[:2]
     eq_combo = _pick_combo(rng, eq_seed, num_range, need, sum_center, zones)
@@ -524,7 +633,7 @@ def _build_combos(cfg: dict, back_counter: Counter,
         back_sorted += [x for x in range(br[0], br[1] + 1) if x not in set(back_sorted)]
     back_sorted = back_sorted[: bp * 3]
 
-    def back_slice(i: int) -> list[int]:
+    def back_slice(i: int) -> list:
         return sorted(int(x) for x in back_sorted[i * bp:(i + 1) * bp])
 
     return [
@@ -534,13 +643,14 @@ def _build_combos(cfg: dict, back_counter: Counter,
     ]
 
 
-def _analyze_lotto(kind: str, draws: list[tuple]) -> dict:
+def _analyze_lotto(kind: str, draws: list) -> dict:
     cfg = CONFIG[kind]
     zones = cfg["zones"]
     num_range = cfg["front_range"]
+    extras = cfg.get("_extras", {}) or {}
 
-    front_counter: Counter = Counter()
-    back_counter: Counter = Counter()
+    front_counter = Counter()
+    back_counter = Counter()
     for _, _, front, back in draws:
         front_counter.update(front)
         back_counter.update(back)
@@ -568,13 +678,20 @@ def _analyze_lotto(kind: str, draws: list[tuple]) -> dict:
     last_front = draws[-1][2]
     combos = _build_combos(cfg, back_counter, last_front, hot, cold)
 
-    table = [{
-        "issue": num,
-        "date": (date or "").replace("-", ""),
-        "front": front,
-        "back": back,
-        "front_zone": [_zone_of(x, zones) for x in front],
-    } for num, date, front, back in draws]
+    table = []
+    for num, date, front, back in draws:
+        e = extras.get(str(num), {}) or {}
+        table.append({
+            "issue": num,
+            "date": (date or "").replace("-", ""),
+            "front": front,
+            "back": back,
+            "front_zone": [_zone_of(x, zones) for x in front],
+            "pool": e.get("pool"),
+            "prize": e.get("prize"),
+        })
+
+    latest_pool = table[-1].get("pool") if table else None
 
     return {
         "kind": kind,
@@ -590,12 +707,12 @@ def _analyze_lotto(kind: str, draws: list[tuple]) -> dict:
         "freq": freq,
         "back_freq": back_freq,
         "combos": combos,
+        "latest_pool": latest_pool,
     }
 
 
-def _build_digit_combos(pos_counters: list[Counter], d_lo: int, d_hi: int,
-                        digits: int) -> list[dict]:
-    def ranked(counter: Counter) -> list[int]:
+def _build_digit_combos(pos_counters: list, d_lo: int, d_hi: int, digits: int) -> list:
+    def ranked(counter: Counter) -> list:
         return sorted(range(d_lo, d_hi + 1),
                       key=lambda x: (-counter.get(x, 0), -x))
 
@@ -614,10 +731,11 @@ def _build_digit_combos(pos_counters: list[Counter], d_lo: int, d_hi: int,
     ]
 
 
-def _analyze_digit(kind: str, draws: list[tuple]) -> dict:
+def _analyze_digit(kind: str, draws: list) -> dict:
     cfg = CONFIG[kind]
     digits = cfg["digits"]
     d_lo, d_hi = cfg["digit_range"]
+    extras = cfg.get("_extras", {}) or {}
 
     pos_counters = [Counter() for _ in range(digits)]
     sums = []
@@ -639,11 +757,17 @@ def _analyze_digit(kind: str, draws: list[tuple]) -> dict:
 
     combos = _build_digit_combos(pos_counters, d_lo, d_hi, digits)
 
-    table = [{
-        "issue": issue,
-        "date": (date or "").replace("-", ""),
-        "nums": nums,
-    } for issue, date, nums in draws]
+    table = []
+    for issue, date, nums in draws:
+        e = extras.get(str(issue), {}) or {}
+        table.append({
+            "issue": issue,
+            "date": (date or "").replace("-", ""),
+            "nums": nums,
+            "pool": e.get("pool"),
+        })
+
+    latest_pool = table[-1].get("pool") if table else None
 
     return {
         "kind": kind,
@@ -661,10 +785,11 @@ def _analyze_digit(kind: str, draws: list[tuple]) -> dict:
         "avg_sum": avg_sum,
         "sum_max": sum_max,
         "combos": combos,
+        "latest_pool": latest_pool,
     }
 
 
-def analyze(kind: str, draws: list[tuple]) -> dict:
+def analyze(kind: str, draws: list) -> dict:
     if kind in DIGIT_KINDS:
         return _analyze_digit(kind, draws)
     return _analyze_lotto(kind, draws)
@@ -683,6 +808,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   --ssq:#c0392b; --dlt:#2980b9; --plw:#16a085; --sd:#e67e22; --qxc:#8e44ad;
   --bg:#f2f3f7; --card:#fff;
   --z0:#e74c3c; --z1:#27ae60; --z2:#2980b9; --hot:#e67e22; --cold:#95a5a6;
+  --prize:#d35400;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;
@@ -690,8 +816,8 @@ body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;
   -webkit-text-size-adjust:100%}
 .wrap{max-width:960px;margin:0 auto}
 h1{text-align:center;font-size:22px;margin-bottom:6px}
-.subtitle{text-align:center;color:#7f8c8d;font-size:12px;margin-bottom:18px}
-.tabs{display:flex;gap:10px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.subtitle{text-align:center;color:#7f8c8d;font-size:12px;margin-bottom:12px}
+.tabs{display:flex;gap:10px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
 .tab{padding:9px 22px;border-radius:22px;cursor:pointer;font-size:14px;font-weight:bold;
   background:#fff;border:2px solid #ddd;color:#555;transition:.2s;
   user-select:none;-webkit-tap-highlight-color:transparent}
@@ -732,13 +858,29 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .ball.back{background:#8e44ad}
 .ball-sep{display:inline-block;color:#b2bec3;font-weight:bold;font-size:14px;
   margin:0 6px;vertical-align:middle;line-height:1}
-/* ============= 新增：最新开奖大字卡 ============= */
 .latest-card{
   background:linear-gradient(135deg,#fafbfe,#eef2f9);
   border-radius:14px;padding:22px 14px;text-align:center;
   border:1px solid #e8eef6;
 }
-.latest-meta{font-size:12px;color:#7f8c8d;margin-bottom:14px;letter-spacing:.5px}
+.latest-meta{font-size:12px;color:#7f8c8d;margin-bottom:10px;letter-spacing:.5px}
+.latest-pool{
+  display:inline-block;
+  font-size:12px;
+  color:#d35400;
+  background:rgba(230,126,34,.10);
+  padding:3px 14px;
+  border-radius:14px;
+  margin-bottom:14px;
+  letter-spacing:.3px;
+  font-weight:600;
+}
+.latest-pool b{
+  color:#c0392b;
+  font-size:15px;
+  margin-left:5px;
+  font-weight:800;
+}
 .latest-numbers{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px 0}
 .ball.big{
   min-width:46px;height:46px;font-size:18px;font-weight:800;
@@ -772,10 +914,8 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .combo.dig-a{border-top-color:var(--plw)}
 .combo.dig-b{border-top-color:#3498db}
 .combo.dig-c{border-top-color:#95a5a6}
-/* tag 行两端对齐，右边放复制按钮 */
 .combo .tag{display:flex;justify-content:space-between;align-items:center;gap:8px;
   font-size:12px;color:#7f8c8d;margin-bottom:4px}
-/* 新增：策略说明小字 */
 .combo .strategy{font-size:11px;color:#95a5a6;margin-bottom:10px;line-height:1.5}
 .combo .line{display:flex;align-items:center;flex-wrap:nowrap;white-space:nowrap}
 .combo .sep{margin:0 6px;color:#bbb;font-weight:bold}
@@ -786,15 +926,49 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 .copy-btn:hover{background:#eef2f7;border-color:#a0aec0}
 .copy-btn:active{transform:scale(.96)}
 .copy-btn.copied{background:#27ae60;border-color:#27ae60;color:#fff}
-.note{background:#fff9e6;border:1px solid #ffe08a;border-radius:10px;padding:12px 16px;
-  color:#8a6d00;font-size:12px;text-align:center;line-height:1.7}
+.note{background:#f8f9fa;border:1px solid #e9ecef;border-radius:8px;
+  padding:8px 14px;color:#999;font-size:11px;text-align:center;line-height:1.6}
+.note .dot-sep{margin:0 6px;color:#ddd}
 .summary{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#555;margin-top:8px}
 .summary b{color:#2c3e50}
+
+/* ===== 一等奖单元格(强调色) ===== */
+.prize-cell{
+  text-align:left !important;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.75;
+  color:var(--prize);
+  padding-left:10px !important;
+  min-width:180px;
+  white-space:nowrap;
+}
+.prize-line{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+.prize-label{
+  display:inline-block;
+  padding:0 5px;
+  background:#fdebd0;
+  color:#b9770e;
+  border-radius:3px;
+  font-size:10px;
+  font-weight:bold;
+  line-height:16px;
+  flex:none;
+}
+.prize-ref{
+  color:#c8cfd6;
+  font-style:italic;
+  font-weight:500;
+}
 
 @media(max-width:600px){
   body{padding:8px;font-size:13px}
   h1{font-size:18px;margin-bottom:4px}
-  .subtitle{font-size:11px;line-height:1.5;margin-bottom:12px;padding:0 4px}
+  .subtitle{font-size:11px;line-height:1.5;margin-bottom:8px;padding:0 4px}
   .tabs{gap:6px;margin-bottom:12px}
   .tab{padding:6px 12px;font-size:12px;border-radius:16px;font-weight:600}
   .card{padding:12px;border-radius:10px;margin-bottom:10px}
@@ -807,9 +981,10 @@ tr.latest td{background:#fff8e1;font-weight:bold}
   th.num-col, td.num-col{padding-left:4px}
   .ball{min-width:20px;height:20px;font-size:10px;margin:0 1px;padding:0}
   .ball-sep{margin:0 3px;font-size:12px}
-  /* 手机端大字卡适当缩小 */
   .latest-card{padding:16px 8px;border-radius:12px}
-  .latest-meta{font-size:11px;margin-bottom:10px}
+  .latest-meta{font-size:11px;margin-bottom:8px}
+  .latest-pool{font-size:11px;padding:2px 10px;margin-bottom:10px;}
+  .latest-pool b{font-size:13px;margin-left:3px;}
   .ball.big{min-width:34px;height:34px;font-size:14px;margin:0 2px}
   .ball-sep.big{font-size:16px;margin:0 6px}
   .freq-grid{grid-template-columns:repeat(auto-fill,minmax(28px,1fr));gap:5px 2px}
@@ -827,15 +1002,25 @@ tr.latest td{background:#fff8e1;font-weight:bold}
   .combo .strategy{font-size:10.5px;margin-bottom:8px}
   .combo .sep{margin:0 4px;font-size:13px}
   .copy-btn{padding:3px 9px;font-size:10px}
-  .note{padding:10px 12px;font-size:11px;line-height:1.6}
+  .note{padding:6px 10px;font-size:10px;line-height:1.5}
   .summary{font-size:11px;gap:8px;margin-top:6px}
+  .prize-cell{
+    font-size:11px;
+    min-width:140px;
+    padding-left:4px !important;
+  }
+  .prize-label{
+    font-size:9px;
+    padding:0 3px;
+    line-height:14px;
+  }
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 <h1>🎯 彩票走势分析</h1>
-<div class="subtitle">生成时间：__GENERATED_AT__<br>数据来源：中国福彩官网 / 500.com 镜像 / 中国体彩官网 / 本地缓存</div>
+<div class="subtitle">生成时间：__GENERATED_AT__</div>
 
 <div class="tabs">
   __TABS__
@@ -843,8 +1028,8 @@ tr.latest td{background:#fff8e1;font-weight:bold}
 
 __PANELS__
 
-<div class="card">
-  <div class="note">⚠️ 彩票为独立随机事件，走势不能预测未来。以上号码仅基于历史频率推演，<b>仅供娱乐参考，非投注建议</b>。请理性购彩、量力而行。</div>
+<div class="note">
+  彩票为独立随机事件，走势不能预测未来<span class="dot-sep">·</span>号码仅基于历史频率推演，仅供娱乐参考，非投注建议<span class="dot-sep">·</span>请理性购彩、量力而行
 </div>
 </div>
 
@@ -859,7 +1044,6 @@ document.querySelectorAll('.tab').forEach(function(t){
   };
 });
 
-/* ---- 复制功能：优先 Clipboard API，http 环境回退 execCommand ---- */
 function _fallbackCopy(text, done){
   var ta = document.createElement('textarea');
   ta.value = text;
@@ -907,9 +1091,23 @@ document.querySelectorAll('.copy-btn').forEach(function(btn){
 """
 
 
-def _render_balls(front: list[int], front_zone: list[int], back: list[int],
-                  big: bool = False) -> str:
-    """号码球渲染（big=True 用于最新开奖大字卡）"""
+def _fmt_money(v):
+    if v is None:
+        return "—"
+    try:
+        v = int(v)
+    except (TypeError, ValueError):
+        return "—"
+    if v <= 0:
+        return "—"
+    if v >= 1e8:
+        return f"{v/1e8:.2f}亿"
+    if v >= 1e4:
+        return f"{v/1e4:.1f}万"
+    return f"{v}元"
+
+
+def _render_balls(front: list, front_zone: list, back: list, big: bool = False) -> str:
     cls = "ball big" if big else "ball"
     parts = []
     for i, x in enumerate(front):
@@ -924,14 +1122,14 @@ def _render_balls(front: list[int], front_zone: list[int], back: list[int],
     return "".join(parts)
 
 
-def _copy_text_lotto(front: list[int], back: list[int]) -> str:
+def _copy_text_lotto(front: list, back: list) -> str:
     s = " ".join(f"{int(x):02d}" for x in front)
     if back:
         s += " + " + " ".join(f"{int(x):02d}" for x in back)
     return s
 
 
-def _copy_text_digit(nums: list[int], split_at) -> str:
+def _copy_text_digit(nums: list, split_at) -> str:
     parts = [str(int(x)) for x in nums]
     if split_at is not None and 0 < split_at < len(parts):
         return " ".join(parts[:split_at]) + " + " + " ".join(parts[split_at:])
@@ -939,18 +1137,21 @@ def _copy_text_digit(nums: list[int], split_at) -> str:
 
 
 def _render_latest_card_lotto(d: dict) -> str:
-    """双色球/大乐透：最新开奖大字卡"""
     if not d["table"]:
         return ""
     last = d["table"][-1]
     kind = d["kind"]
     cls = "ssq" if kind == "ssq" else "dlt"
     balls = _render_balls(last["front"], last["front_zone"], last["back"], big=True)
+    pool = d.get("latest_pool")
+    pool_str = _fmt_money(pool) if pool else "—"
+    pool_html = f'<div class="latest-pool">💰 奖池 <b>{pool_str}</b></div>'
     return f"""
   <div class="card">
     <h2 class="{cls}">最新开奖</h2>
     <div class="latest-card">
       <div class="latest-meta">第 {last['issue']} 期 · {last['date']}</div>
+      {pool_html}
       <div class="latest-numbers">{balls}</div>
     </div>
   </div>
@@ -958,7 +1159,6 @@ def _render_latest_card_lotto(d: dict) -> str:
 
 
 def _render_latest_card_digit(d: dict) -> str:
-    """排列五/福彩3D/七星彩：最新开奖大字卡"""
     if not d["table"]:
         return ""
     last = d["table"][-1]
@@ -971,15 +1171,61 @@ def _render_latest_card_digit(d: dict) -> str:
             parts.append('<span class="ball-sep big">+</span>')
         color = colors[i % len(colors)]
         parts.append(f'<span class="ball big" style="background:{color}">{int(x)}</span>')
+    pool = d.get("latest_pool")
+    pool_str = _fmt_money(pool) if pool else "—"
+    pool_html = f'<div class="latest-pool">💰 奖池 <b>{pool_str}</b></div>'
     return f"""
   <div class="card">
     <h2 class="{kind}">最新开奖</h2>
     <div class="latest-card">
       <div class="latest-meta">第 {last['issue']} 期 · {last['date']}</div>
+      {pool_html}
       <div class="latest-numbers">{"".join(parts)}</div>
     </div>
   </div>
 """
+
+
+def _render_prize_cell(kind: str, prize) -> str:
+    """一等奖单元格(仅双色球/大乐透)。
+    大乐透追加金额 = 基本奖金 × 80%(官方规则)，只显示金额不显示注数。
+    """
+    if kind == "ssq":
+        cnt = int((prize or {}).get("count") or 0)
+        amt = int((prize or {}).get("amount") or 0)
+        if cnt > 0 and amt > 0:
+            body = f'{cnt}注 × {_fmt_money(amt)}'
+        else:
+            body = f'<span class="prize-ref">{_fmt_money(DEFAULT_PRIZE_SSQ)}</span>'
+        return f'<td class="prize-cell"><div class="prize-line">{body}</div></td>'
+
+    # 大乐透
+    basic = (prize or {}).get("basic") or {}
+    add = (prize or {}).get("additional") or {}
+
+    b_cnt = int(basic.get("count") or 0)
+    b_amt = int(basic.get("amount") or 0)
+    a_amt = int(add.get("amount") or 0)
+
+    if b_cnt > 0 and b_amt > 0:
+        line_basic = f'{b_cnt}注 × {_fmt_money(b_amt)}'
+    else:
+        line_basic = f'<span class="prize-ref">{_fmt_money(DEFAULT_PRIZE_DLT_BASIC)}</span>'
+
+    # 追加金额：优先用解析到的值，否则用基本金额 × 80% 算
+    if a_amt > 0:
+        line_add = _fmt_money(a_amt)
+    elif b_amt > 0:
+        line_add = _fmt_money(int(b_amt * DLT_ADD_RATIO))
+    else:
+        line_add = f'<span class="prize-ref">{_fmt_money(int(DEFAULT_PRIZE_DLT_BASIC * DLT_ADD_RATIO))}</span>'
+
+    return (
+        '<td class="prize-cell">'
+        f'<div class="prize-line"><span class="prize-label">基本</span>{line_basic}</div>'
+        f'<div class="prize-line"><span class="prize-label">追加</span>{line_add}</div>'
+        '</td>'
+    )
 
 
 def _render_panel_lotto(d: dict) -> str:
@@ -997,16 +1243,18 @@ def _render_panel_lotto(d: dict) -> str:
     for row in recent:
         tr_cls = ' class="latest"' if row["issue"] == last_issue else ''
         balls_html = _render_balls(row["front"], row["front_zone"], row["back"])
+        prize_td = _render_prize_cell(kind, row.get("prize"))
         rows.append(
             f'<tr{tr_cls}>'
             f'<td>{row["issue"]}</td>'
             f'<td>{row["date"]}</td>'
             f'<td class="num-col">{balls_html}</td>'
+            f'{prize_td}'
             f'</tr>'
         )
     table_html = (
         '<table><thead><tr><th>期号</th><th>日期</th>'
-        '<th class="num-col">号码</th></tr></thead>'
+        '<th class="num-col">号码</th><th>一等奖</th></tr></thead>'
         '<tbody>' + "".join(rows) + '</tbody></table>'
     )
 
@@ -1225,7 +1473,7 @@ def render_panel(d: dict) -> str:
     return _render_panel_lotto(d)
 
 
-def render_html(reports: list[dict]) -> str:
+def render_html(reports: list) -> str:
     kind_labels = {
         "ssq": "🔴 双色球",
         "dlt": "🔵 大乐透",
@@ -1268,7 +1516,7 @@ def run_kind(kind: str, issue_count: int) -> dict:
     return analyze(kind, draws)
 
 
-def parse_args(argv: list[str]) -> tuple[list[str], int]:
+def parse_args(argv: list) -> tuple:
     kinds = list(ALL_KINDS)
     issue_count = 15
     for a in (x.lower() for x in argv):

@@ -185,10 +185,6 @@
       "name": "小凯线路"
     },
     {
-      "url": "https://jiekou.netlify.app/svip.json",
-      "name": "时光线路"
-    },
-    {
       "url": "https://chigua.eu.org",
       "name": "东篱线路"
     },
@@ -198,8 +194,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 49,
-  "invalid_count": 0,
-  "last_validated": "2026-09-22 06:00:11",
+  "valid_count": 48,
+  "invalid_count": 1,
+  "last_validated": "2026-09-22 14:28:23",
   "original_count": 49
 }

@@ -157,10 +157,6 @@
       "name": "心魔线路"
     },
     {
-      "url": "http://肥猫.net/tv",
-      "name": "肥猫线路"
-    },
-    {
       "url": "http://tjf1100.serv00.net",
       "name": "传说线路"
     },
@@ -190,8 +186,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 47,
-  "invalid_count": 0,
-  "last_validated": "2026-09-25 15:03:46",
+  "valid_count": 46,
+  "invalid_count": 1,
+  "last_validated": "2026-09-26 06:01:33",
   "original_count": 47
 }

@@ -61,10 +61,6 @@
       "name": "备用地址(fm.gif)"
     },
     {
-      "url": "http://fty.xxooo.cf/tv",
-      "name": "饭太硬(fty)"
-    },
-    {
       "url": "http://www.饭太硬.net/tv",
       "name": "饭太硬(net)"
     },
@@ -186,8 +182,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 46,
-  "invalid_count": 0,
-  "last_validated": "2026-09-28 06:35:34",
+  "valid_count": 45,
+  "invalid_count": 1,
+  "last_validated": "2026-09-28 18:00:57",
   "original_count": 46
 }

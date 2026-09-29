@@ -113,10 +113,6 @@
       "name": "饭硬一线"
     },
     {
-      "url": "https://api.hgyx.vip/hgyx.json",
-      "name": "嗨哥魔改"
-    },
-    {
       "url": "https://zhangqun1818.serv00.net/zq/api.json",
       "name": "老张线路"
     },
@@ -182,8 +178,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 45,
-  "invalid_count": 0,
-  "last_validated": "2026-09-29 06:44:26",
+  "valid_count": 44,
+  "invalid_count": 1,
+  "last_validated": "2026-09-29 16:23:41",
   "original_count": 45
 }

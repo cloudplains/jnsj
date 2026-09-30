@@ -125,10 +125,6 @@
       "name": "南风线路"
     },
     {
-      "url": "http://tvbox.王二小放牛娃.top",
-      "name": "王二小线"
-    },
-    {
       "url": "https://szyyds.cn/tv/x.json",
       "name": "小马线路"
     },
@@ -178,8 +174,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 44,
-  "invalid_count": 0,
-  "last_validated": "2026-09-30 06:32:33",
+  "valid_count": 43,
+  "invalid_count": 1,
+  "last_validated": "2026-09-30 16:19:09",
   "original_count": 44
 }

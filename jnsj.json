@@ -53,10 +53,6 @@
       "name": "Yoursmile7"
     },
     {
-      "url": "http://bp.tvbox.cam/",
-      "name": "bp"
-    },
-    {
       "url": "https://w.junce.dpdns.org/fm.gif",
       "name": "备用地址(fm.gif)"
     },
@@ -174,8 +170,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 43,
-  "invalid_count": 0,
-  "last_validated": "2026-10-08 17:16:15",
+  "valid_count": 42,
+  "invalid_count": 1,
+  "last_validated": "2026-10-09 07:17:27",
   "original_count": 43
 }

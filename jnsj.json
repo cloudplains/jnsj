@@ -141,10 +141,6 @@
       "name": "心魔线路"
     },
     {
-      "url": "http://tjf1100.serv00.net",
-      "name": "传说线路"
-    },
-    {
       "url": "http://home.jundie.top:81/top98.json",
       "name": "俊宇线路"
     },
@@ -170,8 +166,8 @@
     }
   ],
   "last_updated": "2026-09-16",
-  "valid_count": 42,
-  "invalid_count": 0,
-  "last_validated": "2026-10-15 05:45:16",
+  "valid_count": 41,
+  "invalid_count": 1,
+  "last_validated": "2026-10-15 14:44:51",
   "original_count": 42
 }

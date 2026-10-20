@@ -169,36 +169,12 @@
       "name": "聚玩线路"
     },
     {
-      "url": "http://www.小不点.com",
-      "name": "小不点线"
-    },
-    {
       "url": "http://itv666.cc/aowu/config.webp",
       "name": "嗷呜线路"
     },
     {
       "url": "https://api.hgyx.vip/hgyx.json",
       "name": "嗨哥魔改"
-    },
-    {
-      "url": "https://xn--biib-rp5imh.v.nxog.top/apitv.php",
-      "name": "讴歌线路"
-    },
-    {
-      "url": "https://play.iptv365.org/香雅情/api.json",
-      "name": "香雅情线"
-    },
-    {
-      "url": "http://tvbox.王二小放牛娃.top",
-      "name": "王二小线"
-    },
-    {
-      "url": "https://6800.kstore.vip/fish.json",
-      "name": "摸鱼线路"
-    },
-    {
-      "url": "http://fmys.top/fmys.json",
-      "name": "驸马线路"
     },
     {
       "url": "http://肥猫.net/tv",
@@ -209,20 +185,8 @@
       "name": "分享者线"
     },
     {
-      "url": "http://rihou.cc:88/demoabc.json",
-      "name": "VOX线路"
-    },
-    {
       "url": "https://jiekou.netlify.app/svip.json",
       "name": "时光线路"
-    },
-    {
-      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
-      "name": "道长线路"
-    },
-    {
-      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
-      "name": "小苹果线"
     },
     {
       "url": "https://17264.kstore.space/哈基米.png",
@@ -234,8 +198,8 @@
     }
   ],
   "last_updated": "2026-10-20",
-  "valid_count": 58,
-  "invalid_count": 0,
-  "last_validated": "2026-10-12 19:41:17",
+  "valid_count": 49,
+  "invalid_count": 9,
+  "last_validated": "2026-10-20 09:38:23",
   "original_count": 58
 }

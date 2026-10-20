@@ -117,6 +117,10 @@
       "name": "集多线路"
     },
     {
+      "url": "https://ghproxy.monkeyray.net/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
+      "name": "南风线路"
+    },
+    {
       "url": "https://szyyds.cn/tv/x.json",
       "name": "小马线路"
     },
@@ -135,6 +139,10 @@
     {
       "url": "https://gh-proxy.com/raw.githubusercontent.com/yw88075/tvbox/main/yw.json",
       "name": "心魔线路"
+    },
+    {
+      "url": "http://tjf1100.serv00.net",
+      "name": "传说线路"
     },
     {
       "url": "http://home.jundie.top:81/top98.json",
@@ -159,11 +167,75 @@
     {
       "url": "http://xhztv.top/xhz",
       "name": "聚玩线路"
+    },
+    {
+      "url": "http://www.小不点.com",
+      "name": "小不点线"
+    },
+    {
+      "url": "http://itv666.cc/aowu/config.webp",
+      "name": "嗷呜线路"
+    },
+    {
+      "url": "https://api.hgyx.vip/hgyx.json",
+      "name": "嗨哥魔改"
+    },
+    {
+      "url": "https://xn--biib-rp5imh.v.nxog.top/apitv.php",
+      "name": "讴歌线路"
+    },
+    {
+      "url": "https://play.iptv365.org/香雅情/api.json",
+      "name": "香雅情线"
+    },
+    {
+      "url": "http://tvbox.王二小放牛娃.top",
+      "name": "王二小线"
+    },
+    {
+      "url": "https://6800.kstore.vip/fish.json",
+      "name": "摸鱼线路"
+    },
+    {
+      "url": "http://fmys.top/fmys.json",
+      "name": "驸马线路"
+    },
+    {
+      "url": "http://肥猫.net/tv",
+      "name": "肥猫线路"
+    },
+    {
+      "url": "http://hucongrong.web3v.work/风水/fxz/fxz.json",
+      "name": "分享者线"
+    },
+    {
+      "url": "http://rihou.cc:88/demoabc.json",
+      "name": "VOX线路"
+    },
+    {
+      "url": "https://jiekou.netlify.app/svip.json",
+      "name": "时光线路"
+    },
+    {
+      "url": "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json",
+      "name": "道长线路"
+    },
+    {
+      "url": "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json",
+      "name": "小苹果线"
+    },
+    {
+      "url": "https://17264.kstore.space/哈基米.png",
+      "name": "哈吉米线"
+    },
+    {
+      "url": "https://cccimg.com/down.php/7d1f30263b3f2bf3deda2d7faeef4844.zhen6",
+      "name": "真六线路"
     }
   ],
-  "last_updated": "2026-09-16",
-  "valid_count": 40,
+  "last_updated": "2026-10-20",
+  "valid_count": 58,
   "invalid_count": 0,
-  "last_validated": "2026-10-20 05:49:07",
-  "original_count": 40
+  "last_validated": "2026-10-12 19:41:17",
+  "original_count": 58
 }

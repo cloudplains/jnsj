@@ -191,15 +191,11 @@
     {
       "url": "https://17264.kstore.space/哈基米.png",
       "name": "哈吉米线"
-    },
-    {
-      "url": "https://cccimg.com/down.php/7d1f30263b3f2bf3deda2d7faeef4844.zhen6",
-      "name": "真六线路"
     }
   ],
   "last_updated": "2026-10-20",
-  "valid_count": 49,
-  "invalid_count": 9,
-  "last_validated": "2026-10-20 09:38:23",
-  "original_count": 58
+  "valid_count": 48,
+  "invalid_count": 1,
+  "last_validated": "2026-10-20 14:47:38",
+  "original_count": 49
 }

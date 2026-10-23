@@ -1468,5 +1468,9 @@
       "url": "https://play.iptv365.org/iptv365/api.json",
       "name": "iptv365直播"
     }
-  ]
+  ],
+  "last_validated": "2026-10-23 01:53:39",
+  "valid_count": 37,
+  "invalid_count": 0,
+  "original_count": 37
 }

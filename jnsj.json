@@ -4,7 +4,7 @@
       "url": "http://120.48.176.138/zhyTV.json",
       "name": "zhytv"
     },
- {
+    {
       "url": "https://9280.kstore.vip/newwex.json",
       "name": "牛二"
     },
@@ -121,10 +121,6 @@
       "name": "金鹰接口"
     },
     {
-      "url": "http://ai.xn--4kq62z5rby2qupq9ub.top/",
-      "name": "ai.xn--4kq62z5rby2qupq9u"
-    },
-    {
       "url": "http://ficfac.com/box/box.json",
       "name": "ficfac.com/box"
     },
@@ -167,10 +163,6 @@
     {
       "url": "http://tv.999888123.xyz",
       "name": "牛二(2数字xyz)"
-    },
-    {
-      "url": "http://tvbox.xn--4kq62z5rby2qupq9ub.top",
-      "name": "牛二(常规top)"
     },
     {
       "url": "http://tvjuhe.mitetech.cn:5622/",
@@ -605,14 +597,6 @@
       "name": "jihulab.com/xh"
     },
     {
-      "url": "https://jihulab.com/kgsp/tv/raw/box/666.json",
-      "name": "坤哥影视接口"
-    },
-    {
-      "url": "https://jihulab.com/owen2000wy/owentv/-/raw/main/HP20230319.m3u",
-      "name": "jihulab.com/HP20230319"
-    },
-    {
       "url": "https://jihulab.com/xuanzhuapp/xzys/-/raw/main/xzvip.json",
       "name": "新↓·main/xzvip.jso"
     },
@@ -623,14 +607,6 @@
     {
       "url": "https://jihulab.com/z-blog/vip/-/raw/main/dd/t.json",
       "name": "多多线路"
-    },
-    {
-      "url": "https://jihulab.com/z-blog/vip/raw/main/xpg/t.json",
-      "name": "荷城"
-    },
-    {
-      "url": "https://jihulab.com/z-blog/xh2/-/raw/main/t.json",
-      "name": "小荷"
     },
     {
       "url": "https://jihulab.com/z-blog/xh2/raw/main/t.json",
@@ -651,10 +627,6 @@
     {
       "url": "https://o.nxog.top/m/111.php?ou=公众号欧歌app&mz=index&jar=index&123&b=o",
       "name": "★欧歌"
-    },
-    {
-      "url": "https://pastebin.com/raw/sbPpDm9G",
-      "name": "pastebin.com/sbPpDm9G"
     },
     {
       "url": "https://qist.swsixtwo.top/jsm.json",
@@ -941,8 +913,8 @@
       "name": "IPV6聚合"
     }
   ],
-  "last_validated": "2026-10-23 02:57:06",
-  "valid_count": 234,
-  "invalid_count": 42,
-  "original_count": 276
+  "last_validated": "2026-10-23 03:49:15",
+  "valid_count": 228,
+  "invalid_count": 7,
+  "original_count": 235
 }

@@ -18,6 +18,42 @@ HEADERS = {
 }
 
 
+# 固化白名单：这些源格式特殊（polyglot 图片伪装 / base64 加密包装 /
+# 中文域名 / 动态域名+非标端口），普通 HTTP 验证判不准，境外 CI 网络下
+# 会被误判失效。命中规则的 URL 跳过验证、无条件保留。
+PROTECTED_RULES = [
+    # 饭太硬生态：polyglot 图片外壳 + 尾部 Base64 配置（客户端能解析）
+    "饭太硬",
+    # 嗷呜：polyglot PNG 外壳 + 尾部 Base64 配置
+    "itv666.cc/aowu",
+    # 东篱：Base64 加密包装（SWKYkz1W 开头）
+    "chigua.eu.org",
+    # 王二小放牛娃：中文域名直连
+    "王二小放牛娃",
+    # bobohome 系列：动态域名 + 20247 非标端口 + emoji 路径
+    "bobohome.ignorelist.com",
+]
+
+
+def is_protected(url):
+    """命中白名单的 URL 跳过验证、永久保留。"""
+    if not url:
+        return False
+    low = url.lower()
+    if any(rule in low for rule in PROTECTED_RULES):
+        return True
+    # 中文域名（host 含非 ASCII，如 饭太硬.cc）：CI 境外 DNS 可能解析不稳
+    try:
+        from urllib.parse import urlsplit
+
+        host = urlsplit(url).hostname or ""
+        if any(ord(c) > 127 for c in host):
+            return True
+    except Exception:
+        pass
+    return False
+
+
 def is_url_valid(url, timeout=8):
     """检查 URL 是否可访问。
 
@@ -135,10 +171,18 @@ def validate_json_urls():
 
         valid_urls = []
         invalid_urls = []
+        protected_urls = []
 
         for item in data.get("urls", []):
             url = item.get("url", "")
             name = item.get("name", "")
+
+            # 白名单源：跳过验证，无条件保留
+            if is_protected(url):
+                valid_urls.append(item)
+                protected_urls.append(item)
+                print(f"☆ {name} 白名单保留（跳过验证）")
+                continue
 
             print(f"验证: {name} - {url}")
 
@@ -156,6 +200,7 @@ def validate_json_urls():
         data["last_validated"] = timestamp
         data["valid_count"] = len(valid_urls)
         data["invalid_count"] = len(invalid_urls)
+        data["protected_count"] = len(protected_urls)
         data["original_count"] = original_count
 
         with open(file_path, "w", encoding="utf-8") as f:

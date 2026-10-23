@@ -913,8 +913,8 @@
       "name": "IPV6聚合"
     }
   ],
-  "last_validated": "2026-10-23 03:49:15",
+  "last_validated": "2026-10-23 05:30:35",
   "valid_count": 228,
-  "invalid_count": 7,
-  "original_count": 235
+  "invalid_count": 0,
+  "original_count": 228
 }

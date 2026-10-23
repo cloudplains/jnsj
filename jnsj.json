@@ -5,10 +5,6 @@
       "name": "神秘的哥哥们"
     },
     {
-      "url": "http://tv.aisimu.cn/tv/all.json",
-      "name": "艾丝沐"
-    },
-    {
       "url": "https://xmbjm.github.io/ck.json",
       "name": "拾光趣乐屋(github)"
     },
@@ -43,26 +39,6 @@
     {
       "url": "https://qist.wyfc.qzz.io/fty.json",
       "name": "qist"
-    },
-    {
-      "url": "http://肥猫.live/",
-      "name": "肥猫live"
-    },
-    {
-      "url": "https://agit.ai/Yoursmile7/TVBox/raw/branch/master/XC.json",
-      "name": "Yoursmile7"
-    },
-    {
-      "url": "https://w.junce.dpdns.org/fm.gif",
-      "name": "备用地址(fm.gif)"
-    },
-    {
-      "url": "http://www.饭太硬.net/tv",
-      "name": "饭太硬(net)"
-    },
-    {
-      "url": "https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
-      "name": "南风"
     },
     {
       "url": "https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json",
@@ -105,20 +81,8 @@
       "name": "星微Vip线"
     },
     {
-      "url": "http://www.饭太硬.cc/tv",
-      "name": "饭硬一线"
-    },
-    {
       "url": "https://zhangqun1818.serv00.net/zq/api.json",
       "name": "老张线路"
-    },
-    {
-      "url": "http://jiduo.3116598.xyz",
-      "name": "集多线路"
-    },
-    {
-      "url": "https://ghproxy.monkeyray.net/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
-      "name": "南风线路"
     },
     {
       "url": "https://szyyds.cn/tv/x.json",
@@ -127,10 +91,6 @@
     {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhoujck/config/main/box",
       "name": "周J线路"
-    },
-    {
-      "url": "https://gh-proxy.org/https://raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/demo.json",
-      "name": "小米线路"
     },
     {
       "url": "https://tv.xn--yhqu5zs87a.top",
@@ -188,10 +148,5 @@
       "url": "https://17264.kstore.space/哈基米.png",
       "name": "哈吉米线"
     }
-  ],
-  "last_updated": "2026-10-20",
-  "valid_count": 47,
-  "invalid_count": 0,
-  "last_validated": "2026-10-22 14:56:21",
-  "original_count": 47
+  ]
 }

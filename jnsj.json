@@ -1,6 +1,10 @@
 {
   "urls": [
     {
+      "url": "http://120.48.176.138/zhyTV.json",
+      "name": "zhytv"
+    },
+ {
       "url": "https://9280.kstore.vip/newwex.json",
       "name": "牛二"
     },
